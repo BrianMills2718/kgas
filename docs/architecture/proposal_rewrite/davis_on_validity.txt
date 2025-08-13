@@ -1,0 +1,305 @@
+https://statemilitiaintel.wordpress.com/wp-content/uploads/2019/03/rand_rr2208.pdf
+Priority Challenges for Social and Behavioral Research and Its Modeling
+Paul K. Davis, Angela O'Mahony, Timothy R. Gulden, Osonde A. Osoba, Katharine Sieck
+ResearchPublished Apr 16, 2018
+
+From <https://www.rand.org/pubs/research_reports/RR2208.html> 
+
+
+A Myopic View of Model Validity
+An obstacle to progress has been an overly narrow view of model
+validity. We recommend discussing validity for a specified context along
+five dimensions: description, explanation, postdiction, exploration and
+coarse prediction, and classic prediction.
+These distinctions need to be made routinely by researchers,
+analysts, and consumers of model-based analysis. Few SB models will
+be valid for classic prediction (accurate, precise, and unequivocal), but
+much higher aspirations are possible for the other purposes. In contra-
+diction of conventional wisdom, those “other” dimensions of validity
+are crucial in the progress of science generally. The common focus on
+prediction when discussing validity is misplaced.
+
+
+Rethinking Model Validity
+The Five Dimensions of Model Validity
+Given the difficulties in measuring faithfully the many variables impor-
+tant to human and social behavior, and given the difficulty and sometimes
+22 One study illustrated an unusual approach. It began with a factor-tree qualitative model
+based on a review of social science literature on public support for terrorism. It then mapped
+the factor tree into a semi-qualitative computational model to use for exploration. This
+required specifying numerous alternative algorithms and other subtleties. This was accom-
+plished with a very high-level language, with the expectation that this social science module
+could be peer-reviewed without the diversions of computer-code details. If the model proved
+solid, it could be readily shared, used for multimodeling purposes, or reprogrammed into
+languages more convenient to particular groups (Davis and O’Mahony, 2013).
+24 Priority Challenges for Social-Behavioral Research and Its Modeling
+the impossibility of predicting CAS behavior, it is necessary to rede-
+fine “validity” of theories and models. Much discussion has already
+occurred (see Appendix C), and it is time to draw conclusions and move
+on rather than debate the matters endlessly. Fortunately, it is possible to
+proceed by merely extending the classic concept.
+Official definitions are often disappointing, but the DoD’s
+definition of validation (Department of Defense, 2009) has held up for
+decades:
+Validation: The process of determining the degree to which a model
+and its associated data are an accurate representation of the real
+world from the perspective of the intended uses of the model. 23
+We propose the following elaboration: A model’s validity should
+be assessed separately with respect to (1) description, (2) causal expla-
+nation, (3) postdiction, (4) exploratory analysis, and (5) prediction.
+These criteria should be elaborated and better defined in future
+work, but we have the following meanings in mind:
+• Description: identify salient structure, variables, and processes.
+• Causal explanation: identify causal variables and processes and
+describe reasons for behavior in corresponding terms.
+• Postdiction: explain past behavior quantitatively with inferences
+from causal theory.
+• Exploratory analysis: identify and parameterize causal variables
+and processes. Estimate approximate system behavior as a function
+of those parameters and variations of model structure (coarse
+prediction).
+• Prediction: predict system behavior accurately and even precisely
+(as assessed with empirical information).
+We need not elaborate on description or prediction, but the other
+dimensions bear somewhat more commentary. Causal explanation is at
+once a familiar and primitive concept, but is also deep and subtle as is
+23 This DoD definition is consistent with most other thoughtful discussions, such as that in
+the domain of system dynamics (Sterman, 2000).
+Difficulties, Challenges, and a Broad Strategy for Next Steps 25
+discussed in Chapter 5 in the section on causality. Let us elaborate here
+on postdiction and exploratory analysis.
+Postdiction (sometimes called “retrodiction”) can have the negative
+connotation of after-the-fact rationalization, but we have in mind the
+positive connotation of explaining previously observed system behavior
+using theory. Physicist Steven Weinberg uses the example of Einstein’s
+explanation of the observed anomaly in Mercury’s orbit. Weinberg
+describes that as more important and persuasive in science than sub-
+sequent predictions (Weinberg, 1994, p. 96ff.). Explaining Mercury’s
+behavior was in part persuasive to physicists because of the theory’s
+elegance.24 Persuasion occurred even though agreement of Einstein’s pre-
+dictions with subsequent empirical data was equivocal for years. Geo-
+logical science, of course, also depends on postdiction. A more recent
+example might be that economists can persuasively explain the eco-
+nomic crash of 2007–2008 by looking at information about the state of
+the economy and central bank policies before the crash—information
+that was available in principle beforehand, but that was not adequately
+appreciated at the time.25 In retrospect, the crash was avoidable (Finan-
+cial Crisis Inquiry Commission, 2011).
+Exploratory analysis and coarse prediction refer to studying the
+model’s behavior over the uncertain space of inputs (also called scenario
+space),26 perhaps to identify regions with “good” and “bad” characteristics.
+24 A pure expression of this comes from the great physicist Paul Adrien Maurice Dirac, who
+wrote: “The physicist, in his study of natural phenomena, has two methods of making progress:
+(1) the method of experiment and observation, and (2) the method of mathematical reason-
+ing. . . . There is no logical reason why the second method should be possible at all, but one has
+found in practice that it does work and meets with reasonable success. This must be ascribed
+to some mathematical quality of Nature, a quality which the casual observer of Nature would
+not expect, but which nevertheless plays an important role in Nature’s scheme” (Dirac, 1939).
+Dirac went on to emphasize the importance of mathematical beauty, something he regards as
+no more definable than beauty in art, but something that people who study mathematics have
+no difficulty in appreciating. How well this applies to social science remains to be seen.
+25 Some individuals were exceptions, saw the signals, and profited handsomely, as recounted
+in the book and movie The Big Short (Lewis, 2010).
+26 The related concepts of exploratory analysis and exploratory modeling (Davis and Finch,
+1993; Bankes, 1993; Davis, 1994) are core elements of analysis addressing “deep uncer-
+tainty,” as discussed later in this report. As increasingly emphasized in recent work, exploratory
+26 Priority Challenges for Social-Behavioral Research and Its Modeling
+The purpose is not to predict what will happen, but to understand what
+may happen and to estimate the circumstances under which various
+behaviors are most likely. But how might one judge validity for such
+purposes? An early suggestion stated:
+A model and its case space (databases) is valid for exploratory
+analysis if the case space represents well the degree of uncertainty
+in inputs and, within that case space, the model is either struc-
+turally valid, behaves in ways adequately consistent with what is
+known empirically, or is based on what appear to be reasonable
+assumptions. As always in a discussion of validity adequacy must
+be judged in the context of the particular application. (Bigelow
+and Davis, 2003, p. 19)
+An example of “coarse prediction” might be using a model to iden-
+tify high-risk regions of a system’s state space, without purporting to
+predict precisely what the system would do in that region. For a social
+phenomenon, that characterization of state might involve, for example,
+the fraction of the population with a par ticu lar attitude or behav-
+ior, the efficiency of communications within the population, and the
+existence of “sparks.”
+Figure 2.1 illustrates how a model might be characterized in this
+five-dimensional framework. The notional model is said to be descrip-
+tive, to have a good sense of the causal variables and processes, to be
+good for postdiction and exploratory analysis, but to be poor for pre-
+diction. Why the latter? Perhaps the values of the key causal variables
+are not known currently—i.e., they are knowable in principle at some
+point, but are uncertain currently. This circumstance is common in
+strategic planning and in social science. It is the reason that so much
+social science is expressed in contingent terms. That “wishy-washiness”
+may make decisionmakers unhappy, but predicting the details of future
+states of the world is often not in the cards. In such cases, “good” theory
+is contingent, not narrowly predictive.
+analysis needs to consider uncertainties in the model itself—i.e., structural uncertainties
+(Davis et al., 2016)—not just the pa rameter values of a given model.
+Difficulties, Challenges, and a Broad Strategy for Next Steps 27
+Other models would have very different spider-diagram charac-
+teristics. For example, some models are predictive but not descriptive with
+respect to causal variables (as when epidemiological models use proxies
+such as temperature and humidity rather than mosquito populations or
+when macroeconomic models predicting next year’s rise in gross domes-
+tic product have no obvious relationship to underlying microeconomic
+mechanisms).
+Assessing a Model’s Validity in a Context
+As has long been understood, validity can only be judged for a purpose
+and context: What is being asked of the model and what are the cir-
+cumstances? For example, is the model being asked whether a policy
+intervention will have a positive effect or what the magnitude of that
+effect will be? Is the question being asked when the state of the system
+is near equilibrium and the intervention effects would be marginal and
+captured by elasticities, or is it being asked when the system is “on the
+edge of chaos”?
+Figure 2.1
+Spider Chart Characterization of a Model’s Validity by Five Criteria
+(Notional model)
+0
+1
+2
+3
+5
+Description
+Causal explanation
+PostdictionExploratory analysis
+Prediction
+Scale of validity
+0 = very low; 5 = very high
+4
+RAND RR2208-2.1
+28 Priority Challenges for Social-Behavioral Research and Its Modeling
+A related question is whether the system in question has “station-
+ary behavior” or whether its structure or basic relationships are chang-
+ing. Weather models were long considered to be statistically valid, as
+in characterizing once-in-a-century storms. They are no longer valid
+because the frequency of high-intensity storms is increasing, presum-
+ably due to climate change.27 As a second example, classic two-party
+American political models are no longer valid because so many indi-
+viduals regard themselves as independent. Further, polarization has
+increased with the disappearance of “moderates.”28
+Notional Comparison of Models
+Figure 2.2 shows a notional depiction of how some models might be
+characterized using the framework of Figure 2.1. It adds a distinction
+between systems that are stable and systems that are changing (right
+and left sides, respectively, in Figure 2.2). The numbers are notional,
+but the intent is to convey the idea that classic equilibrium theory in
+economics is good when used to deal with a stable world (right side).
+So also, empirical models, such as from machine intelligence or econo-
+metrics, can be very predictive in such circumstances, but be poor
+in terms of providing causal explanation. Looking to the left side of
+Figure 2.2, both classes of model are poor when the world is chang-
+ing in fundamental ways.29 An agent-based model might do better by
+having adaptive agents representing causes of major change (e.g., soci-
+etal changes of taste, sentiment, or even basic values), but would be
+afflicted by so many parametric uncertainties as to make prediction
+rough at best. A hybrid model (if only we knew how to build it) might
+have the best features of both.
+27 Fortunately, weather forecasters understand this because they routinely get empirical
+feedback about their predictions. Thus, they enjoy a quick, tight, repeated cycle.
+28 See polling results by the Pew Research Center. See, e.g., its report from June 12, 2014,
+“Political Polarization in the American Public.”
+29 A related concept is whether a system’s processes can be regarded as “stationary.” This termi-
+nology has a variety of meanings depending on discipline. In statistics, a system is stationary if
+its relevant joint probability distributions are constant. In decision analysis, an issue is whether
+the actors’ utility functions (if they exist at all) are constant.
+Difficulties, Challenges, and a Broad Strategy for Next Steps 29
+Discussions of validity, then, can be richer in the multidimensional
+approach. Far more work is needed to turn the vision into a methodol-
+ogy. As of today, no agreement exists on the details of Figures 2.1 or
+2.2—i.e., on how to define the individual dimensions for quantita-
+tive or qualitative measurement or how adequately to specify context,
+including what decision is to be aided (Chapter 7).
+Differences Between the Physical and Social Sciences
+By using the five dimensions of validity we may also see that the differ-
+ence between validating models for the physical and social sciences is
+often not as great as usually claimed. For example, the “fundamental
+laws of physics” are seldom predictively valid for real-world applica-
+tions. Rather, as discussed by Nancy Cartwright, they are remarkably
+descriptive and explanatory about idealized systems. When employed
+Figure 2.2
+Notional Comparison of Model Validities
+Description, stable world
+0
+1
+3
+4
+5
+6
+7
+8
+9
+10
+Causal explanation,
+stable world
+Postdiction, stable
+world
+Exploratory analysis,
+stable world
+Prediction, stable worldPrediction, changing world
+Exploratory analysis,
+changing world
+Postdiction, changing
+world
+Causal explanation,
+changing world
+Description, changing world
+2
+NOTE: This variant of a spider or radar diagram juxtaposes (left to right) notional dimensions of a
+model’s validity for stable-world and changing-world results. To accomplish this, the topmost
+vertex is left blank.
+RAND RR2208-2.2
+Classic economic theory
+Empirical model
+Economic ABM
+Hypothetical hybrid
+30 Priority Challenges for Social-Behavioral Research and Its Modeling
+for real-world purposes, they are typically modified and adjusted because
+the real world departs from the ideal (Cartwright, 1983). That is, con-
+text matters greatly, as it does in the social sciences.
+Some General Criteria for Validation
+Theorists and modelers have been struggling with the issue of valida-
+tion for many years. A good deal of de facto consensus exists at the
+practical level. Some methods apply to each of the five dimensions dis-
+cussed above. Our summary is that we make judgments (whether of
+theories or models) about validity or what might better be called con-
+fidence based on the following:30
+1. Falsifiability (if a mode cannot be falsified, it fails as meaningful
+science).
+2. Roots in deeper theory regarded as valid.
+3. Logic (e.g., does the model have internal validity?).
+4. Confirmational evidence, especially model successes in cases
+chosen to attempt falsification, but in broad patterns of success.
+5. Elegance and logic. Theoretical physicists are famous or notori-
+ous for their attention to matters such as coherence and beauty.
+Others look for consistency and power of description and
+explanation.
+6. Due diligence. Since judgment is involved, a key is whether we
+applied due diligence in considering all of the foregoing.
+We end this discussion of validation with some admonitions for
+sponsors and managers of model-building research. First, we note that
+the issue is, essentially, a matter of quality assurance. A strong lesson
+from other disciplines is that the prime determinant of quality at the
+end is quality along the way, which is the result of top-notch people and
+good organizational environments. A principle that is generally helpful
+is to require clean conceptual models early for peer review, debate,
+30 How these criteria fit together, and the limitations of each, is discussed by philosopher
+Susan Haack (Haack, 2011). She skewers those “New Cynics” who erroneously go from true
+statements such as “Theories are not implied by their positive instances” to what amounts to
+“All theories are equal” (see pp. 34–35).
+Difficulties, Challenges, and a Broad Strategy for Next Steps 31
+and iteration (see also Chapter 4, “Real ity versus the Ideal”). Represent-
+ing the resulting model in a comprehensible language is desirable and,
+in any case, should be accomplished with best practices (e.g., structur-
+ing, documentation, and routine verification). Lastly, we note that organ-
+izations may seek to validate models for whole classes of application,
+which is problematic because validity must be judged by details of how
+it is to be used (e.g., is the model valid for establishing whether option
+A or option B is superior, in a set of test cases, as characterized by par-
+ticular measures of effectiveness?). Thus, establishing validity is not
+something for specialists; rather, it a core part of the responsibility of
+analysts using models to inform decisions.
+
+

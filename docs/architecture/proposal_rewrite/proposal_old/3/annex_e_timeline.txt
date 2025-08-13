@@ -1,0 +1,345 @@
+# Annex E: Detailed Research Timeline
+
+## E.1 Project Overview and Phases
+
+The dissertation research proceeds through three integrated phases over 18 months, from proposal approval (September 2025) through defense (February 2027). Each phase corresponds to one essay, with built-in overlap for iterative refinement and integration.
+
+### Phase Structure
+- **Phase 1 (Essay 1)**: Theoretical Framework Development (3 months)
+- **Phase 2 (Essay 2)**: System Implementation and Validation (4 months)
+- **Phase 3 (Essay 3)**: Advanced Analysis and Applications (3 months)
+- **Integration Phase**: Writing and Defense Preparation (3 months)
+
+## E.2 Pre-Dissertation Phase (August 2025)
+
+### August 2025: Proposal Submission and Approval
+**Week 1-2 (Aug 1-14)**
+- Submit proposal to committee (August 6, 2025)
+- Schedule defense for late August
+- Prepare presentation materials
+- Address preliminary feedback
+
+**Week 3-4 (Aug 15-31)**
+- Proposal defense (target: August 25-29)
+- Incorporate committee feedback
+- Finalize research plan
+- Submit IRB/HSPC screening determination
+
+**Deliverables**:
+- Approved dissertation proposal
+- Committee feedback integration document
+- HSPC "Not Human Subjects Research" determination letter
+
+## E.3 Phase 1: Essay 1 - Theoretical Framework (September-November 2025)
+
+### September 2025: Literature Synthesis
+**Week 1-2 (Sep 1-14)**
+- Comprehensive literature review across disciplines
+- Map existing theoretical landscape
+- Identify theoretical gaps and convergences
+- Begin framework conceptualization
+
+**Week 3-4 (Sep 15-30)**
+- Develop organizing framework for theories
+- Create theory classifications by analytical function
+- Draft framework justification
+- Begin Theory Meta-Schema design
+
+**Milestones**:
+- Literature database with 150+ sources coded
+- Initial framework dimensions defined
+- Weekly advisor meetings established
+
+### October 2025: Framework Development
+**Week 1-2 (Oct 1-14)**
+- Complete Theory Meta-Schema Version 1
+- Develop computational representation specifications
+- Create theory translation protocols
+- Write methodology section
+
+**Week 3-4 (Oct 15-31)**
+- Implement 10-15 key theories in meta-schema format
+- Social Identity Theory complete specification
+- Diffusion of Innovations specification
+- Motivated Reasoning specification
+- Test schema consistency and completeness
+
+**Deliverables**:
+- Theory Meta-Schema specification document
+- Populated theory library (15+ theories)
+- Framework validation criteria
+
+### November 2025: Essay 1 Completion
+**Week 1-2 (Nov 1-14)**
+- Complete theory integration examples
+- Finalize cross-theory integration patterns
+- Document computational translation process
+- Internal review and revision
+
+**Week 3-4 (Nov 15-30)**
+- Submit Essay 1 draft to committee
+- Prepare for committee feedback session
+- Begin transition to implementation phase
+- Update project documentation
+
+**Deliverables**:
+- Complete Essay 1 draft (60-80 pages)
+- Theory implementation guidelines
+- Committee feedback response plan
+
+## E.4 Phase 2: Essay 2 - System Development (December 2025-March 2026)
+
+### December 2025: System Architecture Design
+**Week 1-2 (Dec 1-14)**
+- Design KGAS architecture specification
+- Define tool contracts and interfaces
+- Establish bi-store data architecture
+- Create development environment
+
+**Week 3-4 (Dec 15-31)**
+- Implement core service layer
+- Develop theory extraction pipeline (Layer 1)
+- Create basic tool infrastructure
+- Holiday break (Dec 23-31)
+
+**Milestones**:
+- System architecture documented
+- Development environment operational
+- Core services implemented
+
+### January 2026: Core Implementation
+**Week 1-2 (Jan 1-14)**
+- Complete theory extraction system
+- Implement cross-modal converters
+- Develop DAG orchestration engine
+- Create tool registry system
+
+**Week 3-4 (Jan 15-31)**
+- Build chatbot interface prototype
+- Implement LLM integration (OpenAI/Anthropic)
+- Develop workflow construction system
+- Initial system integration testing
+
+**Deliverables**:
+- Functional KGAS prototype
+- Tool suite with 20+ operational tools
+- Basic user interface
+
+### February 2026: Validation Studies
+**Week 1-2 (Feb 1-14)**
+- Process Kunst COVID dataset (2,506 users)
+- Extract initial construct estimates
+- Generate network representations
+- Create validation datasets
+
+**Week 3-4 (Feb 15-28)**
+- Conduct extraction validation (500 posts)
+- Theory structure validation (5-10 theories)
+- Cross-modal conversion testing
+- Document process metrics
+
+**Milestones**:
+- Validation dataset creation complete
+- Extraction accuracy metrics established
+- Process performance baselines documented
+
+### March 2026: Essay 2 Completion
+**Week 1-2 (Mar 1-14)**
+- Complete system documentation
+- Finalize validation results
+- Write methodology and results sections
+- Prepare demonstration materials
+
+**Week 3-4 (Mar 15-31)**
+- Submit Essay 2 draft to committee
+- System demonstration session
+- Collect SME feedback (if applicable)
+- Plan Essay 3 analyses
+
+**Deliverables**:
+- Complete Essay 2 draft (80-100 pages)
+- Working KGAS system
+- Validation report with metrics
+- Demonstration video/materials
+
+## E.5 Phase 3: Essay 3 - Advanced Analysis (April-June 2026)
+
+### April 2026: Cross-Modal Analysis
+**Week 1-2 (Apr 1-14)**
+- Apply Social Identity Theory across modalities
+- Graph analysis of group networks
+- Statistical analysis of identity-behavior relationships
+- Vector analysis of semantic evolution
+
+**Week 3-4 (Apr 15-30)**
+- Integration of cross-modal findings
+- Convergent validation analysis
+- Document modality-specific insights
+- Prepare intermediate results
+
+**Milestones**:
+- Cross-modal analysis complete
+- Theory application validated
+- Integration methodology documented
+
+### May 2026: Advanced Modeling
+**Week 1-2 (May 1-14)**
+- Implement agent-based models
+- Parameterize from Kunst personality data
+- Apply Reasoned Action Model rules
+- Initial simulation runs
+
+**Week 3-4 (May 15-31)**
+- Structural equation modeling implementation
+- Time series analysis of adoption patterns
+- Model calibration and validation
+- Intervention scenario development
+
+**Deliverables**:
+- ABM implementation with theory-driven rules
+- SEM results for construct relationships
+- Intervention simulation results
+
+### June 2026: Essay 3 Completion
+**Week 1-2 (Jun 1-14)**
+- Complete analytical write-up
+- Document modeling methodology
+- Synthesize findings across methods
+- Internal review and revision
+
+**Week 3-4 (Jun 15-30)**
+- Submit Essay 3 draft to committee
+- Prepare integrated findings presentation
+- Begin dissertation integration
+- Update all documentation
+
+**Deliverables**:
+- Complete Essay 3 draft (60-80 pages)
+- Modeling code and documentation
+- Integrated findings report
+
+## E.6 Integration Phase (July-September 2026)
+
+### July 2026: Dissertation Integration
+**Week 1-2 (Jul 1-14)**
+- Integrate three essays into cohesive narrative
+- Write introduction and conclusion chapters
+- Create unified bibliography
+- Harmonize terminology and notation
+
+**Week 3-4 (Jul 15-31)**
+- Address cross-essay consistency
+- Update all figures and tables
+- Complete appendices
+- Internal quality review
+
+### August 2026: Revision and Refinement
+**Week 1-2 (Aug 1-14)**
+- Incorporate committee feedback
+- Technical editing and proofreading
+- Format compliance check
+- Prepare defense materials
+
+**Week 3-4 (Aug 15-31)**
+- Submit complete dissertation draft
+- Schedule defense for early 2027
+- Prepare defense presentation
+- Practice talks and Q&A
+
+### September 2026: Final Preparations
+**Week 1-2 (Sep 1-14)**
+- Final revisions based on feedback
+- Prepare public presentation
+- Update all supplementary materials
+- Submission to graduate school
+
+**Week 3-4 (Sep 15-30)**
+- Buffer time for additional revisions
+- Prepare job market materials
+- Document future research agenda
+- Archive all research materials
+
+## E.7 Defense Phase (October 2026-February 2027)
+
+### October-December 2026: Pre-Defense Period
+- Address any remaining committee concerns
+- Refine defense presentation
+- Prepare for comprehensive questions
+- Job market activities (if applicable)
+
+### January 2027: Final Defense Preparation
+**Week 1-2 (Jan 1-14)**
+- Final dissertation submission
+- Defense presentation rehearsals
+- Prepare supplementary materials
+- Coordinate defense logistics
+
+**Week 3-4 (Jan 15-31)**
+- Final committee review
+- Address last-minute concerns
+- Public presentation preparation
+- Mental and physical preparation
+
+### February 2027: Defense and Completion
+**Week 1 (Feb 1-7)**
+- Dissertation defense (target date)
+- Public presentation
+- Committee deliberation
+- Outcome notification
+
+**Week 2-4 (Feb 8-28)**
+- Post-defense revisions (if required)
+- Final submission to graduate school
+- Degree conferral procedures
+- Celebration and next steps
+
+## E.8 Risk Management and Contingencies
+
+### Technical Risks and Mitigation
+- **LLM API Changes**: Maintain compatibility with multiple providers (OpenAI, Anthropic, Google)
+- **Data Access Issues**: Secure data early, maintain local copies, have backup datasets
+- **Computational Resources**: Ensure adequate computing infrastructure, cloud backup options
+
+### Timeline Risks and Buffers
+- **Essay Delays**: 2-week buffer between phases for spillover
+- **Validation Challenges**: Parallel validation tracks to avoid bottlenecks
+- **Committee Feedback**: Regular check-ins to avoid major surprises
+
+### Adaptive Strategies
+- **Scope Reduction**: Prioritized feature list for KGAS if development delays
+- **Theory Selection**: Core set of 5 theories minimum, expand if time permits
+- **Validation Levels**: Tiered validation plan with essential vs. optional components
+
+## E.9 Key Milestones Summary
+
+| Date | Milestone | Deliverable |
+|------|-----------|-------------|
+| Aug 6, 2025 | Proposal Submission | Dissertation proposal document |
+| Aug 29, 2025 | Proposal Defense | Approved proposal |
+| Nov 30, 2025 | Essay 1 Complete | Theoretical framework |
+| Mar 31, 2026 | Essay 2 Complete | KGAS system + validation |
+| Jun 30, 2026 | Essay 3 Complete | Advanced analysis results |
+| Sep 30, 2026 | Full Draft Complete | Integrated dissertation |
+| Feb 2027 | Defense | PhD completion |
+
+## E.10 Resource Requirements
+
+### Human Resources
+- Primary advisor: Bi-weekly meetings
+- Committee members: Monthly updates, quarterly reviews
+- Technical consultants: As needed for specific components
+- Validation coders: 2 independent coders for 500 posts
+
+### Computational Resources
+- Development machine: GPU-enabled workstation
+- Cloud compute: For large-scale processing
+- API credits: OpenAI/Anthropic for LLM operations
+- Database hosting: Neo4j and SQLite instances
+
+### Data Resources
+- Kunst COVID dataset: Already secured
+- Backup datasets: Identified and accessible
+- API access: Maintained throughout project
+- Storage: 2TB minimum for data and backups
+
+This timeline provides a structured yet flexible path to successful dissertation completion, with clear milestones, risk mitigation strategies, and resource planning to ensure project feasibility within the 18-month timeframe.

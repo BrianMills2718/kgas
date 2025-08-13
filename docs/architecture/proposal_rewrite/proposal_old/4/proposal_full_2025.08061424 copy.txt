@@ -1,0 +1,1831 @@
+# Chapter 1: Introduction and Research Context
+
+## 1.1 Scaling Computational Social Science for Policy Analysis
+
+This dissertation addresses a key challenge in policy analysis: understanding how online discourse, particularly within fringe communities, shapes beliefs and behaviors at scale. Current computational social science methods require extensive human labor for theory application, limiting analysis to small datasets or single theoretical perspectives. This research will demonstrate how automated theory application can scale these methods to analyze millions of interactions while maintaining theoretical rigor, enabling description of patterns, explanation of mechanisms, prediction of trajectories, and potentially guidance of interventions.
+
+This dissertation builds directly upon prior academic work. The project's intellectual origins began with a tutorial on conspiracy theories with Dr. Eric Larson in 2021. The research was then developed into the current proposal during an independent study, also with Dr. Larson, in 2024. Since the conclusion of the independent study, we have been meeting weekly to refine the theoretical framework and system architecture, ensuring the research maintains both academic rigor and policy relevance.
+
+## 1.2 System Architecture and Capabilities
+
+The Knowledge Graph Analysis System (KGAS) operationalizes this vision through a low-code tool (coding is limited to the initial installation and startup) that processes academic literature to extract theoretical frameworks, converts them into executable computational components, and applies them across graph, table, and vector modalities with full traceability, interpretability through descriptive explanations at each analytical step, uncertainty estimation and propagation through traceable methods, and reproducibility within the constraints of LLM non-determinism.² Previously, understanding fringe discourse dynamics required teams of analysts months to analyze.
+
+The system synthesizes theoretical perspectives across disciplines - communication theories for message diffusion, sociological theories for group dynamics, political theories for mobilization, and psychological theories for individual behaviors - without requiring users to have expertise in each domain. The cross-modal architecture examines phenomena through network analysis for social influence, statistical analysis for variable relationships, and semantic analysis for language evolution.
+
+## 1.3 Empirical Demonstration: COVID Conspiracy Discourse
+
+The Kunst et al. (2024) dataset¹ provides a unique empirical testbed by combining 7.7 million tweets from 2,506 users with validated psychological assessments - including conspiracy mentality, collective narcissism, need for chaos, and misinformation susceptibility scales. This rare pairing of behavioral discourse data with psychological ground truth enables validation of a critical claim: that computational methods can extract theoretically meaningful patterns from online discourse that correspond to measurable psychological traits.
+
+The dataset enables three levels of validation that demonstrate KGAS's analytical capabilities. At the individual level, the system will test whether discourse patterns (such as language use, engagement behaviors, and content preferences) correlate with measured psychological traits, validating the extraction of construct estimates from text alone. At the network level, the system will examine how conspiracy beliefs propagate through interaction networks, testing theories of social contagion against observed adoption patterns over the pandemic's 24-month timeline. At the population level, the system will track the evolution of conspiracy narratives from fringe to mainstream, identifying tipping points and examining how different theories explain the same diffusion phenomena.
+
+While KGAS analyzes diverse formats - from academic papers to forum discussions - the COVID dataset's combination of scale (millions of interactions), psychological validation (standardized measures), temporal depth (two years of evolution), and relevance (vaccine hesitancy and misinformation) makes it ideal for demonstration. The analysis will reveal how Social Identity Theory explains group polarization, Uncertainty-Identity Theory predicts vulnerability to conspiracy beliefs, and Network Contagion Theory models spread patterns, each providing complementary insights.
+
+## 1.4 KGAS in Action: A Policy Analyst's Workflow
+
+Consider a policy analyst investigating vaccine hesitancy narratives. Using KGAS's conversational interface, they type: "Why are certain groups susceptible to vaccine misinformation?" The system automatically selects relevant theories (Social Identity Theory for group dynamics, Uncertainty-Identity Theory for vulnerability factors, Network Contagion Theory for spread patterns) and generates an analysis workflow:
+
+Figure 1.1. Theory-Driven Analysis Workflow
+```
+         Kunst COVID Dataset 
+    (7.7M tweets + psychological measures)
+                  ↓
+          Data Ingestion
+                  ↓
+          Text Processing
+        [temporal chunking]
+                  ↓
+      Entity/Relation Extraction
+                  ↓
+    ┌─────────────┼─────────────┐
+    ↓             ↓             ↓
+Individual    Network      Semantic
+Analysis      Analysis     Analysis
+    ↓             ↓             ↓
+Psychological  Social       Language
+Correlation    Dynamics     Patterns
+    ↓             ↓             ↓
+    └─────────────┼─────────────┘
+                  ↓
+         Multi-Theory Testing
+      [Social Identity Theory,
+       Uncertainty-Identity Theory,
+       Network Contagion Theory]
+                  ↓
+          Integrated Report
+```
+NOTE: This workflow is automatically generated from the user's natural language query. The system selects appropriate theories and analytical approaches based on the research question.
+
+Figure 1.2. Computational Tool Execution DAG
+```
+                Tweet Loader 
+            [7.7M tweets, 2506 profiles]
+                      ↓
+                Text Chunker
+              [24-month windows]
+                      ↓
+          Entity/Relation Extractor
+        [users, hashtags, claims, sources,
+         retweets, mentions, replies]
+                      ↓
+        ┌─────────────┼─────────────┐
+        ↓             ↓             ↓
+   Psych Scorer  Graph Builder  Vector Embedder
+  [map traits    [nodes+edges]  [discourse vectors]
+   to users]           ↓              ↓
+        ↓         PageRank      Text Clustering
+  Table Builder  [influencer    [language patterns]
+  [user×trait     ranking]            ↓
+   matrix]            ↓               ↓
+        ↓      Community Detector     ↓
+        ↓      [conspiracy vs         ↓
+        ↓       mainstream groups]    ↓
+        ↓             ↓               ↓
+        ↓      Network Statistics     ↓
+        ↓      [centrality, density]  ↓
+        ↓             ↓               ↓
+        ↓      Temporal Analyzer      ↓
+        ↓      [24-month evolution]   ↓
+        ↓             ↓               ↓
+        ↓      Diffusion Modeler      ↓
+        ↓      [contagion patterns]   ↓
+        ↓             ↓               ↓
+        └─────────────┼───────────────┘
+                      ↓
+            Report Generator
+```
+NOTE: Each tool includes automatic uncertainty propagation. Tools can be reordered or substituted based on data characteristics and theoretical requirements.
+
+The system might reveal that users with uncertainty scores >75th percentile show 3.2x higher in-group agreement on vaccine topics, identify key influencers driving misinformation spread, and recommend intervention strategies through trusted community members. Different queries generate different analytical schemas - argumentation networks for claim-evidence relationships, attitude networks for belief structures, or statistical tables for demographic analysis. This example is expanded throughout the proposal to demonstrate framework selection (Chapter 3), system architecture (Chapter 4), and validation approaches (Chapter 8).
+
+## 1.5 Research Scope and Approach (Minimal Viable Evaluation)
+
+Current computational approaches typically apply single theories to limited datasets using one analytical method. Existing tools extract entities or calculate metrics but cannot reveal how different theoretical lenses illuminate different aspects of the same data. KGAS addresses this by comparing the explanatory power of multiple theories on analytical tasks, identifying which frameworks provide the most insight for specific questions.
+
+The proposed system will demonstrate systematic application of multiple theories to the COVID dataset across two primary modalities (graph and table, with vector as supporting). The scope will focus on online discourse as a bounded context, testing whether communication patterns can predict behavioral outcomes while acknowledging the complexity of inferring offline actions from online discourse. The research proceeds through three integrated essays: Essay 1 establishes the theoretical framework and technical specifications for what system to build, integrating both theoretical foundations and computational methods; Essay 2 describes the actual KGAS codebase implementation, architecture, and validation; Essay 3 will demonstrate the system's application to the COVID fringe discourse dataset, showcasing cross-modal analysis capabilities with agent-based modeling reserved as future work beyond the dissertation scope.
+
+## 1.6 Contributions to Policy Analysis and Computational Social Science
+
+This research will establish foundations for theory-aware computational social science, enabling analysis of fringe discourse at scale - tracking extremist narratives, identifying influence operations, and testing intervention strategies.
+
+The Theory Meta-Schema (detailed in Annex A) provides standardized representation of social science theories in machine-readable form, bridging academic theories and computational automation. The validation methodology will establish baselines for construct validity, extraction accuracy, and cross-modal consistency without predetermined performance targets, providing transparency crucial for decisions.
+
+Technical contributions include automated theory extraction from academic literature, uncertainty propagation across modalities, and adaptation of Intelligence Community standards (ICD-203/206) for academic research. Existing prototype plugins for qualitative coding and process tracing demonstrate feasibility. The COVID dataset validation will test whether computational methods extract patterns that correlate with psychological measures, though the system works with any theoretical domain. (Human subjects protection considerations detailed in Annex D)
+
+# Chapter 2: Research Questions and Contributions
+
+## 2.1 Primary Research Questions
+
+Where Chapter 1 established the policy need for scalable theory application, this chapter articulates the specific research questions driving the dissertation.
+
+The first research question will examine automated theory operationalization: How can computational systems operationalize and apply multiple social science theories to large-scale discourse analysis through automated extraction and agentic workflow generation? This question addresses the current fragmentation where researchers apply familiar theories without systematic consideration of alternatives. The system will demonstrate automated extraction of theories from academic literature using the Theory Meta-Schema, conversion into computational specifications, and agentic workflow generation where analytical DAGs are dynamically produced based on research needs rather than hardcoded templates. The framework organizes theories using established communication principles integrated with analytical goals of description, explanation, prediction, and intervention.
+
+The second research question will explore multi-theoretical analysis: What complementary insights emerge when the same discourse is analyzed through different theoretical lenses using graph, table, and vector representations? Using the COVID discourse dataset as demonstration, the research will apply multiple theories - Social Identity Theory for group dynamics, Diffusion of Innovations for spread patterns, Motivated Reasoning for information processing - to reveal how different theoretical perspectives illuminate different aspects of the same phenomenon. Each modality (graph for relationships, table for statistics, vector for semantics) provides unique analytical capabilities that combine to create comprehensive understanding. The research will document how theoretical lens selection shapes the patterns discovered and insights generated.
+
+The third research question will address practical impact: To what extent does theory-aware workflow composition improve the detection and understanding of policy-relevant patterns in fringe discourse? The research will evaluate whether automated theory selection and flexible tool composition enhance analysts' ability to - such as identifying influence networks, tracking narrative evolution, and assessing intervention opportunities. Operational indicators include the system's ability to detect communities of conspiracy believers, identify key influencers driving misinformation spread, and track semantic shifts in discourse over time. The evaluation will focus on whether theory-guided analysis reveals patterns that single-method approaches miss.
+
+## 2.2 Positioning Relative to Existing Approaches
+
+Current computational approaches to discourse analysis face fundamental limitations in flexibility and theoretical grounding. Standard RAG and GraphRAG systems operate through rigid pipelines without the ability to dynamically chain tools or adapt workflows based on theoretical requirements (detailed comparison in Section 4.1).
+
+KGAS differs through its modular, theory-driven architecture supporting flexible tool chains where tools can be chained in any sequence guided by theoretical requirements. The system seamlessly transforms data between graph, table, and vector representations - with each transformation preserving theoretical constructs and uncertainty measures. This flexibility allows the same discourse to be analyzed through different theoretical lenses within a single coherent workflow.
+
+## 2.3 Academic Contributions
+
+The methodological contribution will be a systematic framework for computational theory application extending the influence operations framework described by Larson et al. (2009)⁶ and integrating Lasswell's (1948) communication framework⁵ as extended by Druckman (2022).⁷ These frameworks identify the need for adaptive processes that test the relative efficacy of different influence approaches at individual, group, and mass public levels while systematically examining how communication components shape persuasion outcomes. This dissertation will operationalize that multi-level approach through computational methods that systematically apply and compare theoretical frameworks across these levels, distinguishing between analyzing discourse properties (descriptive) and understanding world phenomena through discourse (explanatory).
+
+The Theory Meta-Schema will provide a standardized format for representing social science theories in machine-readable form. Each theory specification contains four components. Identity metadata preserves bibliographic information and theoretical relationships. Classification enables automated theory selection based on analytical goals and levels of analysis. Ontology defines the entities, relationships, and properties the theory examines. Execution logic specifies how the theory transforms data into analytical results.
+
+The cross-modal analysis architecture demonstrates how different analytical modalities provide complementary insights. Following Druckman's (2022) framework for persuasion research,⁷ the system will examine how source credibility, message content, and audience characteristics interact across different analytical representations. Graph analysis reveals network structures of influence, table analysis tests statistical relationships, and vector analysis tracks semantic evolution.
+
+## 2.4 Empirical Validation Approach
+
+The empirical validation using the Kunst COVID dataset (see Chapter 6) employs a focused assessment framework. The system is evaluated across six core dimensions: extraction accuracy, cross-modal consistency, construct validity, theoretical alignment, uncertainty quantification, and reproducibility. Additionally, Davis et al.'s (2018) five-dimensional model validity framework assesses description, causal explanation, prediction, intervention, and communication validity. Basic extraction accuracy establishes baselines through crowd-sourced coding. For this demonstration case, construct validity tests correlations between computationally-extracted patterns and the available psychological scales, though the system is designed to validate against any theoretical measures depending on the theories applied and validation data available.
+
+## 2.5 Scope and Limitations
+
+This research will focus on fringe discourse as a bounded domain for demonstrating computational theory application, analyzing patterns without assessing truth claims. The scope will encompass automated extraction and application of established theories to large-scale data, with theory discovery and generation as future work. The research will acknowledge limitations in predicting offline behavior, focusing on identifying theoretically meaningful patterns within online discourse to advance computational social science methodology.
+
+## 2.6 Policy Analysis Applications
+
+This research directly addresses critical policy analysis needs for understanding and responding to fringe discourse through diverse theoretical lenses. The system will enable policy analysts to apply various theoretical lenses - such as communication theories to track message framing and persuasion strategies, sociological theories to understand group formation and collective action, political theories to analyze mobilization and radicalization processes, and economic theories to examine incentive structures and resource flows. The multi-level approach will provide comprehensive intelligence: for example, applying diffusion theories at the individual level to predict adoption patterns, network theories at the group level to reveal coordination mechanisms, and cultural theories at the mass public level to understand narrative resonance.
+
+For policy practitioners, the system will transform months of manual analysis into automated workflows while maintaining theoretical rigor. The cross-modal analysis will enable testing different theoretical perspectives to understand how various intervention approaches might affect discourse dynamics. This will provide evidence-based decision support for allocating limited resources to combat misinformation, extremism, and other fringe discourse challenges that threaten social cohesion and democratic institutions.
+
+# Chapter 3: Theoretical Framework
+
+Where Chapter 2 identified the research questions, this chapter develops the theoretical framework that will guide their investigation.
+
+## 3.1 Theory Selection Problem
+
+Social science theories remain fragmented across disciplines, with researchers typically applying familiar frameworks without systematic consideration of alternatives. A researcher studying COVID discourse might use Social Identity Theory because of disciplinary training while missing insights from Terror Management Theory or Network Contagion Theory. This fragmentation limits both the depth and breadth of theoretical analysis.
+
+The proposed framework addresses this challenge through systematic organization of theories by their analytical capabilities rather than academic lineage. Using Lasswell's (1948) communication structure⁵ - who says what to whom in what channel in what settings with what effect - combined with analytical goals, the framework creates a navigable space for theory selection and application.
+
+## 3.2 DEPI×Level×Component Framework
+
+The framework organizes theories along three dimensions that capture their analytical capabilities and scope. This three-dimensional space enables systematic matching between research questions and theoretical frameworks.
+
+Figure 3.1: Three-Dimensional Theory Organization Framework
+
+```
+    Analytical Goals         Levels              Components
+    ┌──────────────┐      ┌──────────┐       ┌──────────┐
+    │ • Describe   │      │• Individual│      │ • Who    │
+    │ • Explain    │  ×   │• Group    │   ×  │ • What   │
+    │ • Predict    │      │• Society  │       │ • To Whom│
+    │ • Intervene  │      └──────────┘       │ • Channel│
+    └──────────────┘                          │ • Settings│
+                                              │ • Effect │
+                                              └──────────┘
+                              ↓
+          72 potential analytical configurations
+```
+
+The first dimension captures analytical goals following the DEPI taxonomy. Descriptive analysis identifies patterns in discourse such as frequency of conspiracy mentions or network structures. Explanatory analysis reveals mechanisms such as how identity threat leads to out-group derogation. Predictive analysis forecasts outcomes such as which users adopt fringe beliefs. Intervention analysis designs strategies such as counter-narratives or network interventions.
+
+The second dimension specifies levels of analysis. Individual level examines psychological processes within single actors. Group level analyzes collective dynamics and social influence. Society level studies population-wide patterns and cultural phenomena.
+
+The third dimension identifies communication components from Lasswell's model extended by Druckman (2022). Who refers to source characteristics and credibility. What encompasses message content and framing. To Whom addresses audience characteristics and receptivity. Channel covers medium and technological affordances. Settings includes temporal and contextual factors. Effect captures outcomes and behavioral changes.
+
+## 3.3 Theory Meta-Schema Architecture
+
+The Theory Meta-Schema will provide standardized representation of social science theories while preserving indigenous terminology. The schema contains four core components: metadata (e.g., Social Identity Theory by Tajfel & Turner 1979, extends Self-Categorization Theory), theoretical structure (e.g., entities like "vaccine hesitant groups" and "pro-vaccine groups," relations like "opposes" and "threatens," modifiers like "high uncertainty conditions"), computational representation (e.g., graph showing user clusters of vaccine discourse communities, table of hesitancy scores by demographic, vectors of semantic similarity between conspiracy narratives), and algorithms (e.g., in-group favoritism = (vaccine_skeptic_rating - mainstream_rating)/scale_range). This architecture enables computational application while maintaining theoretical fidelity. (See Annex A for complete specification with Social Identity Theory example) 
+
+## 3.4 Computational Implementation
+
+Theories translate into five computational patterns: FORMULAS (mathematical relationships like Social Learning Theory's influence calculations), ALGORITHMS (procedures like breadth-first search for contagion tracing), PROCEDURES (sequential processes like Spiral of Silence decision steps), RULES (logical conditions like Terror Management Theory's threat-defense mechanisms), and SEQUENCES (temporal progressions like radicalization pathways). Each pattern maps to specific implementations that transform theoretical specifications into computational operations. (Detailed specifications in Annex A)
+
+## 3.5 Cross-Modal Data Representation
+
+The framework enables analysis across three representations with theories specifying native formats. Graph representations capture relational structures (nodes for entities, edges for relationships). Table representations organize statistical data (rows for observations, columns for variables). Vector representations enable semantic analysis (embeddings for meaning, distances for similarity). The system handles information-preserving conversions between formats (preserving constructs of interest, e.g., in-group/out-group labels while aggregating individual posts) while maintaining provenance to source data. Natural language serves as both input and output, with vector embeddings bridging text and computational representations.
+
+## 3.6 Theory Selection and Application Process
+
+The framework enables three complementary approaches to theory selection and application, supporting different research needs and expertise levels.
+
+**Automated Selection** matches research questions to appropriate theories through systematic analysis. The system parses research questions to identify key elements - actors, behaviors, outcomes, and scope. These elements map to the DEPI×Level×Component framework to determine analytical requirements. The Master Concept Library provides standardized vocabulary for matching question concepts to theoretical constructs. Vector embeddings enable semantic similarity matching when exact terminology differs. Theories receive relevance scores based on their classification match and conceptual alignment.
+
+Returning to our policy analyst examining vaccine hesitancy, when they ask "why certain groups are more susceptible," the system maps this to explanatory goals at the group level examining audience characteristics. The DEPI×Level×Component framework identifies Social Identity Theory (group-level, explanatory, "to whom" focus) and Terror Management Theory (individual-level, explanatory, psychological drivers) as relevant frameworks. The system scores these theories based on their ability to explain differential susceptibility, automatically combining insights about group identity threats and mortality salience that the analyst might not have considered independently.
+
+**Interactive Exploration** guides researchers through theory selection via conversational interface. The system asks clarifying questions about analytical goals, phenomenon scope, and desired insights. Based on responses, it presents relevant theoretical options organized by analytical capability. Researchers can explore trade-offs between different theoretical perspectives. This approach supports researchers less familiar with the full range of available theories.
+
+**Manual Browsing** presents theories organized by analytical purpose rather than disciplinary boundaries. Researchers can browse theories that describe patterns, explain mechanisms, predict outcomes, or design interventions. Within each category, theories are grouped by the level of analysis and communication components they address. This organization reveals theoretical options that disciplinary training might overlook.
+
+The application process follows consistent steps regardless of selection method. First, the system extracts theoretical structures from text using the meta-schema specifications. Second, it applies the theory's algorithms to generate analytical outputs. Third, it validates results against theoretical expectations and empirical patterns. Fourth, it quantifies uncertainty using the twelve-dimension framework. Finally, it generates interpretable summaries linking findings to theoretical constructs.
+
+## 3.7 Integration with Empirical Validation
+
+The framework connects theoretical application to empirical validation through systematic comparison of computational outputs with observed patterns. This validation occurs at multiple levels to ensure theoretical fidelity and analytical validity.
+
+Structural validation confirms that extracted theoretical elements match specifications. Using Social Identity Theory with the COVID dataset, the system verifies that identified in-groups and out-groups exhibit expected properties such as internal similarity and external differentiation. Crowd-sourced coding validates entity extraction accuracy.
+
+Behavioral validation tests whether theoretical predictions match observed patterns. Social Identity Theory predicts increased in-group favoritism under threat. The system measures favoritism scores before and during COVID peaks, testing for predicted increases. Observable changes consistent with theoretical predictions provide validation evidence.
+
+Construct validation assesses correspondence between computational estimates and psychological measures. The system generates construct estimates for identity uncertainty, group identification, and perceived threat. These estimates correlate with validated scales in the dataset such as conspiracy mentality and group narcissism. Observed correlations demonstrate that computational methods capture psychologically meaningful patterns.
+
+Cross-modal validation compares findings across analytical approaches. The same theoretical construct examined through graph, table, and vector analyses should yield consistent insights. Convergent findings increase confidence while divergent results highlight unique contributions of each modality.
+
+The framework treats validation as an iterative process. Initial applications reveal gaps between theoretical specifications and empirical patterns. These gaps inform refinements to extraction methods, algorithm parameters, and uncertainty quantification. Over time, the system learns which theoretical frameworks best explain different phenomena in fringe discourse.
+
+# Chapter 4: System Architecture
+
+Where Chapter 3 established the theoretical framework for organizing and applying theories, this chapter describes the computational architecture that operationalizes that framework.
+
+## 4.1 Positioning Relative to Existing Systems
+
+Current approaches to computational discourse analysis face fundamental limitations in handling theoretical complexity and analytical diversity. Pre-LLM methods such as SpaCy for entity extraction and traditional social network analysis tools provide specific capabilities but require extensive manual integration to apply theoretical frameworks. These tools extract entities or calculate network metrics without understanding the theoretical significance of what they measure. Researchers must manually interpret outputs through theoretical lenses, creating a fragmented workflow where computational tools and theoretical analysis remain disconnected.
+
+Standard Retrieval-Augmented Generation (RAG) systems retrieve text chunks based on semantic similarity, treating documents as flat collections of passages. This approach cannot represent the multi-hop causal relationships central to social science theories, such as Social Identity Theory's chain from threat through categorization to bias. While RAG improves LLM accuracy through external knowledge, it focuses on information retrieval rather than theoretical application.
+
+Microsoft GraphRAG and similar systems like DIGIMON (with its 16 atomic operators for graph retrieval) improve on flat retrieval by extracting entities and relationships to build graph structures. GraphRAG specifically uses hierarchical community summaries and LLM-based graph construction to capture document structure, while DIGIMON provides modular operators for graph traversal and subgraph extraction. However, these systems create a single, data-driven representation based on what appears in the text. They excel at graph-based retrieval optimization but lack the capability to apply different theoretical lenses to the same data. 
+
+StructGPT demonstrates sophisticated reasoning over structured data through its Iterative Reading-then-Reasoning (IRR) framework, using specialized interfaces to query databases and having the LLM reason over results. Google's Concordia framework and Park et al.'s (2023) generative agents show promise for agent-based simulation but require manual behavioral rule specification. These limitations are problematic when analyzing polarized discourse where echo chamber effects¹¹ require different theoretical frameworks to understand information diffusion versus attitude formation.¹⁴
+
+KGAS differs through its theory-first architecture that generates different representations based on the selected theoretical framework. Unlike other systems designed for current applications, KGAS is designed as infrastructure for future autonomous research agents. The system's theory-driven workflow differs from data-driven approaches:
+
+Figure 4.2: Comparison of Standard RAG and KGAS Theory-First Workflows
+
+```
+    Standard RAG/GraphRAG:
+    Query → Retrieve → Generate → Response
+    
+    KGAS Theory-First:
+    Research Question
+           ↓
+    Theory Selection
+           ↓
+    Theory Extraction ←─── Academic Literature
+           ↓
+    Multi-Modal Analysis
+    ┌──────┴──────┬──────────┐
+    Graph      Table      Vector
+    Analysis   Analysis   Analysis
+    └──────┬──────┴──────────┘
+           ↓
+    Integrated Results with Uncertainty
+```
+
+NOTE: Unlike data-driven retrieval systems, KGAS uses theoretical frameworks to guide all analytical operations from extraction through integration.
+
+When analyzing COVID discourse through Social Identity Theory, the system constructs graphs with in-group and out-group nodes connected by identification edges. The same discourse analyzed through Network Contagion Theory generates individual nodes with influence pathway edges.
+
+Table 4.1: Computational Discourse Analysis System Capabilities
+
+| Capability                  | Pre-LLM Tools | Standard RAG | GraphRAG/DIGIMON | KGAS      |
+|                            | (SpaCy, SNA)  |              |                  |           |
+|----------------------------|---------------|--------------|------------------|-----------|
+| Entity Extraction          | ✓             | ✓            | ✓                | ✓         |
+| Theory-Aware Processing    | ✗             | ✗            | ✗                | ✓         |
+| Cross-Modal Analysis       | ✗             | ✗            | Partial          | ✓         |
+| Statistical Integration    | Manual Only   | ✗            | ✗                | ✓         |
+| ABM Integration           | ✗             | ✗            | ✗                | Future    |
+| Uncertainty Quantification | ✗             | Basic        | Basic            | IC-Std    |
+
+
+The system's comprehensive scale sets it apart from existing approaches. While DIGIMON offers 16 operators and StructGPT provides 8 interfaces, KGAS integrates tools across multiple categories with standardized contracts, including dedicated suites for document processing, graph operations, statistical analysis, vector operations, and cross-modal converters. This scale enables capabilities absent in other systems: automated theory operationalization from academic literature and cross-modal analysis producing APA-formatted outputs.
+
+## 4.2 Cross-Modal Analysis Architecture
+
+The system implements native cross-modal analysis that differs from multi-modal RAG systems. While standard multi-modal systems handle different data types (text, image, audio), KGAS provides different analytical representations of the same data. This enables seamless transformation between graph, table, and vector modes with semantic preservation and provenance tracking - a capability absent in compared systems.
+
+Graph, table, and vector modes capture relationships, statistics, and semantics respectively; KGAS converts among them without losing provenance. For example, analyzing identity uncertainty's effect on conspiracy beliefs reveals influence pathways (graph), regression coefficients (table), and language convergence patterns (vector) - with convergent findings increasing confidence.
+
+## 4.3 Provenance and Uncertainty Infrastructure
+
+The system implements W3C PROV-compliant provenance tracking with comprehensive uncertainty audit trails. Every analytical operation records not just inputs and outputs but complete decision traces - why theories were selected, how evidence was weighted, what alternatives were considered. Transformation lineage tracks information preservation across format conversions (graph↔table↔vector), maintaining bidirectional links from any finding to originating evidence. The provenance system captures uncertainty provenance including calculation methods, input confidences, mathematical parameters, and confidence bounds on the uncertainty assessments themselves.
+
+The IC-informed uncertainty framework adapts Intelligence Community methodologies² for academic research, using standardized probability bands with mathematical propagation through root-sum-squares.
+
+## 4.4 Two-Layer Theory Architecture
+
+The system implements a two-layer architecture that separates theoretical structure extraction from application, addressing the critical problem of theory-question coupling in traditional approaches.
+
+Figure 4.3: Two-Layer Theory Processing Architecture
+
+```
+    Layer 1: Theory Extraction (One-time)
+    ┌─────────────────────────────────────┐
+    │  Academic Literature                │
+    │  ↓                                  │
+    │  LLM Extraction with Meta-Schema    │
+    │  ↓                                  │
+    │  Theory Repository                  │
+    └─────────────────────────────────────┘
+                    ↓
+    Layer 2: Question-Driven Application (Repeated)
+    ┌─────────────────────────────────────┐
+    │  Research Question                  │
+    │  ↓                                  │
+    │  Select Theory Components           │
+    │  ↓                                  │
+    │  Apply to Data                      │
+    │  ↓                                  │
+    │  Generate Results                   │
+    └─────────────────────────────────────┘
+```
+
+NOTE: Separation of extraction from application enables reuse of theoretical structures across multiple research questions without re-extraction.
+
+Layer 1 performs comprehensive theoretical extraction independent of analytical goals. Using a sophisticated 3-phase LLM extraction process with the Theory Meta-Schema, the system extracts theoretical structures - entities with indigenous terminology, relationships with causal directions, assumptions and boundary conditions, mathematical formulations, and analytical methods. Multi-agent validation helps improve extraction consistency through consensus-based assessment. This comprehensive extraction occurs once per theory, creating reusable theoretical representations.
+
+Layer 2 enables question-driven analysis using pre-extracted theories. When researchers pose questions, the system selects relevant theoretical components from the extracted structures, applies appropriate analytical methods (formulas, algorithms, procedures, rules, sequences), and generates theory-grounded results. This separation enables powerful capabilities: the same extraction supports multiple research questions, theories can be combined for multi-perspective analysis, and analytical approaches can evolve without re-extraction. The architecture ensures theoretical integrity while enabling flexible application to reveal world phenomena through discourse analysis rather than just textual patterns.
+
+## 4.5 Low-Code Interface and User Interaction
+
+The system will provide a low-code interface that enables researchers to apply computational methods without programming expertise. The primary interaction occurs through a conversational chatbot interface that translates natural language requests into computational workflows. Advanced users retain full control through configuration options and direct workflow specification.
+
+The chatbot interface guides users through theory selection and application. Continuing our vaccine hesitancy example, after the analyst's initial query, the system might ask: "Are you more interested in understanding how these narratives spread (diffusion) or why people believe them (persuasion)?" Based on the response, it refines theory selection and constructs appropriate analytical workflows. The system explains its choices: "I'm applying Social Identity Theory to identify in-group/out-group dynamics in vaccine discourse, combined with Diffusion of Innovations to trace how narratives spread through the network." This transparency helps analysts understand and trust the analytical process.
+
+For researchers with specific theoretical expertise, the system will provide direct theory selection and configuration options. Users can browse available theories organized by analytical capabilities, select specific theories for application, and adjust parameters based on domain knowledge. This flexibility ensures that computational automation enhances rather than replaces scholarly judgment.
+
+The interface abstracts technical complexity while maintaining transparency. Users see which theories are being applied and why, what analytical methods are being used, and how uncertainty is being quantified. Results include natural language explanations linking findings to theoretical constructs, making computational analysis accessible to researchers without technical backgrounds.
+
+## 4.6 Workflow Orchestration and DAG Construction
+
+The system orchestrates complex analytical workflows through Directed Acyclic Graphs (DAGs) that specify sequences of analytical operations. These DAGs ensure reproducible analysis while enabling multi-step processing pipelines.
+
+Figure 4.1: Social Identity Theory Analysis DAG (Parallel Processing Paths)
+
+```
+                    COVID Dataset
+                          ↓
+                  [T01: Load Data]
+                    ↙          ↘
+        [T23A: Extract      [T15A: Chunk
+         Entities]           Text]
+              ↓                 ↓
+        [T31: Build        [T15B: Generate
+         Network Graph]     Embeddings]
+         ↙        ↘             ↓
+   [T49: Detect   [T68:    [Vector Clustering
+    Communities]  PageRank]  for Themes]
+        ↓            ↓           ↓
+   [Calculate     [Influence  [Semantic
+    In/Out-group]  Scores]    Analysis]
+         ↘           ↓         ↙
+          [T43: Statistical Correlation]
+                    ↓
+           [Validate Against Scales]
+```
+
+NOTE: The DAG demonstrates parallel processing - entity extraction and network analysis occur simultaneously with text embedding and semantic analysis. Results converge for statistical validation, showing true directed acyclic graph capabilities.
+
+Each node in the DAG represents a specific analytical operation implemented by a tool. Tools range from basic operations like entity extraction to complex theoretical calculations. The edges specify data flow between operations, ensuring that outputs from one step become inputs to the next. This structure enables complex workflows while maintaining clear execution logic.
+
+The system constructs DAGs automatically based on research questions and selected theories. When a user asks about identity and conspiracy beliefs, the system identifies Social Identity Theory as relevant, then constructs a DAG that extracts identity-related entities, builds group networks, calculates theoretical measures, and tests relationships. Advanced users can modify generated DAGs or create custom workflows for specific analytical needs.
+
+DAG execution includes comprehensive error handling and validation. Each step validates inputs against expected formats and ranges. Failed operations generate informative error messages rather than silent failures. The system tracks provenance throughout execution, recording which tools were used, what parameters were applied, and how results were generated.
+
+## 4.7 System Integration
+
+The system uses a bi-store architecture optimized for different analytical requirements: graph database for network structures and relational database for metadata and provenance. Processing implements theory-specific algorithms through standardized tool contracts. The modular architecture supports specialized analytical plugins, with existing prototypes demonstrating qualitative coding capabilities for systematic discourse categorization and process tracing functionality for tracking causal sequences through temporal data. External integration occurs via Model Context Protocol (MCP), enabling interoperability with statistical packages and visualization tools. The architecture prioritizes reproducibility through complete audit trails and version control, supporting academic requirements for transparent research. (Technical specifications in Annex B)
+
+
+# Chapter 5: Essay 1 Method - Theory Integration Approach
+
+Where Chapter 4 specified the system architecture, this chapter details the methodology for developing the theoretical integration framework that will drive that system.
+
+## 5.1 Framework Development Methodology
+
+This essay develops a systematic framework organizing theories by analytical capabilities rather than disciplinary origins, addressing theoretical fragmentation through unified computational structure. The framework draws on Larson et al.'s (2009) multi-level influence operations approach (individual cognitive processes, group peer dynamics, mass public media effects) and extends Lasswell's (1948) communication model with Druckman's (2022) settings addition, creating six components: Who (source credibility), What (message content), To Whom (audience characteristics), Channel (medium affordances), Settings (temporal context), Effect (behavioral outcomes).
+
+## 5.2 Theory Organization Process
+
+The framework organizes theories from communication, psychological, social, and behavioral sciences based on their analytical capabilities. Each theory maps to the DEPI×Level×Component framework: Social Identity Theory (group level, explanatory, audience focus), Diffusion of Innovations (mass public, predictive, channel/settings focus). This classification reveals complementarities for integration and gaps requiring development, enabling systematic theory selection based on research questions rather than disciplinary boundaries.
+
+## 5.3 Theory Meta-Schema Development
+
+The meta-schema standardizes theory representation while preserving theoretical integrity. Components include: metadata (citations, relationships, scope), classification (DEPI position, data requirements, outputs), and computational specifications (formulas, procedures, rules). This structure enables automated theory selection and execution while maintaining fidelity to original theoretical formulations. (Complete specifications in Annex A)
+
+## 5.4 Integration with Influence Operations Framework
+
+The framework explicitly integrates insights from influence operations research, recognizing that understanding fringe discourse requires analytical tools developed for assessing persuasion and behavioral change. Larson et al.'s framework identifies key analytical questions at each level that guide theory selection and application.
+
+At the individual level, the framework addresses questions about cognitive susceptibility, message processing, and attitude formation. Theories such as the Elaboration Likelihood Model and Motivated Reasoning provide tools for understanding how individuals process information under different conditions. These theories help identify when individuals engage in systematic versus heuristic processing and how prior beliefs affect information interpretation.
+
+At the group level, the framework examines social influence, network effects, and collective dynamics. Theories such as Social Identity Theory and Social Learning Theory explain how group membership and peer observation shape beliefs and behaviors. Network theories address how information and influence flow through social connections, identifying key nodes and pathways for belief transmission.
+
+At the mass public level, the framework analyzes population-wide patterns, media effects, and cultural narratives. Theories such as Cultivation Theory and Agenda Setting explain how media exposure shapes perceptions of reality. Diffusion theories predict how innovations and ideas spread through populations over time.
+
+## 5.5 Validation Approach
+
+The framework validation will assess whether the organizational structure enables effective theory selection and application. This will involve testing whether theories classified similarly produce complementary insights and whether the framework guides users to appropriate theories for their research questions.
+
+Theory classification validation examines inter-rater reliability in assigning theories to framework dimensions. Multiple researchers independently classify a subset of theories, with agreement levels indicating classification clarity. Disagreements identify theories that span multiple categories or require refined definitions.
+
+Application validation will test whether the framework enables systematic theory selection for research questions. Sample research questions from fringe discourse analysis will be mapped to framework dimensions, and the resulting theory recommendations are evaluated by domain experts. This will validate that the framework connects research needs to appropriate theoretical tools.
+
+Integration validation will assess whether theories can be meaningfully combined when addressing complex phenomena. The framework will identify complementary theories that together provide more comprehensive explanations than single theories alone. For example, combining Social Identity Theory's group dynamics with Motivated Reasoning's cognitive processes provides richer understanding of conspiracy belief adoption.
+
+## 5.6 Expected Deliverables
+
+This essay will produce several key deliverables that establish the theoretical foundation for the computational system. The primary deliverable is the three-dimensional organizing framework that classifies theories by their analytical capabilities across the DEPI taxonomy, levels of analysis, and communication components. This framework will be presented through structured tables and visual representations showing theoretical relationships.
+
+The Theory Meta-Schema specification provides detailed templates for representing theories in computational form. Example schemas for key theories such as Social Identity Theory, Diffusion of Innovations, and Motivated Reasoning demonstrate how theoretical concepts translate to machine-readable specifications. These examples show how different types of theories - mathematical, logical, procedural - can be consistently represented.
+
+A populated theory library will include initial meta-schemas for theories spanning the framework dimensions. This library will emphasize theories relevant to fringe discourse analysis, including those addressing identity formation, information processing, social influence, and belief dynamics. Each theory will be documented with its theoretical origins, computational specifications, and application examples.
+
+The framework documentation will include guidelines for adding new theories, extending existing theories, and identifying theoretical gaps. This ensures the framework can evolve as new theories emerge or existing theories are refined. The documentation will also address how to handle theories that span multiple dimensions or challenge the organizational structure.
+
+# Chapter 6: Essay 2 Method - System Development and Validation
+
+Where Chapter 5 developed the theoretical integration framework, this chapter describes the methodology for implementing and validating the computational system.
+
+## 6.1 Dataset Specification and Preparation
+
+The system development and validation will use the Kunst et al. (2024) COVID conspiracy discourse dataset, which provides a unique combination of behavioral data and psychological profiles. Table 6.1 summarizes the key dataset characteristics that enable validation of computational construct extraction against established psychological measures.
+
+Table 6.1: Kunst COVID-19 Conspiracy Discourse Dataset Specifications
+
+| Dataset Component         | Specification                           |
+|--------------------------|----------------------------------------|
+| Users with Profiles      | 2,506 Twitter users                   |
+| Behavioral Interactions  | 7.7 million tweets and engagements    |
+| Time Period             | December 2019 - December 2021         |
+| Psychological Measures   | Conspiracy mentality scale            |
+|                         | Collective narcissism scale           |
+|                         | Need for chaos scale                  |
+|                         | Misinformation susceptibility scale   |
+| Network Construction    | Interaction-based (replies, reposts)  |
+| Validation Approach     | Correlation with psychological scales |
+
+NOTE: The dataset combines self-reported psychological assessments with complete behavioral traces, enabling validation of whether computational methods can extract theoretically meaningful patterns from discourse.
+
+Data preparation will focus on interaction-based network construction rather than follower relationships. Networks will be defined by actual engagement - replies, reposts, and likes - which better reflect active discourse participation than passive following relationships. Data filtering will use LLM-based quality assessment to assign coherence scores (0-1) based on semantic consistency and discourse relevance, with manual validation on a subset to establish inter-rater reliability. Content relevance filtering will identify posts related to COVID, vaccines, and associated conspiracy narratives using keyword matching and semantic similarity.
+
+The psychological profile data provides ground truth for validation. Each user's scores on validated psychological scales serve as comparison points for computationally extracted construct estimates. This enables assessment of whether the system can identify psychological patterns from discourse that correspond to measured psychological traits. The temporal span allows tracking of belief evolution and network dynamics over the pandemic's progression.
+
+Cross-platform considerations will be documented but not implemented in the initial system. While the current dataset focuses on Twitter, the framework will be designed to accommodate other platforms. Platform-specific features such as retweet cascades are Twitter-specific, while general engagement metrics such as likes and replies exist across platforms. The system architecture will maintain flexibility for future multi-platform integration.
+
+## 6.2 System Implementation
+
+The low-code chatbot interface translates natural language requests into computational workflows, democratizing access to theoretical analysis. Directed Acyclic Graphs orchestrate tool execution with automatic construction from research questions. The two-layer architecture separates one-time theory extraction (Layer 1) from repeated application (Layer 2), enabling theory reuse across datasets. 
+
+Building on existing prototype work, the system incorporates specialized plugins for qualitative analysis methods. A qualitative coding plugin enables systematic categorization of discourse elements according to theoretical frameworks, while a process tracing plugin tracks causal sequences and decision pathways through discourse evolution. These prototypes demonstrate the feasibility of integrating traditional qualitative methods with computational approaches. (Implementation details in Annex B)
+
+## 6.3 Validation Methodology
+
+Validation will proceed through multiple levels to assess both technical functionality and theoretical validity. The approach recognizes that the system's value lies not in perfect accuracy but in meaningful correlation between computational estimates and theoretical constructs.
+
+Basic extraction validation uses crowd-sourced coding to assess entity and relationship extraction. A sample of posts is coded by human annotators for entities relevant to conspiracy theories - actors, claims, sources, and narratives. Inter-rater reliability establishes coding consistency. System extractions are compared against human coding to document extraction patterns. The goal is achieving sufficient quality for meaningful analysis rather than perfect extraction.
+
+Construct validity assessment tests whether computational estimates correlate with psychological measures. The system generates construct estimates for each user based on theoretical specifications - identity uncertainty scores from Social Identity Theory, threat perception from Terror Management Theory, and group identification from social network position. These estimates are correlated with the psychological scales in the dataset. Correlations demonstrate that automated theory application captures psychologically meaningful patterns.
+
+Cross-modal validation will compare findings across analytical approaches. The same theoretical construct will be examined through graph, table, and vector analyses. Convergent findings across modalities will increase confidence in results. Divergent findings will be examined to understand what unique insights each modality provides. This validation approach recognizes that different analytical modes may reveal different aspects of the same phenomenon.
+
+## 6.4 Theory Application Examples
+
+The implementation will demonstrate theory application through concrete examples from the COVID dataset. These examples will show how different theories generate different insights from the same data, validating the framework's capability for multi-theoretical analysis.
+
+Social Identity Theory application identifies in-groups and out-groups within the discourse. The system extracts group-identifying language, construct group membership networks, and calculate in-group favoritism scores. Validation tests whether users with higher computed favoritism scores show stronger conspiracy mentality in psychological assessments.
+
+Motivated Reasoning application tracks how users process information consistent or inconsistent with prior beliefs. The system identifies belief-confirming and belief-challenging information in user timelines, measure differential engagement with each type, and compute confirmation bias scores. Validation tests whether these scores correlate with measured conspiracy mentality and misinformation susceptibility.
+
+Diffusion of Innovations¹³ application traces how conspiracy narratives spread through the network. The system identifies novel claims, track their propagation paths, measure adoption rates, and identify influential spreaders. Validation compares predicted diffusion patterns against observed spread in the temporal data.
+
+## 6.5 Performance Considerations
+
+While the system prioritizes theoretical validity over computational performance, practical considerations ensure usability through appropriate tool selection, vectorized operations, and batched language model calls to complete workflows within hours rather than days.
+
+Scalability employs sampling strategies when necessary - complete analysis of 7.7 million interactions may require representative sampling for computationally expensive operations while maintaining full data analysis for critical steps. Error handling follows fail-fast principles, validating inputs at each step and generating clear error messages rather than questionable results.
+
+## 6.6 Expected Outcomes
+
+The system development produces a functional prototype demonstrating theory-aware discourse analysis that validates the feasibility of the approach and provide a foundation for future development.
+
+The primary deliverable will be a working system capable of extracting theories from academic literature, applying them to the COVID dataset, and generating analytical results across multiple modalities. The system will demonstrate that computational methods can systematically apply social science theories to large-scale discourse analysis.
+
+Validation results provide evidence about the system's capabilities and limitations. Correlation analyses between computational estimates and psychological measures establish baseline expectations for construct validity. Extraction accuracy metrics identify areas where human validation remains necessary. Cross-modal comparisons reveal which analytical approaches best suit different theoretical questions.
+
+Documentation will include system architecture specifications, theory application examples, and user guides. The architecture documentation will enable future development and extension. Application examples will show how different theories generate insights from discourse data. User guides will help researchers understand when and how to apply the system to their research questions.
+
+# Chapter 7: Essay 3 Method - Analysis and Application
+
+Where Chapter 6 described system implementation and validation, this chapter details the analytical methods enabled by the integrated theoretical and computational framework.
+
+## 7.1 Analytical Methods Progression
+
+This essay demonstrates analytical capabilities enabled by the Theory Meta-Schema, progressing from basic computational methods to cross-modal integration. The demonstration uses the COVID discourse dataset to show how theories translate into analytical approaches across graph, table, and vector representations.
+
+The analytical progression follows the natural complexity hierarchy of social science methods. Basic methods apply formulas and rules directly to data. Intermediate methods integrate across data modalities and statistical relationships. Advanced methods (ABM, SEM) are documented as future extensions. This progression demonstrates that the Theory Meta-Schema can accommodate the full spectrum of social science analytical approaches.
+
+## 7.2 Basic Computational Methods
+
+The system implements five analytical patterns from theoretical specifications. Formula-based analysis calculates mathematical relationships (Social Learning Theory's influence scores). Algorithmic analysis traces patterns through networks (contagion cascades via breadth-first search). Procedural analysis executes sequential processes (Spiral of Silence decision steps). Rule-based analysis applies logical conditions (Terror Management Theory's threat-defense mechanisms). Sequence analysis tracks temporal progressions, enabling theory combination across time scales - applying Larson's framework for immediate tactical influence processes (emotional appeals, source credibility effects) while simultaneously tracking McGuire's six-step model for longer-term attitude hardening (exposure→attention→comprehension→acceptance→retention→action), revealing how short-term influence operations evolve into durable belief changes.
+
+## 7.3 Cross-Modal Integration
+
+Cross-modal analysis examines theoretical constructs through complementary lenses. Graph analysis constructs Social Identity Theory's in-group/out-group networks with identification edges, measuring density and testing bias predictions. Table analysis organizes identity variables for regression testing whether uncertainty predicts conspiracy adoption. Vector analysis tracks semantic evolution revealing echo chamber convergence. Integration provides convergent validation where consistent findings across modalities strengthen theoretical interpretations while divergent results highlight unique analytical contributions.
+
+## 7.4 Statistical Modeling
+
+The system will demonstrate theory-generated statistical models through regression analysis testing Motivated Reasoning predictions with interaction terms for belief moderation effects, multilevel modeling accounting for users nested within groups with random effects and cross-level interactions, and time series analysis validating Diffusion of Innovations' S-curve patterns for conspiracy narrative adoption. These methods move beyond correlations to test complex theoretical relationships.
+
+## 7.5 Statistical Integration
+
+Statistical integration demonstrates the Theory Meta-Schema's capability for cross-modal validation through correlation analysis between graph metrics and psychological measures, pattern detection across different data representations, and validation of theoretical predictions against empirical data. This enables assessment of which theoretical perspectives reveal meaningful patterns.
+
+## 7.6 Future Extensions: Advanced Modeling
+
+Agent-based modeling represents a future extension demonstrating how the Theory Meta-Schema could enable theory validation through simulation. The approach would differ from recent LLM-based agent systems⁹¹⁰ by implementing theory-constrained behavioral rules rather than emergent behaviors from language models.
+
+Agent parameterization could utilize the Kunst dataset's personality characteristics. Each agent would receive conspiracy mentality, narcissism, need for chaos, and misinformation susceptibility scores drawn from the empirical distributions. Table 7.1 provides illustrative examples of how psychological traits could map to behavioral rules in future work.
+
+Table 7.1: Illustrative Agent Behavioral Rules (Future Work)
+
+| Psychological Trait        | Potential Behavioral Rule                 |
+|---------------------------|--------------------------------------------|
+| High Conspiracy Mentality | Preferentially share confirming content   |
+| High Narcissism          | Increase posting frequency                |
+| High Need for Chaos      | Engage with controversial topics          |
+| Low Trust in Authority   | Question official sources                 |
+
+NOTE: These illustrative rules demonstrate potential mappings between dataset traits and behaviors. The actual implementation explores various theory-behavior combinations to identify patterns that align with observed data, treating these as exploratory relationships rather than validated theoretical claims.
+
+The Reasoned Action Model provides a structured approach for agent decision-making. Attitudes toward conspiracy beliefs combine with subjective norms from network peers and perceived behavioral control to generate behavioral intentions. For example, an agent with moderate conspiracy mentality (attitude) observing peers sharing conspiracy content (subjective norm) and feeling empowered by social media tools (perceived control) calculates intention scores for sharing similar content. The model's mathematical formulation enables precise tracking of how psychological traits interact with social influences to produce behaviors.
+
+The simulation follows established ABM frameworks with theory-driven rules. Agents encounter content based on network position, process it through theory-specified pathways (central versus peripheral routes from ELM based on their elaboration likelihood), update belief states according to theoretical mechanisms, and generate discourse contributions by selecting from observed patterns weighted by current states. Multiple theories operate simultaneously - Social Identity Theory governs group dynamics, Motivated Reasoning filters information processing, and Spiral of Silence modulates expression likelihood.
+
+The simulation can explore parameter variation within theoretical bounds, with parameter ranges drawn from the empirical distribution's 5th-95th percentiles unless literature specifies otherwise. Validation would compare aggregate patterns including adoption curves and polarization levels against observed data. Intervention modeling tests strategies such as counter-narratives targeting high-influence nodes or network modifications to reduce echo chamber effects, providing tools for exploring outcomes before resource commitment.
+
+# Chapter 8: Validation Strategy
+
+Where Chapter 7 demonstrated the analytical capabilities of the system, this chapter specifies the comprehensive validation strategy for assessing its effectiveness.
+
+## 8.1 Multi-Dimensional Validity Framework
+
+The validation strategy will follow Davis et al.'s (2018) five-dimensional framework for model validity. The system validation will test whether KGAS correctly extracts and applies theories, not whether theories themselves are true. The full twelve-dimension uncertainty assessment rubric appears in Annex C.
+
+## 8.2 Description and Extraction Validity
+
+Description validity will assess entity extraction through crowd-sourced coding of sample posts for extraction quality, theory structure completeness via hand-coding theories and comparing extractions using graph edit distance, and inter-LLM reliability tests demonstrating reproducibility though consistency doesn't guarantee accuracy. For our vaccine hesitancy example, validation would verify that the system correctly identifies anti-vaccine groups as in-groups, public health authorities as out-groups, and vaccine safety concerns as threat narratives - validating that theoretical constructs map accurately to discourse elements.
+
+## 8.3 Postdiction and Construct Validity
+
+Postdiction will test explanations of past behavior by extracting construct estimates from COVID dataset tweets and correlating with psychological measures (conspiracy mentality, narcissism, need for chaos). Any observed correlations demonstrate meaningful pattern extraction without predetermined effect sizes. Theory replication applies extracted theories to original paper datasets comparing structural similarity and directional agreement.
+
+## 8.4 Exploratory and System Capability Assessment
+
+Exploratory validity will document modality-specific insights (graph for networks, table for statistics, vector for semantics) and tests multi-resolution coherence across individual, network, and population levels. System capability assessment can evaluate multiple dimensions including source credibility ratings, cross-source contradiction detection, entity identity resolution, and reasoning chain validity.
+
+## 8.5 Expected Outcomes Without Predetermined Targets
+
+Validation reports actual metrics with established thresholds where appropriate (e.g., ρ ≥ .30 for meaningful correlations, κ ≥ .60 for inter-rater agreement). Process metrics establish operational baselines: median extraction time per theory, percentage of elements captured, and cross-modal conversion rates. Entity extraction capabilities will be documented. Construct correlations will be reported without required effect sizes. Prediction remains aspirational per Davis. Limitations include online discourse restriction, correlational findings, platform specificity, inter-LLM consistency not accuracy, and unavailable ground truth for complex constructs - framing this as proof-of-concept infrastructure.
+
+# Chapter 9: Timeline and Limitations
+
+Where Chapter 8 established the validation strategy, this final chapter addresses practical implementation considerations and acknowledges research boundaries.
+
+## 9.1 Research Timeline
+
+The dissertation proceeds through three integrated phases over 12 months from proposal approval (September 2025) through defense (February 2026). (See Annex E for detailed timeline with milestones, deliverables, and risk management)
+
+## 9.2 Scope and Limitations
+
+The research demonstrates computational theory application to online discourse without claiming comprehensive social prediction. Scope encompasses extracting/applying established theories rather than discovering new frameworks. Technical limitations include LLM dependence, single-node constraints, and preserving theoretical nuance computationally. Validation limitations include absent ground truth for constructs, observational data causality challenges, and platform-specific dataset biases.
+
+## 9.3 Contributions to Future Research
+
+This dissertation will establish foundations for theory-aware computational social science. The Theory Meta-Schema will provide evolving templates for computational theory representation. The validation framework will assess computational theory application against field-standard thresholds. The cross-modal architecture will integrate analytical perspectives while maintaining theoretical fidelity. KGAS will serve as proof-of-concept infrastructure, with current metrics providing baselines for next-generation systems - as language models improve, extraction strengthens; as datasets expand, validation multiplies; as resources grow, sophistication increases. The research will demonstrate initial capabilities while establishing frameworks accommodating future improvements.
+
+---
+
+## References
+
+¹ Kunst, J. R., Gundersen, A. B., Krysińska, I., et al., "Leveraging Artificial Intelligence to Identify the Psychological Factors Associated with Conspiracy Theory Beliefs Online," Nature Communications, Vol. 15, 2024.
+
+² Office of the Director of National Intelligence, ICD 203: Analytic Standards, 21 June 2007; ICD 206: Sourcing Requirements for Disseminated Analytic Products, 27 June 2012.
+
+³ Tajfel, Henri, and John C. Turner, "The Social Identity Theory of Intergroup Behavior," in Stephen Worchel and William G. Austin, eds., The Social Psychology of Intergroup Relations, Brooks/Cole, 1986, pp. 7–24.
+
+⁴ Bandura, Albert, Social Learning Theory, Prentice-Hall, 1977.
+
+⁵ Lasswell, Harold D., "The Structure and Function of Communication in Society," in Lyman Bryson, ed., The Communication of Ideas, Harper and Row, 1948, pp. 37–51.
+
+⁶ Larson, Eric V., et al., Foundations of Effective Influence Operations: A Framework for Enhancing Army Capabilities, RAND Corporation, 2009.
+
+⁷ Druckman, James N., "A Framework for the Study of Persuasion," Annual Review of Political Science, Vol. 25, No. 1, 2022, pp. 65–88.
+
+⁸ Heuer, Richards J., Psychology of Intelligence Analysis, Center for the Study of Intelligence, 1999.
+
+⁹ Park, J. S., et al., "Generative Agents: Interactive Simulacra of Human Behavior," in Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23), Association for Computing Machinery, 2023, pp. 759–789.
+
+¹⁰ Vezhnevets, A. S., et al., Generative Agent-Based Modeling with Actions Grounded in Physical, Social, or Digital Space Using Concordia, arXiv, 2023.
+
+¹¹ Bail, Chris, et al., "Exposure to Opposing Views on Social Media Can Increase Political Polarization," Proceedings of the National Academy of Sciences, Vol. 115, No. 37, 2018, pp. 9216–9221.
+
+¹² Chong, Dennis, and James N. Druckman, "Framing Theory," Annual Review of Political Science, Vol. 10, 2007, pp. 103–126.
+
+¹³ Rogers, Everett M., Diffusion of Innovations, 5th ed., Simon & Schuster, 2010.
+
+¹⁴ Zaller, John R., The Nature and Origins of Mass Opinion, Cambridge University Press, 1992.
+
+---
+
+
+# Annex A: Theory Meta-Schema Specification
+
+## A.1 Theory Meta-Schema Architecture
+
+The Theory Meta-Schema provides a standardized format for representing social science theories in machine-readable form while preserving their original terminology and theoretical structure. This specification will enable computational application while maintaining theoretical fidelity.
+
+## A.2 Core Schema Components
+
+### Metadata Component
+Preserves bibliographic information and theoretical relationships:
+- Original authors and publication details
+- Connections to related theories through extension, synthesis, or contradiction
+- Scope boundaries and application conditions
+- Version tracking for schema evolution
+
+### Theoretical Structure Component
+Defines entities, relations, and modifiers using indigenous terminology:
+- **Entities**: Core concepts with original definitions and properties
+- **Relations**: Connections between entities with logical properties (causal, correlational, moderating)
+- **Modifiers**: Conditions that affect theoretical elements (boundary conditions, assumptions)
+
+### Computational Representation Component
+Specifies how theoretical structures map to data formats:
+- **Graph representations**: Network relationships, nodes, and edges
+- **Table representations**: Statistical variables and relationships
+- **Vector representations**: Semantic similarity comparisons
+- **Natural language**: Textual descriptions and explanations
+
+### Algorithms Component
+Contains the theory's analytical methods:
+- **Mathematical formulas**: Quantitative relationships and calculations
+- **Logical rules**: Conditional statements and decision trees
+- **Procedural steps**: Sequential operations and workflows
+- **Temporal sequences**: Time-based progressions and stages
+
+## A.3 Methodology Type Specifications
+
+### FORMULAS
+Mathematical equations that quantify theoretical relationships:
+- Social Learning Theory: Behavior_adoption = Σ(observed_behavior × tie_strength × outcome_valence)
+- Social Identity Theory: In_group_favoritism = (in_group_rating - out_group_rating) / scale_range
+- Diffusion rate calculations based on network topology
+
+### ALGORITHMS
+Computational procedures for complex calculations:
+- Breadth-first search for influence cascade tracing
+- Community detection for group identification
+- PageRank variants for influence measurement
+- Clustering algorithms for semantic grouping
+
+### PROCEDURES
+Step-by-step processes for analysis:
+- Spiral of Silence decision process:
+  1. Assess opinion climate from network
+  2. Calculate perceived majority position
+  3. Evaluate isolation risk
+  4. Determine expression likelihood
+  5. Generate expression decision
+
+### RULES
+Logical conditions and consequences:
+- IF mortality_salience = high AND worldview_threat = present THEN worldview_defense = increased
+- IF group_identity = strong AND out_group_threat = perceived THEN in_group_bias = amplified
+- IF information contradicts prior_beliefs AND motivation = high THEN source_credibility = discounted
+
+### SEQUENCES
+Temporal patterns and progressions:
+- McGuire's persuasion sequence: exposure → attention → comprehension → yielding → retention → behavior
+- Radicalization pathway: grievance → seeking → finding → bonding → commitment → action
+- Innovation adoption: awareness → interest → evaluation → trial → adoption
+
+## A.4 Social Identity Theory Complete Example
+
+```json
+{
+  "theory_id": "social_identity_theory",
+  "metadata": {
+    "name": "Social Identity Theory",
+    "authors": ["Tajfel, H.", "Turner, J.C."],
+    "year": 1979,
+    "domain": "social_psychology",
+    "citations": ["Tajfel & Turner (1979)", "Tajfel et al. (1971)"]
+  },
+  "classification": {
+    "analytical_goals": ["explain", "predict"],
+    "levels": ["group"],
+    "components": ["to_whom", "effect"],
+    "use_case": "group_dynamics_analysis"
+  },
+  "theoretical_structure": {
+    "entities": [
+      {
+        "name": "in_group",
+        "type": "collective",
+        "properties": {
+          "cohesion": "float[0,1]",
+          "distinctiveness": "float[0,1]",
+          "status": "categorical"
+        }
+      },
+      {
+        "name": "out_group",
+        "type": "collective",
+        "properties": {
+          "perceived_threat": "float[0,1]",
+          "stereotyping": "float[0,1]"
+        }
+      },
+      {
+        "name": "individual",
+        "type": "agent",
+        "properties": {
+          "group_identification": "float[0,1]",
+          "self_esteem": "float[0,1]",
+          "uncertainty": "float[0,1]"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "from": "individual",
+        "to": "in_group",
+        "type": "identification",
+        "strength": "variable",
+        "direction": "bidirectional"
+      },
+      {
+        "from": "in_group",
+        "to": "out_group",
+        "type": "differentiation",
+        "mechanism": "social_comparison",
+        "outcome": "bias"
+      }
+    ],
+    "modifiers": [
+      {
+        "name": "threat",
+        "effect": "amplifies",
+        "target": "in_group_bias",
+        "condition": "when perceived_threat > threshold"
+      },
+      {
+        "name": "status_legitimacy",
+        "effect": "moderates",
+        "target": "identity_strategies",
+        "values": ["legitimate", "illegitimate"]
+      }
+    ]
+  },
+  "computational_representation": {
+    "primary_format": "graph",
+    "graph_spec": {
+      "nodes": ["individuals", "groups"],
+      "edges": ["membership", "identification", "bias"],
+      "metrics": ["modularity", "homophily", "centrality"]
+    },
+    "table_spec": {
+      "variables": ["group_id", "identification_score", "bias_measure"],
+      "relationships": "regression",
+      "aggregation": "group_mean"
+    },
+    "vector_spec": {
+      "embeddings": "group_language_patterns",
+      "similarity": "cosine",
+      "clustering": "hierarchical"
+    }
+  },
+  "algorithms": {
+    "mathematical": [
+      {
+        "name": "in_group_favoritism",
+        "formula": "(in_group_evaluation - out_group_evaluation) / scale_range",
+        "inputs": ["in_group_evaluation", "out_group_evaluation"],
+        "output": "favoritism_score",
+        "range": [-1, 1]
+      }
+    ],
+    "logical": [
+      {
+        "name": "identity_threat_response",
+        "condition": "perceived_threat > 0.6",
+        "then": "increase_in_group_favoritism",
+        "else": "maintain_baseline"
+      }
+    ],
+    "procedural": [
+      {
+        "name": "group_formation",
+        "steps": [
+          "categorize_individuals",
+          "assess_similarity",
+          "establish_boundaries",
+          "develop_norms",
+          "create_identity_markers"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "empirical_support": ["minimal_group_paradigm", "field_studies"],
+    "construct_measures": ["group_identification_scale", "collective_self_esteem"],
+    "expected_patterns": {
+      "under_threat": "increased_in_group_bias",
+      "high_identification": "stronger_favoritism",
+      "status_change": "identity_management_strategies"
+    }
+  }
+}
+```
+
+## A.5 Cross-Theory Integration Patterns
+
+Theories can be combined to provide multi-perspective analysis:
+
+### Complementary Integration
+- Social Identity Theory + Terror Management Theory: Group identity as mortality salience buffer
+- Motivated Reasoning + Spiral of Silence: Cognitive and social factors in expression
+- Diffusion of Innovations + Social Learning: Innovation spread through observation
+
+### Hierarchical Integration
+- Individual level: Cognitive Dissonance, Motivated Reasoning
+- Group level: Social Identity Theory, Social Proof
+- Society level: Cultivation Theory, Agenda Setting
+
+### Sequential Integration
+- Initial exposure: Elaboration Likelihood Model
+- Group influence: Social Identity Theory
+- Behavioral change: Theory of Planned Behavior
+- Maintenance: Social Learning Theory
+
+## A.6 Implementation Guidelines
+
+### Theory Extraction Process
+1. Identify theory source documents
+2. Extract core constructs using meta-schema
+3. Map relationships and mechanisms
+4. Specify computational operations
+5. Validate against empirical patterns
+
+### Quality Assurance
+- Theoretical fidelity: Preserve original terminology
+- Computational validity: Ensure operations match theory
+- Empirical grounding: Connect to measurable outcomes
+- Cross-validation: Multiple extraction attempts
+- Expert review: Domain specialist verification
+
+### Schema Evolution
+The meta-schema supports versioning to accommodate:
+- New theoretical developments
+- Refined computational methods
+- Extended analytical capabilities
+- Integration patterns
+- Validation improvements
+
+# Annex B: Technical Architecture Details
+
+## B.1 Tool Suite Organization
+
+The KGAS system integrates specialized tools across multiple functional categories with standardized contracts, enabling flexible composition of analytical workflows. Unlike rigid pipeline systems, KGAS's modular architecture allows tools to be chained in any sequence guided by theoretical requirements. Each tool implements a common interface ensuring consistent behavior and integration patterns.
+
+### Document Processing Suite
+- **PDF and document extraction**: Multi-format support including academic papers, reports, and web content
+- **Text preprocessing**: Language detection, cleaning, normalization
+- **Metadata extraction**: Author, date, citation information
+- **Reference parsing**: Bibliography and citation extraction
+
+### Graph Operations Suite
+- **Entity extraction**: Theory-guided identification of actors, concepts, and relationships
+- **Network construction**: Multiple network types (social, semantic, causal)
+- **Graph algorithms**: Centrality, clustering, path analysis, community detection
+- **Graph transformation**: Format conversion, projection, filtering
+
+### Statistical Analysis Suite
+- **Descriptive statistics**: Comprehensive summary statistics and distributions
+- **Inferential testing**: Hypothesis testing, confidence intervals, effect sizes
+- **Regression modeling**: Linear, logistic, multilevel, time series
+- **Structural equation modeling**: Latent variable models, path analysis
+- **Factor analysis**: Exploratory and confirmatory approaches
+
+### Vector Operations Suite
+- **Embedding generation**: Multiple embedding models and techniques
+- **Similarity calculation**: Cosine, Euclidean, and custom metrics
+- **Clustering**: K-means, hierarchical, DBSCAN, spectral
+- **Dimensionality reduction**: PCA, t-SNE, UMAP
+- **Semantic search**: Efficient vector similarity search
+
+### Cross-Modal Converters Suite
+- **Graph to table**: Network metrics, adjacency matrices, edge lists
+- **Table to graph**: Relationship construction, threshold-based networks
+- **Graph to vector**: Node embeddings, graph embeddings
+- **Vector to graph**: Similarity networks, nearest neighbor graphs
+- **Table to vector**: Feature encoding, statistical embeddings
+- **Vector to table**: Cluster assignments, similarity matrices
+
+### Agent-Based Modeling Suite
+- **Agent initialization**: Theory-based parameterization
+- **Behavioral rules**: Theory-derived decision mechanisms
+- **Network dynamics**: Evolving interaction patterns
+- **Simulation control**: Time steps, convergence, intervention
+- **Output analysis**: Aggregate metrics, individual trajectories
+
+## B.2 Workflow Orchestration and DAG Construction
+
+### DAG Architecture
+Directed Acyclic Graphs coordinate complex analytical workflows through:
+
+```python
+class WorkflowDAG:
+    """Orchestrates multi-step analytical pipelines"""
+    
+    def __init__(self):
+        self.nodes = {}  # Analytical operations
+        self.edges = {}  # Data dependencies
+        self.state = {}  # Execution state
+        
+    def add_node(self, node_id, operation, parameters):
+        """Add analytical operation to workflow"""
+        self.nodes[node_id] = {
+            'operation': operation,
+            'parameters': parameters,
+            'status': 'pending'
+        }
+        
+    def add_edge(self, from_node, to_node, data_mapping):
+        """Define data flow between operations"""
+        self.edges[(from_node, to_node)] = data_mapping
+        
+    def execute(self):
+        """Execute workflow with dependency management"""
+        execution_order = self.topological_sort()
+        for node_id in execution_order:
+            inputs = self.gather_inputs(node_id)
+            result = self.execute_node(node_id, inputs)
+            self.state[node_id] = result
+```
+
+### Automatic DAG Generation
+The system constructs DAGs from research questions through:
+
+1. **Question parsing**: Extract key concepts and analytical goals
+2. **Theory matching**: Identify relevant theoretical frameworks
+3. **Operation selection**: Choose appropriate tools for analysis
+4. **Dependency resolution**: Determine execution order
+5. **Parameter configuration**: Set operation-specific parameters
+
+### Execution Patterns
+- **Sequential execution**: Operations with dependencies
+- **Parallel execution**: Independent operations
+- **Conditional branching**: Theory-based decision points
+- **Iterative refinement**: Feedback loops for optimization
+- **Checkpoint recovery**: Resume from intermediate states
+
+## B.3 Data Storage Architecture
+
+### Bi-Store Design Rationale
+The system uses complementary storage systems optimized for different data types:
+
+#### Neo4j Graph Database
+- **Purpose**: Store and query graph structures
+- **Optimizations**: Native graph storage, index-free adjacency
+- **Use cases**: Network analysis, relationship queries, path finding
+- **Data model**:
+  ```cypher
+  // Entities with properties and embeddings
+  (:Entity {
+      id: string,
+      canonical_name: string,
+      entity_type: string,
+      properties: map,
+      embedding: vector
+  })
+  
+  // Relationships with metadata
+  -[:RELATES_TO {
+      relationship_type: string,
+      confidence: float,
+      source: string,
+      timestamp: datetime
+  }]->
+  ```
+
+#### SQLite Relational Database
+- **Purpose**: Structured data and metadata
+- **Optimizations**: Local deployment, ACID compliance
+- **Use cases**: Configuration, provenance, results storage
+- **Schema design**:
+  ```sql
+  -- Workflow execution tracking
+  CREATE TABLE workflows (
+      workflow_id TEXT PRIMARY KEY,
+      dag_specification JSON,
+      start_time TIMESTAMP,
+      end_time TIMESTAMP,
+      status TEXT,
+      results JSON
+  );
+  
+  -- Tool execution provenance
+  CREATE TABLE tool_executions (
+      execution_id TEXT PRIMARY KEY,
+      workflow_id TEXT,
+      tool_id TEXT,
+      inputs JSON,
+      outputs JSON,
+      duration_ms INTEGER,
+      timestamp TIMESTAMP
+  );
+  ```
+
+### Data Synchronization
+- **Entity resolution**: Maintain consistent identities across stores
+- **Transaction coordination**: Ensure cross-store consistency
+- **Cache management**: Performance optimization layer
+- **Backup strategy**: Incremental and full backup support
+
+## B.4 Processing Pipeline Implementation
+
+### Pipeline Stages
+
+#### Stage 1: Document Ingestion
+```python
+def ingest_document(file_path, doc_type):
+    """Process raw documents into structured format"""
+    # Extract text and metadata
+    raw_content = extract_content(file_path)
+    metadata = extract_metadata(raw_content)
+    
+    # Clean and normalize
+    cleaned_text = preprocess_text(raw_content.text)
+    
+    # Segment into processable units
+    segments = segment_document(cleaned_text)
+    
+    return DocumentData(segments, metadata)
+```
+
+#### Stage 2: Theory-Guided Extraction
+```python
+def extract_with_theory(document, theory_schema):
+    """Apply theoretical framework to extraction"""
+    # Configure extraction based on theory
+    extraction_config = theory_schema.get_extraction_config()
+    
+    # Extract theory-relevant entities
+    entities = extract_entities(document, extraction_config)
+    
+    # Identify relationships per theory
+    relationships = extract_relationships(entities, theory_schema)
+    
+    # Calculate theory-specific metrics
+    metrics = calculate_metrics(entities, relationships, theory_schema)
+    
+    return ExtractionResult(entities, relationships, metrics)
+```
+
+#### Stage 3: Cross-Modal Analysis
+```python
+def cross_modal_analysis(data, modalities):
+    """Analyze data across requested modalities"""
+    results = {}
+    
+    for modality in modalities:
+        if modality == 'graph':
+            results['graph'] = graph_analysis(data)
+        elif modality == 'table':
+            results['table'] = statistical_analysis(data)
+        elif modality == 'vector':
+            results['vector'] = semantic_analysis(data)
+    
+    # Integrate findings across modalities
+    integrated = integrate_results(results)
+    return integrated
+```
+
+#### Stage 4: Result Synthesis
+```python
+def synthesize_results(analysis_results, uncertainty_metrics):
+    """Generate final results with uncertainty"""
+    # Aggregate findings
+    synthesis = aggregate_findings(analysis_results)
+    
+    # Propagate uncertainty
+    final_uncertainty = propagate_uncertainty(uncertainty_metrics)
+    
+    # Generate natural language summary
+    summary = generate_summary(synthesis, final_uncertainty)
+    
+    return FinalResults(synthesis, final_uncertainty, summary)
+```
+
+## B.5 Low-Code User Interface
+
+### Conversational Interface Architecture
+The system will provide a low-code interface enabling non-technical users to perform complex analyses through natural language:
+
+```python
+class ConversationalInterface:
+    def process_user_query(self, query: str) -> WorkflowDAG:
+        # Parse natural language request
+        intent = self.extract_intent(query)
+        theories = self.identify_relevant_theories(intent)
+        
+        # Generate analytical workflow
+        dag = self.construct_dag(intent, theories)
+        
+        # Explain approach to user
+        explanation = self.generate_explanation(dag)
+        
+        return dag, explanation
+```
+
+### Workflow Generation from Natural Language
+- Automatic theory selection based on research questions
+- Dynamic DAG construction without coding
+- Interactive refinement through dialogue
+- Transparent explanation of analytical choices
+
+## B.6 Integration Interfaces
+
+### Model Context Protocol (MCP) Integration
+The system exposes tools through MCP for external integration:
+
+```python
+class MCPToolAdapter:
+    """Adapter for MCP protocol compliance"""
+    
+    def expose_tool(self, tool):
+        """Make tool available via MCP"""
+        return {
+            'id': tool.tool_id,
+            'name': tool.name,
+            'description': tool.description,
+            'input_schema': tool.get_input_schema(),
+            'output_schema': tool.get_output_schema(),
+            'execute': tool.execute
+        }
+```
+
+### External Service Integration
+- **LLM providers**: OpenAI, Anthropic, Google via unified interface
+- **Statistical packages**: R, Python statistical libraries
+- **Visualization tools**: Graph visualization, statistical plots
+- **Export formats**: Academic formats (LaTeX, BibTeX), data formats (CSV, JSON)
+
+## B.7 Performance Optimization Strategies
+
+### Computational Efficiency
+- **Lazy evaluation**: Defer computation until needed
+- **Caching layer**: Store expensive computations
+- **Batch processing**: Group operations for efficiency
+- **Parallel execution**: Utilize available cores
+
+### Memory Management
+- **Streaming processing**: Handle large datasets incrementally
+- **Resource pooling**: Reuse expensive resources
+- **Garbage collection**: Explicit memory cleanup
+- **Disk spillover**: Handle memory overflow gracefully
+
+### Scalability Patterns
+- **Horizontal scaling**: Distribute independent operations
+- **Vertical scaling**: Optimize single-node performance
+- **Adaptive algorithms**: Choose algorithms based on data size
+- **Progressive computation**: Return preliminary results quickly
+
+
+# Annex C: Validation Framework Details
+
+## C.1 Fourteen Dimensions of Uncertainty Assessment
+
+The validation framework evaluates system capabilities across six core dimensions that span the analytical pipeline from extraction through validation.
+
+### Dimension 1: Source Credibility
+**Definition**: Assessment of information source reliability and expertise
+**Measurement**: Compare system ratings against expert judgments for academic sources, social media accounts, and news outlets
+**Validation**: Correlation between system scores and established credibility metrics
+
+### Dimension 2: Cross-Source Coherence
+**Definition**: Detection of contradictions and agreement across multiple sources
+**Measurement**: Identification of conflicting claims about the same entities or events
+**Validation**: Precision and recall for contradiction detection tasks
+
+### Dimension 3: Temporal Relevance
+**Definition**: Assessment of information currency and temporal validity
+**Measurement**: Appropriate weighting of information based on recency and context
+**Validation**: Comparison with time-aware information retrieval benchmarks
+
+### Dimension 4: Extraction Completeness
+**Definition**: Comprehensiveness of entity and relationship extraction
+**Measurement**: Coverage of theoretically relevant constructs from source material
+**Validation**: Recall metrics against manually annotated datasets
+
+### Dimension 5: Entity Recognition Accuracy
+**Definition**: Precision in identifying and classifying entities
+**Measurement**: Correct identification of individuals, groups, concepts, and events
+**Validation**: F1 scores on named entity recognition tasks
+
+### Dimension 6: Construct Validity
+**Definition**: Alignment between computational estimates and theoretical constructs
+**Measurement**: Correlation between extracted measures and validated scales
+**Validation**: Convergent and discriminant validity assessment
+
+### Dimension 7: Theory-Data Fit
+**Definition**: Appropriateness of theoretical framework for observed data
+**Measurement**: Model fit indices and explained variance
+**Validation**: Comparison of competing theoretical models
+
+### Dimension 8: Study Limitations
+**Definition**: Recognition of methodological constraints and biases
+**Measurement**: Identification of sampling bias, measurement error, confounds
+**Validation**: Agreement with expert methodological assessments
+
+### Dimension 9: Sampling Bias
+**Definition**: Detection of non-representative samples
+**Measurement**: Statistical tests for selection bias and demographic skew
+**Validation**: Comparison with known population parameters
+
+### Dimension 10: Diagnosticity
+**Definition**: Information value for distinguishing between hypotheses
+**Measurement**: Mutual information and discriminative power metrics
+**Validation**: Hypothesis differentiation in controlled scenarios
+
+### Dimension 11: Sufficiency
+**Definition**: Adequacy of evidence for drawing conclusions
+**Measurement**: Statistical power and confidence interval width
+**Validation**: Comparison with required sample size calculations
+
+### Dimension 12: Confidence Assessment
+**Definition**: Documentation of uncertainty levels in analytical outputs
+**Measurement**: Consistency of uncertainty reporting across analyses
+**Note**: Future work could explore confidence calibration methods
+
+### Dimension 13: Entity Identity Resolution
+**Definition**: Correct linking of entity mentions across contexts
+**Measurement**: Accuracy in determining when different mentions refer to same entity
+**Validation**: Coreference resolution benchmarks
+
+### Dimension 14: Reasoning Chain Validity
+**Definition**: Logical coherence of multi-step theoretical connections
+**Measurement**: Validity of inference chains from evidence to conclusions
+**Validation**: Comparison with expert-traced reasoning paths
+
+## C.2 Davis Framework Application
+
+The validation strategy operationalizes Davis et al.'s (2018) five-dimensional model validity framework for computational theory application.
+
+### Description Validity
+**Purpose**: Assess ability to identify salient structures and patterns
+**Implementation**:
+- Entity extraction accuracy through annotation comparison
+- Pattern detection precision in discourse analysis
+- Network structure identification correctness
+
+**Metrics**:
+- Precision, recall, F1 for entity extraction
+- Graph edit distance for network structures
+- Concept overlap with expert annotations
+
+### Causal Explanation Validity
+**Purpose**: Evaluate identification of causal processes
+**Implementation**:
+- Theory mechanism extraction accuracy
+- Causal path identification in discourse
+- Temporal sequence preservation
+
+**Metrics**:
+- Causal graph similarity measures
+- Temporal ordering accuracy
+- Mechanism identification rates
+
+### Postdiction Validity
+**Purpose**: Test ability to explain past behavior
+**Implementation**:
+- Correlation with psychological measures in COVID dataset
+- Theory replication from published studies
+- Pattern matching with known outcomes
+
+**Metrics**:
+- Correlation coefficients with validated scales
+- Effect size comparisons with published results
+- Pattern recognition accuracy
+
+### Exploratory Validity
+**Purpose**: Assess variable identification and parameterization
+**Implementation**:
+- Cross-modal consistency checks
+- Multi-resolution coherence tests
+- Novel pattern discovery validation
+
+**Metrics**:
+- Inter-modal correlation matrices
+- Scale invariance measures
+- Discovery validation rates
+
+### Prediction Validity
+**Purpose**: Evaluate forecasting capability (aspirational)
+**Implementation**:
+- Hold-out test set predictions
+- Temporal validation with future data
+- Intervention outcome forecasting
+
+**Metrics**:
+- Predictive accuracy on held-out data
+- Temporal stability of predictions
+- Intervention effect estimation
+
+## C.3 Multi-Level Validation Strategy
+
+### Individual Level Validation
+**Focus**: Psychological construct extraction
+**Method**: Compare computational estimates with individual psychological profiles
+**Ground Truth**: Kunst dataset psychological scales
+**Success Criteria**: Observed correlations ≥ .30 for convergent validity
+
+### Group Level Validation
+**Focus**: Network and collective dynamics
+**Method**: Validate group identification and influence patterns
+**Ground Truth**: Observed interaction networks and group membership
+**Success Criteria**: Accurate community detection and influence tracing
+
+### Population Level Validation
+**Focus**: Aggregate patterns and trends
+**Method**: Compare system-identified trends with known phenomena
+**Ground Truth**: Documented conspiracy belief adoption patterns
+**Success Criteria**: Trend identification and temporal alignment
+
+## C.4 Theory-Specific Validation Patterns
+
+### Social Identity Theory Validation
+**Expected Patterns**:
+- Increased in-group favoritism under threat
+- Correlation between group identification and bias
+- Homophily in network formation
+
+**Validation Approach**:
+- Measure favoritism scores before/during threat periods
+- Correlate identification strength with behavioral bias
+- Test network clustering by group membership
+
+### Motivated Reasoning Validation
+**Expected Patterns**:
+- Differential processing of confirming vs. disconfirming information
+- Source credibility discounting for contradictory evidence
+- Confirmation bias in information sharing
+
+**Validation Approach**:
+- Track engagement with belief-consistent vs. inconsistent content
+- Measure source evaluation patterns
+- Analyze information propagation biases
+
+### Diffusion of Innovations Validation
+**Expected Patterns**:
+- S-curve adoption patterns
+- Early adopter characteristics
+- Network position effects on adoption timing
+
+**Validation Approach**:
+- Fit adoption curves to theoretical models
+- Profile early vs. late adopters
+- Test network centrality-adoption correlations
+
+## C.5 Uncertainty Quantification and Propagation
+
+### Uncertainty Sources
+1. **Data uncertainty**: Missing data, measurement error, sampling bias
+2. **Extraction uncertainty**: Entity recognition confidence, relationship ambiguity
+3. **Analytical uncertainty**: Model specification, parameter estimation
+4. **Integration uncertainty**: Cross-modal conversion, aggregation effects
+
+### Propagation Mathematics
+**Independent uncertainties**: Root-sum-squares combination
+```
+σ_total = √(σ₁² + σ₂² + ... + σₙ²)
+```
+
+**Correlated uncertainties**: Correlation-adjusted propagation
+```
+σ_total² = Σσᵢ² + 2ΣΣρᵢⱼσᵢσⱼ
+```
+
+### Confidence Bands
+Following IC standards:
+- **Very Likely**: 80-95% confidence
+- **Likely**: 55-80% confidence  
+- **Even Chance**: 45-55% confidence
+- **Unlikely**: 20-45% confidence
+- **Very Unlikely**: 5-20% confidence
+
+### Uncertainty Propagation Framework
+
+For combining multiple uncertainty sources, the system uses root-sum-squares propagation:
+```
+σ_total = √(σ₁² + σ₂² + ... + σₙ²)
+```
+where σᵢ represents independent uncertainty components from extraction, construction, and algorithm precision. The combined uncertainty maps to standardized confidence bands for policy-relevant communication.
+
+## C.6 Validation Evidence Requirements
+
+### Documentation Standards
+Each validation claim requires:
+1. **Metric definition**: Clear specification of what is measured
+2. **Test procedure**: Reproducible validation protocol
+3. **Results**: Actual performance metrics achieved
+4. **Evidence files**: Supporting data and analysis
+5. **Limitations**: Acknowledged constraints and caveats
+
+### Success Criteria Philosophy
+- **No predetermined targets**: Report actual capabilities
+- **Baseline establishment**: Create benchmarks for future work
+- **Transparent reporting**: Include failures and limitations
+- **Reproducibility**: Provide complete validation protocols
+
+
+# Annex D: Human Subjects Protection Considerations
+
+## D.1 Research Classification and Regulatory Determination
+
+This dissertation does not constitute human subjects research as defined under 45 CFR 46.102(e)(1). The research involves analysis of publicly available online discourse and documents using the Knowledge Graph Analysis System (KGAS), without interaction with or collection of identifiable private information from living individuals.
+
+### Primary Data Sources
+- **Kunst et al. (2024) Dataset**: Pre-existing, publicly released dataset with de-identified user information
+- **Public Social Media Content**: Twitter/X posts already in public domain
+- **Academic Literature**: Published papers and theoretical frameworks
+- **Public Documents**: Policy statements and communications
+
+### Regulatory Status
+The research qualifies as "Not Human Subjects Research" under federal regulations because:
+1. No interaction or intervention with individuals occurs
+2. No identifiable private information is collected
+3. Analysis focuses on publicly available content
+4. Pre-existing datasets contain no personally identifiable information (PII)
+
+## D.2 Data Protection and Privacy Safeguards
+
+### Public Domain Data Handling
+All analyzed content originates from public sources with no expectation of privacy:
+- Social media posts from public accounts
+- Published academic literature
+- Public policy documents
+- Pre-anonymized research datasets
+
+### Identity Protection Measures
+The system implements technical safeguards against re-identification:
+- No attempts to de-anonymize users or triangulate identity
+- No linking of behavioral content to personally identifiable information
+- No collection of demographic metadata beyond dataset provisions
+- No harvesting of user credentials or contact information
+
+### Data Retention and Storage
+- Public content stored only for analytical processing
+- No persistent storage of user identifiers
+- Derived analytical results contain only aggregate patterns
+- Individual-level estimates used solely for correlation with provided scales
+
+## D.3 Subject Matter Expert Consultation
+
+### Internal Review Process
+Informal consultation with RAND internal staff may occur for:
+- System usability assessment
+- Analytical capability evaluation
+- Interpretation validity checking
+- Tool functionality feedback
+
+### SME Participation Parameters
+- Limited to RAND staff in professional capacity
+- No systematic data collection about SMEs
+- No identifiable feedback recording
+- No generalizable conclusions about human performance
+- Informal, non-systematic engagement only
+
+### Documentation Requirements
+If SME consultation evolves to systematic evaluation:
+- Modification submission to HSPC required
+- Full review process initiated
+- No progression until approval secured
+
+## D.4 Vulnerable Populations and Special Protections
+
+### Population Exclusions
+The research explicitly excludes:
+- Direct engagement with vulnerable populations (Subparts B-D of 45 CFR 46)
+- Collection from minors, prisoners, or pregnant women
+- Cognitively impaired individuals
+- Economically or educationally disadvantaged persons
+
+### Content Analysis Considerations
+While analyzing public discourse may include content from diverse populations:
+- Analysis focuses on aggregate patterns, not individuals
+- No targeting of specific vulnerable groups
+- No attempts to identify individual characteristics
+- Findings reported at population level only
+
+## D.5 Consent Procedures and Waivers
+
+### Consent Not Required
+Under current design, no consent procedures necessary because:
+- No human subjects involvement
+- Public domain data only
+- No interaction with individuals
+- No collection of private information
+
+### Future Consent Contingencies
+If project scope expands to include human subjects:
+- Active informed consent required (no passive/implied consent per RAND policy)
+- Waiver criteria must meet 45 CFR 46.116(f) requirements
+- Documentation through RHINO system
+- CITI training required for research team
+
+## D.6 Risk Assessment and Mitigation
+
+### Minimal Risk Determination
+Even if reclassified as human subjects research, the project presents minimal risk:
+- No greater than everyday activities
+- No physical, psychological, or social harm
+- No economic or legal risks
+- No breach of confidentiality possible with public data
+
+### Potential Risk Scenarios
+**Inference Risk**: Aggregate patterns might reflect on communities
+- Mitigation: Report only population-level findings
+- Avoid stigmatizing language
+- Focus on theoretical validation, not group characterization
+
+**Misuse Risk**: Findings could be misinterpreted
+- Mitigation: Clear limitations statements
+- Emphasis on proof-of-concept nature
+- No individual prediction claims
+
+## D.7 Compliance and Oversight Framework
+
+### Institutional Requirements
+The research adheres to:
+- RAND Policy on Protection of Human Subjects
+- HSPC Standard Operating Procedures
+- Federalwide Assurance (FWA00003425)
+- IRB Registration (IRB00000051)
+- DoD Addendum (F50389) where applicable
+
+### Screening and Review Process
+1. **Initial Screening**: Submit to HSPC via RHINO system
+2. **Determination**: Confirm "Not Human Subjects Research" status
+3. **Documentation**: Maintain determination letter
+4. **Monitoring**: Report any scope changes immediately
+
+### Modification Triggers
+HSPC notification required if:
+- Systematic SME evaluation planned
+- Private or restricted datasets integrated
+- External participants engaged
+- Identifiable information collection begins
+- Funding requires IRB assurance
+
+## D.8 Large Language Model Considerations
+
+### LLM Usage in Research
+The system employs LLMs for theory extraction and analysis:
+- No human-generated prompts containing PII
+- No training on identifiable data
+- Output validation against public sources only
+- No generation of synthetic human data
+
+### Ethical AI Practices
+- Transparency in LLM usage and limitations
+- No deceptive practices or misrepresentation
+- Clear attribution of LLM-generated content
+- Validation of LLM outputs against established theory
+
+## D.9 Data Safeguarding Plan Elements
+
+### Technical Safeguards
+- Secure storage on RAND-approved systems
+- Access controls limiting data to research team
+- No cloud storage of potentially sensitive derivatives
+- Regular security updates and patches
+
+### Administrative Safeguards
+- Team training on data protection
+- Clear roles and responsibilities
+- Incident response procedures
+- Regular compliance audits
+
+### Physical Safeguards
+- Controlled access to research facilities
+- Secure disposal of any printed materials
+- Equipment encryption and password protection
+- Clean desk policy for sensitive materials
+
+## D.10 Reporting and Documentation
+
+### Required Documentation
+- HSPC screening determination letter
+- Data source documentation
+- SME consultation records (if applicable)
+- Any adverse event reports (unlikely given design)
+
+### Transparency Requirements
+- Clear description of data sources in publications
+- Acknowledgment of public domain status
+- Limitations on generalizability
+- No claims beyond analytical scope
+
+### Future Modifications
+Should project scope change to involve human subjects:
+1. Submit modification through RHINO
+2. Complete CITI training for team members
+3. Develop informed consent documents
+4. Create participant-facing materials
+5. Establish data monitoring plan
+6. Await HSPC approval before proceeding
+
+## D.11 Annual Review and Continuing Compliance
+
+### Annual Requirements
+Even as "Not Human Subjects Research":
+- Annual confirmation of unchanged status
+- Review of any scope creep
+- Update of team member training
+- Verification of continued compliance
+
+### Quality Assurance
+- Internal audits of data handling practices
+- Review of analytical outputs for identification risks
+- Validation of continued public domain status
+- Documentation of any consultations or feedback
+
+This framework ensures comprehensive protection of human subjects while enabling innovative computational social science research within appropriate ethical and regulatory boundaries.
+
+
+# Annex E: Detailed Research Timeline
+
+## E.1 Project Overview and Phases
+
+The dissertation research proceeds through three integrated phases over 12 months, from proposal approval (September 2025) through defense (February 2026). Each phase corresponds to one essay, with built-in overlap for iterative refinement and integration.
+
+### Phase Structure
+- **Phase 1 (Essay 1)**: Theoretical Framework Development (2 months)
+- **Phase 2 (Essay 2)**: System Implementation and Validation (3 months)
+- **Phase 3 (Essay 3)**: Advanced Analysis and Applications (2 months)
+- **Integration and Defense**: Final preparation (2 months)
+
+## E.2 Pre-Dissertation Phase (August 2025)
+
+**Key Activities**: Proposal submission (August 6), defense (late August), committee feedback integration
+**Deliverables**: Approved proposal, HSPC determination letter
+
+## E.3 Phase 1: Essay 1 - Theoretical Framework (September-October 2025)
+
+**September**: Literature synthesis, framework conceptualization, Theory Meta-Schema design
+**October**: Meta-Schema implementation, 15+ theories specified, validation criteria developed
+**Deliverables**: Essay 1 draft (40-60 pages), Theory Meta-Schema, 10+ theories specified
+
+## E.4 Phase 2: Essay 2 - System Development (November 2025-January 2026)
+
+**November**: KGAS architecture design, core services implementation
+**December**: Theory extraction system, cross-modal converters, DAG orchestration, LLM integration
+**January**: Kunst dataset processing (2,506 users), validation studies, essay completion
+**Deliverables**: Essay 2 draft (60-80 pages), working KGAS system, validation metrics
+
+## E.5 Phase 3: Essay 3 - Cross-Modal Analysis (January-February 2026)
+
+**January**: Cross-modal analysis across graph/table/vector representations
+**February**: Statistical validation and essay completion
+**Deliverables**: Essay 3 draft (40-60 pages), cross-modal analysis results
+
+## E.6 Defense Phase (January-February 2026)
+
+**January**: Essay integration, committee feedback
+**Early February**: Defense preparation and rehearsals
+**February 2026**: Defense (target: early February) and final revisions
+- Degree conferral procedures
+- Celebration and next steps
+
+## E.8 Risk Management and Contingencies
+
+### Technical Risks and Mitigation
+- **LLM API Changes**: Maintain compatibility with multiple providers (OpenAI, Anthropic, Google)
+- **Data Access Issues**: Secure data early, maintain local copies, have backup datasets
+- **Computational Resources**: Ensure adequate computing infrastructure, cloud backup options
+
+### Timeline Risks and Buffers
+- **Essay Delays**: 2-week buffer between phases for spillover
+- **Validation Challenges**: Parallel validation tracks to avoid bottlenecks
+- **Committee Feedback**: Regular check-ins to avoid major surprises
+
+### Adaptive Strategies
+- **Scope Reduction**: Prioritized feature list for KGAS if development delays
+- **Theory Selection**: Core set of 5 theories minimum, expand if time permits
+- **Validation Levels**: Tiered validation plan with essential vs. optional components
+
+## E.9 Key Milestones Summary
+
+| Date | Milestone | Deliverable |
+|------|-----------|-------------|
+| Aug 6, 2025 | Proposal Submission | Dissertation proposal document |
+| Aug 29, 2025 | Proposal Defense | Approved proposal |
+| Oct 31, 2025 | Essay 1 Complete | Theoretical framework |
+| Jan 15, 2026 | Essay 2 Complete | KGAS system + validation |
+| Feb 1, 2026 | Essay 3 Complete | Cross-modal analysis results |
+| Feb 10, 2026 | Full Draft Complete | Integrated dissertation |
+| Feb 2026 | Defense | PhD completion |
+
+## E.10 Resource Requirements
+
+### Human Resources
+- Primary advisor: Bi-weekly meetings
+- Committee members: Monthly updates, quarterly reviews
+- Technical consultants: As needed for specific components
+- Validation coders: 2 independent coders for 500 posts
+
+### Computational Resources
+- Development machine: GPU-enabled workstation
+- Cloud compute: For large-scale processing
+- API credits: OpenAI/Anthropic for LLM operations
+- Database hosting: Neo4j and SQLite instances
+
+### Data Resources
+- Kunst COVID dataset: Already secured
+- Backup datasets: Identified and accessible
+- API access: Maintained throughout project
+- Storage: 2TB minimum for data and backups
+
+This timeline provides a structured yet flexible path to successful dissertation completion, with clear milestones, risk mitigation strategies, and resource planning to ensure project feasibility within the 12-month timeframe.
+
+
+# Annex F: Glossary of Terms
+
+## Technical Terms
+
+**Construct Estimate**: Computational approximation of latent theoretical constructs derived from discourse analysis across multiple domains - communication patterns, discourse structures, social dynamics, behavioral indicators, and psychological traits.
+
+**Cross-Modal Analysis**: Analytical approach examining the same data through three complementary representations - graph (relational), table (statistical), and vector (semantic) - to provide multi-faceted understanding.
+
+**ICD-203/206**: Intelligence Community Directives establishing standards for analytic rigor and sourcing requirements, adapted here for academic uncertainty quantification.
+
+## Theoretical Terms
+
+**Diffusion of Innovations**: Theory explaining how new ideas and practices spread through populations over time, following predictable adoption patterns.
+
+**Elaboration Likelihood Model (ELM)**: Dual-process theory of persuasion distinguishing between central (systematic) and peripheral (heuristic) routes to attitude change.
+
+**In-group/Out-group**: Social categorization where individuals identify with certain groups (in-groups) and distinguish themselves from others (out-groups), affecting perception and behavior.
+
+**Lasswell's Model**: Classic communication framework asking "Who says what to whom in what channel with what effect," extended here with "in what settings."
+
+**Levels of Analysis**: Three scales of social phenomena - individual (psychological processes), group (collective dynamics), and mass public/society (population patterns).
+
+**Motivated Reasoning**: Cognitive process where individuals selectively process information to confirm existing beliefs while rejecting contradictory evidence.
+
+**Network Contagion Theory**: Framework explaining how beliefs and behaviors spread through social networks via influence pathways.
+
+**Reasoned Action Model**: Theory linking attitudes, subjective norms, and perceived control to behavioral intentions and actual behaviors.
+
+**Social Identity Theory**: Framework explaining how group membership shapes self-concept and drives in-group favoritism and out-group discrimination.
+
+**Terror Management Theory**: Psychological theory explaining how awareness of mortality drives worldview defense and group identification behaviors.
+
+## Methodological Terms
+
+**Baseline Establishment**: Documentation of current performance metrics without optimization, providing reference points for future improvements.
+
+**Construct Validity**: Degree to which computational measures correspond to the theoretical constructs they claim to represent.
+
+**Crowd-Sourced Coding**: Validation method using multiple human annotators to establish ground truth for extraction accuracy assessment.
+
+**Information-Preserving**: Transformation between data formats that maintains theoretical constructs of interest, though not claiming complete losslessness.
+
+**Inter-Rater Reliability**: Statistical measure of agreement between multiple coders, establishing consistency of human judgment for validation.
+
+**Provenance Tracking**: Complete audit trail recording data sources, transformations, and analytical decisions throughout the processing pipeline.
+
+**Root-Sum-Squares**: Mathematical method for propagating independent uncertainties through analytical pipelines, adapted from engineering practice.
+
+**Theory-Aware Processing**: Computational analysis guided by theoretical frameworks rather than purely data-driven pattern recognition.
+
+**Uncertainty Quantification**: Systematic assessment and propagation of confidence levels throughout the analytical pipeline using standardized probability bands.
+
+**Validation Without Optimization**: Approach documenting actual performance without tuning for benchmarks, establishing honest baselines for the research community.
+
+## Policy Analysis Terms
+
+**Counter-Narrative**: Strategic communication designed to challenge and replace extremist or conspiracy narratives with alternative framings.
+
+**Influence Operations**: Coordinated activities designed to affect attitudes and behaviors of target populations, studied here for defensive understanding.
+
+**Intervention Modeling**: Simulation of potential policy actions (e.g., content moderation, counter-messaging) to predict effects before implementation.
+
+**Narrative Evolution**: Process by which discourse themes and framings change over time through social transmission and adaptation.
+
+**Network Disruption**: Strategic intervention targeting key nodes or connections to reduce harmful information spread.
+
+**Policy-Relevant Patterns**: Analytical findings with direct implications for policy decisions, such as influence networks or vulnerability indicators.
+
+**Psychological Vulnerability**: Individual-level factors (e.g., uncertainty, need for chaos) that increase susceptibility to extremist recruitment or conspiracy beliefs.
+
+**Scale Challenge**: The policy analysis problem of understanding discourse involving millions of posts and thousands of actors, requiring computational methods.
+
+**Threat Assessment**: Systematic evaluation of fringe discourse to identify potential risks to social cohesion, public health, or democratic institutions.
+
+## Key Acronyms
+
+**CFA**: Confirmatory Factor Analysis
+**LLM**: Large Language Model
+**QCA**: Qualitative Comparative Analysis
+**RAG**: Retrieval-Augmented Generation
+**SEM**: Structural Equation Modeling
+**SNA**: Social Network Analysis
+**W3C PROV**: World Wide Web Consortium Provenance Standard

@@ -1,0 +1,76 @@
+tool_id: "T31_ENTITY_BUILDER"
+name: "Entity Builder"
+description: "Builds and persists entity nodes in Neo4j graph database"
+version: "1.0.0"
+category: "graph_building"
+
+input_schema:
+  type: object
+  properties:
+    mentions:
+      type: array
+      items:
+        type: object
+        properties:
+          text:
+            type: string
+          entity_type:
+            type: string
+          confidence:
+            type: number
+            minimum: 0
+            maximum: 1
+          start:
+            type: integer
+          end:
+            type: integer
+        required: ["text", "entity_type"]
+      minItems: 1
+    source_refs:
+      type: array
+      items:
+        type: string
+  required: ["mentions"]
+
+output_schema:
+  type: object
+  properties:
+    entities:
+      type: array
+      items:
+        type: object
+        properties:
+          entity_id:
+            type: string
+          canonical_name:
+            type: string
+          entity_type:
+            type: string
+          neo4j_id:
+            type: string
+          confidence:
+            type: number
+        required: ["entity_id", "canonical_name", "entity_type"]
+    entity_count:
+      type: integer
+    confidence:
+      type: number
+  required: ["entities", "entity_count"]
+
+depends_on: ["T23A_SPACY_NER"]
+
+dependencies:
+  - "neo4j"
+  - "identity_service"
+  - "provenance_service"
+
+performance_requirements:
+  max_execution_time: 30.0
+  max_memory_mb: 500
+  min_accuracy: 0.95
+
+error_conditions:
+  - "DATABASE_CONNECTION_ERROR"
+  - "ENTITY_BUILD_ERROR"
+  - "VALIDATION_ERROR"
+  - "INVALID_INPUT"

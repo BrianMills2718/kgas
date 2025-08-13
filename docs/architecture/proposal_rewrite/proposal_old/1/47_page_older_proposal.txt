@@ -1,0 +1,679 @@
+Dissertation Proposal:
+Using LLMs for Policy Analysis of Fringe Discourse:                              Brian Mills
+
+Table of Contents
+Dissertation Proposal: Using LLMs for Policy Analysis of Fringe Discourse:                              Brian Mills	1
+1.	Introduction:	3
+1.1. Policy Specialization: Analysis of Online Discourse Dynamics for Policy Insight	3
+1.2. Aims, Objectives, and Overall Policy Relevance of the Dissertation	3
+1.2.1. Understand Discourse Impact on Social-Behavioral (SB) Phenomena:	3
+1.2.2. Anticipate Plausible Unfoldings:	3
+1.2.3. Estimate Effects of Events or Interventions:	4
+1.2.4. Inform Policy Decision-Making:	4
+1.3. Structure of the Dissertation: A Three-Essay Approach	4
+2. Overarching Framework: A Knowledge Graph Analysis System for Discourse	4
+2.1. Addressing Limitations of Current Methods	5
+2.2. Conceptual and Methodological Linkages Between the Three Essays	5
+2.3. Core Thesis Hypothesis	6
+2.4. Overall Contribution to Policy Analysis and SB Research	6
+3. Essay 1: Theoretical Foundations for LLM-Generated Ontologies and Analysis of Fringe Discourse	7
+3.1. Research Questions for Essay 1	7
+3.2. Brief Overview of Literature to be Reviewed	7
+3.3. Methodological Approach: Critical Literature Synthesis	8
+3.4. Expected Contribution: A Theoretical Framework for the Knowledge Graph Analysis System	9
+4. Essay 2: Development and Demonstration of a Low-code LLM-Powered Knowledge Graph Analysis Tool for Fringe Discourse	9
+4.1. Introduction and Specific Aims of Essay 2	9
+4.2. Research Questions and Hypotheses for Essay 2	10
+4.3. Background and Literature Review (Specific to Tool Design)	10
+4.4. Data Sources and Collection Methods (Case Study: Scientific Corruption/COVID Discourse)	11
+4.5. Methodology: Tool Development and Demonstration	12
+4.5.1. Knowledge Graph System Architecture:	12
+4.5.2. LLM Integration for Coding and Analysis:	13
+4.5.3. Application of Descriptive and Predictive Transformations (for Demonstration):	13
+4.5.4. Capturing Data for Bayesian Cognitive Modeling	14
+4.5.5. Usability Assessment Plan:	14
+4.6. Preliminary Analyses	15
+4.7. Expected Outcomes and Contribution of Essay 2	15
+5. Essay 3: Explanatory Analysis and Intervention Modeling in Fringe Discourse using the Knowledge Graph System	16
+5.1. Introduction and Specific Aims of Essay 3	16
+5.2. Research Questions for Essay 3	16
+5.3. Data Sources (Building on Essay 2 Dataset)	16
+5.4. Analytical Approach Sketch	17
+5.4.1. Application of Explanatory Transformations:	17
+5.4.2. Agent-Based Modeling (ABM):	17
+5.4.3. Bayesian Cognitive Modeling and Validation	18
+5.5. Expected Outcomes and Contribution of Essay 3: Policy-Relevant Explanatory Insights and Intervention Scenarios	18
+6. Ethical Considerations	19
+7. Schedule of Work	20
+May 2024	20
+June 2024	20
+August 2024	21
+September 2024	21
+October 2024	22
+November 2024	22
+December 2024	23
+7. Conclusion	23
+9. References	24
+Annex A: Potential Data Sources for UFO Case Study (Concise Overview)	27
+
+
+
+    1. Introduction: 
+This dissertation addresses the need for improved methods to analyze the evolution of online discourse, particularly within fringe communities, to support policy decision-making. The work focuses on developing and demonstrating an application of what I call a Knowledge Graph Analysis System (KGAS), grounded in social and behavioral (SB) science. This system integrates Large Language Models (LLMs) to facilitate the systematic study of how online communication shapes, and is shaped by, human cognition and behavior, with the goal of informing public policy. This dissertation builds directly upon prior academic work. The project's intellectual origins began with a tutorial on conspiracy theories with Dr. Eric Larson in 2021. The research was then developed into the current proposal during an independent study, also with Dr. Larson, in 2024.
+
+1.1. Policy Specialization: Analysis of Online Discourse Dynamics for Policy Insight
+This research specializes in the analysis of online discourse dynamics to extract insights relevant to public policy. The proliferation of online platforms has created vast repositories of public discourse that reflect and shape communication, cognition, and behavior relevant to public policy. Understanding these dynamics is fundamental, echoing foundational questions in communication research about the influence of messages and their pathways.1 These dynamics, especially within influential or rapidly evolving fringe communities, are critical for policymakers addressing issues ranging from public health adherence and information integrity to social cohesion and national security. This work aims to equip policy analysts with more effective tools to navigate and interpret this complex information environment, recognizing that the meaning and impact of discourse are constructed through complex interactions between message content, source, channel, and audience characteristics.2
+1.2. Aims, Objectives, and Overall Policy Relevance of the Dissertation
+The overarching policy relevance of this dissertation lies in providing decision-makers with improved methods to comprehend and respond to phenomena driven or reflected by online discourse. The specific objectives are to develop and apply methods that enable descriptive, explanatory, predictive, and potentially interventionary analysis to help:
+1.2.1. Understand Discourse Impact on Social-Behavioral (SB) Phenomena: 
+To better comprehend how specific discourse patterns, narratives, and communication strategies influence individual and group attitudes, beliefs, and actions that have policy implications. This involves understanding mechanisms of persuasion, 3 belief formation,4 and behavioral change,5 considering how individuals process information and how discourse frames6 can alter perceptions and subsequent actions. The study of these processes is crucial for understanding the interplay of communication, cognition, and behavior.
+1.2.2. Anticipate Plausible Unfoldings: 
+To develop capabilities to anticipate how these SB phenomena, as observed and influenced by discourse reflecting various aspects of communication, cognition, and behavior, may plausibly evolve over time or in response to changing conditions.
+1.2.3. Estimate Effects of Events or Interventions: 
+To provide a framework for estimating the potential effects of external events or specific policy interventions (e.g., communication campaigns, platform moderation changes) on the discourse landscape and associated communication, cognition, and behavior.
+1.2.4. Inform Policy Decision-Making: 
+Ultimately, to inform policy decision-making by providing more timely, nuanced, and evidence-based insights derived from the systematic analysis of online discourse.
+Achieving these objectives requires methods that can scale to large volumes of data while retaining sensitivity to context, theory, and the complexities of human communication. This includes leveraging computational techniques for semantic analysis, building on a long tradition of efforts to systematically extract meaning from text.7
+1.3. Structure of the Dissertation: A Three-Essay Approach
+This dissertation adopts a three-essay format. Each essay contributes to the overarching goal of developing and demonstrating an improved methodology for policy-relevant discourse analysis focusing on communication, cognition, and behavior:
+    • Essay 1 establishes the theoretical foundations from discourse analysis, social-behavioral science, and related methodological fields, defining the requirements for a theoretically grounded, LLM-assisted knowledge graph analysis system.
+    • Essay 2 details the design, development, and initial demonstration of this "low-code" LLM-powered tool8—the Knowledge Graph Analysis System—focusing on its architecture, LLM integration, and core functionalities.
+    • Essay 3 applies the developed system to conduct in-depth explanatory analysis and model potential interventions within a specific case study, showcasing its advanced analytical capabilities for generating policy-relevant insights into the mechanisms and processes shaping communication, cognition, and behavior.
+This proposal will briefly outline all three essays, providing the necessary detail for Essay 2 as the primary focus to demonstrate the feasibility and execution plan for a core component of the dissertation. The subsequent sections will elaborate on the overall research framework, the individual essays, ethical considerations, and the project timeline
+.
+
+2. Overarching Framework: A Knowledge Graph Analysis System for Discourse
+The central methodological framework of this dissertation is an application of what I call a Knowledge Graph Analysis System (KGAS). This system is designed to integrate the capabilities of Large Language Models (LLMs) with the structural advantages of knowledge graphs, all while being guided by principles from social-behavioral (SB) science and established discourse analysis techniques. The aim is to create a more powerful and adaptable approach for deriving policy-relevant insights from complex online discourse.
+2.1. Addressing Limitations of Current Methods
+Current methods for analyzing online discourse present distinct challenges. Qualitative approaches, while offering depth and contextual understanding, are often labor-intensive and difficult to scale to the volume and velocity of online data. Quantitative methods, including many computational linguistics techniques, can achieve scale but may overlook nuanced meanings, rhetorical strategies, or the underlying SB drivers of the discourse. Furthermore, while tools for graph-based analysis of text are emerging, some can present a "one size fits all" approach, lacking the flexibility to be easily optimized for specific analytic tasks or deeply integrated with diverse theoretical frameworks. This is a noted challenge with some implementations of Retrieval-Augmented Generation (RAG) that use knowledge graphs.9
+The KGAS I propose seeks to address these limitations10 by
+    • enabling flexible, user-defined, use-case-specific ontology modules tailored to specific policy questions and theoretical constructs, rather than relying on fixed schemas.
+    • leveraging LLMs for nuanced, scalable interpretation of text, assisting in the extraction of entities, relationships, claims, evidence, sentiment, and other relevant discourse features defined within the ontology module.
+    • providing a modular architecture with distinct retrieval and transformation operators, allowing analysts to construct tailored analytical pipelines; and
+    • facilitating a "low-code" environment where subject-matter experts, not just data scientists, can harness these advanced analytical capabilities.
+2.2. Conceptual and Methodological Linkages Between the Three Essays
+The three essays of this dissertation are designed as an integrated progression, each building upon the last to develop, demonstrate, and apply the KGAS. The common thread is the system's explicit design to operationalize theories of communication, cognition, and behavior to structure the analysis of online discourse.11
+    • Essay 1 (Theoretical Foundations) establishes the conceptual requirements for the system. It answers the "why" and "what" of the system's design by reviewing literature from discourse analysis, knowledge representation, and SB science to identify the core elements, relationships, and analytical operations the system must support. This review ensures the KGAS is grounded in foundational models of communication, persuasion, and belief formation. These insights inform the design of the system's transformation operators (e.g., transformations from unstructured text to structured outputs like a topic classification, a belief probability, or an actor-claim graph). The system's ability to extract features like stance, for example, builds on prior work in the field.12
+    • Essay 2 (System Development and Demonstration) details the "how"—the design, implementation, and initial demonstration of the KGAS as a low-code tool. It describes the architecture, the integration of LLMs for knowledge extraction based on the use-case-specific ontology modules, and the user interface.
+    • Essay 3 (In-Depth Application and Validation) provides the "so what" by applying the fully developed system to conduct descriptive, explanatory, predictive, and potentially interventionary analysis. It focuses on using the system to identify the mechanisms and processes of narrative diffusion, map discourse elements to SB models, and explore the utility of modeling potential policy interventions. This validates the system's capacity to generate significant, policy-relevant insights.
+2.3. Core Thesis Hypothesis
+The central analytical proposition of this dissertation is that a low-code tool integrating LLMs and knowledge graphs can demonstrably improve the analysis of fringe discourse for policy-relevant insights. This proposition is guided by two core research questions that will be addressed through the development and application of the KGAS:
+    1. Can a low-code tool effectively integrate LLMs to enable subject-matter experts (SMEs) to generate tailored knowledge graphs from fringe discourse and perform theoretically grounded analyses based on user-defined interrogatives and use-case-specific ontology modules?
+    2. Will SMEs using the developed tool be able to identify key discourse elements (e.g., actors, narratives, claims, topics), their properties, and their relationships with greater efficiency and comparable or improved accuracy relative to manual qualitative methods or less-tailored automated tools?
+This approach draws inspiration from emerging architectures in RAG, such as those being developed by Microsoft and the open-source community using graph databases like Neo4j, but tailors the application specifically for social-behavioral analysis in a low-code environment.13
+2.4. Overall Contribution to Policy Analysis and SB Research
+This dissertation aims to make several contributions:
+    • Methodological: I will introduce a novel, flexible, and theoretically grounded system for discourse analysis that synergizes LLMs, knowledge graphs, and SB principles. The "low-code" aspect aims to democratize access to advanced analytical capabilities for subject-matter experts in policy domains. The 'low-code' philosophy applies to the analytical interface, where SMEs can construct and execute complex queries without writing code. The emphasis on adaptable use-case-specific ontology modules and modular analytical pipelines addresses a key limitation of current tools.
+    • Policy Analysis: By enabling more sophisticated and timely analysis of online discourse, the system can enhance the ability of policy analysts and decisionmakers to understand public sentiment, track narrative evolution, identify emerging threats or opportunities, and assess the potential impact of information campaigns or other policy interventions. This contributes directly to the aims of understanding impact, anticipating plausible unfoldings, estimating effects, and informing decisions.
+    • Social-Behavioral Research: The proposed system offers a new instrument for researchers studying the interplay between communication, cognition, and behavior in online environments. It can facilitate the testing of SB theories at scale, allow for the discovery of new patterns in discourse, and provide a structured way to link micro-level communication acts to macro-level social phenomena.
+By enabling an analyst to build a theoretically and empirically grounded model from the data itself, the system's methodology is analogous to grounded theory. Where grounded theory uses iterative coding of qualitative data to allow a theory to emerge, the KGAS uses LLM-assisted coding to allow a structured, computable model of the discourse to emerge, which can then be interrogated using SB frameworks.14
+Ultimately, I endeavor for this work to advance our capacity to transform complex online discourse into actionable knowledge for policy and research.
+
+
+3. Essay 1: Theoretical Foundations for LLM-Generated Ontologies and Analysis of Fringe Discourse
+This first essay serves as the theoretical and conceptual cornerstone for the entire dissertation. Its primary purpose is to conduct a critical literature synthesis that addresses a fundamental challenge in the study of influence: the fragmentation of behavioral theories across dozens of disconnected disciplines. This essay moves beyond a simple review to propose a novel solution: a unified, three-dimensional framework that organizes the vast landscape of social-behavioral theories by their core analytical function and causal logic.
+This framework, and the Theory Meta-Schema that makes it computable, establishes the intellectual and architectural requirements for the Knowledge Graph Analysis System (KGAS) developed in Essay 2. By synthesizing insights from communication studies, political psychology, sociology, and computational science, this essay provides the essential blueprint for a system designed to translate complex theory into actionable policy insight.
+3.1. Research Questions for Essay 1
+The literature synthesis and theoretical construction in this essay are guided by two central research questions:
+    1. How can the fragmented landscape of social-behavioral theories of influence and persuasion be synthesized into a coherent, multi-dimensional framework that is not only analytically powerful but also computationally tractable?
+    2. How can this new theoretical framework be operationalized into a Theory Meta-Schema—a standardized, machine-readable format—that enables a software system (the KGAS) to dynamically apply diverse and complex social science theories to the analysis of online discourse?
+3.2. From a "List of Theories" to a "Theory of Process"
+A common approach in social science is to organize theories by their academic discipline of origin—a "theoretical traditions" approach. However, for the applied, computational goal of this dissertation, such a structure is insufficient. It presents theories in static, isolated silos, focusing on their intellectual heritage rather than their analytical function. It fails to show how theories interact to explain real-world phenomena and does not align with the dynamic, process-oriented nature of influence.
+To overcome this, this dissertation adopts the process-oriented approach advocated by scholars of influence15. The goal is not to create a static classification, but a dynamic, functional framework that models the process of influence itself. This requires a new typology that organizes theories based on what they do and their underlying assumptions about how change happens.
+This framework is not proposed as a universal replacement for existing theoretical traditions, but as a functional typology designed specifically for the task of computational modeling. Its value is not in being 'more correct,' but in being more computable and aligning theory with the data structures required by the KGAS. It makes the theoretical landscape legible to both a human analyst and a machine.
+3.3. A Three-Dimensional Framework for Analyzing Influence
+This essay proposes that the landscape of influence theories can be organized along three distinct axes. This provides a "theory of process" that integrates insights from influence operations, communication science16 17, and the broader study of human action18.
+This framework is presented not as the single 'correct' way to organize the field, but as a novel, functional typology designed specifically to meet the needs of a computational analysis system. Its value lies in its ability to make the theoretical landscape legible to both a human analyst and a machine. Theories that span multiple categories will be noted as important examples of the rich interplay that this framework helps to reveal, rather than as failures of the classification.
+    • Dimension 1: Level of Analysis (The 'Scale'). This dimension defines where influence occurs, classifying theories by their primary unit of analysis.
+        ◦ Micro: The individual level (e.g., cognitive processes, personality).
+        ◦ Meso: The group and network level (e.g., community dynamics, peer influence).
+        ◦ Macro: The mass public and societal level (e.g., media effects, cultural norms).
+    • Dimension 2: Component of Influence (The 'Lever'). This dimension defines what part of the communication process a theory seeks to explain, directly operationalizing the classic Lasswell (1948) and modern Druckman (2022) models.
+        ◦ Who: Theories of the Speaker/Source.
+        ◦ Whom: Theories of the Receiver/Audience.
+        ◦ What: Theories of the Message/Treatment.
+        ◦ Channel: Theories of the Medium/Context.
+        ◦ Effect: Theories of the Outcome/Process.
+    • Dimension 3: Causal Metatheory (The 'Logic'). This dimension defines the theory's core assumption about the engine of change. It is derived from the meta-analytic work of Eyster et al. (2022) and provides the primary narrative flow for the analysis.
+        ◦ Agentic Logic: Causation flows from individual agency, beliefs, and needs.
+        ◦ Structural Logic: Causation flows from external structures, rules, and incentives.
+        ◦ Interdependent Logic: Causation is an emergent property of the feedback loops between agents and structures.
+3.4. The Analytical Toolkit: Three Typologies of Influence
+This essay proposes that theories of influence can be organized along three distinct axes. Together, these axes form a "theory of process" that draws on insights from influence operations, communication science, and the study of human action.
+    • Dimension 1: Level of Analysis (The 'Scale'). This dimension defines where influence occurs, classifying theories by their primary unit of analysis:
+        ◦ Micro: The individual level.
+        ◦ Meso: The group and network level.
+        ◦ Macro: The mass public and societal level.
+    • Dimension 2: Component of Influence (The 'Lever'). This dimension defines what part of the communication process a theory seeks to explain, operationalizing the classic Lasswell (1948) and modern Druckman (2022) models:
+        ◦ Who: Theories of the Speaker/Source.
+        ◦ Whom: Theories of the Receiver/Audience.
+        ◦ What: Theories of the Message/Treatment.
+        ◦ Channel: Theories of the Medium/Context.
+        ◦ Effect: Theories of the Outcome/Process.
+    • Dimension 3: Causal Metatheory (The 'Logic'). This dimension defines the theory's core assumption about the engine of change, derived from the meta-analysis of Eyster et al. (2022):
+        ◦ Agentic Logic: Causation flows from individual agency, beliefs, and needs.
+        ◦ Structural Logic: Causation flows from external structures, rules, and incentives.
+        ◦ Interdependent Logic: Causation is an emergent property of feedback between agents and structures.
+To present this three-dimensional framework, it is organized as a sequence of three distinct tables, each representing a different causal logic. This creates a logical progression from simple to complex explanations.
+Table 3.1. A Typology of Theories with Agentic Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)	Source credibility models	Incidental punditry	Operational code analysis
+Whom (The Receiver/Audience)	Elaboration likelihood model; health belief model	Social identity theory; self-determination theory	The American voter model
+What (The Message)	Behavioural economics and prospect theory	Conformity theory	Moral reframing
+Channel (The Medium)	Processing goal alteration		Media effects
+Effect (The Outcome)	Transtheoretical model (stages of change); cognitive dissonance theory	Theory of normative social behaviour	Sleeper effect
+SOURCES: Features information from Ajzen, 1985; Brady et al., 2017; Broockman and Butler, 2017; Campbell et al., 1960; Cialdini, 2003; Druckman, 2003; Feinberg and Willer, 2019; Festinger, 1957; George, 1969; Green and Brock, 2000; Hovland and Weiss, 1951; Kahneman and Tversky, 1979; Minozzi et al., 2020; Moscovici, 1980; Petty and Cacioppo, 1986; Prochaska, DiClemente, and Norcross, 1992; Rimal and Real, 2005; Ryan and Deci, 2000; Scheufele, 2000; Strecher and Rosenstock, 1997; Tajfel and Turner, 1979; West and Zimmerman, 1987. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories. 
+
+
+Table 3.2. A Typology of Theories with Structural Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)		Theories of opinion leadership	Media slant and market pressures
+Whom (The Receiver/Audience)	Deterrence theory	Sociology of organizations	Coercive diplomacy
+What (The Message)	Framing theory	Social marketing	Scope of conflict
+Channel (The Medium)		Diffusion of innovations; social network analysis	Socio-ecological model
+Effect (The Outcome)		Governing the commons	Social movements theory
+SOURCES: Features information from Andreasen, 1994; Beccaria, 1778; Black, 1958; Blumer, 1995; Borgatti, 2003; Bronfenbrenner, 1994; Chong and Druckman, 2007b; Crozier and Friedberg, 1992; Gentzkow and Shapiro, 2010; George, 1991; Katz and Lazarsfeld, 1955; McAdam et al., 1996; Ostrom, 1990; Rogers, 2010; Schattschneider, 1960; Valente and Pitts, 2017. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories. 
+
+
+Table 3.3. A Typology of Theories with Interdependent Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)	Self-presentation goals		Presidential responsiveness
+Whom (The Receiver/Audience)	Pretreatment effects	Social cognitive theory	Cultural evolution
+What (The Message)		Competitive framing	Ideation theory
+Channel (The Medium)		Communication for social change model	Complex systems theory
+Effect (The Outcome)	Integrated behavioural model	Community engagement models	Multilevel sociotechnical transitions
+SOURCES: Features information from Bail et al., 2018; Bandura, 2001; Boyd and Richerson, 1988; Chong and Druckman, 2007a; Druckman and Bolsen, 2011; Druckman and Jacobs, 2015; Druckman and Leeper, 2012b; Figueroa et al., 2002; Hashagen, 2002; Holland et al., 1998; Kincaid, 2000; Kraft et al., 2020; Ladyman, Lambert, and Wiesner, 2013; Montano and Kasprzyk, 2015; Smith et al., 2010. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories..
+3.5. Making Theory Computable: The Theory Meta-Schema
+The three-dimensional framework provides the abstract model for organizing the theoretical landscape. The Theory Meta-Schema is the computational bridge that makes this framework operational. It is a standardized, machine-readable "recipe" that translates any social theory—from a simple heuristic to a complex process model—into a set of explicit instructions that the Knowledge Graph Analysis System (KGAS) can execute.
+This is the core technical innovation that enables a computer system to "read" and apply social science theory. By defining a theory in a file that conforms to this schema, an analyst gives the KGAS a complete blueprint for how to extract relevant information from text and what analytical operations to perform. The schema is composed of three primary components: the theory's identity (metadata), its dispatch key for automated reasoning (classification), and its substance (schema).
+A. Metadata: The Theory's Identity
+This block captures the bibliographic identity of the theory and its relationship to other theories.
+    • citation: The full bibliographic citation for the source document, ensuring academic traceability.
+    • annotation: A concise, 1-3 sentence summary of the theory's core proposition.
+    • extends: A key field that allows for theoretical inheritance. A theory can be defined as an extension or modification of another base theory (e.g., the Theory of Planned Behavior extends the Theory of Reasoned Action), allowing for efficient and relational model building.
+B. Classification: The Automated Dispatch Key
+This block is mission-critical for the KGAS. It serves as a pre-inferred summary that allows the system's "Agent Orchestrator" to automatically select the appropriate analytical strategy and dispatch the correct reasoning engine for a given task.
+    • model_type: Defines the primary data structure the theory assumes (e.g., Graph, Sequence, Table). This tells the system whether it needs to build a network, a timeline, or a typology.
+    • reasoning_engine: Specifies the computational engine required to analyze the model (e.g., Graph_Engine for centrality analysis, Temporal_Engine for sequence analysis).
+    • Link to the 3D Framework: This block also contains the tags that explicitly connect the theory to the dissertation's overarching framework:
+        ◦ causal_logic: [Agentic, Structural, Interdependent]
+        ◦ level_of_analysis: [Micro, Meso, Macro]
+        ◦ component_of_influence: [Speaker, Receiver, Message, Channel, Effect]
+        ◦ analytical_purpose: [Descriptive, Explanatory, Predictive, Interventionary]
+These tags are the hooks that allow an analyst to query the theory library using the 3D framework—for instance, to "find all Meso-level, Agentic theories that help Explain the Receiver."
+C. Schema: The Theoretical Core
+This is the main component that defines the substance of the theory itself. It is composed of several, more granular blocks:
+    1. Ontology: This defines the "nouns" of the theory—the key concepts to be extracted from text. A crucial principle here is the preservation of the author's original language.
+        ◦ entities: The fundamental units or actors (e.g., 'Individual', 'Group'). Each entry captures the indigenous_term (the author's exact phrase) and a standardized name.
+        ◦ connections: The relationships between entities (e.g., 'influences', 'believes').
+        ◦ properties: The attributes that describe entities or connections (e.g., 'credibility').
+    2. Axioms (Optional): Defines the core "rules" or fundamental assumptions of the theory, if explicitly stated by the author. This ensures the KGAS operates within the theory's own logical constraints.
+    3. Analytics (Optional): Defines the "verbs" of the theory—how it measures or analyzes the world. This can include specific metrics (e.g., 'attitude change score' with a formula) or focal_concepts that the theory directs an analyst to pay attention to.
+    4. Process (Optional): Defines the sequence of steps for applying the theory, if one exists. The schema supports multiple process modes to capture the diversity of theoretical structures:
+        ◦ sequential: For theories that posit ordered stages (e.g., Transtheoretical Model).
+        ◦ iterative: For theories that involve repeated cycles until convergence (e.g., some game-theoretic models).
+        ◦ workflow: For complex, graph-based processes with conditional branching.
+    5. Telos: This defines the "purpose" of the theory. It specifies the theory's primary analytical_purpose and level_of_analysis, and defines the structure of the expected output_format and the success_criteria for a valid application. This goal-oriented structure is what allows the KGAS to match a user's analytical query to the most appropriate theoretical tool.
+By implementing this meta-schema, the dissertation moves beyond merely discussing theories to making them active, computable components in a system for discourse analysis
+3.6. Methodological Approach
+This essay will employ a critical literature synthesis. The objective is not merely to summarize existing work but to actively integrate findings from disparate fields to populate and justify the three-dimensional framework. The synthesis will identify convergences and gaps, extracting core principles that are operationalized in both the framework itself and the design of the Theory Meta-Schema.
+This translation of abstract theory into a computable schema involves necessary trade-offs. The goal of the meta-schema is not to capture the full, un-translatable nuance of a theory, but to extract its core, computable logic for the specific purpose of large-scale discourse analysis. The 'in-group favoritism score,' for example, should be understood not as a replacement for the richness of Social Identity Theory, but as a computational proxy that allows the system to identify and quantify potential instances of the theorized behavior in data. This dissertation explicitly acknowledges and accepts this trade-off as a prerequisite for computational analysis.
+3.6.1. A Worked Example: Codifying Social Identity Theory
+To demystify the process of translating an abstract social theory into a computable format, this section provides a worked example using a foundational theory in social psychology: Social Identity Theory (SIT).
+It is important to acknowledge that this translation of abstract theory into a computable schema is not without trade-offs. The goal of the meta-schema is not to capture the full, un-translatable nuance of a theory, but to extract its core, computable logic for the specific purpose of large-scale, automated discourse analysis. The 'in-group favoritism score,' for instance, should be understood not as a replacement for the richness of Social Identity Theory, but as a computational proxy that allows the system to identify and quantify potential instances of the theorized behavior within a massive dataset.
+Step 1: The Core Theory Social Identity Theory posits that individuals derive a portion of their self-concept and self-esteem from their membership in social groups. This leads to a cognitive process of categorizing the social world into an "in-group" (to which one belongs) and various "out-groups." To maintain a positive self-concept, individuals are motivated to view their in-group favorably, often resulting in behaviors like in-group favoritism and out-group derogation (Tajfel & Turner, 1979).
+Step 2: Classification First, we classify the theory to enable automated processing by the KGAS. SIT is fundamentally about the relationships between individuals and groups, making a graph the natural data structure.
+JSON
+"classification": {
+  "model_type": "Graph",
+  "reasoning_engine": "Graph_Engine",
+  "compatible_operators": ["community_detection", "centrality", "link_prediction"],
+  "summary": "Models individuals and groups as nodes, with relationships of identification and sentiment.",
+  "causal_logic": "Agentic",
+  "level_of_analysis": "Meso",
+  "component_of_influence": "Receiver",
+  "analytical_purpose": "Explanatory"
+}
+This block tells the KGAS to use its Graph_Engine and that relevant operations will involve finding communities and influential actors. It also explicitly links SIT to the dissertation's 3D theoretical framework.
+Step 3: Ontology (The 'Nouns' of the Theory) Next, we define the core concepts of SIT as entities, connections, and properties. The indigenous_term field is critical, as it preserves the exact language of the source theory.
+Entities: These are the fundamental actors or objects.
+JSON
+"entities": [
+  {
+    "indigenous_term": "individual",
+    "name": "Actor",
+    "description": "A single person within the social context."
+  },
+  {
+    "indigenous_term": "in-group",
+    "name": "Group",
+    "description": "A social group with which an individual identifies."
+  },
+  {
+    "indigenous_term": "out-group",
+    "name": "Group",
+    "description": "A social group with which an individual does not identify and often compares their in-group against."
+  }
+]
+Connections: These define the relationships between entities.
+JSON
+"connections": [
+  {
+    "indigenous_term": "identifies_with",
+    "description": "An individual's psychological membership in an in-group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  },
+  {
+    "indigenous_term": "exhibits_favoritism_towards",
+    "description": "An individual expresses positive sentiment or behavior towards a group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  },
+  {
+    "indigenous_term": "exhibits_derogation_towards",
+    "description": "An individual expresses negative sentiment or behavior towards a group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  }
+]
+Step 4: Analytics (The 'Verbs' of the Theory) We then define how the theory measures phenomena. This involves creating metrics that the KGAS can compute from the extracted knowledge graph.
+Metrics:
+JSON
+"metrics": [
+  {
+    "indigenous_term": "in-group favoritism score",
+    "description": "A measure of the degree to which an actor favors their in-group relative to an out-group.",
+    "formula": "COUNT(actor -> exhibits_favoritism_towards -> in_group) - COUNT(actor -> exhibits_derogation_towards -> out_group)",
+    "interpretation": "A higher positive score indicates stronger in-group favoritism."
+  }
+]
+This metric is now an operationalized, computable query. The KGAS can execute this formula on the knowledge graph to assign a favoritism score to every actor, allowing for quantitative analysis.
+Step 5: Telos (The Theory's Purpose) Finally, we define the theory's primary goal. For SIT, the goal is typically to explain behavior.
+JSON
+"Telos": {
+  "analytical_purpose": "Explanatory",
+  "level_of_analysis": "Meso",
+  "output_format": {
+    "type": "object",
+    "properties": {
+      "actor_scores": { "type": "array", "items": {"type": "object"} },
+      "group_dynamics_summary": { "type": "string" }
+    }
+  },
+  "success_criteria": "The framework successfully identifies distinct in-groups and out-groups from discourse and generates non-zero favoritism scores that correlate with observed intergroup behavior."
+}
+By completing this process, the abstract concepts of Social Identity Theory have been translated into a structured, computable object. The KGAS can now be directed to parse a corpus of text, extract all instances of these entities and connections, and calculate the defined metrics, thereby operationalizing the theory for large-scale analysis. This example demonstrates the feasibility and power of the meta-schema approach for making social theory computationally tractable.
+
+3.7. Expected Contribution
+The primary contribution of Essay 1 will be the articulation and justification of a comprehensive theoretical architecture for the computational analysis of discourse. This framework:
+    • Offers a Novel Typology: It introduces a new, three-dimensional method for organizing the fragmented field of behavioral science, moving beyond static classifications to a functional, process-oriented model.
+    • Provides a Computable Blueprint: It details the Theory Meta-Schema, a novel method for translating abstract social theory into a computable format, enabling the flexible application of theory at scale.
+    • Justifies the KGAS Architecture: It establishes the set of theoretically grounded requirements for the KGAS, ensuring its design is informed by established science and capable of representing the dynamic processes of influence.
+In essence, Essay 1 provides the intellectual blueprint for the novel methodological approach developed across the entire dissertation.
+
+
+4. Essay 2: Development and Demonstration of a Low-code LLM-Powered Knowledge Graph Analysis Tool for Fringe Discourse
+4.1. Introduction and Specific Aims of Essay 2
+This second essay transitions from the theoretical foundations established in Essay 1 to the practical design, development, and demonstration of the proposed KGAS. The core aim of Essay 2 is to create and evaluate a functional prototype of a "low-code" software tool that empowers Subject Matter Experts (SMEs)—who may not have advanced programming or data science skills—to leverage LLMs and knowledge graph methodologies for the analysis of fringe discourse. This essay directly addresses the overarching research questions outlined in Section 2.3 regarding the feasibility and utility of such a tool.
+Specific aims include:
+    1. To design and implement a modular software architecture for the KGAS, incorporating components for LLM-assisted generation of use-case-specific ontology modules, knowledge extraction, data retrieval, and analytical transformation.
+    2. To develop a user interface that enables SMEs to intuitively define their analytical goals, guide the LLM-driven knowledge graph construction process, and apply analytical operators without needing to write code.
+    3. To demonstrate the feasibility and core functionalities of the tool using a case study focused on a relevant body of fringe discourse (e.g., discourse surrounding scientific corruption related to COVID-19).
+    4. To conduct an initial assessment of the tool's usability and its potential to enhance the analytical capabilities of SMEs.
+    5. To validate the core extraction performance of the prototype by benchmarking its output against a hand-coded "gold standard" dataset, establishing a baseline for its accuracy and reliability before its use in advanced modeling.
+4.2. Research Questions and Hypotheses for Essay 2
+This essay is designed to provide empirical answers to the core research questions of the dissertation, as stated in Section 2.3:
+    1. Can a low-code tool effectively integrate LLMs to enable SMEs to generate tailored knowledge graphs from fringe discourse and perform theoretically grounded analyses based on user-defined interrogatives and use-case-specific ontology modules?
+    2. Will SMEs using the developed tool be able to identify key discourse elements (e.g., actors, narratives, claims, topics), their properties, and their relationships with greater efficiency and comparable or improved accuracy relative to manual qualitative methods or less-tailored automated tools?
+    3. The KGAS prototype, when guided by a well-defined Theory Meta-Schema, will achieve high fidelity in extracting core theoretical components from text, demonstrated by F1-scores exceeding 0.80 for key entity and relationship extraction tasks when compared against a human-coded gold standard.
+The development and demonstration activities within this essay will serve to directly test these propositions.
+4.3. Comparison to other tools
+While the KGAS builds on established GraphRAG patterns, its core novelty is not in the basic pipeline but in its specific, theory-driven application. The innovation lies in three areas: (1) Theory-Driven Ontology Construction, which allows the same text to be analyzed through multiple, competing theoretical lenses, unlike data-driven approaches that generate a single graph; (2) Its Explicit Link to a Causal Framework, which transforms the tool from a simple information retrieval system into an instrument for meta-scientific inquiry; and (3) Its Design as an Investigative Workbench, purpose-built to operationalize the concepts and methods of social science.
+4.3.1 Retrieval-Augmented Generation (RAG) as a Baseline
+RAG has emerged as a key technology to mitigate LLM limitations such as hallucination and outdated knowledge19. The "Naive RAG" paradigm—indexing documents into chunks, retrieving based on vector similarity, and generating a response—provides a foundational solution for grounding LLM outputs in external text. More "Advanced RAG" techniques improve upon this with pre-retrieval strategies like query expansion and post-retrieval methods like re-ranking. The KGAS incorporates these foundational ideas but is designed to overcome a core limitation of text-based RAG: the "flattening" of knowledge. Standard RAG struggles to represent and reason over the complex, multi-hop relationships inherent in social phenomena, as knowledge is often distributed across many document chunks without explicit connections.
+4.3.2 Extending the GraphRAG Paradigm
+GraphRAG, as surveyed by Zhang et al. (2025), represents a significant leap forward by using graph structures to address the limitations of traditional RAG. It enhances knowledge representation by capturing explicit entity relationships, enabling more sophisticated, context-preserving retrieval. The KGAS is conceptually a form of GraphRAG, but with three critical distinctions that define its primary contribution:
+    1. From Data-Driven to Theory-Driven Graph Construction: Most GraphRAG implementations, such as Microsoft's framework, focus on creating a single, comprehensive knowledge graph from a corpus by extracting entities and their semantic relationships.20 The KGAS, in contrast, does not assume a single, objective graph structure. Instead, its core innovation is the Theory Meta-Schema, which allows it to dynamically construct multiple, different graph representations of the same data, each one structured according to the specific entities, relationships, and mechanisms of a given social science theory. It moves the graph construction process from a data-mining task to a theory-operationalization task.
+    2. A Richer Set of Reasoning Operators: The DIGIMON project's breakdown of GraphRAG into a modular set of operators (e.g., Entity Operators, Subgraph Operators) provides a useful vocabulary. The KGAS will implement similar operators, but their selection and execution will be governed by the loaded theoretical framework. For example, a "Diffusion of Innovations" framework would prioritize operators that trace paths through a network, while a "Toulmin Model" framework would prioritize operators that construct logical argument trees.
+    3. Hybrid Knowledge Integration: The GraphRAG survey identifies "Knowledge-based," "Index-based," and "Hybrid" approaches. The KGAS is fundamentally a Hybrid GraphRAG system. It uses the theoretical framework to create a "knowledge carrier" graph, but each node and edge in this graph remains linked to the original raw text chunks, which serve as an "index." This allows an analyst to move seamlessly from a high-level theoretical model of the discourse down to the specific textual evidence that supports it.
+4.3.3 Incorporating Structured Reasoning from StructGPT
+While GraphRAG provides the blueprint for handling unstructured discourse, the KGAS's internal architecture is heavily inspired by frameworks for reasoning over already-structured data, like StructGPT21. StructGPT's Iterative Reading-then-Reasoning (IRR) framework, which uses specialized interfaces to query structured data and an LLM to reason over the results, is a powerful model for human-AI collaboration.
+The KGAS adopts and adapts this model. The "interfaces" in the KGAS are not for querying a pre-existing database, but are defined by the loaded Theory Meta-Schema. The process looks like this:
+    1. Reading (Interface Invocation): The KGAS applies the "Ontology" and "Analytics" portions of a selected theory schema to the raw text, extracting the relevant theoretical components into a structured format.
+    2. Reasoning (LLM Generation): The LLM then reasons over this newly-structured data to identify patterns, test hypotheses, or generate summaries, guided by the "Process" and "Telos" components of the theory schema.
+In essence, the KGAS uses its theory-driven methods to first create the structured data that a system like StructGPT is designed to reason over, enabling a far more flexible and powerful form of analysis for messy, real-world discourse.
+4.3.4 Synthesis with Traditional Computational Social Science
+Finally, the KGAS aims to be a unifying framework. Its goal is to integrate the semantic depth of early qualitative methods (like the General Inquirer), the spatial and relational insights of network-based models (like Woelfel's Galileo and Social Network Analysis), and the classification power of modern NLP sentiment and stance analysis (like RAND-Lex) into a single, flexible system, governed by explicit, interchangeable theoretical frameworks..22
+4.4. Data Sources and Collection Methods (Case Study: Scientific Corruption/COVID Discourse)
+To demonstrate the KGAS's capabilities, this research has several rich, multi-modal datasets. This multi-dataset approach allows for robust validation and demonstrates the framework's flexibility across different discourse communities and data types. The COVID-19 dataset is the primary dataset/case study. Other datasets will be used if time permits
+Case Study 1: COVID-19 Discourse
+Primary Dataset23: This unique dataset provides a powerful opportunity to bridge psychological and behavioral analysis.
+Components:
+Survey Data (N=2,506): Rich psychometric data on U.S.-based Twitter users, including measures for need for chaos, narcissism, conspiracy mentality, and misinformation susceptibility.
+Behavioral Data: Over 7.7 million Twitter engagements (likes, posts, replies, reposts) from these same 2,506 users, collected via the Academic Twitter API from Dec 2019 - Dec 2021.
+Analytical Use: This dataset is ideal for explanatory and predictive analysis. It allows the KGAS to be used to test hypotheses about how pre-existing psychological traits (structured data) correlate with and predict engagement with specific conspiracy narratives online (unstructured data).
+Case Study 2: Fringe Communities and UFO Discourse
+This case study will analyze the distinct narrative structures of UFO discourse, a topic that has seen a significant resurgence in public and governmental interest.
+Available Datasets:
+AboveTopSecret.com Archive: A comprehensive web-scraped archive of AboveTopSecret.com, formerly one of an extensive forum for conspiracy-related discussions. This provides a deep, longitudinal view of community narratives.
+Brandwatch Reddit Corpus: Extensive data downloads from relevant subreddits (e.g., r/UFOs, r/aliens), capturing community discussions, debates, and evidence sharing.
+Brandwatch Twitter Corpus: Two-fold Twitter data collection: 1) Broad keyword searches for general UFO discourse, and 2) Targeted collection of all interactions from a hand-curated list of prominent accounts in the UFO community on Twitter.
+Analytical Use: These datasets are ideal for descriptive and explanatory analysis. They will be used to demonstrate the KGAS's ability to extract and map the evolution of complex narrative structures, identify key information brokers, and analyze the community's response to external events like government reports.
+Data Handling and Pre-processing: All datasets will be ingested into the KGAS. Pre-processing will involve text cleaning, data filtering to remove noise and non-English content, and bot detection where applicable. All data will be handled in accordance with the ethical guidelines outlined in Section 6.
+4.5. Methodology: Tool Development and Demonstration
+The development of the KGAS will be iterative, using Python and a web-based framework for the low-code UI.
+4.5.1. Proposed Technology Stack
+To ensure a feasible and robust development process for the proof-of-concept prototype, the KGAS will be built using a modern, well-supported technology stack grounded in the Python data science ecosystem.
+Backend and Analytical Engine: The core application logic will be developed in Python 3.11+. Key libraries will include LangChain or a similar framework for orchestrating interactions with Large Language Models, spaCy for foundational natural language processing tasks, and NetworkX for graph-based computations and analytics (e.g., centrality, pathfinding).
+Knowledge Graph Database: Given the graph-centric nature of the methodology, a native graph database is required. The primary candidate is Neo4j, which uses the Cypher query language and is highly optimized for the complex, multi-hop relational queries essential for this project.
+Large Language Model (LLM) Integration: The system will integrate with a state-of-the-art large language model via its API to perform the structured data extraction defined by the Theory Meta-Schema. The initial development will target the OpenAI API, utilizing models such as GPT-4 for their advanced instruction-following and reasoning capabilities.
+User Interface (UI) for the "Analyst-in-the-Loop": To facilitate rapid development and create a functional interface for SME evaluation, the prototype will be built using a Python-based web framework like Streamlit or Plotly Dash. These frameworks are designed specifically for creating interactive data science applications and will allow for the intuitive presentation of the knowledge graph and analytical outputs without the overhead of traditional front-end web development.
+This technology stack is chosen to maximize development speed for the proof-of-concept while ensuring the underlying methods are scalable and computationally sound.
+
+4.5.2. Knowledge Graph System Architecture: 
+The system will follow a modular architecture, visualized internally as a Directed Acyclic Graph (DAG)24 processing pipeline:
+    • Policy Question & Interrogative Definition: The user defines their policy analysis goal and selects relevant interrogatives (e.g., "Who says what to whom?" based on Lasswell, further refined using framing concepts to scope the analysis, akin to how Druckman discusses the focusing effects of frames).25
+    • LLM-Assisted Generation of Use-Case-Specific Ontology Modules: Based on interrogatives and sample text, the LLM suggests entity types, relationship types, and properties. The SME reviews, refines, and approves this module.
+    • LLM-Driven Extraction to Knowledge Graph: The LLM processes the input text, extracting instances defined in the ontology module.
+    • Application of Retrieval and Transformation Operators: The user applies operators to query the KG and process retrieved data for descriptive and basic predictive transformations.
+4.5.3. LLM Integration for Coding and Analysis: 
+LLMs will be integrated via APIs.
+    • Ontology Assistance: LLMs parse user queries/text samples to suggest elements for the use-case-specific ontology module.
+    • Information Extraction: Guidance provided through analyst-defined templates and structured inputs will direct LLMs to extract information according to the ontology module.
+    • Analytical Assistance: LLMs may assist in translating natural language queries or summarizing results.
+    • Transparency: The tool will aim to provide insight into LLM-generated extractions where feasible.
+4.5.3. Application of Descriptive and Predictive Transformations (for Demonstration): 
+The demonstration will focus on applying transformations to generate initial insights from the "Scientific Corruption (COVID)" dataset:
+    • Descriptive Transformations: 
+    • to_statistical_distribution: Generating statistics on the frequency of topics, prevalence of certain claims, distribution of sentiment scores associated with entities or narratives, or engagement metrics.
+    • to_graph_projection: Creating network visualizations of actors and their relationships, co-occurrence of concepts, or the structure of argument networks (similar to the "Discourse Network of 50 Sample Tweets" example from the PowerPoint).
+    • summarize_narratives: Using LLMs to generate summaries of dominant narratives or themes within specific communities or time periods.
+    • Basic Predictive Transformations (Proof-of-Concept): 
+    • predict_edge_weight (simplified): Estimating the likelihood of continued interaction between two actors based on past interaction frequency and recency, or simple trend extrapolation of topic/narrative engagement.
+    • identify_emerging_terms: Highlighting terms or n-grams whose frequency is rapidly increasing, potentially indicating emerging narratives.
+4.5.4. Capturing Data for Bayesian Cognitive Modeling
+While the application of complex Bayesian cognitive modeling is a primary goal of Essay 3, the methodology in Essay 2 ensures the Knowledge Graph Analysis System captures the necessary precursors for such analysis. This involves:
+Representing Uncertainty: Associating LLM-extracted entities, properties (e.g., stance, sentiment), and relationships with confidence scores or probability distributions where provided by the LLM, acknowledging the inherent uncertainty in automated interpretation.
+Extracting Belief Indicators: Designing the LLM extraction process and mini-ontologies to explicitly identify and store elements crucial for later cognitive modeling. This includes extracting: 
+Stated beliefs or claims made by actors.
+Actors' expressed stances or attitudes towards specific claims or topics, which can serve as proxies for prior beliefs.
+Instances of actors being exposed to specific pieces of information or evidence within the discourse.
+Features of messages or sources that might inform the perceived likelihood or credibility of information (e.g., source reputation markers, use of evidence).
+Structuring for Input: Ensuring the KG structure organizes this information in a way that facilitates its use as inputs (e.g., prior probabilities, likelihoods based on evidence) for the Bayesian cognitive modeling planned in Essay 3. The focus in Essay 2 is on correctly extracting and structuring these elements.
+
+4.5.5: Usability and Value Assessment Plan
+A central hypothesis of this dissertation is that the KGAS can provide significant value to Subject Matter Experts (SMEs). The assessment plan is therefore designed to evaluate both the tool's usability and its ability to generate novel, valuable insights compared to existing methods. The primary strategy involves engaging SMEs by applying the KGAS to datasets they have previously analyzed or are deeply familiar with, allowing for a direct comparison of the tool's outputs with their own expert judgment.
+Process:
+    1. Identification: A list of potential SMEs, both internal and external to RAND, will be identified based on their expertise in relevant areas (e.g., discourse analysis, specific fringe topics). I will aim to engage with an initial cohort of 3-5 SMEs for this formative assessment.
+    2. Engagement: Following an introductory meeting to demonstrate the KGAS and its goals, participating SMEs will be given access to a secure, web-based UI of the tool.
+    3. Task: SMEs will be asked to use the tool to explore the designated dataset over a set period, performing tasks relevant to their expertise (e.g., "Identify the main counter-arguments to this narrative," "Visualize the key influencers on this topic," "Assess the evolution of this theme over time").
+    4. Feedback: Feedback will be gathered through semi-structured interviews and qualitative observation, focusing on efficiency (time to insight), accuracy (comparison to their own knowledge), and novelty (discovery of new patterns).
+Ethical Considerations: All SME engagement, particularly with external participants, is contingent on formal review and approval by the Human Subjects Protection Committee (HSPC), as detailed in Section 6.
+
+4.5. 6. Core System Validation Plan
+A fundamental prerequisite for the analyses in Essay 3 is ensuring the reliability of the knowledge graph generated by the KGAS. This section outlines the plan for the rigorous validation of the prototype's core LLM-driven extraction pipeline.
+A Focused Validation Strategy
+The proposal acknowledges that creating a "gold standard" dataset for complex, subjective social science concepts (e.g., "narratives," "causal claims") is a non-trivial challenge where achieving high inter-coder reliability is difficult. Therefore, to ensure a robust and feasible validation process, this dissertation will focus its quantitative benchmarking on the most concrete and objectively verifiable extraction tasks. The validation will concentrate on the foundational layer of the knowledge graph: its core entities and the sentiment expressed toward them.
+Gold Standard Dataset Creation
+A corpus of 300–500 documents (e.g., social media posts) will be randomly sampled from the primary case study dataset. Two independent coders will be trained on a detailed codebook to manually annotate the following specific items:
+Named Entities: The identification and categorization of key actors (e.g., PERSON, ORGANIZATION).
+Explicit Stance: The classification of an actor's expressed sentiment (positive, negative, neutral) toward a specific, explicitly mentioned named entity.
+This focus on concrete entities and expressed stance, rather than abstract propositional claims, provides a more reliable basis for achieving high inter-coder reliability. Reliability will be measured using Cohen’s Kappa, with a target of κ > 0.80 required to establish the dataset as a valid ground truth for benchmarking.
+Benchmarking and Metrics
+The KGAS extraction pipeline will be run on the same hand-coded dataset. The system's output for the targeted tasks (entity extraction and stance classification) will be systematically compared against the gold standard. Performance will be measured using standard information retrieval metrics:
+Precision: Of the items the system extracted, what proportion were correct?
+Recall: Of all the correct items available in the text, what proportion did the system extract?
+F1-Score: The harmonic mean of Precision and Recall, providing a single, robust measure of overall accuracy.
+This validation step ensures that the foundational layer of the knowledge graph is built on a demonstrably reliable footing. The validation of more abstract, higher-order concepts like "narrative structure" is not part of this quantitative benchmark; instead, those will be evaluated qualitatively in Essay 3 through methods like the convergent analysis described in Section 5.4. This sequential approach directly mitigates a primary research risk of the dissertation.
+
+4.6. Expected Outcomes and Contribution of Essay 2
+The successful completion of Essay 2 is expected to yield:
+    1. A Functional Prototype: An operational version of the low-code LLM-powered Knowledge Graph Analysis Tool, capable of performing the core functions described.
+    2. Demonstration of Feasibility: Evidence from the case study application that the tool can effectively process real-world fringe discourse data and generate initial analytical outputs (descriptive statistics, network visualizations, narrative summaries).
+    3. Usability Insights: Findings from the formative usability assessment, providing data on how SMEs interact with the tool and identifying areas for future refinement.
+    4. Methodological Contribution: This essay will provide a concrete implementation of a novel approach to discourse analysis, showcasing how LLMs and KGs can be synergistically combined in a user-friendly manner. It provides the practical foundation for the more advanced explanatory analyses to be conducted in Essay 3.
+    5. Foundation for Further Research: The tool itself, and the findings from its development, will serve as a basis for further research into human-AI collaboration for complex analytical tasks and into the dynamics of online fringe discourse.
+This essay is critical as it translates the theoretical framework of Essay 1 into a tangible analytical instrument, paving the way for its application to complex policy-relevant questions in Essay 3.
+
+
+5. Essay 3: Explanatory Analysis and Intervention Modeling in Fringe Discourse using the Knowledge Graph System
+5.1. Introduction and Specific Aims of Essay 3
+Building upon the KGAS prototype developed and its core extraction accuracy validated in Essay 2, this third essay aims to apply the tool to conduct more advanced, in-depth analyses. The primary focus shifts from system development and basic description towards identifying underlying mechanisms and processes of discourse dynamics and exploring potential policy interventions. This essay seeks to showcase the system's full potential for generating deep, policy-relevant insights from complex fringe discourse by focusing on the interplay of communication, cognition, and behavior.
+Specific aims include:
+To utilize the KGAS to investigate and model the underlying mechanisms and processes driving the propagation and impact of key narratives within the chosen fringe discourse case study.
+To integrate data from the knowledge graph with social-behavioral (SB) theories to build models that illuminate these discourse effects.
+To explore and simulate the potential effects of different types of interventions (e.g., counter-messaging strategies, platform policy changes) on the observed discourse dynamics.
+5.2. Research Questions for Essay 3
+This essay will address the following research questions:
+What temporal or structural mechanisms and processes (identified via the KGAS and SB models) appear to explain the propagation and impact of specific narratives within the chosen fringe discourse, and what alternative mechanisms or processes might also be at play?
+How can the KGAS be used to model and evaluate the potential effects of different policy interventions on the observed discourse dynamics and associated communication, cognition, and behavior?
+5.3. Data Sources (Building on Essay 2 Dataset)
+This essay will primarily utilize the knowledge graph populated and refined during the case study in Essay 2 (e.g., discourse surrounding "Scientific Corruption (COVID)"). Depending on the specific mechanisms or processes being investigated or the interventions being modeled, this dataset may be augmented by: extending the timeframe of data collection to observe longer-term trends or lagged effects; incorporating data from additional, related online sources if key actors or narratives span multiple platforms; and integrating publicly available offline data (e.g., policy announcements, real-world event timelines) to contextualize discourse dynamics and explore potential correlations or temporal relationships between online talk and offline events.
+It is important to clarify the analytical goals of this essay. The objective is not to make definitive, generalizable causal claims about offline behavior. Rather, it is to demonstrate a methodology for building empirically-grounded models that can generate plausible, testable hypotheses about the dynamics within a specific online ecosystem. The models describe and simulate the online portion of a complex system, and all findings will be interpreted within this deliberately bounded context.
+
+5.4. Validation and Reliability Strategy
+A set of complementary strategies will be used to ensure the validity and reliability of the KGAS's outputs and, more importantly, to apply the framework as a tool for meta-scientific inquiry into the robustness of theories. This approach shifts the focus from merely validating the tool to using it as a means of investigating theory itself.
+    1. Model and Extraction Validation: The accuracy of the core system will be rigorously tested.
+        ◦ Ground-Truth Comparison: For core tasks like entity and claim extraction, a "gold standard" dataset of several hundred posts will be hand-labeled by two independent coders. The KGAS's LLM-driven extraction performance will be measured against this dataset using standard metrics (Precision, Recall, F1-score).
+        ◦ Complex Query Validation: The system's ability to answer complex, multi-step questions will be assessed using tasks inspired by benchmarks like HotPotQA, which require reasoning over multiple pieces of information. This will test the integrity of the full analysis pipeline.
+        ◦ Qualitative Summary Validation: The narrative summaries generated by the summarize_narratives operator will be presented to SMEs for face validity assessment. They will be asked to rate the summaries on accuracy, coherence, and completeness compared to their own reading of the source material.
+    2. Theory Robustness and Convergent Analysis: A novel contribution of this dissertation is using the KGAS to test the robustness of social-scientific theories.
+        ◦ Replication of Academic Findings: For select theories codified in the Theory Meta-Schema, the KGAS will be applied to the same datasets used in the original source publication. The results generated by the KGAS will be compared against the published findings to validate the fidelity of the theory implementation.
+        ◦ Convergent Analysis: The same policy question (e.g., "What factors are driving the spread of this narrative?") will be analyzed through the lens of multiple, different theoretical frameworks (e.g., Social Identity Theory, Elaboration Likelihood Model, and a network-based contagion model). The analysis will focus on identifying where the theories produce convergent results (strengthening confidence in the finding) and where they produce divergent results (highlighting the unique perspective and limitations of each theory).
+5.5. Explanatory and Modeling Approach
+The analytical approach for Essay 3 leverages the advanced capabilities of the KGAS to move beyond description and toward explanation and intervention. The knowledge graph, validated in Essay 2, serves as the foundation for a multi-stage analysis. This begins with direct explanatory queries and can be extended to more advanced computational modeling techniques that simulate influence dynamics. The following sections outline this approach, presenting Agent-Based Modeling and Bayesian Cognitive Modeling as two powerful, illustrative examples of the types of analysis the KGAS is designed to support.
+5.5.1. Application of Explanatory Transformations:
+    •   The system's transformation operators designed for explanation (e.g., map_to_sb_model) will be employed.
+    •   The knowledge graph will be queried to extract patterns, sequences, and co-occurrences of discourse elements (e.g., claims, evidence, emotional expressions, actor endorsements) that precede or co-occur with narrative amplification or shifts in sentiment. These patterns can be analyzed to understand how different elements of communication, cognition, and behavior interact at both micro (individual message/actor) and macro (community/narrative) levels.
+    •   These patterns will be mapped to established SB models to hypothesize how observed discourse features might influence beliefs, attitudes, and intentions. For instance, identifying how the framing of messages aligns with known persuasive strategies. The KGAS can also assist in mapping semantic structures and belief systems, drawing on techniques conceptually similar to Multidimensional Scaling (MDS) approaches like the Galileo system, to visualize proximity and relationships between concepts within the discourse.26
+    •   Techniques inspired by Qualitative Comparative Analysis (QCA)27 or process tracing28 could be adapted to identify configurations of conditions within the KG that are consistently associated with specific outcomes (e.g., a narrative going viral). Process tracing, for example, can be used to identify sequences in discourse patterns that appear to link specific communication strategies to changes in expressed sentiment or belief).
+5.5.2. Advanced Modeling and Simulation (Exemplars):
+A key contribution of the KGAS is its ability to structure discourse data in a way that makes it suitable for advanced computational modeling. To demonstrate this capability, this dissertation will show how the knowledge graph can serve as an input for powerful modeling paradigms. The goal is to provide a proof-of-concept for how the KGAS enables these methods, rather than to conduct an exhaustive implementation of each.
+The primary contribution here is the demonstration of a novel pipeline for moving from unstructured discourse (via the KGAS) to a parameterized ABM. The resulting simulation is a first-order approximation intended to prove the viability of this data-to-model method, not to be a perfectly calibrated predictive tool.
+A. Illustrative Application 1: Agent-Based Modeling (ABM)
+This approach builds on recent breakthroughs in creating believable, LLM-driven social simulations29 30. A primary contribution of this dissertation is demonstrating a method for grounding agent psychology in large-scale, real-world discourse. A potential workflow for this parameterization, using the Kunst dataset31, could be as follows:
+    1. Empirical Agent Archetype Definition: Agent archetypes would be defined empirically using the offline survey data available for each user. This provides a robust, data-driven basis for agent differentiation. For instance, archetypes could be defined based on validated psychometric scales:
+        ◦ High-Conspiracy Actor: A user scoring in the top quartile on the "conspiracy mentality" scale.
+        ◦ Low-Conspiracy Actor: A user scoring in the bottom quartile on the same scale.
+    2. Belief State and Network Initialization: For each archetype, the KGAS would analyze the discourse produced by its members. The initial probability of an agent believing a specific claim could then be set to the proportion of users within that archetype who expressed support for that claim in the knowledge graph. The agent interaction network in the ABM would be initialized to mirror the observed reply/retweet network structure from the KGAS.
+    3. Behavioral Rule Definition: Behavioral rules would be defined as simple, probabilistic functions based on observed frequencies. For example, a rule could state: "If an agent of type High-Conspiracy receives a message from another High-Conspiracy agent, there is a P(Share | H, H) probability they will share it," where this probability is calculated from the observed frequencies in the KGAS.
+Once parameterized, this ABM could then be used to simulate narrative diffusion and model the potential impact of interventions, demonstrating the KGAS's utility for the analytical purpose of Intervention.
+B. Illustrative Application 2: Bayesian Cognitive Modeling
+As a second potential application, the KGAS is designed to capture the necessary precursors for the formal modeling of belief revision. This approach focuses on how an individual or group might update their beliefs in light of new evidence. The KGAS enables this by systematically extracting and structuring the key inputs for Bayesian models, such as:
+    • Priors: An actor's initial expressed stance on a topic, which can serve as a proxy for their prior belief probability.
+    • Evidence: A specific claim or piece of information to which an actor is exposed.
+    • Likelihoods: Features of the message or its source (e.g., source credibility, use of data) that can inform the perceived strength of the evidence.
+This demonstrates the KGAS's utility for the analytical purpose of Explanation, by providing the structured data needed to apply Bayesian frameworks to track and explain belief trajectories.
+5.5.3. Bayesian Cognitive Modeling and Validation
+A core analytical approach in Essay 3 will involve applying Bayesian models to understand belief updating dynamics as reflected in the discourse.
+    • Modeling Belief Revision: Utilizing data extracted into the KG during Essay 2 to formally model belief updating (e.g., using Bayes' Theorem).
+    • Tracking Belief Trajectories: Analyzing longitudinal data within the KG to track how expressed beliefs or stances of individuals or groups evolve.
+    • Integrating with Network Analysis: Examining how belief updates might correlate with an actor's position in the network.
+    • Validation Approaches: Validating the models by comparing their predictions of belief shifts against subsequent observed expressions of belief or stance in the discourse data. Further validation will involve comparing outputs and insights from the KGAS with those potentially derivable from other analytical tools or approaches, such as RAND-Lex, where applicable. SME judgment and qualitative coding comparisons on subsets of data will also be employed to assess the plausibility and richness of the KGAS-derived explanations.
+5.6. Expected Outcomes and Contribution of Essay 3: Policy-Relevant Explanatory Insights and Intervention Scenarios
+The anticipated outcomes and contributions of this essay include:
+    • Policy-Relevant Explanatory Insights: A deeper, evidence-based understanding of the mechanisms and processes appearing to drive the spread and impact of specific fringe narratives.
+    • Intervention Scenarios and Evaluations: Simulated evaluations of plausible policy interventions.
+    • Validated Advanced Analytical Capabilities: A robust demonstration of the KGAS's utility for conducting sophisticated explanatory analyses.
+    • Contribution to SB Theory and Policy Practice: This essay will contribute by showcasing an integrated methodology that bridges rich, context-sensitive discourse data with formal SB modeling techniques.
+This essay will aim to deliver not just academic findings but also practical considerations for policymakers grappling with the challenges posed by online fringe discourse.
+
+6. Ethical Considerations
+This study does not involve interaction with, or the collection of identifiable private information from, human subjects. The project will analyze publicly available documents and online content (e.g., social media discourse, policy documents) using an automated Knowledge Graph Analysis System (KGAS). While the system will be iteratively refined based on internal testing, any feedback gathered from subject matter experts (SMEs) regarding the use or usability of the tool will be confined to internal RAND staff, and no identifiable or sensitive data will be collected.
+Consistent with RAND HSPC policy and 45 CFR 46.102(e)(1), this activity is not considered “human subjects research” as defined under federal regulations. However, all activities will be submitted for HSPC screening prior to execution to confirm this determination and to ensure ongoing compliance. If any subsequent activities involve systematic collection of evaluative data from SMEs with the intent to contribute to generalizable knowledge, a modification will be submitted for HSPC review and approval.
+The project will adhere to RAND’s policies and procedures for safeguarding data, including those outlined in the Standard Operating Procedures and the Policy on the Protection of Human Subjects and Ethical Treatment of Research Participants. No collection, use, or disclosure of identifiable private information is planned, and no consent processes (including waivers) are required under current project design. Should this change, the study team will seek appropriate HSPC review and approval.
+6.1. Potential Challenges and Mitigation Strategies
+This research project involves methodological innovation and logistical complexity. This section outlines key potential challenges and the strategies in place to mitigate them.
+    • Research Risk: The Online/Offline Divide.
+        ◦ Challenge: A significant risk is that attitudinal and behavioral shifts observed in online discourse may be driven by offline factors (e.g., personal conversations, traditional media consumption) to which the KGAS does not have access. This could limit the explanatory power of models based solely on online data.
+        ◦ Mitigation Strategy: This risk is being mitigated in two ways. First, the primary case study leverages a datset32 which is uniquely suited to address this problem by providing rich psychometric data (e.g., need for chaos, conspiracy mentality) for each user. This allows the analysis to control for pre-existing, offline psychological traits when modeling online behavior. Second, for broader discourse analyses, publicly available offline data (e.g., timelines of major policy announcements, real-world events) will be integrated into the knowledge graph to contextualize discourse and explore temporal correlations between online conversations and offline events.
+    • Methodological Risk: Quality and Reliability of LLM Extraction.
+        ◦ Challenge: The core of the KGAS relies on LLMs to extract structured data from unstructured text. The performance of these models can be variable and susceptible to bias, making the quality and reliability of the extracted knowledge graph a primary concern.
+        ◦ Mitigation Strategy: This risk is addressed directly by the robust Validation and Reliability Strategy outlined in Section 5.4. The use of a hand-coded, "gold standard" dataset for direct performance measurement (Precision, Recall, F1) will provide a quantitative baseline for the system's accuracy. Furthermore, the use of SME review and convergent analysis across multiple theories will provide qualitative checks on the plausibility and stability of the findings.
+    • Logistical Risk: SME Coordination and Engagement.
+        ◦ Challenge: The usability and value assessment plan depends on the availability and sustained engagement of Subject Matter Experts, whose time is valuable and limited.
+        ◦ Mitigation Strategy: The engagement plan in Section 4.5.5 is designed to be efficient and respectful of SME time. The project will begin with a small, internal cohort of RAND colleagues who are more readily available, allowing for the refinement of the tool and assessment protocol before engaging with external experts. Providing a functional, intuitive UI is also a key part of this strategy, as it lowers the barrier to entry and allows SMEs to achieve insights more quickly.
+
+7. Schedule of Work
+This revised schedule reflects a focused, proof-of-concept methodology with a target completion date of February 2026. The timeline allocates dedicated periods for the distinct research phases of theoretical development, system prototyping and validation, and advanced modeling, acknowledging the iterative nature of the work.
+Phase 1: Proposal and Theoretical Foundation (July – September 2025)
+    • July 2025: Proposal Defense
+        ◦ Finalize and submit the dissertation proposal to the committee.
+        ◦ Schedule and successfully defend the proposal.
+        ◦ Address any immediate conditions from the defense and finalize Chapter 1 (Introduction).
+    • August – September 2025: Essay 1 (Theoretical Framework)
+        ◦ Conduct the intensive critical literature synthesis.
+        ◦ Develop and refine the Three-Dimensional Theoretical Framework and the detailed Theory Meta-Schema.
+        ◦ Codify the 3-5 exemplar theories to be used in the prototype.
+        ◦ Complete and submit a full draft of Essay 1 to the committee for review.
+Phase 2: System Development and Validation (October – November 2025)
+    • October – November 2025: Essay 2 (KGAS Prototype and Validation)
+        ◦ Note: This is a compressed development cycle focused on creating a functional proof-of-concept, not a polished software product.
+        ◦ Incorporate feedback on Essay 1.
+        ◦ Develop the core KGAS prototype based on the proposed technology stack, focusing exclusively on the COVID-19 discourse dataset.
+        ◦ Create the hand-coded "gold standard" dataset for validation.
+        ◦ Crucially, perform the core system validation: Benchmark the LLM extraction pipeline against the gold standard and calculate Precision, Recall, and F1-scores.
+        ◦ Complete and submit a full draft of Essay 2, including the validation results.
+Phase 3: Advanced Analysis and Modeling (December 2025)
+    • December 2025: Essay 3 (Exemplar Application)
+        ◦ Note: This stage will focus on demonstrating the application of one primary advanced model (e.g., the Agent-Based Model) as a proof-of-concept.
+        ◦ Incorporate feedback on Essay 2.
+        ◦ Apply the validated KGAS to parameterize the chosen model.
+        ◦ Run initial simulations and generate illustrative explanatory insights.
+        ◦ Complete and submit a full draft of Essay 3.
+Phase 4: Integration and Finalization (January – February 2026)
+    • January 2026: Revisions and Integration
+        ◦ Address all committee feedback on the three essays.
+        ◦ Revise Essays 1, 2, and 3 into their final versions.
+        ◦ Draft the overall dissertation conclusion and abstract.
+        ◦ Integrate all chapters, references, and appendices into a single, cohesive manuscript for committee review.
+    • February 2026: Final Defense and Submission
+        ◦ Submit the complete dissertation draft to the committee and schedule the final defense.
+        ◦ Prepare and deliver the final defense presentation.
+        ◦ Address any final revisions from the defense committee.
+        ◦ Obtain final signatures and submit the approved dissertation to the Registrar and ProQuest by the end of the month..
+
+
+
+7. Conclusion
+In this dissertation, I endeavor to address critical challenges in understanding and responding to the complex dynamics of online fringe discourse. I propose a significant methodological innovation through the development and demonstration of an application of what I call a Knowledge Graph Analysis System (KGAS)—a low-code, LLM-powered tool. This system is designed to be flexible, theoretically grounded, and accessible to Subject Matter Experts, enabling tailored analysis of specific policy questions by focusing on how discourse reflects and shapes communication, cognition, and behavior.
+The primary contribution to policy analysis lies in equipping decision-makers with a more robust capability to understand the impact of discourse on these social-behavioral phenomena. The KGAS is designed to support descriptive, explanatory, predictive, and potentially interventionary analysis, allowing users to anticipate plausible unfoldings, estimate the effects of interventions, and ultimately inform evidence-based policy. By enabling a deeper and more scalable analysis of narratives, actors, and their influence, this research aims to enhance strategic foresight and response capabilities.
+For social-behavioral science, this work offers a novel instrument and framework to investigate the interplay between communication, cognition, and behavior in online environments at scale. The proposed system can facilitate the testing of SB theories in real-world digital contexts and potentially uncover new patterns in how discourse shapes, and is shaped by, individual and collective action.
+Ultimately, I seek for this research to provide a theoretically sound, methodologically advanced, and practically applicable approach to transform volatile online discourse into actionable knowledge. By fostering more informed policy and advancing our understanding of the dynamics of communication, cognition, and behavior in the digital age, this work aims to make a tangible contribution to both policy analysis and social-behavioral science.
+
+8. References
+Achen, C. H., & Bartels, L. M. (2016). Democracy for Realists: Why Elections Do Not Produce Responsive Government. Princeton University Press.
+Ajzen, I. (1985). From intentions to actions: A theory of planned behavior. In J. Kuhl & J. Beckmann (Eds.), Action Control (pp. 11–39). Springer-Verlag.
+Ajzen, I. (1991). The Theory of Planned Behavior. Organizational Behavior and Human Decision Processes, 50(2), 179–211.
+Ajzen, I., & Fishbein, M. (1980). Understanding Attitudes and Predicting Social Behavior. Prentice-Hall.
+Andreasen, A. R. (1994). Social Marketing: Its Definition and Domain. Journal of Public Policy & Marketing, 13(1), 108–114.
+Airtable. (n.d.). Homepage. Retrieved July 9, 2025, from https://www.airtable.com
+Bail, C., Argyle, L. P., Brown, T. W., Bumpus, J. P., Chen, H., et al. (2018). Exposure to Opposing Views on Social Media Can Increase Political Polarization. PNAS, 115(37), 9216–9221.
+Bandura, A. (1997). Self-efficacy: The Exercise of Control. W.H. Freeman.
+Bandura, A. (2001). Social Cognitive Theory: An Agentic Perspective. Annual Review of Psychology, 52, 1–26.
+Bandura, A. (1986). Social Foundations of Thought and Action: A Social Cognitive Theory. Prentice-Hall.
+Beccaria, C. (1778). An Essay on Crimes and Punishment. Donaldson.
+Benford, R. D., & Snow, D. A. (2000). Framing Processes and Social Movements: An Overview and Assessment. Annual Review of Sociology, 26, 611–639.
+Black, D. (1958). The Theory of Committees and Elections. Cambridge University Press.
+Blumer, H. (1995). Social Movements. In S. M. Lyman (Ed.), Social Movements: Critiques and Explorations. Macmillan Press.
+Borgatti, S. P. (2003). The Key Player Problem. In R. Breiger, K. Carley, & P. Pattison (Eds.), Dynamic Social Network Modeling and Analysis: Workshop Summary and Papers. National Academies Press.
+Boyd, R., & Richerson, P. J. (1988). Culture and the Evolutionary Process. University of Chicago Press.
+Brady, W. J., Wills, J. A., Jost, J. T., Tucker, J. A., & Van Bavel, J. J. (2017). Emotion Shapes the Diffusion of Moralized Content in Social Networks. PNAS, 114(28), 7313–7318.
+Bratanic, T. (2024, May). Awesome-Graph-RAG: A Collection of Community RAG Work with Neo4j. GitHub. Retrieved July 9, 2025, from https://github.com/tomasonjo/awesome-graph-rag
+Broockman, D. E., & Butler, D. M. (2017). The Causal Effects of Elite Position-Taking on Voter Attitudes: Field Experiments with Elite Communication. American Journal of Political Science, 61(1), 208–221.
+Bronfenbrenner, U. (1994). Ecological Models of Human Development. In International Encyclopedia of Education (Vol. 3, 2nd ed., pp. 1643–1647). Elsevier.
+Bueno de Mesquita, B. (2002). Predicting Politics. Ohio State University Press.
+Campbell, A., Converse, P. E., Miller, W. E., & Stokes, D. E. (1960). The American Voter. University of Chicago Press.
+Chong, D., & Druckman, J. N. (2007a). Framing Public Opinion in Competitive Democracies. American Political Science Review, 101(4), 637–655.
+Chong, D., & Druckman, J. N. (2007b). Framing Theory. Annual Review of Political Science, 10, 103–126.
+Cialdini, R. B. (2003). Crafting Normative Messages to Protect the Environment. Current Directions in Psychological Science, 12(4), 105–109.
+Crozier, M., & Friedberg, E. (1992). L'acteur et le système: Les contraintes de l'action collective. Seuil.
+DARPA. (n.d.). Explainable Artificial Intelligence (XAI). Defense Advanced Research Projects Agency. Retrieved July 9, 2025, from https://www.darpa.mil/program/explainable-artificial-intelligence
+Druckman, J. N. (2001). The Implications of Framing Effects for Citizen Competence. Political Behavior, 23(3), 225–256.
+Druckman, J. N., & Leeper, D. J. (2012b). Learning More from Political Communication Experiments: The Importance of Pretreatment Effects. American Journal of Political Science, 56(4), 875-895.
+Druckman, J. N., & Bolsen, T. (2011). Framing, Motivated Reasoning, and Opinions about Emergent Technologies. Journal of Communication, 61(4), 659-688.
+Druckman, J. N., & Jacobs, L. R. (2015). Who Governs?: Presidents, Public Opinion, and Manipulation. University of Chicago Press.
+Druckman, James N. “A Framework for the Study of Persuasion.” Annual Review of Political Science, vol. 25, May 2022, pp. 65–88. Annual Reviews, https://doi.org/10.1146/annurev-polisci-051120-110428. Accessed 9 July 2025.
+Epstein, J. M. (2006). Generative Social Science: Studies in Agent-Based Computational Modeling. Princeton University Press.
+Eyster, Harold N., Terre Satterfield, and Kai M.A. Chan. "Why People Do What They Do: An Interdisciplinary Synthesis of Human Action Theories." Annual Review of Environment and Resources, vol. 47, 2022, pp. 725–751. Annual Reviews, https://doi.org/10.1146/annurev-environ-020422-125351. Accessed 9 July 2025.
+Feinberg, M., & Willer, R. (2019). Moral Reframing: A Technique for Effective and Persuasive Communication Across Political Divides. Social and Personality Psychology Compass, 13(10), e12501.
+Festinger, L. (1957). A Theory of Cognitive Dissonance. Stanford University Press.
+Figueroa, M. E., et al. (2002). Communication for Social Change: An Integrated Model for Measuring the Process and Its Outcomes. Rockefeller Foundation.
+Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., Dai, Y., Sun, J., & Wang, H. (2024). Retrieval-Augmented Generation for Large Language Models: A Survey. arXiv. https://arxiv.org/abs/2312.10997
+Gentzkow, M., & Shapiro, J. M. (2010). What Drives Media Slant? Evidence from U.S. Daily Newspapers. Econometrica, 78(1), 35–71.
+George, A. L. (1969). The ‘Operational Code’: A Neglected Approach to the Study of Political Leaders and Decision-Making. International Studies Quarterly, 13(2), 190-222.
+George, A. L. (1991). Forceful Persuasion: Coercive Diplomacy as an Alternative to War. U.S. Institute of Peace Press.
+George, A. L., & Bennett, A. (2005). Case Studies and Theory Development in the Social Sciences. MIT Press.
+Green, M. C., & Brock, T. C. (2000). The Role of Transportation in the Persuasiveness of Public Narratives. Journal of Personality and Social Psychology, 79(5), 701–721.
+Groenendyk, E., & Krupnikov, Y. (2021). What Motivates Reasoning? A Theory of Goal-Dependent Political Evaluation. American Journal of Political Science, 65(1), 180–196.
+Hashagen, S. (2002). Models of Community Engagement. Scottish Community Development Centre.
+Holland, D. C., Lachicotte, W., Skinner, D., & Cain, C. (1998). Identity and Agency in Cultural Worlds. Harvard University Press.
+Hovland, C. I., & Weiss, W. (1951). The Influence of Source Credibility on Communication Effectiveness. Public Opinion Quarterly, 15(4), 635–650.
+Howe, L. C., & Krosnick, J. A. (2017). Attitude Strength. Annual Review of Psychology, 68, 327–351.
+Jiang, J., Zhang, Z., Liu, S., Liu, Z., & Sun, M. (2023). StructGPT: A General Framework for Large Language Model to Reason over Structured Data. arXiv. https://arxiv.org/abs/2305.09645
+Jurafsky, D., & Martin, J. H. (2023). Speech and Language Processing (3rd ed. draft). Retrieved from https://web.stanford.edu/~jurafsky/slp3/
+Kahan, D. M. (2012). Cultural Cognition as a Conception of the Cultural Theory of Risk. In S. Roeser et al. (Eds.), Handbook of Risk Theory (pp. 725–759). Springer.
+Kahneman, D., & Tversky, A. (1979). Prospect Theory: An Analysis of Decision Under Risk. Econometrica, 47(2), 263–291.
+Kalla, J. L., & Broockman, D. E. (2018). The Minimal Persuasive Effects of Campaign Contact in General Elections: Evidence from 49 Field Experiments. American Political Science Review, 112(1), 148–166.
+Katz, E., & Lazarsfeld, P. F. (1955). Personal Influence. Free Press.
+Kincaid, D. L. (2000). Social Networks, Ideation, and Contraceptive Behavior in Bangladesh: A Longitudinal Analysis. Social Science & Medicine, 50(2), 215–231.
+Klapper, J. T. (1960). The Effects of Mass Communication. Free Press.
+Kraft, P. W., Krupnikov, Y., Milita, K., Ryan, J. B., & Soroka, S. (2020). Social Media and the Changing Information Environment: Sentiment Differences in Read versus Recirculated News Content. Public Opinion Quarterly, 84(S1), 195–215.
+Krippendorff, K. (2004). Content Analysis: An Introduction to Its Methodology. SAGE Publications.
+Kunst, J. R., Gundersen, A. B., Krysińska, K., Cichocka, A., & Pärnamets, P. (2024). Leveraging artificial intelligence to identify the psychological factors associated with conspiracy theory beliefs online. Nature Communications, 15(1), 7497.
+Ladyman, J., Lambert, J., & Wiesner, K. (2013). What is a Complex System? European Journal for Philosophy of Science, 3(1), 33–67.
+Lakatos, I. (1978). The Methodology of Scientific Research Programmes: Philosophical Papers Volume 1. Cambridge University Press.
+Larson, E. V., et al. (2009). Foundations of Effective Influence Operations: A Framework for Enhancing Army Capabilities. RAND Corporation.
+Lasswell, H. D. (1948). The Structure and Function of Communication in Society. In L. Bryson (Ed.), The Communication of Ideas (pp. 37–51). Institute for Religious and Social Studies.
+Lazarsfeld, P. F., Berelson, B., & Gaudet, H. (1944). The People’s Choice: How the Voter Makes Up His Mind in a Presidential Campaign. Duell, Sloan & Pearce.
+Levitan, L. C., & Verhulst, B. (2016). Conformity in Groups: The Effects of Others’ Views on Expressed Attitudes and Attitude Change. Political Behavior, 38(2), 277–315.
+Liberman, N., & Trope, Y. (1998). The Role of Feasibility and Desirability Considerations in Near and Distant Future Decisions: A Test of Temporal Construal Theory. Journal of Personality and Social Psychology, 75(1), 5–18.
+March, J. G., & Olsen, J. P. (2009). The Logic of Appropriateness (ARENA Working Paper 04/09). ARENA – Centre for European Studies, University of Oslo.
+Marcellino, W., et al. (2021). Developing, Disseminating, and Assessing Command Narrative: Anchoring Command Efforts on a Coherent Story (Report No. RR-A353-1). RAND Corporation.
+Markovich, Z., Baum, M. A., Berinsky, A. J., de Benedictis-Kessner, J., & Yamamoto, T. (2020). Dynamic Persuasion: Decay and Accumulation of Partisan Media Persuasion. Paper presented at the Annual Meeting of the Southern Political Science Association.
+McAdam, D., McCarthy, J. D., & Zald, M. N. (1996). Comparative Perspectives on Social Movements. Cambridge University Press.
+McGinnis, M. D., & Ostrom, E. (2014). Social-Ecological System Framework: Initial Changes and Continuing Challenges. Ecology and Society, 19(2), art. 30.
+Microsoft. (2024, April 25). Unleash the power of GraphRAG with Neo4j and Azure OpenAI. Microsoft Tech Community. https://techcommunity.microsoft.com/t5/azure-ai-services-blog/unleash-the-power-of-graphrag-with-neo4j-and-azure-openai/ba-p/4123508
+Miller, D. (1992). Deliberative Democracy and Social Choice. Political Studies, 40(S1), 54–67.
+Minozzi, W., Song, H., Lazer, D. M. J., Neblo, M. A., & Ognyanova, K. (2020). The Incidental Pundit: Who Talks Politics with Whom, and Why? American Journal of Political Science, 64(1), 135–151.
+Montano, D. E., & Kasprzyk, D. (2015). Theory of Reasoned Action, Theory of Planned Behavior, and the Integrated Behavioral Model. In K. Glanz et al. (Eds.), Health Behavior: Theory, Research, and Practice (5th ed., pp. 95–124). Jossey-Bass.
+Moscovici, S. (1980). Toward a Theory of Conversion Behavior. Advances in Experimental Social Psychology, 13, 209–239.
+Mousa, S. (2020). Building Social Cohesion Between Christians and Muslims Through Soccer in Post-ISIS Iraq. Science, 369(6505), 866–870.
+Olson, M. (1971). The Logic of Collective Action: Public Goods and the Theory of Groups. Harvard University Press.
+Osgood, C. E., Suci, G. J., & Tannenbaum, P. H. (1957). The Measurement of Meaning. University of Illinois Press.
+Ostrom, E. (1990). Governing the Commons: The Evolution of Institutions for Collective Action. Cambridge University Press.
+Park, J. S., et al. (2023). Generative Agents: Interactive Simulacra of Human Behavior. In Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23) (pp. 759-789). Association for Computing Machinery.
+Peet, R., & Watts, M. (Eds.). (2004). Towards a Liberation Ecology. In Liberation Ecologies: Environment, Development, Social Movements (pp. 3–43). Routledge.
+Pepper, D. (1993). Eco-Socialism: From Deep Ecology to Social Justice. Routledge.
+Petty, R. E., & Cacioppo, J. T. (1986). The Elaboration Likelihood Model of Persuasion. In L. Berkowitz (Ed.), Advances in Experimental Social Psychology (Vol. 19, pp. 123–205). Academic Press.
+Petty, R. E., & Cacioppo, J. T. (1996). Attitudes and Persuasion: Classic and Contemporary Approaches. Westview Press.
+Prochaska, J. O., DiClemente, C. C., & Norcross, J. C. (1992). In Search of How People Change: Applications to Addictive Behaviors. American Psychologist, 47(9), 1102–1114.
+Ragin, C. C. (1987). The Comparative Method: Moving Beyond Qualitative and Quantitative Strategies. University of California Press.
+RAND Corporation. (n.d.). RAND-Lex: A Lexical Analysis Tool. Retrieved July 9, 2025, from https://www.rand.org/topics/rand-lex.html
+Retool. (n.d.). Homepage. Retrieved July 9, 2025, from https://retool.com
+Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). "Why Should I Trust You?": Explaining the Predictions of Any Classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1135–1144). Association for Computing Machinery.
+Rimal, R. N., & Real, K. (2005). How Behaviors are Influenced by Perceived Norms: A Test of the Theory of Normative Social Behavior. Communication Research, 32(3), 389–414.
+Rogers, E. M. (2010). Diffusion of Innovations (5th ed.). Simon & Schuster.
+Rogers, R. W., & Mewborn, C. R. (1976). Fear Appeals and Attitude Change: Effects of a Threat’s Noxiousness, Probability of Occurrence, and the Efficacy of Coping Responses. Journal of Personality and Social Psychology, 34, 54–61.
+Ryan, R. M., & Deci, E. L. (2000). Intrinsic and Extrinsic Motivations: Classic Definitions and New Directions. Contemporary Educational Psychology, 25(1), 54–67.
+Schattschneider, E. E. (1960). The Semisovereign People: A Realist's View of Democracy in America. Holt, Rinehart & Winston.
+Scheufele, D. A. (2000). Agenda-Setting, Priming, and Framing Revisited: Another Look at Cognitive Effects of Political Communication. Mass Communication & Society, 3(2-3), 297–316.
+Sinclair, B. (2012). The Social Citizen: Peer Networks and Political Behavior. University of Chicago Press.
+Smith, A., Voß, J. P., & Grin, J. (2010). Innovation Studies and Sustainability Transitions: The Allure of the Multilevel Perspective and Its Challenges. Research Policy, 39(4), 435–448.
+Stern, P. C. (2000). New Environmental Theories: Toward a Coherent Theory of Environmentally Significant Behavior. Journal of Social Issues, 56(3), 407–424.
+Stone, P. J., Dunphy, D. C., Smith, M. S., & Ogilvie, D. M. (1966). The General Inquirer: A Computer Approach to Content Analysis. MIT Press.
+Strauss, A. L., & Corbin, J. (1990). Basics of Qualitative Research: Grounded Theory Procedures and Techniques. Sage Publications.
+Strecher, V. J., & Rosenstock, I. M. (1997). The Health Belief Model. In K. Glanz et al. (Eds.), Health Behavior and Health Education: Theory, Research, and Practice (2nd ed., pp. 41–59). Jossey-Bass.
+Sunstein, C. R., & Vermeule, A. (2014). Conspiracy Theories and Other Dangerous Ideas. Simon and Schuster.
+Tajfel, H., & Turner, J. C. (1979). An Integrative Theory of Intergroup Conflict. In W. G. Austin & S. Worchel (Eds.), The Social Psychology of Intergroup Relations (pp. 33-47). Brooks/Cole.
+Uscinski, J. E., & Parent, J. M. (2014). American Conspiracy Theories. Oxford University Press.
+Valente, T. W., & Pitts, S. R. (2017). An Appraisal of Social Network Theory and Analysis as a Guide for Public Health Intervention. Annual Review of Public Health, 38, 2.1-2.18.
+Vezhnevets, A. S., et al. (2023). Generative Agent-Based Modeling with Actions Grounded in Physical, Social, or Digital Space Using Concordia. arXiv. https://arxiv.org/abs/2312.03857
+West, C., & Zimmerman, D. H. (1987). Doing Gender. Gender and Society, 1(2), 125–151.
+Woelfel, J., & Fink, E. L. (1980). The Measurement of Communication Processes: Galileo Theory and Method. Academic Press.
+Yang, Z., et al. (2018). HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering. In Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (pp. 2369-2380). Association for Computational Linguistics.
+Zaller, J. R. (1992). The Nature and Origins of Mass Opinion. Cambridge University Press.
+Zhang, Q., Liu, Y., Zhang, Y., & Chen, C. (2024). A Survey on Graph-based Retrieval-Augmented Generation for Large Language Models. arXiv. https://arxiv.org/abs/2406.01529
+
+

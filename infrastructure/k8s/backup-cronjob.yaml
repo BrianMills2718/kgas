@@ -1,0 +1,87 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kgas-backup
+  labels:
+    app: kgas-backup
+    component: backup
+spec:
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: kgas-backup
+            component: backup
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: backup
+            image: kgas-backup:latest
+            env:
+            - name: NEO4J_URI
+              valueFrom:
+                secretKeyRef:
+                  name: kgas-secrets
+                  key: neo4j-uri
+            - name: NEO4J_USER
+              valueFrom:
+                secretKeyRef:
+                  name: kgas-secrets
+                  key: neo4j-user
+            - name: NEO4J_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kgas-secrets
+                  key: neo4j-password
+            - name: BACKUP_STORAGE_URI
+              value: "s3://kgas-backups/"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: backup-secrets
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backup-secrets
+                  key: aws-secret-access-key
+            command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Starting KGAS backup process..."
+              BACKUP_DATE=$(date +%Y%m%d_%H%M%S)
+              BACKUP_FILE="kgas_backup_${BACKUP_DATE}.dump"
+              
+              # Create Neo4j backup
+              neo4j-admin database dump neo4j --to-path=/tmp/${BACKUP_FILE}
+              
+              # Upload to S3
+              aws s3 cp /tmp/${BACKUP_FILE} ${BACKUP_STORAGE_URI}${BACKUP_FILE}
+              
+              # Cleanup old backups (keep last 30 days)
+              aws s3 ls ${BACKUP_STORAGE_URI} | grep kgas_backup | sort | head -n -30 | awk '{print $4}' | xargs -I {} aws s3 rm ${BACKUP_STORAGE_URI}{}
+              
+              echo "Backup completed: ${BACKUP_FILE}"
+            volumeMounts:
+            - name: backup-temp
+              mountPath: /tmp
+          volumes:
+          - name: backup-temp
+            emptyDir: {}
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 3
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backup-secrets
+  labels:
+    app: kgas-backup
+type: Opaque
+stringData:
+  aws-access-key-id: "your-aws-access-key-id"
+  aws-secret-access-key: "your-aws-secret-access-key"

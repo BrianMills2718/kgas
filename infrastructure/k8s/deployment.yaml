@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kgas-api
+  labels:
+    app: kgas-api
+    component: api
+    version: "2.0.0"
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: kgas-api
+  template:
+    metadata:
+      labels:
+        app: kgas-api
+        component: api
+        version: "2.0.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: kgas-api
+        image: kgas:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        env:
+        - name: KGAS_ENV
+          value: "production"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: PORT
+          value: "8000"
+        - name: WORKERS
+          value: "1"
+        - name: NEO4J_URI
+          valueFrom:
+            secretKeyRef:
+              name: kgas-secrets
+              key: neo4j-uri
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: kgas-secrets
+              key: redis-url
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: kgas-secrets
+              key: openai-api-key
+        - name: ANTHROPIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: kgas-secrets
+              key: anthropic-api-key
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: var-log
+          mountPath: /var/log/kgas
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: var-log
+        emptyDir: {}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

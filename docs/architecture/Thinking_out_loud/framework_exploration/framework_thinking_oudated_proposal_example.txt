@@ -1,0 +1,191 @@
+3.1. Research Questions for Essay 1
+The literature synthesis and theoretical construction in this essay are guided by two central research questions:
+    1. How can the fragmented landscape of social-behavioral theories of influence and persuasion be synthesized into a coherent, multi-dimensional framework that is not only analytically powerful but also computationally tractable?
+    2. How can this new theoretical framework be operationalized into a Theory Meta-Schema—a standardized, machine-readable format—that enables a software system (the KGAS) to dynamically apply diverse and complex social science theories to the analysis of online discourse?
+3.2. From a "List of Theories" to a "Theory of Process"
+A common approach in social science is to organize theories by their academic discipline of origin—a "theoretical traditions" approach. However, for the applied, computational goal of this dissertation, such a structure is insufficient. It presents theories in static, isolated silos, focusing on their intellectual heritage rather than their analytical function. It fails to show how theories interact to explain real-world phenomena and does not align with the dynamic, process-oriented nature of influence.
+To overcome this, this dissertation adopts the process-oriented approach advocated by scholars of influence1. The goal is not to create a static classification, but a dynamic, functional framework that models the process of influence itself. This requires a new typology that organizes theories based on what they do and their underlying assumptions about how change happens.
+This framework is not proposed as a universal replacement for existing theoretical traditions, but as a functional typology designed specifically for the task of computational modeling. Its value is not in being 'more correct,' but in being more computable and aligning theory with the data structures required by the KGAS. It makes the theoretical landscape legible to both a human analyst and a machine.
+3.3. A Three-Dimensional Framework for Analyzing Influence
+This essay proposes that the landscape of influence theories can be organized along three distinct axes. This provides a "theory of process" that integrates insights from influence operations, communication science2 3, and the broader study of human action4.
+This framework is presented not as the single 'correct' way to organize the field, but as a novel, functional typology designed specifically to meet the needs of a computational analysis system. Its value lies in its ability to make the theoretical landscape legible to both a human analyst and a machine. Theories that span multiple categories will be noted as important examples of the rich interplay that this framework helps to reveal, rather than as failures of the classification.
+    • Dimension 1: Level of Analysis (The 'Scale'). This dimension defines where influence occurs, classifying theories by their primary unit of analysis.
+        ◦ Micro: The individual level (e.g., cognitive processes, personality).
+        ◦ Meso: The group and network level (e.g., community dynamics, peer influence).
+        ◦ Macro: The mass public and societal level (e.g., media effects, cultural norms).
+    • Dimension 2: Component of Influence (The 'Lever'). This dimension defines what part of the communication process a theory seeks to explain, directly operationalizing the classic Lasswell (1948) and modern Druckman (2022) models.
+        ◦ Who: Theories of the Speaker/Source.
+        ◦ Whom: Theories of the Receiver/Audience.
+        ◦ What: Theories of the Message/Treatment.
+        ◦ Channel: Theories of the Medium/Context.
+        ◦ Effect: Theories of the Outcome/Process.
+    • Dimension 3: Causal Metatheory (The 'Logic'). This dimension defines the theory's core assumption about the engine of change. It is derived from the meta-analytic work of Eyster et al. (2022) and provides the primary narrative flow for the analysis.
+        ◦ Agentic Logic: Causation flows from individual agency, beliefs, and needs.
+        ◦ Structural Logic: Causation flows from external structures, rules, and incentives.
+        ◦ Interdependent Logic: Causation is an emergent property of the feedback loops between agents and structures.
+3.4. The Analytical Toolkit: Three Typologies of Influence
+This essay proposes that theories of influence can be organized along three distinct axes. Together, these axes form a "theory of process" that draws on insights from influence operations, communication science, and the study of human action.
+    • Dimension 1: Level of Analysis (The 'Scale'). This dimension defines where influence occurs, classifying theories by their primary unit of analysis:
+        ◦ Micro: The individual level.
+        ◦ Meso: The group and network level.
+        ◦ Macro: The mass public and societal level.
+    • Dimension 2: Component of Influence (The 'Lever'). This dimension defines what part of the communication process a theory seeks to explain, operationalizing the classic Lasswell (1948) and modern Druckman (2022) models:
+        ◦ Who: Theories of the Speaker/Source.
+        ◦ Whom: Theories of the Receiver/Audience.
+        ◦ What: Theories of the Message/Treatment.
+        ◦ Channel: Theories of the Medium/Context.
+        ◦ Effect: Theories of the Outcome/Process.
+    • Dimension 3: Causal Metatheory (The 'Logic'). This dimension defines the theory's core assumption about the engine of change, derived from the meta-analysis of Eyster et al. (2022):
+        ◦ Agentic Logic: Causation flows from individual agency, beliefs, and needs.
+        ◦ Structural Logic: Causation flows from external structures, rules, and incentives.
+        ◦ Interdependent Logic: Causation is an emergent property of feedback between agents and structures.
+To present this three-dimensional framework, it is organized as a sequence of three distinct tables, each representing a different causal logic. This creates a logical progression from simple to complex explanations.
+Table 3.1. A Typology of Theories with Agentic Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)	Source credibility models	Incidental punditry	Operational code analysis
+Whom (The Receiver/Audience)	Elaboration likelihood model; health belief model	Social identity theory; self-determination theory	The American voter model
+What (The Message)	Behavioural economics and prospect theory	Conformity theory	Moral reframing
+Channel (The Medium)	Processing goal alteration		Media effects
+Effect (The Outcome)	Transtheoretical model (stages of change); cognitive dissonance theory	Theory of normative social behaviour	Sleeper effect
+SOURCES: Features information from Ajzen, 1985; Brady et al., 2017; Broockman and Butler, 2017; Campbell et al., 1960; Cialdini, 2003; Druckman, 2003; Feinberg and Willer, 2019; Festinger, 1957; George, 1969; Green and Brock, 2000; Hovland and Weiss, 1951; Kahneman and Tversky, 1979; Minozzi et al., 2020; Moscovici, 1980; Petty and Cacioppo, 1986; Prochaska, DiClemente, and Norcross, 1992; Rimal and Real, 2005; Ryan and Deci, 2000; Scheufele, 2000; Strecher and Rosenstock, 1997; Tajfel and Turner, 1979; West and Zimmerman, 1987. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories. 
+
+
+Table 3.2. A Typology of Theories with Structural Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)		Theories of opinion leadership	Media slant and market pressures
+Whom (The Receiver/Audience)	Deterrence theory	Sociology of organizations	Coercive diplomacy
+What (The Message)	Framing theory	Social marketing	Scope of conflict
+Channel (The Medium)		Diffusion of innovations; social network analysis	Socio-ecological model
+Effect (The Outcome)		Governing the commons	Social movements theory
+SOURCES: Features information from Andreasen, 1994; Beccaria, 1778; Black, 1958; Blumer, 1995; Borgatti, 2003; Bronfenbrenner, 1994; Chong and Druckman, 2007b; Crozier and Friedberg, 1992; Gentzkow and Shapiro, 2010; George, 1991; Katz and Lazarsfeld, 1955; McAdam et al., 1996; Ostrom, 1990; Rogers, 2010; Schattschneider, 1960; Valente and Pitts, 2017. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories. 
+
+
+Table 3.3. A Typology of Theories with Interdependent Causal Logic
+Component of Influence	Micro-Level (Individual)	Meso-Level (Group/Network)	Macro-Level (Mass Public)
+Who (The Speaker/Source)	Self-presentation goals		Presidential responsiveness
+Whom (The Receiver/Audience)	Pretreatment effects	Social cognitive theory	Cultural evolution
+What (The Message)		Competitive framing	Ideation theory
+Channel (The Medium)		Communication for social change model	Complex systems theory
+Effect (The Outcome)	Integrated behavioural model	Community engagement models	Multilevel sociotechnical transitions
+SOURCES: Features information from Bail et al., 2018; Bandura, 2001; Boyd and Richerson, 1988; Chong and Druckman, 2007a; Druckman and Bolsen, 2011; Druckman and Jacobs, 2015; Druckman and Leeper, 2012b; Figueroa et al., 2002; Hashagen, 2002; Holland et al., 1998; Kincaid, 2000; Kraft et al., 2020; Ladyman, Lambert, and Wiesner, 2013; Montano and Kasprzyk, 2015; Smith et al., 2010. NOTE: Theories are placed according to their primary locus of explanation. The tables present exemplars and do not represent an exhaustive list of all possible theories..
+3.5. Making Theory Computable: The Theory Meta-Schema
+The three-dimensional framework provides the abstract model for organizing the theoretical landscape. The Theory Meta-Schema is the computational bridge that makes this framework operational. It is a standardized, machine-readable "recipe" that translates any social theory—from a simple heuristic to a complex process model—into a set of explicit instructions that the Knowledge Graph Analysis System (KGAS) can execute.
+This is the core technical innovation that enables a computer system to "read" and apply social science theory. By defining a theory in a file that conforms to this schema, an analyst gives the KGAS a complete blueprint for how to extract relevant information from text and what analytical operations to perform. The schema is composed of three primary components: the theory's identity (metadata), its dispatch key for automated reasoning (classification), and its substance (schema).
+A. Metadata: The Theory's Identity
+This block captures the bibliographic identity of the theory and its relationship to other theories.
+    • citation: The full bibliographic citation for the source document, ensuring academic traceability.
+    • annotation: A concise, 1-3 sentence summary of the theory's core proposition.
+    • extends: A key field that allows for theoretical inheritance. A theory can be defined as an extension or modification of another base theory (e.g., the Theory of Planned Behavior extends the Theory of Reasoned Action), allowing for efficient and relational model building.
+B. Classification: The Automated Dispatch Key
+This block is mission-critical for the KGAS. It serves as a pre-inferred summary that allows the system's "Agent Orchestrator" to automatically select the appropriate analytical strategy and dispatch the correct reasoning engine for a given task.
+    • model_type: Defines the primary data structure the theory assumes (e.g., Graph, Sequence, Table). This tells the system whether it needs to build a network, a timeline, or a typology.
+    • reasoning_engine: Specifies the computational engine required to analyze the model (e.g., Graph_Engine for centrality analysis, Temporal_Engine for sequence analysis).
+    • Link to the 3D Framework: This block also contains the tags that explicitly connect the theory to the dissertation's overarching framework:
+        ◦ causal_logic: [Agentic, Structural, Interdependent]
+        ◦ level_of_analysis: [Micro, Meso, Macro]
+        ◦ component_of_influence: [Speaker, Receiver, Message, Channel, Effect]
+        ◦ analytical_purpose: [Descriptive, Explanatory, Predictive, Interventionary]
+These tags are the hooks that allow an analyst to query the theory library using the 3D framework—for instance, to "find all Meso-level, Agentic theories that help Explain the Receiver."
+C. Schema: The Theoretical Core
+This is the main component that defines the substance of the theory itself. It is composed of several, more granular blocks:
+    1. Ontology: This defines the "nouns" of the theory—the key concepts to be extracted from text. A crucial principle here is the preservation of the author's original language.
+        ◦ entities: The fundamental units or actors (e.g., 'Individual', 'Group'). Each entry captures the indigenous_term (the author's exact phrase) and a standardized name.
+        ◦ connections: The relationships between entities (e.g., 'influences', 'believes').
+        ◦ properties: The attributes that describe entities or connections (e.g., 'credibility').
+    2. Axioms (Optional): Defines the core "rules" or fundamental assumptions of the theory, if explicitly stated by the author. This ensures the KGAS operates within the theory's own logical constraints.
+    3. Analytics (Optional): Defines the "verbs" of the theory—how it measures or analyzes the world. This can include specific metrics (e.g., 'attitude change score' with a formula) or focal_concepts that the theory directs an analyst to pay attention to.
+    4. Process (Optional): Defines the sequence of steps for applying the theory, if one exists. The schema supports multiple process modes to capture the diversity of theoretical structures:
+        ◦ sequential: For theories that posit ordered stages (e.g., Transtheoretical Model).
+        ◦ iterative: For theories that involve repeated cycles until convergence (e.g., some game-theoretic models).
+        ◦ workflow: For complex, graph-based processes with conditional branching.
+    5. Telos: This defines the "purpose" of the theory. It specifies the theory's primary analytical_purpose and level_of_analysis, and defines the structure of the expected output_format and the success_criteria for a valid application. This goal-oriented structure is what allows the KGAS to match a user's analytical query to the most appropriate theoretical tool.
+By implementing this meta-schema, the dissertation moves beyond merely discussing theories to making them active, computable components in a system for discourse analysis
+3.6. Methodological Approach
+This essay will employ a critical literature synthesis. The objective is not merely to summarize existing work but to actively integrate findings from disparate fields to populate and justify the three-dimensional framework. The synthesis will identify convergences and gaps, extracting core principles that are operationalized in both the framework itself and the design of the Theory Meta-Schema.
+This translation of abstract theory into a computable schema involves necessary trade-offs. The goal of the meta-schema is not to capture the full, un-translatable nuance of a theory, but to extract its core, computable logic for the specific purpose of large-scale discourse analysis. The 'in-group favoritism score,' for example, should be understood not as a replacement for the richness of Social Identity Theory, but as a computational proxy that allows the system to identify and quantify potential instances of the theorized behavior in data. This dissertation explicitly acknowledges and accepts this trade-off as a prerequisite for computational analysis.
+3.6.1. A Worked Example: Codifying Social Identity Theory
+To demystify the process of translating an abstract social theory into a computable format, this section provides a worked example using a foundational theory in social psychology: Social Identity Theory (SIT).
+It is important to acknowledge that this translation of abstract theory into a computable schema is not without trade-offs. The goal of the meta-schema is not to capture the full, un-translatable nuance of a theory, but to extract its core, computable logic for the specific purpose of large-scale, automated discourse analysis. The 'in-group favoritism score,' for instance, should be understood not as a replacement for the richness of Social Identity Theory, but as a computational proxy that allows the system to identify and quantify potential instances of the theorized behavior within a massive dataset.
+Step 1: The Core Theory Social Identity Theory posits that individuals derive a portion of their self-concept and self-esteem from their membership in social groups. This leads to a cognitive process of categorizing the social world into an "in-group" (to which one belongs) and various "out-groups." To maintain a positive self-concept, individuals are motivated to view their in-group favorably, often resulting in behaviors like in-group favoritism and out-group derogation (Tajfel & Turner, 1979).
+Step 2: Classification First, we classify the theory to enable automated processing by the KGAS. SIT is fundamentally about the relationships between individuals and groups, making a graph the natural data structure.
+JSON
+"classification": {
+  "model_type": "Graph",
+  "reasoning_engine": "Graph_Engine",
+  "compatible_operators": ["community_detection", "centrality", "link_prediction"],
+  "summary": "Models individuals and groups as nodes, with relationships of identification and sentiment.",
+  "causal_logic": "Agentic",
+  "level_of_analysis": "Meso",
+  "component_of_influence": "Receiver",
+  "analytical_purpose": "Explanatory"
+}
+This block tells the KGAS to use its Graph_Engine and that relevant operations will involve finding communities and influential actors. It also explicitly links SIT to the dissertation's 3D theoretical framework.
+Step 3: Ontology (The 'Nouns' of the Theory) Next, we define the core concepts of SIT as entities, connections, and properties. The indigenous_term field is critical, as it preserves the exact language of the source theory.
+Entities: These are the fundamental actors or objects.
+JSON
+"entities": [
+  {
+    "indigenous_term": "individual",
+    "name": "Actor",
+    "description": "A single person within the social context."
+  },
+  {
+    "indigenous_term": "in-group",
+    "name": "Group",
+    "description": "A social group with which an individual identifies."
+  },
+  {
+    "indigenous_term": "out-group",
+    "name": "Group",
+    "description": "A social group with which an individual does not identify and often compares their in-group against."
+  }
+]
+Connections: These define the relationships between entities.
+JSON
+"connections": [
+  {
+    "indigenous_term": "identifies_with",
+    "description": "An individual's psychological membership in an in-group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  },
+  {
+    "indigenous_term": "exhibits_favoritism_towards",
+    "description": "An individual expresses positive sentiment or behavior towards a group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  },
+  {
+    "indigenous_term": "exhibits_derogation_towards",
+    "description": "An individual expresses negative sentiment or behavior towards a group.",
+    "domain": ["Actor"],
+    "range": ["Group"]
+  }
+]
+Step 4: Analytics (The 'Verbs' of the Theory) We then define how the theory measures phenomena. This involves creating metrics that the KGAS can compute from the extracted knowledge graph.
+Metrics:
+JSON
+"metrics": [
+  {
+    "indigenous_term": "in-group favoritism score",
+    "description": "A measure of the degree to which an actor favors their in-group relative to an out-group.",
+    "formula": "COUNT(actor -> exhibits_favoritism_towards -> in_group) - COUNT(actor -> exhibits_derogation_towards -> out_group)",
+    "interpretation": "A higher positive score indicates stronger in-group favoritism."
+  }
+]
+This metric is now an operationalized, computable query. The KGAS can execute this formula on the knowledge graph to assign a favoritism score to every actor, allowing for quantitative analysis.
+Step 5: Telos (The Theory's Purpose) Finally, we define the theory's primary goal. For SIT, the goal is typically to explain behavior.
+JSON
+"Telos": {
+  "analytical_purpose": "Explanatory",
+  "level_of_analysis": "Meso",
+  "output_format": {
+    "type": "object",
+    "properties": {
+      "actor_scores": { "type": "array", "items": {"type": "object"} },
+      "group_dynamics_summary": { "type": "string" }
+    }
+  },
+  "success_criteria": "The framework successfully identifies distinct in-groups and out-groups from discourse and generates non-zero favoritism scores that correlate with observed intergroup behavior."
+}
+By completing this process, the abstract concepts of Social Identity Theory have been translated into a structured, computable object. The KGAS can now be directed to parse a corpus of text, extract all instances of these entities and connections, and calculate the defined metrics, thereby operationalizing the theory for large-scale analysis. This example demonstrates the feasibility and power of the meta-schema approach for making social theory computationally tractable.

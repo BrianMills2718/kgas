@@ -1,0 +1,18 @@
+
+Not sure RAND-Lex is the most relevant baseline here. Can you compare to out-of-the-box GraphRAG or standard RAG?
+
+Can you talk more about the structure of the dataset? Will be you downloading raw post texts, follower-followee relationships, pull post histories for a subset of users, likes, reshares, etc.? Which of these variables are cross platform and which will only be tracked for specific platforms?
+
+Would be nice to briefly discuss any data filtering that may be needed from the initial data pull in addition to cleaning of the text that will be ingested by the KGAS
+
+
+Can you give more details on your evaluation strategy? For example for the descriptive statistics, do you have a hold-out test set of pre-coded statements you can run through your system to evaluate its performance? Can you also provide details on how you will evaluate the narrative summaries and network visualizations?
+
+Would be nice to reference Google Concordia or the LLM-ABM work from Joog Sung Park and talk about issues in the field that you hope to address with your work
+
+Can you provide more details on the structure of your ABM? What level of granularity are the agents populated at, what are their assumed actions/interactions, etc.?
+
+Can you talk about calibrations that can be performed with ABM to ensure you have a realistically connected network, assess the sensitivity/sample over uncertainty distributions?
+
+
+Is it a research risk that offline behavior may drive a substantial fraction of attitudinal shifts, meaning the KGAS will not have access to critical information needed for hypothesis generation? If so, are there other self-contained datasets where casual factors for behavior/attitudinal shifts are more directly represented? 

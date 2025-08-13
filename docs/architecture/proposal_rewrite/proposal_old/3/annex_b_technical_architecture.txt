@@ -1,0 +1,309 @@
+# Annex B: Technical Architecture Details
+
+## B.1 Tool Suite Organization
+
+The KGAS system integrates modular tools across multiple functional categories with standardized contracts, enabling flexible composition of analytical workflows. Unlike rigid pipeline systems, KGAS's modular architecture allows tools to be chained in any sequence guided by theoretical requirements. Each tool implements a common interface ensuring consistent behavior and integration patterns.
+
+### Document Processing Suite
+- **PDF and document extraction**: Multi-format support including academic papers, reports, and web content
+- **Text preprocessing**: Language detection, cleaning, normalization
+- **Metadata extraction**: Author, date, citation information
+- **Reference parsing**: Bibliography and citation extraction
+
+### Graph Operations Suite
+- **Entity extraction**: Theory-guided identification of actors, concepts, and relationships
+- **Network construction**: Multiple network types (social, semantic, causal)
+- **Graph algorithms**: Centrality, clustering, path analysis, community detection
+- **Graph transformation**: Format conversion, projection, filtering
+
+### Statistical Analysis Suite
+- **Descriptive statistics**: Comprehensive summary statistics and distributions
+- **Inferential testing**: Hypothesis testing, confidence intervals, effect sizes
+- **Regression modeling**: Linear, logistic, multilevel, time series
+- **Structural equation modeling**: Latent variable models, path analysis
+- **Factor analysis**: Exploratory and confirmatory approaches
+
+### Vector Operations Suite
+- **Embedding generation**: Multiple embedding models and techniques
+- **Similarity calculation**: Cosine, Euclidean, and custom metrics
+- **Clustering**: K-means, hierarchical, DBSCAN, spectral
+- **Dimensionality reduction**: PCA, t-SNE, UMAP
+- **Semantic search**: Efficient vector similarity search
+
+### Cross-Modal Converters Suite
+- **Graph to table**: Network metrics, adjacency matrices, edge lists
+- **Table to graph**: Relationship construction, threshold-based networks
+- **Graph to vector**: Node embeddings, graph embeddings
+- **Vector to graph**: Similarity networks, nearest neighbor graphs
+- **Table to vector**: Feature encoding, statistical embeddings
+- **Vector to table**: Cluster assignments, similarity matrices
+
+### Agent-Based Modeling Suite
+- **Agent initialization**: Theory-based parameterization
+- **Behavioral rules**: Theory-derived decision mechanisms
+- **Network dynamics**: Evolving interaction patterns
+- **Simulation control**: Time steps, convergence, intervention
+- **Output analysis**: Aggregate metrics, individual trajectories
+
+## B.2 Workflow Orchestration and DAG Construction
+
+### DAG Architecture
+Directed Acyclic Graphs coordinate complex analytical workflows through:
+
+```python
+class WorkflowDAG:
+    """Orchestrates multi-step analytical pipelines"""
+    
+    def __init__(self):
+        self.nodes = {}  # Analytical operations
+        self.edges = {}  # Data dependencies
+        self.state = {}  # Execution state
+        
+    def add_node(self, node_id, operation, parameters):
+        """Add analytical operation to workflow"""
+        self.nodes[node_id] = {
+            'operation': operation,
+            'parameters': parameters,
+            'status': 'pending'
+        }
+        
+    def add_edge(self, from_node, to_node, data_mapping):
+        """Define data flow between operations"""
+        self.edges[(from_node, to_node)] = data_mapping
+        
+    def execute(self):
+        """Execute workflow with dependency management"""
+        execution_order = self.topological_sort()
+        for node_id in execution_order:
+            inputs = self.gather_inputs(node_id)
+            result = self.execute_node(node_id, inputs)
+            self.state[node_id] = result
+```
+
+### Automatic DAG Generation
+The system constructs DAGs from research questions through:
+
+1. **Question parsing**: Extract key concepts and analytical goals
+2. **Theory matching**: Identify relevant theoretical frameworks
+3. **Operation selection**: Choose appropriate tools for analysis
+4. **Dependency resolution**: Determine execution order
+5. **Parameter configuration**: Set operation-specific parameters
+
+### Execution Patterns
+- **Sequential execution**: Operations with dependencies
+- **Parallel execution**: Independent operations
+- **Conditional branching**: Theory-based decision points
+- **Iterative refinement**: Feedback loops for optimization
+- **Checkpoint recovery**: Resume from intermediate states
+
+## B.3 Data Storage Architecture
+
+### Bi-Store Design Rationale
+The system uses complementary storage systems optimized for different data types:
+
+#### Neo4j Graph Database
+- **Purpose**: Store and query graph structures
+- **Optimizations**: Native graph storage, index-free adjacency
+- **Use cases**: Network analysis, relationship queries, path finding
+- **Data model**:
+  ```cypher
+  // Entities with properties and embeddings
+  (:Entity {
+      id: string,
+      canonical_name: string,
+      entity_type: string,
+      properties: map,
+      embedding: vector
+  })
+  
+  // Relationships with metadata
+  -[:RELATES_TO {
+      relationship_type: string,
+      confidence: float,
+      source: string,
+      timestamp: datetime
+  }]->
+  ```
+
+#### SQLite Relational Database
+- **Purpose**: Structured data and metadata
+- **Optimizations**: Local deployment, ACID compliance
+- **Use cases**: Configuration, provenance, results storage
+- **Schema design**:
+  ```sql
+  -- Workflow execution tracking
+  CREATE TABLE workflows (
+      workflow_id TEXT PRIMARY KEY,
+      dag_specification JSON,
+      start_time TIMESTAMP,
+      end_time TIMESTAMP,
+      status TEXT,
+      results JSON
+  );
+  
+  -- Tool execution provenance
+  CREATE TABLE tool_executions (
+      execution_id TEXT PRIMARY KEY,
+      workflow_id TEXT,
+      tool_id TEXT,
+      inputs JSON,
+      outputs JSON,
+      duration_ms INTEGER,
+      timestamp TIMESTAMP
+  );
+  ```
+
+### Data Synchronization
+- **Entity resolution**: Maintain consistent identities across stores
+- **Transaction coordination**: Ensure cross-store consistency
+- **Cache management**: Performance optimization layer
+- **Backup strategy**: Incremental and full backup support
+
+## B.4 Processing Pipeline Implementation
+
+### Pipeline Stages
+
+#### Stage 1: Document Ingestion
+```python
+def ingest_document(file_path, doc_type):
+    """Process raw documents into structured format"""
+    # Extract text and metadata
+    raw_content = extract_content(file_path)
+    metadata = extract_metadata(raw_content)
+    
+    # Clean and normalize
+    cleaned_text = preprocess_text(raw_content.text)
+    
+    # Segment into processable units
+    segments = segment_document(cleaned_text)
+    
+    return DocumentData(segments, metadata)
+```
+
+#### Stage 2: Theory-Guided Extraction
+```python
+def extract_with_theory(document, theory_schema):
+    """Apply theoretical framework to extraction"""
+    # Configure extraction based on theory
+    extraction_config = theory_schema.get_extraction_config()
+    
+    # Extract theory-relevant entities
+    entities = extract_entities(document, extraction_config)
+    
+    # Identify relationships per theory
+    relationships = extract_relationships(entities, theory_schema)
+    
+    # Calculate theory-specific metrics
+    metrics = calculate_metrics(entities, relationships, theory_schema)
+    
+    return ExtractionResult(entities, relationships, metrics)
+```
+
+#### Stage 3: Cross-Modal Analysis
+```python
+def cross_modal_analysis(data, modalities):
+    """Analyze data across requested modalities"""
+    results = {}
+    
+    for modality in modalities:
+        if modality == 'graph':
+            results['graph'] = graph_analysis(data)
+        elif modality == 'table':
+            results['table'] = statistical_analysis(data)
+        elif modality == 'vector':
+            results['vector'] = semantic_analysis(data)
+    
+    # Integrate findings across modalities
+    integrated = integrate_results(results)
+    return integrated
+```
+
+#### Stage 4: Result Synthesis
+```python
+def synthesize_results(analysis_results, uncertainty_metrics):
+    """Generate final results with uncertainty"""
+    # Aggregate findings
+    synthesis = aggregate_findings(analysis_results)
+    
+    # Propagate uncertainty
+    final_uncertainty = propagate_uncertainty(uncertainty_metrics)
+    
+    # Generate natural language summary
+    summary = generate_summary(synthesis, final_uncertainty)
+    
+    return FinalResults(synthesis, final_uncertainty, summary)
+```
+
+## B.5 Low-Code User Interface
+
+### Conversational Interface Architecture
+The system provides a low-code interface enabling non-technical users to perform complex analyses through natural language:
+
+```python
+class ConversationalInterface:
+    def process_user_query(self, query: str) -> WorkflowDAG:
+        # Parse natural language request
+        intent = self.extract_intent(query)
+        theories = self.identify_relevant_theories(intent)
+        
+        # Generate analytical workflow
+        dag = self.construct_dag(intent, theories)
+        
+        # Explain approach to user
+        explanation = self.generate_explanation(dag)
+        
+        return dag, explanation
+```
+
+### Workflow Generation from Natural Language
+- Automatic theory selection based on research questions
+- Dynamic DAG construction without coding
+- Interactive refinement through dialogue
+- Transparent explanation of analytical choices
+
+## B.6 Integration Interfaces
+
+### Model Context Protocol (MCP) Integration
+The system exposes tools through MCP for external integration:
+
+```python
+class MCPToolAdapter:
+    """Adapter for MCP protocol compliance"""
+    
+    def expose_tool(self, tool):
+        """Make tool available via MCP"""
+        return {
+            'id': tool.tool_id,
+            'name': tool.name,
+            'description': tool.description,
+            'input_schema': tool.get_input_schema(),
+            'output_schema': tool.get_output_schema(),
+            'execute': tool.execute
+        }
+```
+
+### External Service Integration
+- **LLM providers**: OpenAI, Anthropic, Google via unified interface
+- **Statistical packages**: R, Python statistical libraries
+- **Visualization tools**: Graph visualization, statistical plots
+- **Export formats**: Academic formats (LaTeX, BibTeX), data formats (CSV, JSON)
+
+## B.6 Performance Optimization Strategies
+
+### Computational Efficiency
+- **Lazy evaluation**: Defer computation until needed
+- **Caching layer**: Store expensive computations
+- **Batch processing**: Group operations for efficiency
+- **Parallel execution**: Utilize available cores
+
+### Memory Management
+- **Streaming processing**: Handle large datasets incrementally
+- **Resource pooling**: Reuse expensive resources
+- **Garbage collection**: Explicit memory cleanup
+- **Disk spillover**: Handle memory overflow gracefully
+
+### Scalability Patterns
+- **Horizontal scaling**: Distribute independent operations
+- **Vertical scaling**: Optimize single-node performance
+- **Adaptive algorithms**: Choose algorithms based on data size
+- **Progressive computation**: Return preliminary results quickly

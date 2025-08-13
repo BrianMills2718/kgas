@@ -1,0 +1,269 @@
+# Annex C: Validation Framework Details
+
+## C.1 Fourteen Dimensions of Uncertainty Assessment
+
+The validation framework evaluates system capabilities across fourteen dimensions that span the complete analytical pipeline from source assessment through reasoning validation.
+
+### Dimension 1: Source Credibility
+**Definition**: Assessment of information source reliability and expertise
+**Measurement**: Compare system ratings against expert judgments for academic sources, social media accounts, and news outlets
+**Validation**: Correlation between system scores and established credibility metrics
+
+### Dimension 2: Cross-Source Coherence
+**Definition**: Detection of contradictions and agreement across multiple sources
+**Measurement**: Identification of conflicting claims about the same entities or events
+**Validation**: Precision and recall for contradiction detection tasks
+
+### Dimension 3: Temporal Relevance
+**Definition**: Assessment of information currency and temporal validity
+**Measurement**: Appropriate weighting of information based on recency and context
+**Validation**: Comparison with time-aware information retrieval benchmarks
+
+### Dimension 4: Extraction Completeness
+**Definition**: Comprehensiveness of entity and relationship extraction
+**Measurement**: Coverage of theoretically relevant constructs from source material
+**Validation**: Recall metrics against manually annotated datasets
+
+### Dimension 5: Entity Recognition Accuracy
+**Definition**: Precision in identifying and classifying entities
+**Measurement**: Correct identification of individuals, groups, concepts, and events
+**Validation**: F1 scores on named entity recognition tasks
+
+### Dimension 6: Construct Validity
+**Definition**: Alignment between computational estimates and theoretical constructs
+**Measurement**: Correlation between extracted measures and validated scales
+**Validation**: Convergent and discriminant validity assessment
+
+### Dimension 7: Theory-Data Fit
+**Definition**: Appropriateness of theoretical framework for observed data
+**Measurement**: Model fit indices and explained variance
+**Validation**: Comparison of competing theoretical models
+
+### Dimension 8: Study Limitations
+**Definition**: Recognition of methodological constraints and biases
+**Measurement**: Identification of sampling bias, measurement error, confounds
+**Validation**: Agreement with expert methodological assessments
+
+### Dimension 9: Sampling Bias
+**Definition**: Detection of non-representative samples
+**Measurement**: Statistical tests for selection bias and demographic skew
+**Validation**: Comparison with known population parameters
+
+### Dimension 10: Diagnosticity
+**Definition**: Information value for distinguishing between hypotheses
+**Measurement**: Mutual information and discriminative power metrics
+**Validation**: Hypothesis differentiation in controlled scenarios
+
+### Dimension 11: Sufficiency
+**Definition**: Adequacy of evidence for drawing conclusions
+**Measurement**: Statistical power and confidence interval width
+**Validation**: Comparison with required sample size calculations
+
+### Dimension 12: Confidence Calibration
+**Definition**: Alignment between stated confidence and actual accuracy
+**Measurement**: Calibration plots and Brier scores
+**Validation**: Expected calibration error across prediction tasks
+
+### Dimension 13: Entity Identity Resolution
+**Definition**: Correct linking of entity mentions across contexts
+**Measurement**: Accuracy in determining when different mentions refer to same entity
+**Validation**: Coreference resolution benchmarks
+
+### Dimension 14: Reasoning Chain Validity
+**Definition**: Logical coherence of multi-step theoretical connections
+**Measurement**: Validity of inference chains from evidence to conclusions
+**Validation**: Comparison with expert-traced reasoning paths
+
+## C.2 Davis Framework Application
+
+The validation strategy operationalizes Davis et al.'s (2018) five-dimensional model validity framework for computational theory application.
+
+### Description Validity
+**Purpose**: Assess ability to identify salient structures and patterns
+**Implementation**:
+- Entity extraction accuracy through annotation comparison
+- Pattern detection precision in discourse analysis
+- Network structure identification correctness
+
+**Metrics**:
+- Precision, recall, F1 for entity extraction
+- Graph edit distance for network structures
+- Concept overlap with expert annotations
+
+### Causal Explanation Validity
+**Purpose**: Evaluate identification of causal processes
+**Implementation**:
+- Theory mechanism extraction accuracy
+- Causal path identification in discourse
+- Temporal sequence preservation
+
+**Metrics**:
+- Causal graph similarity measures
+- Temporal ordering accuracy
+- Mechanism identification rates
+
+### Postdiction Validity
+**Purpose**: Test ability to explain past behavior
+**Implementation**:
+- Correlation with psychological measures in COVID dataset
+- Theory replication from published studies
+- Pattern matching with known outcomes
+
+**Metrics**:
+- Correlation coefficients with validated scales
+- Effect size comparisons with published results
+- Pattern recognition accuracy
+
+### Exploratory Validity
+**Purpose**: Assess variable identification and parameterization
+**Implementation**:
+- Cross-modal consistency checks
+- Multi-resolution coherence tests
+- Novel pattern discovery validation
+
+**Metrics**:
+- Inter-modal correlation matrices
+- Scale invariance measures
+- Discovery validation rates
+
+### Prediction Validity
+**Purpose**: Evaluate forecasting capability (aspirational)
+**Implementation**:
+- Hold-out test set predictions
+- Temporal validation with future data
+- Intervention outcome forecasting
+
+**Metrics**:
+- Predictive accuracy on held-out data
+- Temporal stability of predictions
+- Intervention effect estimation
+
+## C.3 Multi-Level Validation Strategy
+
+### Individual Level Validation
+**Focus**: Psychological construct extraction
+**Method**: Compare computational estimates with individual psychological profiles
+**Ground Truth**: Kunst dataset psychological scales
+**Success Criteria**: Significant correlations without predetermined thresholds
+
+### Group Level Validation
+**Focus**: Network and collective dynamics
+**Method**: Validate group identification and influence patterns
+**Ground Truth**: Observed interaction networks and group membership
+**Success Criteria**: Accurate community detection and influence tracing
+
+### Population Level Validation
+**Focus**: Aggregate patterns and trends
+**Method**: Compare system-identified trends with known phenomena
+**Ground Truth**: Documented conspiracy belief adoption patterns
+**Success Criteria**: Trend identification and temporal alignment
+
+## C.4 Theory-Specific Validation Patterns
+
+### Social Identity Theory Validation
+**Expected Patterns**:
+- Increased in-group favoritism under threat
+- Correlation between group identification and bias
+- Homophily in network formation
+
+**Validation Approach**:
+- Measure favoritism scores before/during threat periods
+- Correlate identification strength with behavioral bias
+- Test network clustering by group membership
+
+### Motivated Reasoning Validation
+**Expected Patterns**:
+- Differential processing of confirming vs. disconfirming information
+- Source credibility discounting for contradictory evidence
+- Confirmation bias in information sharing
+
+**Validation Approach**:
+- Track engagement with belief-consistent vs. inconsistent content
+- Measure source evaluation patterns
+- Analyze information propagation biases
+
+### Diffusion of Innovations Validation
+**Expected Patterns**:
+- S-curve adoption patterns
+- Early adopter characteristics
+- Network position effects on adoption timing
+
+**Validation Approach**:
+- Fit adoption curves to theoretical models
+- Profile early vs. late adopters
+- Test network centrality-adoption correlations
+
+## C.5 Uncertainty Quantification and Propagation
+
+### Uncertainty Sources
+1. **Data uncertainty**: Missing data, measurement error, sampling bias
+2. **Extraction uncertainty**: Entity recognition confidence, relationship ambiguity
+3. **Analytical uncertainty**: Model specification, parameter estimation
+4. **Integration uncertainty**: Cross-modal conversion, aggregation effects
+
+### Propagation Mathematics
+**Independent uncertainties**: Root-sum-squares combination
+```
+σ_total = √(σ₁² + σ₂² + ... + σₙ²)
+```
+
+**Correlated uncertainties**: Correlation-adjusted propagation
+```
+σ_total² = Σσᵢ² + 2ΣΣρᵢⱼσᵢσⱼ
+```
+
+### Confidence Bands
+Following IC standards (ICD-203/206):
+- **Very Likely**: 80-95% confidence
+- **Likely**: 55-80% confidence  
+- **Even Chance**: 45-55% confidence
+- **Unlikely**: 20-45% confidence
+- **Very Unlikely**: 5-20% confidence
+
+### Worked Example: Uncertainty Propagation for Network Centrality
+
+Consider measuring an individual's influence through network centrality with multiple uncertainty sources:
+
+**Step 1: Component Uncertainties**
+- Entity extraction confidence: σ₁ = 12% (some mentions ambiguous)
+- Network construction uncertainty: σ₂ = 8% (missing interaction data)
+- Centrality algorithm precision: σ₃ = 5% (approximation error)
+
+**Step 2: Root-Sum-Squares Propagation**
+Assuming independence between uncertainty sources:
+```
+σ_total = √(12² + 8² + 5²)
+σ_total = √(144 + 64 + 25)
+σ_total = √233
+σ_total ≈ 15.3%
+```
+
+**Step 3: Confidence Interval Construction**
+For a centrality score of 0.72:
+- Point estimate: 0.72
+- 68% confidence interval (1σ): [0.72 - 0.153, 0.72 + 0.153] = [0.57, 0.87]
+- Converting to percentage: 57% to 87% confidence range
+
+**Step 4: IC Language Translation**
+With the centrality estimate falling in the 57-87% range:
+- Lower bound (57%) falls in "Likely" band (55-80%)
+- Upper bound (87%) falls in "Very Likely" band (80-95%)
+- **Final statement**: "The individual is **likely to very likely** (57-87% confidence) a high-influence node in the network"
+
+This example demonstrates how quantitative uncertainties from multiple analytical stages combine through mathematical propagation and translate into standardized language statements that communicate both the estimate and its reliability.
+
+## C.6 Validation Evidence Requirements
+
+### Documentation Standards
+Each validation claim requires:
+1. **Metric definition**: Clear specification of what is measured
+2. **Test procedure**: Reproducible validation protocol
+3. **Results**: Actual performance metrics achieved
+4. **Evidence files**: Supporting data and analysis
+5. **Limitations**: Acknowledged constraints and caveats
+
+### Success Criteria Philosophy
+- **No predetermined targets**: Report actual capabilities
+- **Baseline establishment**: Create benchmarks for future work
+- **Transparent reporting**: Include failures and limitations
+- **Reproducibility**: Provide complete validation protocols

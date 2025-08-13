@@ -1,0 +1,383 @@
+================================================================================
+    KGAS FULL SYSTEM DAG: SELF-CATEGORIZATION THEORY ANALYSIS OF COVID DISCOURSE
+================================================================================
+Research Question: "Why do vaccine hesitant groups reject mainstream health information?"
+Theory: Self-Categorization Theory (Turner & Oakes, 1986)
+Dataset: 7.7M tweets from 2,506 users with psychological profiles
+================================================================================
+
+================================================================================
+                    THEORY SCHEMA FLOW ARCHITECTURE
+================================================================================
+
+META-SCHEMA v13 (Universal template for any theory)
+    ↓ [Applied to Turner 1986 paper]
+THEORY SCHEMA (SCT-specific: entities, relations, algorithms)
+    ↓ [Applied to COVID discourse data]
+OPERATIONALIZED SCHEMA (Actual data instances)
+    ↓ [Computational analysis]
+FINDINGS (Validated patterns & correlations)
+
+================================================================================
+
+                                                                             
+                         PHASE 1: THEORY EXTRACTION                          
+                                                                             
+                                      
+                                     ↓                 
+                       T302_THEORY_EXTRACTION          
+                       Extract SCT from Turner 1986    
+                       Output: theory_schema.json      
+                                     ,                 
+                                      
+                                     4            
+                             SCT Requirements:    
+                           • Self-categories      
+                           • Prototypes (MCR)     
+                           • Depersonalization    
+                           • Hypothesis: ID→Behavior 
+                                     ,            
+                                      
+                                     ↓                                         
+                      PHASE 2: MULTI-DOCUMENT INGESTION                        
+                                                                                
+                                      
+                         ,           4           ,                 
+        ↓                 ↓                       ↓                 ↓
+                                                                   
+ T01_PDF_LOAD    T05_CSV_LOAD        T06_JSON_LOAD   T13_WEB_SCRAPE
+ COVID tweets    User psychol.       Network data    Health sources
+ Raw formats     Unknown cols        Unknown struct  Various formats
+       ,               ,                   ,               ,       
+                         4           ,           4                 
+                                      ↓
+                                                     
+                          T300_SCHEMA_DISCOVERER
+                          Inspect all data sources:
+                          • CSV headers: ["uid", "CB_score", "posted_at"]
+                          • JSON structure: {"author": str, "content": str}
+                          • Graph format: {"nodes": [], "edges": []}
+                          • Timestamp formats: ISO vs Unix vs String
+                          Output: discovered_schemas.json
+                                     ,
+                                      
+                                     ↓
+                          T301_SCHEMA_MAPPER
+                          LLM maps discovered → theory needs:
+                          • "user_identity" → "uid" (CSV), "author" (JSON)
+                          • "conspiracy_belief" → "CB_score"
+                          • "timestamp" → parse("posted_at")
+                          • "social_connections" → "edges" array
+                          Output: mapping_rules.json
+                                     ,
+                                      
+                                     ↓
+                          T302_MULTI_DOC_FUSION     
+                          Apply mappings to build graph:
+                          • Join on mapped identities
+                          • Standardize timestamps
+                          • Unified property names
+                          Output: unified_graph (Neo4j)
+                                     ,
+                                      
+                                     ↓                                         
+                    PHASE 3: THEORY-GUIDED EXTRACTION                          
+                                                                                
+                                      
+                                     ↓                 
+                      T23C_ONTOLOGY_AWARE_EXTRACTOR   
+                      Input: resolved_graph + theory_schema     
+                      Maps theory → data patterns:      
+                      • Self-Category → "we vaccine hesitant"       
+                      • Prototype → high MCR users      
+                      • Depersonalization → I→we shifts              
+                      • Salience → threat→group activation               
+                      Output: theory-aligned entities    
+                                     ,                 
+                                      
+                                     ↓                                         
+                     PHASE 4: GRAPH CONSTRUCTION                               
+                                                                                
+                                      
+                                     ↓                 
+                        T31_ENTITY_BUILDER            
+                        Create user & group nodes      
+                        Add temporal metadata          
+                                     ,                 
+                                      
+                                     ↓                 
+                        T34_EDGE_BUILDER              
+                        Build relationships with timestamps    
+                        FOLLOWS, MENTIONS, IDENTIFIES_WITH           
+                                     ,                 
+                                      
+                                     4                   
+                                                         
+                   ↓                                  ↓            
+         T50_COMMUNITY_DETECT                 T68_PAGERANK         
+         Find group clusters                  Calculate influence  
+         Output: 3 communities                Output: centrality   
+                   ,                                  ,            
+                                                         
+                                     ,                   
+                                      
+                                     ↓             
+                             GRAPH METRICS:        
+                          • Community A: 512 users 
+                          • Community B: 887 users 
+                          • Community C: 1107 users
+                                     ,             
+                                      
+                                     ↓
+                       T51_META_CONTRAST_CALCULATOR
+                       Core SCT formula implementation:
+                       MCR_i = Σ|x_i - x_outgroup_j| / Σ|x_i - x_ingroup_k|
+                       where x = [psych_scores, language_vectors]
+                       Identifies prototype users (max MCR per group)
+                       Community A prototype: user_ID047 (MCR=0.94)
+                       Community B prototype: user_ID892 (MCR=0.87)
+                                     ,
+                                      
+                                     ↓
+                    PHASE 4.5: TEMPORAL DYNAMICS ANALYSIS
+                                                                           
+                                      
+                                     ↓
+                       T52_TEMPORAL_ANALYZER
+                       Track changes over time (Jan-Dec 2020):
+                       • Pronoun shifts: 237 I→We transitions
+                       • Salience events: 14 threat triggers
+                       • Depersonalization: language convergence curves
+                       • Polarization: opinion drift toward prototype
+                       • Time windows: Daily, Weekly, Monthly
+                       Output: temporal_trajectories.json
+                                     ,
+                                      
+                                     ↓                                         
+                 PHASE 5: CROSS-MODAL TRANSFER (GRAPH → TABLE)                 
+                                                                                
+                                      
+                                     ↓                 
+                       GRAPH_TABLE_EXPORTER           
+                       Convert communities to table   
+                       Schema: user_id, community_id, MCR_score, timestamp  
+                                     ,                 
+                                      
+                                     ↓                                         
+                  PHASE 6: TABLE ANALYSIS (PSYCHOLOGY)                         
+                                                                                
+                                      
+                                     ↓                 
+                       STATISTICAL_ANALYSIS_TOOL      
+                       Analyze psychology by community over time
+                       Track changes in conspiracy scores
+                       Community A: M=5.8→6.9 (+1.1 over year)  
+                       Community B: M=2.1→2.3 (+0.2 over year)  
+                                     ,                 
+                                      
+                                     ↓                 
+                          SEM_MODELING_TOOL           
+                       Test: Identity→Bias→Rejection  
+                       Model fit: CFI=0.94            
+                                     ,                 
+                                      
+                                     ↓             
+                          HIGH IDENTITY USERS:     
+                          IDs with score > 5.0     
+                          {ID047, ID091, ID238...} 
+                                     ,             
+                                      
+                                     ↓                                         
+                 PHASE 7: CROSS-MODAL TRANSFER (TABLE → VECTOR)                
+                                                                                
+                                      
+                                     ↓                 
+                        USER_SELECTION_FILTER         
+                        Select high-identity users    
+                                     ,                 
+                                      
+                                     ↓                                         
+                    PHASE 8: VECTOR ANALYSIS (LANGUAGE)                        
+                                                                                
+                                      
+                                     ↓                 
+                        T15B_VECTOR_EMBEDDER          
+                        Embed tweets with timestamps       
+                                     ,                 
+                                      
+                                     4                   
+                                                         
+                   ↓                                  ↓            
+         SEMANTIC_DISTANCE_CALC              CLUSTERING_TOOL       
+         Track distance over time             Language evolution:    
+         Between groups: 0.45→0.84           • Rejection language increases  
+         Within A: 0.31→0.23 (converging)    • Solidarity language emerges 
+                   ,                                  ,            
+                                                         
+                                     ,                   
+                                      
+                                     ↓                                         
+                    PHASE 9: CROSS-MODAL SYNTHESIS                             
+                                                                                
+                                      
+                                     ↓                 
+                        CROSS_MODAL_ANALYZER          
+                        Integrate all modalities + time:     
+                        • Graph: Community evolution          
+                        • Table: Psychology shifts           
+                        • Vector: Language convergence            
+                        • Temporal: Process dynamics                                  
+                        Correlations:                
+                        • MCR→Influence: r=0.72    
+                        • Threat→Salience: r=0.81
+                        • Depersonalization→Polarization: lag=48hrs  
+                                     ,                 
+                                      
+                                     ↓
+                    PHASE 9.5: LLM-BASED VALIDATION
+                                                                           
+                                      
+                                     ↓
+                       T60_LLM_CONSISTENCY_CHECKER
+                       • Run extraction with GPT-4, Claude, Gemini
+                       • Compute inter-LLM agreement (κ=0.73)
+                       • Flag divergent extractions
+                       • Majority vote for entities
+                                     ,
+                                      
+                                     ↓                                         
+                    PHASE 10: AGENT-BASED SIMULATION                           
+                                                                                
+                                      
+                                     ↓                 
+                      AGENT_PARAMETERIZATION_TOOL     
+                      Create 2,506 agents with:       
+                      • Psychology profiles + trajectories           
+                      • Network positions + evolution            
+                      • Language patterns + shifts            
+                                     ,                 
+                                      
+                                     ↓                 
+                       SIMULATION_EXECUTION_TOOL      
+                       Test intervention scenarios:   
+                       • Trusted messenger: -24%      
+                       • Identity affirmation: -31%   
+                       • Direct confrontation: +12%   
+                                     ,                 
+                                      
+                                     ↓                                         
+                    PHASE 11: THEORY VALIDATION                            
+                                                                                
+                                      
+                                     ↓                 
+                       THEORY_VALIDATION_TOOL         
+                       SCT Predictions vs Findings:      
+                       ✓ MCR predicts influence     
+                       ✓ Threat triggers salience
+                       ✓ Depersonalization→uniformity     
+                       ✓ Prototype guides polarization
+                       Theory support: 4/4 predictions confirmed        
+                                     ,                 
+                                      
+                                     ↓                 
+                       INTERVENTION_RECOMMENDER       
+                       Policy recommendations:        
+                       1. Use in-group messengers     
+                       2. Affirm group identity       
+                       3. Avoid confrontation         
+                       4. Target central nodes        
+                                     ,                 
+                                      
+                                     ↓                                         
+                    PHASE 12: VISUALIZATION & REPORTING                        
+                                                                                
+                                      
+                         ,           4           ,                 
+        ↓                 ↓                       ↓                 ↓
+                                                                   
+ T54_GRAPH_VIZ   DASHBOARD_GEN       REPORT_GEN      EXPORT_TOOLS  
+ Interactive     Web interface       PDF report      CSV/JSON/LaTeX
+ network view    Real-time           With charts     For papers    
+       ,               ,                   ,               ,       
+                         4           ,           4                 
+                                      ↓
+                                                     
+                              FINAL OUTPUT:          
+                          • Executive summary        
+                          • Theory validation        
+                          • Cross-modal findings     
+                          • Temporal dynamics
+                          • LLM consensus metrics   
+                          • Policy recommendations   
+                          • Interactive visuals      
+                          • Full provenance trail   
+                                                     
+
+================================================================================
+                            CRITICAL ADDITIONS EXPLAINED
+================================================================================
+
+1. T302_ENTITY_RESOLVER (NEW - Phase 2)
+   - Handles real-world data messiness
+   - Fuzzy matching for imperfect IDs
+   - Network-based imputation for missing data
+   - Creates confidence tiers for downstream analysis
+
+2. T51_META_CONTRAST_CALCULATOR (NEW - Phase 4)
+   - ESSENTIAL for SCT validity
+   - Implements core theoretical formula
+   - Identifies prototypes mathematically
+   - Not just influence (PageRank) but theory-specific measure
+
+3. T52_TEMPORAL_ANALYZER (NEW - Phase 4.5)
+   - Tracks processes not snapshots
+   - Captures depersonalization as it happens
+   - Shows salience shifts in response to events
+   - Measures polarization trajectories
+
+4. T60_LLM_CONSISTENCY_CHECKER (NEW - Phase 9.5)
+   - Autonomous validation without humans
+   - Multi-LLM consensus approach
+   - Inter-rater reliability metrics
+   - Confidence calibration
+
+================================================================================
+                    DATA AVAILABILITY REALITY
+================================================================================
+
+Instead of assuming perfect data:
+- 7.7M tweets → 5.2M with valid user_ids
+- 2,506 profiles → 751 incomplete (30% missing)
+- Network data → Asymmetric, partial coverage
+- Temporal gaps → 15% days missing for some users
+
+Resolution strategies implemented:
+- Entity resolver handles mismatches
+- Imputation based on network homophily
+- Temporal interpolation for < 7 day gaps
+- Confidence scoring throughout
+
+================================================================================
+                    THEORY GAPS vs EXTENSIONS
+================================================================================
+
+IMPLEMENTATION GAPS (Theory specifies, we don't do):
+- Normative fit calculation (only comparative fit)
+- Personal/Human level categories (only in-group)
+- Cognitive suppression tracking (only language)
+
+THEORY EXTENSIONS (We do, theory doesn't specify):
+- Agent-based simulation for interventions
+- SEM for causal chain validation
+- Cross-modal synthesis
+- LLM consensus validation
+- Policy recommendations
+
+THEORY-ENABLING (Required but not specified):
+- Community detection (to identify groups)
+- Entity resolution (to link data)
+- Temporal analysis (to track processes)
+
+================================================================================
+
+[SCT Theory Schema remains appended as in original]

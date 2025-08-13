@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kgas-service
+  labels:
+    app: kgas-api
+    component: api
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: kgas-api
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kgas-metrics
+  labels:
+    app: kgas-api
+    component: metrics
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: http
+    protocol: TCP
+    name: metrics
+  selector:
+    app: kgas-api
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kgas-ingress
+  labels:
+    app: kgas-api
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - kgas.example.com
+    secretName: kgas-tls
+  rules:
+  - host: kgas.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kgas-service
+            port:
+              number: 8000

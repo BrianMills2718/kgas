@@ -1,0 +1,136 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Evidence files should be organized in /evidence/ directory
+/Evidence_*.md
+/*FINAL*.md
+
+# Validation files should be organized in /validation/ directory
+/validate_*.py
+/*validation*.xml
+/*validation*.yaml
+/gemini_validation_*.md
+
+# Analysis files should be organized in /analysis/ directory
+/KGAS_*.md
+/ARCHITECTURAL_*.md
+
+# Reports should be organized in /reports/ directory
+/COVERAGE_*.md
+/CLAUDE_*.md
+/DOCUMENTATION_*.md
+
+# Temporary or generated files that shouldn't be at root
+/<async_generator*
+/repomix-*.xml
+/claim*-*.xml
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Data and logs
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# ML/AI
+*.pkl
+*.h5
+*.model
+*.checkpoint
+models/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Node (for any JS/TS components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Output files (but allow specific tracked files)
+output/
+results/
+exports/
+# Allow specific JSON/CSV/XML files that should be tracked
+!config/*.json
+!config/*.xml
+!docs/**/*.json
+!docs/**/*.xml
+!*.example.json
+!*.example.xml
+!*.example.csv
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Security
+*.pem
+*.key
+*.crt
+*.p12
+
+# Archive directories (historical and experimental files)
+docs/archive/
+archive/
+archived_2025_08_01/
+archived_2025_08_02/
+
+# Exclude historical planning documents that contain conflicting visions
+docs/archive/root_cleanup/
+
+# Large information files to exclude
+docs/core/mcp_llms_full_information.txt
+
+# Keep example files
+!.env.example
+!mcp_config.example.json
+!*.example.*
+# Gemini cache (regenerable)
+.gemini-cache/
+
+# Temporary organization files  
+*ORGANIZATION*.md
+*ANALYSIS*.md
+
+# Gemini Review Tool outputs
+ gemini-review-tool/outputs/lit_review/
+lit_review/

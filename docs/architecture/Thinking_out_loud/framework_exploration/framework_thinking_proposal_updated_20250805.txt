@@ -1,0 +1,240 @@
+3.1. Research Questions for Essay 1
+The literature synthesis and theoretical construction in this essay are guided by two central research questions:
+    1. How can the fragmented landscape of social-behavioral theories of influence and persuasion be organized by their methodological capabilities into a coherent, use case-driven framework that is both analytically powerful and computationally tractable?
+    2. How can this methodology-first framework be operationalized into a Theory Meta-Schema—a standardized, machine-readable format—that enables a software system (the KGAS) to dynamically apply diverse and complex social science theories based on their proven methodological capabilities and empirical validation evidence?
+
+3.2. From "Theoretical Traditions" to "Methodological Capabilities"
+A common approach in social science is to organize theories by their academic discipline of origin—a "theoretical traditions" approach. However, for the applied, computational goal of this dissertation, such a structure is insufficient. It presents theories in static, isolated silos, focusing on their intellectual heritage rather than their analytical function. It fails to show what theories can actually do methodologically and does not align with the evidence-based, procedure-oriented nature of computational analysis.
+
+To overcome this, this dissertation adopts a methodology-first approach that prioritizes actionable procedures over abstract categorization. The goal is not to create static classifications, but a dynamic, functional framework that organizes theories by their proven methodological capabilities. This requires a new typology that organizes theories based on what they can reliably accomplish analytically and the empirical evidence supporting those capabilities.
+
+This framework is not proposed as a universal replacement for existing theoretical traditions, but as a functional typology designed specifically for the task of computational modeling. Its value is not in being 'more correct,' but in being more computable and aligning theory with the methodological requirements of the KGAS. It makes the theoretical landscape legible to both a human analyst and a machine by focusing on what theories actually do rather than what they claim to explain.
+
+3.3. A Use Case-Driven Framework for Analyzing Influence
+This essay proposes that the landscape of influence theories can be organized around five primary analytical use cases. This provides a "methodology of process" that integrates insights from empirical validation studies, computational social science, and evidence-based practice.
+
+This framework is presented not as the single 'correct' way to organize the field, but as a novel, functional typology designed specifically to meet the needs of a computational analysis system. Its value lies in its ability to organize theories by their methodological capabilities while maintaining quality standards through empirical validation evidence. Theories that serve multiple use cases will be celebrated as examples of methodological versatility rather than viewed as classification failures.
+
+The framework is built on three core principles:
+    • Methodology Determines Classification: Theories are organized by what procedures they actually provide, not abstract dimensional categories
+    • Quality-Driven Selection: Only theories with actionable methodologies and empirical validation evidence are included
+    • Use Case Organization: Theories are grouped by the analytical goals they can reliably accomplish
+
+3.4. The Five Primary Use Cases of Influence Analysis
+This essay proposes that theories of influence can be organized around five fundamental analytical use cases, each with specific methodological requirements and quality standards:
+
+    • Use Case 1: Assessment ("What's the current state?")
+        ◦ Methodology Required: Diagnostic algorithms, measurement frameworks, construct validity procedures
+        ◦ Quality Evidence: Measurement reliability, construct validity studies, cross-cultural validation
+        ◦ Example Theories: Job Characteristics Model, Cultural Values Survey, Organizational Culture Assessment
+        ◦ Output: Systematic inventory of current conditions with reliability assessments
+
+    • Use Case 2: Explanatory Analysis ("Why did this happen?")
+        ◦ Methodology Required: Explanatory mechanisms, inference procedures, logical consistency protocols
+        ◦ Quality Evidence: Internal validity studies, replication evidence, meta-analysis support
+        ◦ Example Theories: Attribution Theory, Social Identity Theory, Self-Determination Theory
+        ◦ Output: Mechanistic explanations with confidence intervals and evidence quality ratings
+
+    • Use Case 3: Intervention Design ("How do we change this?")
+        ◦ Methodology Required: Action procedures, intervention specification, implementation protocols
+        ◦ Quality Evidence: Effectiveness studies, implementation research, practical application evidence
+        ◦ Example Theories: Goal Setting Theory, Elaboration Likelihood Model, Theory of Planned Behavior
+        ◦ Output: Actionable intervention procedures with effectiveness predictions
+
+    • Use Case 4: Prediction/Forecasting ("What will happen if...?")
+        ◦ Methodology Required: Predictive algorithms, boundary condition specification, uncertainty quantification
+        ◦ Quality Evidence: Predictive validity studies, cross-validation results, forecasting accuracy
+        ◦ Example Theories: Technology Acceptance Model, Diffusion of Innovations, Prospect Theory
+        ◦ Output: Probabilistic predictions with confidence bounds and boundary conditions
+
+    • Use Case 5: Evaluation ("Did our intervention work?")
+        ◦ Methodology Required: Success criteria specification, measurement protocols, outcome assessment
+        ◦ Quality Evidence: Evaluation research, longitudinal studies, impact assessment evidence
+        ◦ Example Theories: Kirkpatrick Model, RE-AIM Framework, Theory-Based Evaluation
+        ◦ Output: Evidence-based evaluation with effect sizes and significance testing
+
+3.5. Methodological Capability Matrix: Theory Organization by Function
+Rather than forcing theories into abstract dimensional categories, this framework organizes theories by their demonstrated methodological capabilities across use cases:
+
+Table 3.1. Methodological Capability Matrix for Influence Theories
+
+Use Case | Required Methodology | High-Quality Examples | Validation Evidence
+---------|---------------------|---------------------|-------------------
+Assessment | Diagnostic algorithms, measurement frameworks | Social Identity Theory (group categorization), Organizational Culture Assessment (cultural diagnostics) | Strong construct validity (α > 0.80), cross-cultural replication
+Explanatory Analysis | Explanatory mechanisms, inference procedures | Attribution Theory (performance attribution), Framing Theory (cognitive processing) | High internal validity, meta-analysis support (d > 0.30)
+Intervention Design | Action procedures, intervention specification | Goal Setting Theory (SMART goals), Elaboration Likelihood Model (persuasion routes) | Effectiveness evidence, implementation studies
+Prediction | Predictive algorithms, boundary conditions | Technology Acceptance Model (adoption forecasting), Prospect Theory (decision prediction) | Predictive validity (R² > 0.15), cross-validation success
+Evaluation | Success criteria, outcome measurement | Kirkpatrick Model (training evaluation), RE-AIM Framework (intervention assessment) | Longitudinal evidence, impact assessment studies
+
+NOTE: Theories are classified by their primary methodological strengths while acknowledging secondary capabilities. Quality tiers are based on empirical validation evidence rather than theoretical elegance. The matrix presents validated exemplars with proven computational tractability.
+
+3.6. Making Theory Computable: The Methodology-Integrated Meta-Schema
+The use case-driven framework provides the functional model for organizing the theoretical landscape. The Theory Meta-Schema is the computational bridge that makes this framework operational. It is a standardized, machine-readable "recipe" that translates any social theory—from a simple heuristic to a complex process model—into a set of explicit methodological instructions that the Knowledge Graph Analysis System (KGAS) can execute.
+
+This is the core technical innovation that enables a computer system to "read" and apply social science theory based on methodological capabilities rather than abstract categories. By defining a theory in a file that conforms to this schema, an analyst gives the KGAS a complete blueprint for how to extract relevant information from text and what analytical operations to perform. The schema is composed of four primary components: the theory's identity (metadata), its methodological capabilities (use_case), its empirical validation (quality_evidence), and its computational procedures (algorithms).
+
+A. Metadata: The Theory's Identity
+This block captures the bibliographic identity of the theory and its relationship to other theories.
+    • citation: The full bibliographic citation for the source document, ensuring academic traceability.
+    • annotation: A concise, 1-3 sentence summary of the theory's core methodological contribution.
+    • extends: A key field that allows for methodological inheritance. A theory can be defined as an extension of another base theory's methodology (e.g., the Theory of Planned Behavior extends the Theory of Reasoned Action methodologically), allowing for efficient and relational model building.
+
+B. Use Case Classification: The Methodological Dispatch Key
+This block is mission-critical for the KGAS. It serves as a methodology-based summary that allows the system's "Agent Orchestrator" to automatically select the appropriate analytical strategy based on proven capabilities.
+    • primary_use_case: Defines the theory's strongest methodological application [Assessment, Explanatory_Analysis, Intervention_Design, Prediction, Evaluation]
+    • secondary_use_cases: Lists additional use cases the theory can support with appropriate quality caveats
+    • methodology_type: Specifies the core procedural approach (e.g., diagnostic_algorithm, explanatory_mechanism, predictive_model)
+    • quality_tier: Evidence-based rating of methodological reliability [High, Moderate, Developing]
+    • computational_requirements: Defines the primary data structure and processing requirements
+
+C. Quality Evidence: The Empirical Foundation
+This block provides the empirical validation evidence that justifies the theory's inclusion and quality rating:
+    • validation_studies: Key empirical studies supporting the theory's methodological claims
+    • meta_analysis_evidence: Summary statistics from meta-analyses (effect sizes, confidence intervals)
+    • replication_record: Success rate of replication attempts across different contexts
+    • cross_domain_validity: Evidence for the theory's performance across different application domains
+    • methodological_limitations: Explicitly acknowledged boundary conditions and failure modes
+
+D. Algorithms: The Methodological Core
+This is the main component that defines the actionable procedures of the theory itself:
+    1. Mathematical: Explicit formulas and computational procedures derived from the theory
+    2. Logical: If-then rules and inference procedures that the theory specifies
+    3. Procedural: Step-by-step methodological protocols for applying the theory
+    4. Validation: Success criteria and quality checks for proper theory application
+
+E. Use Case Specifications: The Operational Framework
+This defines how the theory operates within each use case it supports:
+    • Assessment applications: Diagnostic procedures, measurement protocols, reliability checks
+    • Explanatory applications: Mechanistic procedures, inference rules, confidence assessment
+    • Intervention applications: Action procedures, implementation protocols, effectiveness monitoring
+    • Predictive applications: Forecasting algorithms, uncertainty quantification, validation methods
+    • Evaluative applications: Outcome measurement, success criteria, impact assessment
+
+By implementing this methodology-integrated meta-schema, the dissertation moves beyond merely discussing theories to making them active, evidence-based components in a system for discourse analysis.
+
+3.7. Methodological Approach
+This essay will employ a capability-focused literature synthesis. The objective is not merely to summarize existing work but to systematically identify and validate the methodological capabilities of influence theories. The synthesis will extract proven procedures, assess empirical validation evidence, and organize theories by their demonstrated analytical capabilities rather than their abstract claims.
+
+This translation of theories into methodological specifications involves necessary trade-offs. The goal of the meta-schema is not to capture the full theoretical richness, but to extract validated, computable procedures for the specific purpose of large-scale discourse analysis. The 'in-group favoritism measurement protocol,' for example, should be understood not as a replacement for the richness of Social Identity Theory, but as a validated computational procedure that allows the system to reliably identify and quantify instances of the theorized behavior in data. This dissertation explicitly acknowledges and accepts this trade-off as a prerequisite for evidence-based computational analysis.
+
+3.7.1. A Worked Example: Operationalizing Social Identity Theory Through Methodological Capabilities
+To demonstrate the methodology-first approach, this section provides a worked example using Social Identity Theory (SIT), focusing on its proven methodological capabilities rather than abstract categorization.
+
+It is important to acknowledge that this translation emphasizes validated procedures over theoretical comprehensiveness. The goal is not to capture every aspect of SIT, but to extract its reliable, computable methodologies for large-scale analysis. Each methodological specification is grounded in empirical validation evidence rather than theoretical elegance.
+
+Step 1: Methodological Capability Assessment
+Social Identity Theory provides validated procedures for three primary use cases based on extensive empirical research:
+    • Primary: Explanatory Analysis (why group-based behaviors occur)
+    • Secondary: Assessment (measuring group identification and bias)
+    • Tertiary: Prediction (forecasting intergroup behavior patterns)
+
+Step 2: Use Case Classification
+Rather than forcing SIT into abstract dimensions, we classify it by proven methodological capabilities:
+
+JSON
+"use_case_classification": {
+  "primary_use_case": "Explanatory_Analysis",
+  "secondary_use_cases": ["Assessment", "Prediction"],
+  "methodology_type": "explanatory_mechanism",
+  "quality_tier": "High",
+  "validation_evidence": {
+    "meta_analysis_support": "r = 0.47, k = 156 studies (Mullen et al., 1992)",
+    "replication_rate": "85% successful replications across contexts",
+    "cross_domain_validity": "Validated in organizational, political, and social contexts"
+  }
+}
+
+Step 3: Algorithmic Procedures (The Methodological Core)
+We define SIT's validated computational procedures based on empirical research:
+
+Explanatory Mechanisms:
+JSON
+"explanatory_algorithms": [
+  {
+    "procedure_name": "group_categorization_analysis",
+    "description": "Identifies in-group/out-group distinctions in discourse",
+    "validation_source": "Tajfel & Turner (1979), replicated by Mullen et al. (1992)",
+    "computational_steps": [
+      "Extract group-referential language",
+      "Classify group membership indicators", 
+      "Map identity relationships"
+    ],
+    "success_criteria": "Cohen's κ > 0.60 for categorization agreement"
+  },
+  {
+    "procedure_name": "bias_measurement_protocol",
+    "description": "Quantifies in-group favoritism and out-group derogation",
+    "formula": "favoritism_score = positive_ingroup_mentions - negative_outgroup_mentions",
+    "validation_evidence": "Correlation with behavioral measures r = 0.34 (Hewstone et al., 2002)"
+  }
+]
+
+Assessment Procedures:
+JSON
+"assessment_algorithms": [
+  {
+    "procedure_name": "identity_strength_measurement",
+    "description": "Assesses strength of group identification in text",
+    "measurement_protocol": "Frequency-weighted identity language analysis",
+    "reliability_evidence": "Cronbach's α = 0.82 across contexts (Cameron, 2004)"
+  }
+]
+
+Step 4: Quality Evidence Integration
+We explicitly document the empirical foundation for each methodological claim:
+
+JSON
+"quality_evidence": {
+  "primary_validation": "Tajfel & Turner (1979) - Original theoretical and empirical foundation",
+  "meta_analysis_evidence": [
+    {
+      "study": "Mullen, Brown & Smith (1992)",
+      "finding": "In-group bias effect size d = 0.65 across 137 studies",
+      "relevance": "Supports explanatory mechanism validity"
+    }
+  ],
+  "cross_domain_replication": [
+    {
+      "domain": "Organizational behavior", 
+      "validation": "Ashforth & Mael (1989) - r = 0.41 with organizational outcomes"
+    },
+    {
+      "domain": "Political behavior",
+      "validation": "Huddy (2001) - Strong predictive validity for voting behavior"
+    }
+  ],
+  "computational_validation": [
+    {
+      "study": "Bail et al. (2018)",
+      "finding": "Automated SIT analysis correlated r = 0.56 with human coding",
+      "relevance": "Supports computational tractability"
+    }
+  ]
+}
+
+Step 5: Use Case Operational Specifications
+We define exactly how SIT operates within each supported use case:
+
+JSON
+"use_case_operations": {
+  "explanatory_analysis": {
+    "research_questions": [
+      "Why do group-based conflicts emerge in discourse?",
+      "What explains patterns of intergroup bias?"
+    ],
+    "methodological_procedure": "Apply group categorization analysis followed by bias measurement",
+    "expected_outputs": "Mechanistic explanation with effect size estimates",
+    "success_criteria": "Explanation accounts for >25% of variance in group behavior"
+  },
+  "assessment": {
+    "research_questions": [
+      "What is the current level of group identification?",
+      "How strong are intergroup biases?"
+    ],
+    "methodological_procedure": "Apply identity strength measurement and bias assessment",
+    "expected_outputs": "Quantified assessment with confidence intervals",
+    "success_criteria": "Measurement reliability α > 0.70"
+  }
+}
+
+By completing this methodology-first process, Social Identity Theory has been translated into a validated, evidence-based computational tool. The KGAS can now apply SIT's proven procedures while understanding their empirical limitations and quality boundaries. This example demonstrates the superiority of methodology-first organization over abstract dimensional classification for computational social science applications.

@@ -1,0 +1,221 @@
+# Roadmap Documentation Improvement Index
+# Created: 2025-08-05
+# Purpose: Systematic roadmap documentation cleanup and organization
+
+# ⚠️ UNCERTAINTIES TO RESOLVE FIRST:
+# 1. What is the actual current system status? (I only know documentation claims)
+# 2. Are there external references to current file paths that would break if moved?
+# 3. Should any files be preserved exactly as-is for historical reasons?
+# 4. What's the preferred level of aggressiveness for changes?
+# 5. Are there hidden dependencies between tasks that would affect ordering?
+
+# =============================================================================
+# RECOMMENDED EXECUTION ORDER
+# =============================================================================
+
+## PHASE 1: FOUNDATION (Days 1-3)
+## Goal: Establish ground truth and prevent further confusion
+
+### 1.1 Current Status Audit (Day 1)
+- [ ] Verify actual system implementation vs. ROADMAP_OVERVIEW.md claims
+  - Check if Phases A, B, C are actually complete as claimed
+  - Verify test counts (76/81 tests passing claim)
+  - Confirm theory extraction system status in /experiments/lit_review
+  - Validate which tools actually exist and work
+- [ ] Document findings in: docs/roadmap/ACTUAL_STATUS_AUDIT_20250805.md
+- [ ] Create definitive "CURRENT REALITY" baseline document
+
+### 1.2 Create Backup (Day 1)
+- [ ] Create full backup of current roadmap state
+- [ ] Archive to: docs/roadmap/ARCHIVE_BEFORE_CLEANUP_20250805/
+- [ ] Document what was archived and why
+
+### 1.3 Critical Priority Triage (Day 2)
+- [ ] Identify which initiatives are actually blocking current work
+- [ ] Separate "truly urgent" from "claimed urgent but actually future"
+- [ ] Create priority classification:
+  - BLOCKING_NOW: Actually preventing current development
+  - HIGH_CURRENT: Important for current phase
+  - FUTURE: Important but not current blockers
+  - HISTORICAL: Complete or superseded
+
+### 1.4 Phase Naming Standards (Day 3)
+- [ ] Create definitive phase naming convention document
+- [ ] Map old numbered phases to current A→D system
+- [ ] Identify files that need renaming vs. archiving vs. updating
+
+## PHASE 2: STRUCTURAL CLEANUP (Days 4-7)
+## Goal: Fix naming and organizational issues
+
+### 2.1 Phase File Standardization (Day 4)
+- [ ] Rename all phase files to consistent A→D naming
+- [ ] Update internal references within renamed files
+- [ ] Archive files that don't fit current system
+- [ ] Create redirect/mapping document for any external references
+
+### 2.2 Directory Consolidation (Day 5)
+- [ ] Merge redundant analysis directories
+  - Consolidate /analysis/ and /analysis/kgas-specific/
+  - Preserve content, eliminate structure duplication
+- [ ] Clarify /initiatives/ vs /post-mvp/ boundaries
+  - Move truly current initiatives to /initiatives/
+  - Move truly future items to /post-mvp/
+- [ ] Create clear purpose statements for each directory
+
+### 2.3 File Naming Standardization (Day 6)
+- [ ] Apply consistent naming conventions:
+  - phase-X-*.md for phase files
+  - task-X.Y-*.md for task files
+  - initiative-*.md for cross-cutting initiatives
+- [ ] Update all internal cross-references
+- [ ] Create mapping document for renamed files
+
+### 2.4 Priority Location Fixes (Day 7)
+- [ ] Move truly critical items to appropriate current locations
+- [ ] Move future items to post-mvp where they belong
+- [ ] Update ROADMAP_OVERVIEW.md to reflect corrected priorities
+
+## PHASE 3: CONTENT RECONCILIATION (Days 8-11)
+## Goal: Fix contradictory and outdated information
+
+### 3.1 Implementation Claims Audit (Day 8)
+- [ ] Review all "COMPLETE", "READY", "IMPLEMENTED" claims
+- [ ] Cross-check against actual system capabilities
+- [ ] Flag contradictions for resolution
+- [ ] Update status claims to match reality
+
+### 3.2 Timeline Information Update (Day 9)
+- [ ] Update all dates to current context (2025-08-05 baseline)
+- [ ] Remove outdated timeline estimates
+- [ ] Align timeline information with actual progress
+- [ ] Identify and update dependency chains
+
+### 3.3 Technical Specification Accuracy (Day 10)
+- [ ] Audit tool counts, performance metrics, capability claims
+- [ ] Cross-check against actual implementation
+- [ ] Update specifications to match current system
+- [ ] Flag items that need verification
+
+### 3.4 Theory Integration Status Clarification (Day 11)
+- [ ] Reconcile theory extraction documentation inconsistencies
+- [ ] Clarify experimental vs. integrated status
+- [ ] Update integration timeline to current reality
+- [ ] Align with actual MVP requirements
+
+## PHASE 4: INTEGRATION AND FINALIZATION (Days 12-14)
+## Goal: Create cohesive, cross-referenced documentation
+
+### 4.1 Cross-Reference Creation (Day 12)
+- [ ] Add proper cross-references between related documents
+- [ ] Create navigation aids between phase files and tasks
+- [ ] Link initiatives to implementation status
+- [ ] Add "Related Documents" sections where missing
+
+### 4.2 Master Index Creation (Day 13)
+- [ ] Update ROADMAP_OVERVIEW.md as single source of truth
+- [ ] Create comprehensive document index
+- [ ] Add navigation guide for finding specific information
+- [ ] Ensure all major content is discoverable
+
+### 4.3 Final Validation (Day 14)
+- [ ] Review all changes for internal consistency
+- [ ] Verify no broken internal links
+- [ ] Confirm priority alignment throughout
+- [ ] Test navigation paths for common use cases
+
+## PHASE 5: DOCUMENTATION AND HANDOFF (Day 15)
+## Goal: Document changes and establish maintenance procedures
+
+### 5.1 Change Documentation
+- [ ] Create comprehensive change log
+- [ ] Document new organization structure
+- [ ] Explain rationale for major changes
+- [ ] Create transition guide for anyone referencing old structure
+
+### 5.2 Maintenance Procedures
+- [ ] Document how to maintain organization going forward
+- [ ] Create guidelines for adding new content
+- [ ] Establish review procedures for status updates
+- [ ] Define responsibilities for keeping documentation current
+
+# =============================================================================
+# SPECIFIC FILE ACTIONS
+# =============================================================================
+
+## FILES TO RENAME (Phase 2.1):
+- phase-1-implementation.md → phase-historical-foundation.md (archive)
+- phase-2-implementation.md → phase-historical-expansion.md (archive)
+- [Need status audit to determine current phase mapping]
+
+## FILES TO MOVE (Phase 2.2):
+- bi-store-consistency-plan.md → [Need priority audit - current or post-mvp?]
+- phase-reliability/* → [Need status audit - current blocker or historical?]
+- theory-extraction-integration-plan.md → [Confirm if current MVP critical]
+
+## FILES TO MERGE (Phase 2.2):
+- /analysis/README.md + /analysis/kgas-specific/ content
+- Multiple performance tracking files
+
+## FILES NEEDING CONTENT AUDIT (Phase 3.1):
+- phase-theory-to-code-implementation-plan.md (claims vs. reality)
+- phase-reliability/README.md (blocking claims vs. current status)
+- two-layer-theory-implementation-status.md (integration requirements)
+
+# =============================================================================
+# SUCCESS CRITERIA
+# =============================================================================
+
+## Phase 1 Success:
+- [ ] Clear understanding of actual system status
+- [ ] Definitive priority classification of all initiatives
+- [ ] Safe backup of current state
+
+## Phase 2 Success:
+- [ ] Consistent naming throughout roadmap
+- [ ] Clear directory organization with defined purposes
+- [ ] No structural confusion between current/future items
+
+## Phase 3 Success:
+- [ ] All status claims match reality
+- [ ] No contradictory information between files
+- [ ] Current timeline information throughout
+
+## Phase 4 Success:
+- [ ] Easy navigation between related documents
+- [ ] ROADMAP_OVERVIEW.md serves as reliable master reference
+- [ ] No broken internal references
+
+## Phase 5 Success:
+- [ ] Clear documentation of all changes made
+- [ ] Procedures for maintaining organization
+- [ ] Smooth transition for anyone using the roadmap
+
+# =============================================================================
+# DEPENDENCIES AND RISKS
+# =============================================================================
+
+## Critical Dependencies:
+- Status audit results will determine many subsequent actions
+- Priority triage affects where files should be moved
+- External references may constrain renaming options
+
+## Key Risks:
+- Breaking external references to roadmap files
+- Losing important historical information
+- Creating new inconsistencies while fixing old ones
+- Over-reorganizing and making system harder to use
+
+## Mitigation Strategies:
+- Complete backup before any changes
+- Create mapping documents for all renames/moves
+- Validate each phase before proceeding to next
+- Conservative approach to changes without clear benefit
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+This index assumes 15 working days for complete roadmap reorganization.
+Timeline can be compressed if narrower scope is acceptable.
+Each phase builds on previous phases - order is important.
+Regular validation checkpoints prevent compound errors.
