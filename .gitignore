@@ -101,3 +101,62 @@ docs/core/mcp_llms_full_information.txt
 # Gemini Review Tool outputs
  gemini-review-tool/outputs/lit_review/
 lit_review/
+
+# Temporary database files
+*.db-shm
+*.db-wal
+
+# Analysis files from today
+all_files_list.txt
+last_*_files.txt
+august_*_files.txt
+file_history_analysis.txt
+file_summary.txt
+files_by_creation_date.txt
+uncommitted_files.txt
+check_file_history.sh
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files with secrets
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Temporary test outputs
+test_output/
+temp/
+tmp/
+EOF < /dev/null
+# Temporary database files
+*.db-shm
+*.db-wal
+
+# Analysis files from today
+all_files_list.txt
+last_*_files.txt
+august_*_files.txt
+file_history_analysis.txt
+file_summary.txt
+files_by_creation_date.txt
+uncommitted_files.txt
+check_file_history.sh
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Temporary test outputs
+test_output/
+temp/
+tmp/

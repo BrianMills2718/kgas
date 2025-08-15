@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGAS Cross-Modal Analysis - Web UI Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .results {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge.healthy {
+            background: #28a745;
+            color: white;
+        }
+        .badge.degraded {
+            background: #ffc107;
+            color: #333;
+        }
+        .badge.unhealthy {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 KGAS Cross-Modal Analysis</h1>
+        <p class="subtitle">Local web interface for document analysis and format conversion</p>
+        
+        <!-- API Status -->
+        <div class="section">
+            <h2>API Status</h2>
+            <button onclick="checkHealth()">Check Health</button>
+            <div id="healthStatus" class="status"></div>
+        </div>
+
+        <!-- Mode Recommendation -->
+        <div class="section">
+            <h2>🤖 Mode Recommendation</h2>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Analysis Task</label>
+                    <input type="text" id="task" placeholder="e.g., analyze social networks" value="extract key relationships">
+                </div>
+                <div class="form-group">
+                    <label>Data Type</label>
+                    <select id="dataType">
+                        <option value="entities_and_relationships">Entities & Relationships</option>
+                        <option value="numerical_data">Numerical Data</option>
+                        <option value="text_documents">Text Documents</option>
+                        <option value="mixed_media">Mixed Media</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Estimated Data Size</label>
+                <input type="number" id="dataSize" value="1000" min="1">
+            </div>
+            <button onclick="getRecommendation()">Get Recommendation</button>
+            <div id="recommendationResult" class="results"></div>
+        </div>
+
+        <!-- Format Conversion -->
+        <div class="section">
+            <h2>🔄 Format Conversion</h2>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Source Format</label>
+                    <select id="sourceFormat">
+                        <option value="graph">Graph</option>
+                        <option value="table">Table</option>
+                        <option value="vector">Vector</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Target Format</label>
+                    <select id="targetFormat">
+                        <option value="table">Table</option>
+                        <option value="graph">Graph</option>
+                        <option value="vector">Vector</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Input Data (JSON)</label>
+                <textarea id="inputData" rows="6" placeholder='{"nodes": [...], "edges": [...]}'>{
+  "nodes": [
+    {"id": "1", "label": "Alice", "type": "PERSON"},
+    {"id": "2", "label": "Bob", "type": "PERSON"},
+    {"id": "3", "label": "TechCorp", "type": "ORGANIZATION"}
+  ],
+  "edges": [
+    {"source": "1", "target": "3", "relationship": "WORKS_FOR"},
+    {"source": "2", "target": "3", "relationship": "WORKS_FOR"}
+  ]
+}</textarea>
+            </div>
+            <button onclick="convertData()">Convert</button>
+            <div id="conversionResult" class="results"></div>
+        </div>
+
+        <!-- Document Analysis -->
+        <div class="section">
+            <h2>📄 Document Analysis</h2>
+            <div class="form-group">
+                <label>Select Document</label>
+                <input type="file" id="documentFile" accept=".pdf,.docx,.doc,.txt,.md">
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Target Format</label>
+                    <select id="analysisFormat">
+                        <option value="graph">Graph</option>
+                        <option value="table">Table</option>
+                        <option value="vector">Vector</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Optimization Level</label>
+                    <select id="optimizationLevel">
+                        <option value="speed">Speed</option>
+                        <option value="balanced" selected>Balanced</option>
+                        <option value="quality">Quality</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="analyzeDocument()">Analyze</button>
+            <div id="analysisResult" class="results"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+
+        // Show status message
+        function showStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.className = `status ${type}`;
+            element.innerHTML = message;
+            element.style.display = 'block';
+        }
+
+        // Check API health
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const data = await response.json();
+                
+                let statusHtml = `<span class="badge ${data.status}">${data.status.toUpperCase()}</span> API is running<br><br>`;
+                statusHtml += '<strong>Services:</strong><br>';
+                
+                for (const [service, healthy] of Object.entries(data.services)) {
+                    const badge = healthy ? 'healthy' : 'unhealthy';
+                    statusHtml += `${service}: <span class="badge ${badge}">${healthy ? 'OK' : 'FAIL'}</span><br>`;
+                }
+                
+                showStatus('healthStatus', statusHtml, 'success');
+            } catch (error) {
+                showStatus('healthStatus', 
+                    `❌ Cannot connect to API. Make sure it's running:<br>
+                    <code>python run_api_server.py</code>`, 
+                    'error'
+                );
+            }
+        }
+
+        // Get mode recommendation
+        async function getRecommendation() {
+            try {
+                const data = {
+                    task: document.getElementById('task').value,
+                    data_type: document.getElementById('dataType').value,
+                    size: parseInt(document.getElementById('dataSize').value),
+                    performance_priority: 'quality'
+                };
+
+                const response = await fetch(`${API_BASE}/api/recommend`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const result = await response.json();
+                
+                document.getElementById('recommendationResult').innerHTML = `
+                    <h3>Recommendation</h3>
+                    <p><strong>Primary Mode:</strong> ${result.primary_mode}</p>
+                    <p><strong>Confidence:</strong> ${(result.confidence * 100).toFixed(1)}% (${result.confidence_level})</p>
+                    <p><strong>Reasoning:</strong> ${result.reasoning}</p>
+                    ${result.secondary_modes.length > 0 ? 
+                        `<p><strong>Alternative Modes:</strong> ${result.secondary_modes.join(', ')}</p>` : ''}
+                `;
+            } catch (error) {
+                document.getElementById('recommendationResult').innerHTML = 
+                    `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Convert data between formats
+        async function convertData() {
+            try {
+                const inputData = JSON.parse(document.getElementById('inputData').value);
+                const data = {
+                    data: inputData,
+                    source_format: document.getElementById('sourceFormat').value,
+                    target_format: document.getElementById('targetFormat').value
+                };
+
+                const response = await fetch(`${API_BASE}/api/convert`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const result = await response.json();
+                
+                document.getElementById('conversionResult').innerHTML = `
+                    <h3>Conversion Result</h3>
+                    <p><strong>Conversion Time:</strong> ${result.performance.conversion_time.toFixed(3)}s</p>
+                    <p><strong>Data Size:</strong> ${result.performance.data_size} bytes</p>
+                    <h4>Output Data:</h4>
+                    <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('conversionResult').innerHTML = 
+                    `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Analyze document
+        async function analyzeDocument() {
+            const fileInput = document.getElementById('documentFile');
+            if (!fileInput.files.length) {
+                alert('Please select a file');
+                return;
+            }
+
+            try {
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+
+                const params = new URLSearchParams({
+                    target_format: document.getElementById('analysisFormat').value,
+                    task: 'extract entities and relationships',
+                    optimization_level: document.getElementById('optimizationLevel').value,
+                    validation_level: 'standard'
+                });
+
+                const response = await fetch(`${API_BASE}/api/analyze?${params}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const result = await response.json();
+                
+                document.getElementById('analysisResult').innerHTML = `
+                    <h3>Analysis Result</h3>
+                    <p><strong>Workflow ID:</strong> ${result.workflow_id}</p>
+                    <p><strong>Selected Mode:</strong> ${result.selected_mode}</p>
+                    <h4>Results:</h4>
+                    <pre>${JSON.stringify(result.results, null, 2)}</pre>
+                    <h4>Validation:</h4>
+                    <pre>${JSON.stringify(result.validation, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('analysisResult').innerHTML = 
+                    `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Check health on load
+        window.onload = () => {
+            checkHealth();
+        };
+    </script>
+</body>
+</html>

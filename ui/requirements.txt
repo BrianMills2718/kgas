@@ -1,0 +1,13 @@
+# KGAS Web Server Requirements
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+aiofiles==23.2.1
+
+# Additional dependencies for full KGAS integration
+# (These are handled by the main project requirements)
+# neo4j==5.15.0
+# spacy==3.7.2
+# networkx==3.2.1
+# pypdf==3.17.1
