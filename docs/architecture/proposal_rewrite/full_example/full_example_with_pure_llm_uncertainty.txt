@@ -1,0 +1,480 @@
+================================================================================
+    KGAS FULL SYSTEM DAG WITH PURE LLM UNCERTAINTY ASSESSMENT
+================================================================================
+Research Question: "Why do vaccine hesitant groups reject mainstream health information?"
+Theory: Self-Categorization Theory (Turner & Oakes, 1986)
+Dataset: 7.7M tweets from 2,506 users with psychological profiles
+================================================================================
+
+KEY CHANGE: All uncertainty assessment now uses pure LLM intelligence
+- No magic numbers or arbitrary formulas
+- Single UniversalUncertainty schema everywhere
+- LLM contextually assesses uncertainty at each step
+- Natural uncertainty reduction through evidence aggregation
+
+================================================================================
+                    THEORY SCHEMA FLOW ARCHITECTURE
+================================================================================
+
+META-SCHEMA v13 (Universal template for any theory)
+    ↓ [Applied to Turner 1986 paper]
+THEORY SCHEMA (SCT-specific: entities, relations, algorithms)
+    ↓ [Applied to COVID discourse data]
+OPERATIONALIZED SCHEMA (Actual data instances)
+    ↓ [Computational analysis]
+FINDINGS (Validated patterns & correlations)
+
+================================================================================
+
+                                                                             
+                         PHASE 1: THEORY EXTRACTION                          
+                                                                             
+                                      
+                                     ↓                 
+                       T302_THEORY_EXTRACTION          
+                       Extract SCT from Turner 1986    
+                       Output: theory_schema.json
+                       
+                       UNCERTAINTY ASSESSMENT:
+                       Context: {
+                         "type": "theory_extraction",
+                         "source": "Turner & Oakes 1986 PDF",
+                         "extraction_method": "LLM with theory meta-schema",
+                         "completeness": "Full paper processed",
+                         "ambiguities": ["Normative fit calculation details sparse"]
+                       }
+                       Result: UniversalUncertainty(
+                         uncertainty=0.15,
+                         reasoning="Clear theoretical formulas, some implementation details unspecified"
+                       )
+                                     ⬇
+                                      
+                                     ↓                                         
+                      PHASE 2: MULTI-DOCUMENT INGESTION                        
+                                                                                
+                                      
+                         ⬇           ⬇           ⬇                 
+        ↓                 ↓                       ↓                 ↓
+                                                                   
+ T01_PDF_LOAD    T05_CSV_LOAD        T06_JSON_LOAD   T13_WEB_SCRAPE
+ COVID tweets    User psychol.       Network data    Health sources
+ 
+ UNCERTAINTY ASSESSMENTS (Individual Tools):
+ 
+ T01: uncertainty=0.10, reasoning="Clean PDF extraction, clear text boundaries"
+ T05: uncertainty=0.08, reasoning="Structured CSV, 30% missing but columns clear"  
+ T06: uncertainty=0.12, reasoning="JSON well-formed, some nested structures"
+ T13: uncertainty=0.25, reasoning="Web scraping inherently noisy, format variations"
+ 
+       ⬇               ⬇                   ⬇               ⬇       
+                         ⬇           ⬇           ⬇                 
+                                      ↓
+                                                     
+                          T300_SCHEMA_DISCOVERER
+                          
+                          UNCERTAINTY ASSESSMENT:
+                          Context: {
+                            "type": "schema_discovery_aggregation",
+                            "evidences": [
+                              {"source": "T01", "uncertainty": 0.10},
+                              {"source": "T05", "uncertainty": 0.08},
+                              {"source": "T06", "uncertainty": 0.12},
+                              {"source": "T13", "uncertainty": 0.25}
+                            ],
+                            "discovery_results": "All schemas successfully mapped",
+                            "conflicts": "None - schemas complement each other"
+                          }
+                          Result: UniversalUncertainty(
+                            uncertainty=0.12,  # LLM reduces from 0.14 average
+                            reasoning="4 sources provide complementary schemas, no conflicts",
+                            evidence_count=4
+                          )
+                                     ⬇
+                                      
+                                     ↓
+                          T301_SCHEMA_MAPPER
+                          
+                          UNCERTAINTY ASSESSMENT:
+                          Context: {
+                            "type": "schema_mapping",
+                            "upstream_uncertainty": 0.12,
+                            "mapping_complexity": "Multiple identity fields to resolve",
+                            "ambiguous_mappings": 3,
+                            "total_mappings": 47
+                          }
+                          Result: UniversalUncertainty(
+                            uncertainty=0.18,
+                            reasoning="Inherits 0.12 from discovery, adds 0.06 for ambiguous mappings"
+                          )
+                                     ⬇
+                                      
+                                     ↓
+                          T302_MULTI_DOC_FUSION
+                          
+                          UNCERTAINTY ASSESSMENT:
+                          Context: {
+                            "type": "data_fusion",
+                            "upstream_uncertainty": 0.18,
+                            "join_success_rate": 0.89,
+                            "unmatched_records": 423,
+                            "total_records": 7700000
+                          }
+                          Result: UniversalUncertainty(
+                            uncertainty=0.22,
+                            reasoning="Schema mapping uncertainty plus 11% unmatched records"
+                          )
+                                     ⬇
+                                      
+                                     ↓                                         
+                    PHASE 3: THEORY-GUIDED EXTRACTION                          
+                                                                                
+                                      
+                                     ↓                 
+                      T23C_ONTOLOGY_AWARE_EXTRACTOR
+                      
+                      UNCERTAINTY ASSESSMENT:
+                      Context: {
+                        "type": "theory_guided_extraction",
+                        "upstream_uncertainty": 0.22,
+                        "theory_clarity": "SCT concepts well-defined",
+                        "extraction_confidence": {
+                          "self_category": 0.85,
+                          "prototype": 0.92,
+                          "depersonalization": 0.73
+                        }
+                      }
+                      Result: UniversalUncertainty(
+                        uncertainty=0.25,
+                        reasoning="Data fusion uncertainty plus subjective concept mapping"
+                      )
+                                     ⬇
+                                      
+                                     ↓
+                     PHASE 4: GRAPH CONSTRUCTION & ANALYSIS
+                                                                                
+                                      
+                   [Graph construction tools with individual uncertainties]
+                   
+                   CRITICAL ISSUE #1: LOCALIZED UNCERTAINTY
+                   ================================================
+                   
+                   T50_COMMUNITY_DETECT:
+                   Context: {
+                     "type": "community_detection",
+                     "upstream_uncertainty": 0.25,  # From extraction
+                     "modularity": 0.72,
+                     "graph_completeness": 1.0,  # Has all edges needed
+                     "note": "Missing psychology scores don't affect topology"
+                   }
+                   Result: UniversalUncertainty(
+                     uncertainty=0.15,  # LOWER than upstream!
+                     reasoning="High modularity, stable communities. Graph structure clear despite extraction uncertainty"
+                   )
+                   
+                   ISSUE: LLM correctly identifies that community detection doesn't need
+                   psychology scores, so uncertainty DECREASES. This is good BUT requires
+                   LLM to understand data dependencies deeply.
+                                     ⬇
+                                      
+                                     ↓
+                       T51_META_CONTRAST_CALCULATOR
+                       
+                       CRITICAL ISSUE #2: MISSING DATA IMPACT
+                       ================================================
+                       
+                       Context: {
+                         "type": "mcr_calculation",
+                         "upstream_uncertainties": {
+                           "communities": 0.15,
+                           "psychology": 0.08  # From CSV load
+                         },
+                         "coverage": 0.70,  # 30% users missing psych scores
+                         "theory_requirement": "MCR needs position vectors",
+                         "implementation_choice": "Using text embeddings as proxy"
+                       }
+                       Result: UniversalUncertainty(
+                         uncertainty=0.30,
+                         reasoning="MCR only calculated for 70% of users, text embeddings are indirect measure",
+                         data_coverage=0.70
+                       )
+                       
+                       ISSUE: This is a key theoretical construct but has high uncertainty
+                       due to missing data. Does this contaminate downstream analyses?
+                                     ⬇
+                                      
+                                     ↓
+                    PHASE 4.5: TEMPORAL DYNAMICS ANALYSIS
+                                                                           
+                                      
+                                     ↓
+                       T52_TEMPORAL_ANALYZER
+                       
+                       CRITICAL ISSUE #3: TEMPORAL AGGREGATION
+                       ================================================
+                       
+                       Context: {
+                         "type": "temporal_aggregation",
+                         "upstream_uncertainty": 0.30,  # From MCR
+                         "time_windows": ["Daily", "Weekly", "Monthly"],
+                         "evidences_per_window": {
+                           "daily": "1-50 tweets",
+                           "weekly": "10-350 tweets",
+                           "monthly": "50-1500 tweets"
+                         },
+                         "pattern_consistency": "237 I→We transitions detected"
+                       }
+                       Result: UniversalUncertainty(
+                         uncertainty=0.22,  # Reduced from 0.30
+                         reasoning="Multiple time windows with consistent patterns reduce uncertainty. 237 transitions provide strong evidence",
+                         evidence_count=237
+                       )
+                       
+                       BENEFIT: LLM naturally reduces uncertainty when seeing
+                       consistent patterns across multiple time windows!
+                                     ⬇
+                                      
+                                     ↓                                         
+                 PHASE 5-8: CROSS-MODAL ANALYSIS FLOW                 
+                                                                                
+                 CRITICAL ISSUE #4: CROSS-MODAL CONVERGENCE
+                 ================================================
+                 
+                 Graph Analysis: uncertainty=0.15 (clear communities)
+                 Table Analysis: uncertainty=0.28 (30% missing psychology)
+                 Vector Analysis: uncertainty=0.18 (complete text data)
+                 
+                 CROSS_MODAL_ANALYZER Assessment:
+                 Context: {
+                   "type": "cross_modal_synthesis",
+                   "modalities": {
+                     "graph": {"uncertainty": 0.15, "finding": "3 distinct communities"},
+                     "table": {"uncertainty": 0.28, "finding": "Identity→Rejection confirmed"},
+                     "vector": {"uncertainty": 0.18, "finding": "Language convergence detected"}
+                   },
+                   "convergence": "All three modalities show group polarization"
+                 }
+                 Result: UniversalUncertainty(
+                   uncertainty=0.18,  # Not just average!
+                   reasoning="Strong convergence across modalities validates findings despite table uncertainty",
+                   evidence_count=3
+                 )
+                 
+                 BENEFIT: LLM recognizes convergent evidence naturally!
+                                     ⬇
+                                      
+                                     ↓
+                    PHASE 9.5: LLM-BASED VALIDATION
+                                                                           
+                    CRITICAL ISSUE #5: MULTIPLE LLM AGREEMENT
+                    ================================================
+                    
+                    T60_LLM_CONSISTENCY_CHECKER:
+                    Context: {
+                      "type": "multi_llm_validation",
+                      "upstream_uncertainty": 0.18,
+                      "llm_assessments": [
+                        {"model": "GPT-4", "entities_found": 2834},
+                        {"model": "Claude", "entities_found": 2791},
+                        {"model": "Gemini", "entities_found": 2812}
+                      ],
+                      "inter_llm_agreement": 0.73,
+                      "divergent_cases": 127
+                    }
+                    Result: UniversalUncertainty(
+                      uncertainty=0.15,  # Reduced from 0.18
+                      reasoning="High inter-LLM agreement (κ=0.73) increases confidence",
+                      evidence_count=3
+                    )
+                    
+                    BENEFIT: Multiple independent LLM assessments naturally
+                    reduce uncertainty when they agree!
+                                     ⬇
+                                      
+                                     ↓                                         
+                    PHASE 10: AGENT-BASED SIMULATION                           
+                                                                                
+                    CRITICAL ISSUE #6: SIMULATION PARAMETER UNCERTAINTY
+                    ================================================
+                    
+                    AGENT_PARAMETERIZATION_TOOL:
+                    Context: {
+                      "type": "agent_parameterization",
+                      "upstream_uncertainty": 0.15,
+                      "parameter_sources": {
+                        "psychology": {"coverage": 0.70, "uncertainty": 0.28},
+                        "network": {"coverage": 1.0, "uncertainty": 0.15},
+                        "language": {"coverage": 1.0, "uncertainty": 0.18}
+                      },
+                      "imputation_required": "30% agents need psychology imputation"
+                    }
+                    Result: UniversalUncertainty(
+                      uncertainty=0.35,  # Increases!
+                      reasoning="Simulation amplifies uncertainty from imputed parameters",
+                      data_coverage=0.70
+                    )
+                    
+                    ISSUE: Simulation uncertainty is high due to parameter imputation.
+                    Does this invalidate intervention testing?
+                                     ⬇
+                                      
+                                     ↓
+                       SIMULATION_EXECUTION_TOOL
+                       
+                       CRITICAL ISSUE #7: INTERVENTION TESTING
+                       ================================================
+                       
+                       Context: {
+                         "type": "intervention_simulation",
+                         "parameter_uncertainty": 0.35,
+                         "scenarios_tested": 3,
+                         "runs_per_scenario": 100,
+                         "results": {
+                           "trusted_messenger": {"mean": -0.24, "std": 0.08},
+                           "identity_affirmation": {"mean": -0.31, "std": 0.12},
+                           "direct_confrontation": {"mean": +0.12, "std": 0.05}
+                         },
+                         "pattern": "Consistent direction across all runs"
+                       }
+                       Result: UniversalUncertainty(
+                         uncertainty=0.28,  # Reduced from 0.35
+                         reasoning="100 runs per scenario show consistent patterns despite parameter uncertainty",
+                         evidence_count=300  # 100 runs × 3 scenarios
+                       )
+                       
+                       BENEFIT: Multiple simulation runs reduce uncertainty!
+                                     ⬇
+                                      
+                                     ↓                                         
+                    PHASE 11: THEORY VALIDATION                            
+                                                                                
+                                      
+                                     ↓                 
+                       THEORY_VALIDATION_TOOL
+                       
+                       FINAL UNCERTAINTY ASSESSMENT:
+                       ================================================
+                       
+                       Context: {
+                         "type": "theory_validation_aggregation",
+                         "theory_predictions": 4,
+                         "confirmed_predictions": 4,
+                         "evidence_sources": {
+                           "mcr_influence": {"r": 0.72, "uncertainty": 0.30},
+                           "threat_salience": {"r": 0.81, "uncertainty": 0.22},
+                           "depersonalization": {"detected": true, "uncertainty": 0.22},
+                           "prototype_polarization": {"confirmed": true, "uncertainty": 0.28}
+                         },
+                         "cross_modal_convergence": true,
+                         "llm_consensus": 0.73,
+                         "simulation_consistency": true
+                       }
+                       Result: UniversalUncertainty(
+                         uncertainty=0.20,  # Final system uncertainty
+                         reasoning="All 4 theory predictions confirmed across multiple modalities and validation methods. Convergent evidence from graph, table, vector analyses plus simulation reduces overall uncertainty",
+                         evidence_count=7  # 4 predictions + 3 modalities
+                       )
+
+================================================================================
+                    CRITICAL ANALYSIS: WHERE PURE LLM APPROACH STRUGGLES
+================================================================================
+
+POTENTIAL ISSUES IDENTIFIED:
+
+1. **DEPENDENCY UNDERSTANDING REQUIRED**
+   - LLM must understand that community detection doesn't need psychology scores
+   - Requires deep understanding of tool dependencies
+   - Risk: LLM might propagate uncertainty unnecessarily
+
+2. **LOCALIZED VS GLOBAL UNCERTAINTY**
+   - System relies on LLM to recognize when uncertainty is localized
+   - Example: 30% missing psychology doesn't affect graph topology
+   - Risk: LLM might not always make these distinctions correctly
+
+3. **AGGREGATION LOGIC CONSISTENCY**
+   - Different contexts require different aggregation approaches
+   - Sometimes average is appropriate, sometimes not
+   - Risk: LLM reasoning might be inconsistent across similar cases
+
+4. **SIMULATION AMPLIFICATION**
+   - LLM correctly identifies that simulation amplifies uncertainty
+   - But then reduces it with multiple runs
+   - Risk: Complex reasoning chain that LLM might not always follow
+
+5. **NO MATHEMATICAL GUARANTEES**
+   - Pure LLM approach doesn't guarantee uncertainty will decrease with evidence
+   - Relies entirely on LLM's understanding of evidence aggregation
+   - Risk: Edge cases where LLM doesn't reduce uncertainty appropriately
+
+6. **PROMPT ENGINEERING CRITICAL**
+   - System behavior entirely dependent on assessment prompts
+   - Small prompt changes could dramatically alter uncertainty assessments
+   - Risk: Fragility to prompt variations
+
+7. **CROSS-LLM CONSISTENCY**
+   - Different LLMs might assess uncertainty very differently
+   - No calibration between models
+   - Risk: Results vary significantly with model choice
+
+================================================================================
+                    BENEFITS OF PURE LLM APPROACH IN THIS EXAMPLE
+================================================================================
+
+CLEAR BENEFITS:
+
+1. **NATURAL EVIDENCE AGGREGATION**
+   - 237 temporal transitions naturally reduce uncertainty
+   - 100 simulation runs per scenario reduce uncertainty
+   - 3 convergent modalities reduce uncertainty
+   - No magic formulas needed!
+
+2. **CONTEXT-AWARE ASSESSMENT**
+   - LLM understands simulation amplifies uncertainty
+   - Recognizes when missing data doesn't matter (graph topology)
+   - Sees pattern consistency as uncertainty reduction
+
+3. **TRANSPARENT REASONING**
+   - Every assessment includes clear explanation
+   - Can debug why uncertainty increased or decreased
+   - Reasoning chain is auditable
+
+4. **HANDLES COMPLEX INTERACTIONS**
+   - Cross-modal convergence naturally recognized
+   - Multiple validation methods strengthen confidence
+   - Theory confirmation across methods reduces uncertainty
+
+5. **NO ARBITRARY THRESHOLDS**
+   - No magic numbers for "enough evidence"
+   - No fixed formulas for aggregation
+   - Adapts to context naturally
+
+================================================================================
+                    RECOMMENDATIONS FOR IMPLEMENTATION
+================================================================================
+
+1. **PROMPT TEMPLATES CRITICAL**
+   - Need consistent prompt structure for similar operations
+   - Include examples of when uncertainty should decrease
+   - Make aggregation logic explicit in prompts
+
+2. **VALIDATION PATTERN**
+   - Always test with multiple LLMs
+   - Check that uncertainty decreases with convergent evidence
+   - Verify localized uncertainty is handled correctly
+
+3. **DOCUMENTATION REQUIREMENTS**
+   - Every uncertainty assessment must include full context
+   - Reasoning must explain increases and decreases
+   - Track patterns for prompt improvement
+
+4. **FALLBACK STRATEGIES**
+   - If LLM doesn't reduce uncertainty with clear evidence, flag for review
+   - Consider hybrid approach for critical aggregations
+   - Monitor for consistency across assessments
+
+5. **TESTING SCENARIOS**
+   - Test with varying amounts of missing data
+   - Verify cross-modal convergence reduces uncertainty
+   - Check temporal aggregation behavior
+   - Validate simulation uncertainty handling
+
+================================================================================

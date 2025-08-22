@@ -1,0 +1,213 @@
+# Annex D: Human Subjects Protection Considerations
+
+## D.1 Research Classification and Regulatory Determination
+
+This dissertation does not constitute human subjects research as defined under 45 CFR 46.102(e)(1). The research involves analysis of publicly available online discourse and documents using the Knowledge Graph Analysis System (KGAS), without interaction with or collection of identifiable private information from living individuals.
+
+### Primary Data Sources
+- **Kunst et al. (2024) Dataset**: Pre-existing, publicly released dataset with de-identified user information
+- **Public Social Media Content**: Twitter/X posts already in public domain
+- **Academic Literature**: Published papers and theoretical frameworks
+- **Public Documents**: Policy statements and communications
+
+### Regulatory Status
+The research qualifies as "Not Human Subjects Research" under federal regulations because:
+1. No interaction or intervention with individuals occurs
+2. No identifiable private information is collected
+3. Analysis focuses on publicly available content
+4. Pre-existing datasets contain no personally identifiable information (PII)
+
+## D.2 Data Protection and Privacy Safeguards
+
+### Public Domain Data Handling
+All analyzed content originates from public sources with no expectation of privacy:
+- Social media posts from public accounts
+- Published academic literature
+- Public policy documents
+- Pre-anonymized research datasets
+
+### Identity Protection Measures
+The system implements technical safeguards against re-identification:
+- No attempts to de-anonymize users or triangulate identity
+- No linking of behavioral content to personally identifiable information
+- No collection of demographic metadata beyond dataset provisions
+- No harvesting of user credentials or contact information
+
+### Data Retention and Storage
+- Public content stored only for analytical processing
+- No persistent storage of user identifiers
+- Derived analytical results contain only aggregate patterns
+- Individual-level estimates used solely for correlation with provided scales
+
+## D.3 Subject Matter Expert Consultation
+
+### Internal Review Process
+Informal consultation with RAND internal staff may occur for:
+- System usability assessment
+- Analytical capability evaluation
+- Interpretation validity checking
+- Tool functionality feedback
+
+### SME Participation Parameters
+- Limited to RAND staff in professional capacity
+- No systematic data collection about SMEs
+- No identifiable feedback recording
+- No generalizable conclusions about human performance
+- Informal, non-systematic engagement only
+
+### Documentation Requirements
+If SME consultation evolves to systematic evaluation:
+- Modification submission to HSPC required
+- Full review process initiated
+- No progression until approval secured
+
+## D.4 Vulnerable Populations and Special Protections
+
+### Population Exclusions
+The research explicitly excludes:
+- Direct engagement with vulnerable populations (Subparts B-D of 45 CFR 46)
+- Collection from minors, prisoners, or pregnant women
+- Cognitively impaired individuals
+- Economically or educationally disadvantaged persons
+
+### Content Analysis Considerations
+While analyzing public discourse may include content from diverse populations:
+- Analysis focuses on aggregate patterns, not individuals
+- No targeting of specific vulnerable groups
+- No attempts to identify individual characteristics
+- Findings reported at population level only
+
+## D.5 Consent Procedures and Waivers
+
+### Consent Not Required
+Under current design, no consent procedures necessary because:
+- No human subjects involvement
+- Public domain data only
+- No interaction with individuals
+- No collection of private information
+
+### Future Consent Contingencies
+If project scope expands to include human subjects:
+- Active informed consent required (no passive/implied consent per RAND policy)
+- Waiver criteria must meet 45 CFR 46.116(f) requirements
+- Documentation through RHINO system
+- CITI training required for research team
+
+## D.6 Risk Assessment and Mitigation
+
+### Minimal Risk Determination
+Even if reclassified as human subjects research, the project presents minimal risk:
+- No greater than everyday activities
+- No physical, psychological, or social harm
+- No economic or legal risks
+- No breach of confidentiality possible with public data
+
+### Potential Risk Scenarios
+**Inference Risk**: Aggregate patterns might reflect on communities
+- Mitigation: Report only population-level findings
+- Avoid stigmatizing language
+- Focus on theoretical validation, not group characterization
+
+**Misuse Risk**: Findings could be misinterpreted
+- Mitigation: Clear limitations statements
+- Emphasis on proof-of-concept nature
+- No individual prediction claims
+
+## D.7 Compliance and Oversight Framework
+
+### Institutional Requirements
+The research adheres to:
+- RAND Policy on Protection of Human Subjects
+- HSPC Standard Operating Procedures
+- Federalwide Assurance (FWA00003425)
+- IRB Registration (IRB00000051)
+- DoD Addendum (F50389) where applicable
+
+### Screening and Review Process
+1. **Initial Screening**: Submit to HSPC via RHINO system
+2. **Determination**: Confirm "Not Human Subjects Research" status
+3. **Documentation**: Maintain determination letter
+4. **Monitoring**: Report any scope changes immediately
+
+### Modification Triggers
+HSPC notification required if:
+- Systematic SME evaluation planned
+- Private or restricted datasets integrated
+- External participants engaged
+- Identifiable information collection begins
+- Funding requires IRB assurance
+
+## D.8 Large Language Model Considerations
+
+### LLM Usage in Research
+The system employs LLMs for theory extraction and analysis:
+- No human-generated prompts containing PII
+- No training on identifiable data
+- Output validation against public sources only
+- No generation of synthetic human data
+
+### Ethical AI Practices
+- Transparency in LLM usage and limitations
+- No deceptive practices or misrepresentation
+- Clear attribution of LLM-generated content
+- Validation of LLM outputs against established theory
+
+## D.9 Data Safeguarding Plan Elements
+
+### Technical Safeguards
+- Secure storage on RAND-approved systems
+- Access controls limiting data to research team
+- No cloud storage of potentially sensitive derivatives
+- Regular security updates and patches
+
+### Administrative Safeguards
+- Team training on data protection
+- Clear roles and responsibilities
+- Incident response procedures
+- Regular compliance audits
+
+### Physical Safeguards
+- Controlled access to research facilities
+- Secure disposal of any printed materials
+- Equipment encryption and password protection
+- Clean desk policy for sensitive materials
+
+## D.10 Reporting and Documentation
+
+### Required Documentation
+- HSPC screening determination letter
+- Data source documentation
+- SME consultation records (if applicable)
+- Any adverse event reports (unlikely given design)
+
+### Transparency Requirements
+- Clear description of data sources in publications
+- Acknowledgment of public domain status
+- Limitations on generalizability
+- No claims beyond analytical scope
+
+### Future Modifications
+Should project scope change to involve human subjects:
+1. Submit modification through RHINO
+2. Complete CITI training for team members
+3. Develop informed consent documents
+4. Create participant-facing materials
+5. Establish data monitoring plan
+6. Await HSPC approval before proceeding
+
+## D.11 Annual Review and Continuing Compliance
+
+### Annual Requirements
+Even as "Not Human Subjects Research":
+- Annual confirmation of unchanged status
+- Review of any scope creep
+- Update of team member training
+- Verification of continued compliance
+
+### Quality Assurance
+- Internal audits of data handling practices
+- Review of analytical outputs for identification risks
+- Validation of continued public domain status
+- Documentation of any consultations or feedback
+
+This framework ensures comprehensive protection of human subjects while enabling innovative computational social science research within appropriate ethical and regulatory boundaries.
