@@ -160,3 +160,5 @@ __pycache__/
 test_output/
 temp/
 tmp/
+# never track datasets again
+data/datasets/
