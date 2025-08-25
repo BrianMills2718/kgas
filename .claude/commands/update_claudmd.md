@@ -10,6 +10,7 @@ Every CLAUDE.md must include:
 - **Use Test Driven Design where possible.
 ### 2. Codebase Structure Section (Mandatory)  
 Concisely document:
+- All relevant planning and documentation files
 - Key entry points and main orchestration files
 - Module organization and responsibilities
 - Important integration points (ResourceOrchestrator, healing_integration.py, etc.)
