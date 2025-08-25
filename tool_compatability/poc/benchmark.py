@@ -310,9 +310,9 @@ class PerformanceBenchmark:
                     times_compat.append(time.perf_counter() - start)
         
         results = {
-            "tool_lookup_us": statistics.mean(times_lookup) * 1_000_000,
-            "chain_discovery_us": statistics.mean(times_chain) * 1_000_000,
-            "compatibility_check_us": statistics.mean(times_compat) * 1_000_000
+            "tool_lookup_us": statistics.mean(times_lookup) * 1_000_000 if times_lookup else 0,
+            "chain_discovery_us": statistics.mean(times_chain) * 1_000_000 if times_chain else 0,
+            "compatibility_check_us": statistics.mean(times_compat) * 1_000_000 if times_compat else 0
         }
         
         print(f"\nResults:")

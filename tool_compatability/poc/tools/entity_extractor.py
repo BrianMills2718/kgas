@@ -12,8 +12,20 @@ from pydantic import BaseModel, Field
 import logging
 from datetime import datetime
 import hashlib
+from pathlib import Path
 
 import litellm  # REQUIRED - fail fast if not available
+
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    # Look for .env in project root (Digimons directory)
+    env_path = Path(__file__).resolve().parents[3] / '.env'
+    if env_path.exists():
+        load_dotenv(env_path)
+except ImportError:
+    # dotenv not installed, rely on environment variables being set
+    pass
 
 from ..base_tool import BaseTool
 from ..data_types import DataType, DataSchema

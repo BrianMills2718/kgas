@@ -39,17 +39,20 @@ tool_compatability/poc/
 ├── registry.py           # Tool registry with NetworkX chain discovery
 ├── tools/
 │   ├── text_loader.py    # ✅ TESTED: FILE → TEXT
-│   ├── entity_extractor.py # ❌ NOT TESTED: TEXT → ENTITIES (needs Gemini)
-│   └── graph_builder.py  # ❌ NOT TESTED: ENTITIES → GRAPH (needs Neo4j)
+│   ├── entity_extractor.py # ✅ NOW WORKING: TEXT → ENTITIES (Gemini API key in .env)
+│   └── graph_builder.py  # ✅ TESTED: ENTITIES → GRAPH (Neo4j working)
 └── tests/
-    ├── test_recovery.py  # ❌ BROKEN: AttributeError on tool_id
-    ├── test_schema.py    # ❌ BROKEN: PydanticUserError on Enum
-    └── benchmark.py      # ❌ BROKEN: StatisticsError on empty list
+    ├── test_recovery.py  # ✅ FIXED: Runs successfully
+    ├── test_schema.py    # ✅ FIXED: Runs successfully
+    └── benchmark.py      # ✅ FIXED: Runs successfully
 ```
 
 ### Integration Points
-- **Gemini API**: via `litellm` in EntityExtractor (requires GEMINI_API_KEY)
-- **Neo4j**: via `neo4j-driver` in GraphBuilder (requires Docker container)
+- **Gemini API**: via `litellm` in EntityExtractor
+  - **IMPORTANT**: API key available in `/home/brian/projects/Digimons/.env`
+  - EntityExtractor now auto-loads from .env file via python-dotenv
+  - No need to export GEMINI_API_KEY manually
+- **Neo4j**: via `neo4j-driver` in GraphBuilder (Docker container running)
 - **No ResourceOrchestrator** in this POC (different project component)
 
 ---
