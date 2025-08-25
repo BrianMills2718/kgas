@@ -1,0 +1,1 @@
+methodically ultrathink about the best plan to resolve these issues but don't act

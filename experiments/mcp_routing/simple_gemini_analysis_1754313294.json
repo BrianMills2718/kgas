@@ -1,0 +1,1403 @@
+{
+  "test_summary": {
+    "model_tested": "gemini-2.5-flash",
+    "total_duration_seconds": 394.87603974342346,
+    "cognitive_load_tests": 6,
+    "methodology_tests": 16,
+    "success_rate": 1.0,
+    "completion_timestamp": 1754313294.7387981
+  },
+  "cognitive_load_analysis": [
+    {
+      "tool_count": 10,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 46.08013153076172,
+      "selection_success": true,
+      "selected_tools": [
+        "chunk_text_semantic",
+        "extract_entities_llm_gpt4",
+        "extract_entities_spacy_md",
+        "query_graph_path",
+        "export_csv"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are typically long documents. This tool is essential for breaking down the full text into manageable, contextually relevant chunks. This pre-processing step optimizes the input for subsequent large language model (LLM) based extraction, ensuring the LLM receives sufficient context without exceeding token limits.",
+        "This is the core tool for the task. Given the 'high complexity' and the need to extract specific, nuanced entities like 'methodologies', 'datasets', and 'performance metrics' along with their 'relationships', a powerful LLM like GPT-4 is indispensable. It can be prompted to accurately identify these domain-specific entities and infer the complex relationships between them from unstructured text, effectively generating the data that forms the knowledge graph.",
+        "While GPT-4 handles complex, targeted extraction, SpaCy's medium model can quickly identify general named entities (e.g., organizations, locations, general concepts) that might complement the LLM's highly focused extraction. This provides a broader, richer base of information for the knowledge graph without over-relying on the more expensive GPT-4 for common entity types.",
+        "Once entities and relationships are extracted (conceptually forming the knowledge graph data from the LLM's output), this tool is crucial for 'analyzing' the created knowledge graph. Although its input is specified as 'graph_ref' and no explicit 'create_graph' tool exists, it is assumed that the structured output from 'extract_entities_llm_gpt4' (e.g., a list of triples) can be implicitly interpreted or programmatically converted into a format suitable for graph queries for the purpose of analysis.",
+        "This tool is necessary for outputting the extracted knowledge (entities and relationships) or the results of graph queries. Exporting to CSV provides a universal, structured format for storing, sharing, or further processing the derived insights from the academic papers."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_match": 0.0,
+        "true_positives": 0,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.85,
+      "error": null
+    },
+    {
+      "tool_count": 25,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 19.06424856185913,
+      "selection_success": true,
+      "selected_tools": [
+        "chunk_text_semantic",
+        "extract_entities_llm_gpt4",
+        "classify_relationship_types",
+        "analyze_graph_centrality",
+        "visualize_network"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are typically long documents. This tool is essential for breaking down the full text into meaningful, context-preserving chunks, which is crucial for subsequent accurate entity and relationship extraction by advanced models like LLMs.",
+        "Given the 'high complexity' and the specific nature of the entities to be extracted (methodologies, datasets, performance metrics), a highly capable and flexible LLM-based extractor like GPT-4 is optimal. It can identify and categorize these nuanced concepts more effectively than general or domain-specific rule-based extractors.",
+        "To 'create knowledge graph with relationships,' it is imperative to identify how the extracted entities (methodologies, datasets, metrics) relate to each other. This tool directly addresses the core requirement of establishing connections, such as 'methodology X uses dataset Y' or 'dataset Y achieved metric Z'.",
+        "After extracting entities and relationships, a knowledge graph is formed. This tool performs a fundamental analysis on the graph, identifying key nodes (e.g., most central methodologies or datasets). This directly supports the 'analyze academic research paper' aspect by revealing important components of the research.",
+        "To effectively 'create knowledge graph with relationships' and make the analysis comprehensible, a visual representation is highly valuable. This tool allows for the clear presentation of the extracted entities and their relationships, making the knowledge graph tangible and easy to interpret for further analysis or sharing."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_match": 0.0,
+        "true_positives": 0,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 17.1521954536438,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_semantic",
+        "extract_entities_scientific",
+        "classify_relationship_types",
+        "build_graph_relationships"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly in PDF format. This tool is essential for ingesting the raw content of the papers into the processing pipeline.",
+        "Academic papers are typically long documents. Semantic chunking ensures that text is broken down into meaningful segments, preserving context for accurate entity and relationship extraction, which is crucial for detailed analysis of methodologies, datasets, and performance metrics.",
+        "Given the domain is 'academic_research', this specialized entity extraction tool is optimally suited to identify domain-specific entities such as 'methodologies', 'datasets', and 'performance metrics' from scientific text, outperforming general-purpose or biomedical extractors.",
+        "After entities are extracted, this tool is vital for identifying and categorizing the relationships between them (e.g., 'Method X uses Dataset Y', 'Method Z achieved Metric A'). This step directly enables the creation of a rich knowledge graph with meaningful connections.",
+        "This tool is fundamental for the task's ultimate goal: to 'create a knowledge graph'. It takes the extracted entities and their classified relationships and formally constructs the graph structure."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 14.637340545654297,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_semantic",
+        "extract_entities_llm_gpt4",
+        "extract_relationships_llm",
+        "build_graph_relationships"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly published in PDF format. This tool is essential as the initial step to ingest the document content for further processing.",
+        "Research papers are lengthy and complex. Semantic chunking is crucial for breaking down the document into contextually meaningful segments. This ensures that subsequent entity and relationship extraction, especially by LLMs, has sufficient, relevant context without exceeding token limits, leading to higher accuracy in identifying methodologies, datasets, and performance metrics.",
+        "Given the 'high complexity' and the need to identify specific, nuanced entity types like 'methodologies', 'datasets', and 'performance metrics' from academic text, a powerful, flexible LLM like GPT-4 is superior. It can understand context and infer these domain-specific categories effectively, which specialized (but less flexible) models might miss without extensive retraining.",
+        "To create a meaningful knowledge graph, identifying complex relationships (e.g., which methodology was used with which dataset, and what performance metrics resulted) is critical. LLM-based relationship extraction is highly effective for discerning these intricate connections from unstructured academic prose, outperforming rule-based or dependency parsing methods for this high-complexity task.",
+        "After entities and their relationships are extracted, this tool is directly responsible for structuring them into a coherent knowledge graph, which is the ultimate goal of the task. It specifically uses the outputs of the relationship extraction step to construct the graph."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.92,
+      "error": null
+    },
+    {
+      "tool_count": 200,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 23.25923180580139,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf_v2",
+        "chunk_text_semantic_v2",
+        "extract_entities_llm_gpt4_v2",
+        "extract_relationships_llm_v2",
+        "build_graph_relationships_v2"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly in PDF format. This enhanced loader is essential for robustly extracting text and metadata from the source documents.",
+        "Research papers are typically long and dense. Semantic chunking is crucial to break down the document into contextually meaningful segments, which improves the accuracy and manageability for subsequent entity and relationship extraction, especially given the token limits and contextual understanding requirements of advanced models.",
+        "For high complexity and the specific task of identifying 'methodologies', 'datasets', and 'performance metrics', a powerful Large Language Model like GPT-4 is optimal. It offers superior semantic understanding and flexibility to accurately extract these nuanced, domain-specific entity types from unstructured text, often outperforming rule-based or general scientific NER models for such specific categorization.",
+        "To identify complex relationships between entities (e.g., 'Methodology X uses Dataset Y', 'Methodology X achieves Performance Metric Z'), an LLM-based approach is superior. It can infer implicit connections and handle the diverse linguistic expressions found in academic text more effectively than pattern-based or dependency parsing methods, which is critical for a high-complexity task.",
+        "This tool is fundamental for constructing the knowledge graph itself. It takes the extracted entities and their relationships and structures them into a coherent graph representation, which is the core output required by the task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_match": 0.0,
+        "true_positives": 0,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 500,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 12.701293468475342,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf_v5",
+        "chunk_text_semantic_v5",
+        "extract_entities_llm_gpt4_v5",
+        "extract_relationships_llm_v5",
+        "build_graph_relationships_v5"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly in PDF format. This tool is essential for the initial ingestion and extraction of text content from the source document.",
+        "Academic papers are long and complex. Semantic chunking ensures that text segments maintain contextual integrity, which is crucial for accurate entity and relationship extraction, especially when identifying nuanced concepts like methodologies, datasets, and performance metrics that might span across sentences or paragraphs.",
+        "Given the 'high complexity' of the task and the need to extract specific, often implicitly defined, concepts like 'methodologies', 'datasets', and 'performance metrics' from unstructured academic text, a highly capable LLM like GPT-4 is optimal. It offers superior understanding and generalization compared to smaller or domain-specific models, which might struggle with the diverse and evolving terminology in academic research.",
+        "Building a knowledge graph requires identifying sophisticated relationships between the extracted entities (e.g., 'Method X used Dataset Y', 'Method X achieved Metric Z'). An LLM-based relationship extraction tool is best suited for discerning these complex, often implicit, semantic connections in high-complexity academic prose, outperforming pattern-based or dependency parsing methods.",
+        "This tool is fundamental for constructing the knowledge graph itself. It takes the extracted entities (nodes) and their relationships (edges) and compiles them into a structured graph format, which is the ultimate goal of this task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_match": 0.0,
+        "true_positives": 0,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    }
+  ],
+  "methodology_comparison": [
+    {
+      "tool_count": 50,
+      "methodology": "direct_exposure",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 16.0278377532959,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_md",
+        "export_csv"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for the first step, which is to process and extract content from the PDF document.",
+        "To extract 'basic entities' from the document's text, a general-purpose entity extraction model like SpaCy's medium model is optimal. It offers a good balance of accuracy and performance, aligning with the 'low complexity' requirement, unlike more complex LLM-based or domain-specific extractors.",
+        "The task requires exporting the results. Extracted entities are typically structured as tabular data (e.g., entity name, type, location), making CSV an ideal and straightforward format for export. While its listed inputs are 'graph_ref', 'analysis_ref', 'query_results_ref', in practical scenarios, entity extraction results can be readily formatted into tabular data suitable for CSV export, effectively acting as 'query_results_ref' for a list of entities."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 16.881738901138306,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_semantic",
+        "extract_entities_llm_gpt4",
+        "classify_relationship_types",
+        "build_graph_relationships"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly published in PDF format, making this tool essential for ingesting the raw document content.",
+        "Research papers are typically long and complex. Semantic chunking helps break down the document into contextually relevant segments, which is crucial for accurate and efficient entity and relationship extraction by downstream tools, especially for identifying nuanced information like methodologies and performance metrics.",
+        "Given the 'high complexity' and the need to extract specific, often nuanced, entities such as methodologies, datasets, and performance metrics from academic texts, an LLM-based extractor like GPT-4 offers superior flexibility, contextual understanding, and accuracy compared to domain-specific or general rule-based extractors. It can be prompted to identify these precise entity types.",
+        "To build a knowledge graph, simply extracting entities is not enough; the relationships between them (e.g., 'method uses dataset', 'method achieved metric on dataset') must be identified. This tool is crucial for categorizing these connections, forming the edges of the knowledge graph.",
+        "After extracting entities and classifying their relationships, this tool is fundamental to consolidate this information into a structured knowledge graph, which is the ultimate goal of the task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "direct_exposure",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 16.712558031082153,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_sm",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for the first step of the task, which is to process a PDF document. It extracts the raw text and metadata necessary for subsequent processing.",
+        "The task specifically requires extracting 'basic entities'. The SpaCy small model is a suitable choice for this, offering a good balance of accuracy and low complexity/resource usage compared to larger models or LLM-based extractors, aligning with the 'low complexity' requirement.",
+        "The final step is to 'export results'. JSON is a standard, versatile format for structured data like extracted entities. While the tool's inputs are listed as 'graph_ref', 'analysis_ref', or 'query_results_ref', for a 'basic' extraction and export task with a '~3' tool constraint, it's a common and logical assumption that this general export tool can handle the output of entity extraction ('entities_ref') as 'data' to be exported. Alternative graph-specific exports would require an extra 'build_graph' step, exceeding the tool count expectation."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.85,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "direct_exposure",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 14.350329160690308,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_semantic",
+        "extract_entities_llm_gpt4",
+        "extract_relationships_llm",
+        "build_graph_relationships",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly distributed in PDF format, making this tool essential for initial data ingestion.",
+        "Academic papers can be lengthy. Semantic chunking is crucial to break down the document into manageable, contextually rich segments, which is vital for accurate and detailed extraction by subsequent LLM-based tools, especially for methodologies, datasets, and performance metrics that often span multiple sentences or paragraphs.",
+        "Given the 'high complexity' and the specific requirement to extract abstract entities like 'methodologies,' 'datasets,' and 'performance metrics' (which are not standard named entity types), a powerful, general-purpose LLM like GPT-4 is best. It offers superior contextual understanding and adaptability compared to rule-based or domain-specific (e.g., scientific) models that might miss these nuanced concepts.",
+        "To establish complex and semantic relationships between the extracted methodologies, datasets, and performance metrics, an LLM-based relationship extractor is indispensable. It can understand implied connections and infer relationships that pattern-based or dependency parsers might miss in the unstructured text of research papers.",
+        "This tool is specifically designed to construct a knowledge graph from the extracted entities and their relationships, which is the core output required by the task.",
+        "To make the resulting knowledge graph usable and interoperable, exporting it in a widely accepted, machine-readable format like JSON is essential for further analysis, storage, or visualization."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.16666666666666666,
+        "recall": 0.2,
+        "f1": 0.1818181818181818,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 6,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "semantic_workflow",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 19.624760150909424,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_sm",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for loading and extracting content from the specified PDF document, which is the initial input for the task.",
+        "The task requires extracting 'basic entities' with 'low complexity'. The SpaCy small model (spacy_sm) is well-suited for this, providing general-purpose entity recognition efficiently.",
+        "The final step is to 'export results'. JSON is a widely used, structured format suitable for outputting extracted entities. While the explicit inputs do not list 'entities_ref', it is assumed that a generic export tool can handle structured data like entities for a 'minimum viable' solution, especially given the 'low complexity' and '~3' tools constraint, where adding an intermediate graph building step would be over-complicating the simple export of entities."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.85,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "semantic_workflow",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 11.59736680984497,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_llm_gpt4",
+        "analyze_relationship_strength",
+        "build_graph_relationships",
+        "export_graphml"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly published and consumed in PDF format. This tool is essential for extracting the raw text content from the papers to begin the analysis.",
+        "Given the 'high complexity' and the need to extract specific, nuanced entities like 'methodologies', 'datasets', and 'performance metrics' (which are not standard NER categories), a powerful LLM like GPT-4 is optimal. It can be prompted to identify these domain-specific concepts accurately, outperforming general-purpose SpaCy models for this task.",
+        "After entities are extracted, the next crucial step is to identify and quantify the relationships between them (e.g., 'Methodology X used Dataset Y'). This tool is the only one provided that takes extracted entities and text to output relationships, making it the most suitable for generating the links needed for the knowledge graph.",
+        "Once entities and their relationships are identified, this tool is directly responsible for constructing the knowledge graph data structure from these inputs. It is a core component for fulfilling the task's requirement to 'create knowledge graph'.",
+        "To effectively 'create knowledge graph with relationships' and make it usable for further analysis or visualization in other graph tools, exporting it in a standard graph format like GraphML is essential. This tool provides a complete and portable representation of the generated knowledge graph."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "f1": 0.4000000000000001,
+        "exact_match": 0.0,
+        "true_positives": 2,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "semantic_workflow",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 9.631074905395508,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_sm",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for the initial step of processing, specifically designed to extract text and metadata from PDF documents, which is the stated input format.",
+        "The task explicitly requires extracting 'basic entities'. This tool uses a small SpaCy model, making it efficient and appropriate for 'low complexity' entity extraction, directly fulfilling the core processing requirement.",
+        "The final step is to 'export results'. JSON is a standard, flexible format for structured data, perfectly suited for exporting extracted entities. While its listed inputs are graph/analysis/query results, it's the most general-purpose export tool for structured data, and entities can be represented as JSON."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "semantic_workflow",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 9.771024703979492,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_lg",
+        "analyze_relationship_strength",
+        "build_graph_relationships",
+        "export_graphml"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly published in PDF format. This tool is essential as the initial step to parse and extract content from the source documents.",
+        "To accurately identify and extract specific entities like methodologies, datasets, and performance metrics from complex academic text, a robust and comprehensive entity extraction model is required. SpaCy's large model offers superior performance and is more likely to capture nuanced, domain-specific information crucial for this high-complexity task.",
+        "Creating a knowledge graph necessitates not just identifying entities but also understanding the relationships between them (e.g., 'Methodology X used Dataset Y', 'Methodology Z achieved Metric A'). This tool directly addresses the crucial step of extracting these relationships from the text based on the identified entities.",
+        "Once entities and their relationships are extracted, this tool is the core component for constructing the actual knowledge graph. It takes the identified entities and relationships and integrates them into a structured graph representation.",
+        "To make the generated knowledge graph usable for further analysis, visualization, or integration with graph databases, it must be exported in a standard graph format. GraphML is an excellent choice for preserving the graph structure (nodes and edges) and is widely supported by graph analysis tools."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "f1": 0.4000000000000001,
+        "exact_match": 0.0,
+        "true_positives": 2,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "hierarchical_categories",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 10.008354663848877,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_md",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "This tool is essential as the first step to process a PDF document, allowing extraction of text and metadata for subsequent analysis.",
+        "This tool provides robust basic entity extraction from text, which directly addresses the requirement to 'extract basic entities' from the document. The 'md' (medium) model offers a good balance of accuracy and performance for general-purpose basic entity recognition, aligning with the 'low complexity' and 'basic entities' requirements.",
+        "This tool is necessary to fulfill the requirement to 'export results'. JSON is a common and flexible format for exporting structured data like extracted entities, making it suitable for this task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "hierarchical_categories",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 13.31377100944519,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_semantic",
+        "extract_entities_scientific",
+        "classify_relationship_types",
+        "build_graph_relationships"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly in PDF format. This tool is essential for extracting the raw text content from the source document.",
+        "Research papers are typically long documents. Semantic chunking is crucial to break down the document into manageable, contextually relevant segments for subsequent entity and relationship extraction, ensuring that models can process the text effectively while retaining meaning.",
+        "Given the 'academic_research' domain, this specialized entity extraction tool is optimally suited to identify domain-specific concepts such as methodologies, datasets, and performance metrics, which are the core entities to be extracted for the knowledge graph.",
+        "After extracting entities, it's vital to identify and categorize the relationships between them (e.g., 'Methodology uses Dataset', 'Methodology achieves Metric'). This tool facilitates defining the edges and their specific semantic types within the knowledge graph.",
+        "This tool is the ultimate step in creating the knowledge graph. It takes the extracted entities (nodes) and their classified relationships (edges) to construct the final graph structure as required by the task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.92,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "hierarchical_categories",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 32.96511197090149,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_spacy_sm",
+        "export_json"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for the first step of the task: processing a PDF document. It directly loads the specified file type.",
+        "This tool is specifically designed for entity extraction. Given the task specifies 'basic entities' and 'low complexity', the small SpaCy model is the most appropriate and efficient choice. It is assumed the `document_ref` output from `load_document_pdf` can be implicitly processed to provide the `text_ref` or `chunks_ref` required by this tool in a low-complexity pipeline.",
+        "The task requires exporting the results. Exporting data as JSON is a common and flexible format for structured data like extracted entities. While its explicit inputs are `graph_ref`, `analysis_ref`, or `query_results_ref`, for a 'low complexity' task focused on 'export results' (which are the entities), it's assumed this tool can handle the direct export of `entities_ref` as a general form of 'results' or that the platform implicitly converts the entities into a JSON-serializable structure suitable for export."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.85,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "hierarchical_categories",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 11.208075523376465,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "extract_entities_llm_gpt4",
+        "extract_relationships_llm",
+        "build_graph_relationships",
+        "export_graphml"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are predominantly in PDF format. This tool is essential for ingesting the raw document and extracting its text content for subsequent processing.",
+        "Given the 'high complexity' and the need to extract specific, nuanced information like 'methodologies', 'datasets', and 'performance metrics' which are not standard named entities, an LLM-based entity extractor (specifically GPT-4 for its advanced understanding) is optimal for accurately identifying these domain-specific concepts from unstructured text.",
+        "To build a meaningful knowledge graph, identifying the relationships between extracted entities (e.g., 'Method X uses Dataset Y', 'Method X achieves Performance Metric Z') is crucial. An LLM-based approach is best suited for discerning these complex, semantic relationships from academic text, especially for a high-complexity task.",
+        "Once entities and their relationships are extracted, this tool is fundamental for constructing the knowledge graph by taking the identified entities and relationships and formalizing them into a graph structure.",
+        "The final step is to 'create knowledge graph with relationships'. Exporting the graph in GraphML format provides a standardized, interoperable output that can be used for further visualization, analysis, or integration with other graph databases and tools, thus fulfilling the task's output requirement."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.93,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "smart_filtering",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 12.95552396774292,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "tokenize_words",
+        "extract_entities_spacy_sm"
+      ],
+      "selection_reasoning": [
+        "This tool is essential for the initial step of processing a PDF document, as specified in the task.",
+        "The 'load_document_pdf' tool outputs a 'document_ref', but entity extraction tools require 'text_ref' and 'chunks_ref'. 'tokenize_words' bridges this gap by taking a document reference and producing tokenized text and chunks, which are suitable inputs for entity extraction. It's the simplest and lowest complexity text processing tool to achieve this.",
+        "This tool is chosen for extracting 'basic entities' due to its low complexity and general-purpose nature. Among the SpaCy models, 'sm' is the most lightweight, fitting the 'low complexity' requirement of the task. More complex or domain-specific entity extractors are not necessary for 'basic entities'."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.9,
+      "error": null
+    },
+    {
+      "tool_count": 50,
+      "methodology": "smart_filtering",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 12.162919998168945,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "chunk_text_sliding",
+        "extract_entities_llm_gpt4",
+        "classify_relationship_types",
+        "export_graphml"
+      ],
+      "selection_reasoning": [
+        "Academic research papers are typically in PDF format. This tool is essential for extracting the raw text content from the source documents to begin the analysis.",
+        "Research papers can be very long. Chunking the text into manageable, overlapping segments is crucial for efficient and effective entity and relationship extraction, preventing context loss and managing processing limits for subsequent steps.",
+        "Given the 'high complexity' and the need to identify specific, nuanced entities like 'methodologies,' 'datasets,' and 'performance metrics' from academic text, an advanced LLM-based extractor like GPT-4 is optimal. It offers superior flexibility and understanding for custom entity types compared to general SpaCy models or domain-specific ones not aligned with 'academic_research'.",
+        "After extracting entities, the core of creating a knowledge graph is identifying the relationships between them (e.g., 'methodology uses dataset', 'methodology achieves performance'). This tool is fundamental for defining the edges of the knowledge graph.",
+        "The final output is a knowledge graph. Exporting it in a standard graph format like GraphML ensures the structured data (nodes and edges with attributes) can be easily used, shared, and visualized by other graph analysis or visualization tools, completing the 'create knowledge graph' task."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 5,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.92,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "smart_filtering",
+      "scenario": "simple_document_processing",
+      "response_time_seconds": 13.451866388320923,
+      "selection_success": true,
+      "selected_tools": [
+        "load_document_pdf",
+        "clean_text_basic",
+        "extract_entities_spacy_sm"
+      ],
+      "selection_reasoning": [
+        "This tool is essential as the task explicitly requires processing a PDF document. It is the only available tool capable of loading PDF files.",
+        "After loading the PDF, the document content needs to be converted into a `text_ref` or `chunks_ref` format for entity extraction tools. This tool effectively bridges the `document_ref` output from the loader to the `text_ref`/`chunks_ref` input required by entity extractors. Additionally, it performs basic text cleaning, which is beneficial for the accuracy of subsequent entity extraction.",
+        "This tool directly fulfills the requirement to 'extract basic entities'. Given the 'low complexity' and 'basic entities' criteria, the SpaCy small model is the most efficient and sufficient choice among the available entity extraction tools, avoiding the higher computational cost of larger or LLM-based models."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "exact_match": 0.0,
+        "true_positives": 1,
+        "selected_count": 3,
+        "optimal_count": 3
+      },
+      "confidence_score": 0.95,
+      "error": null
+    },
+    {
+      "tool_count": 100,
+      "methodology": "smart_filtering",
+      "scenario": "academic_analysis_complex",
+      "response_time_seconds": 19.29159927368164,
+      "selection_success": true,
+      "selected_tools": [
+        "extract_relationships_knowledge"
+      ],
+      "selection_reasoning": [
+        "This tool is fundamental for the 'create knowledge graph with relationships' aspect of the task. Given that methodologies, datasets, and performance metrics are identified as key entities, this tool can effectively parse the research paper text to discover and formalize the connections and dependencies between these elements and other concepts, forming the core relational structure of the knowledge graph. It directly addresses the most complex part of knowledge graph construction from unstructured text."
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "exact_match": 0.0,
+        "true_positives": 0,
+        "selected_count": 1,
+        "optimal_count": 5
+      },
+      "confidence_score": 0.85,
+      "error": null
+    }
+  ],
+  "kgas_recommendations": {
+    "cognitive_load_analysis": {
+      "max_viable_tools": 100,
+      "kgas_121_tools_viable": false,
+      "response_time_at_100_tools": 14.637340545654297,
+      "degradation_threshold": "100_tools",
+      "successful_tests": 6,
+      "total_tests": 6
+    },
+    "methodology_recommendations": {
+      "best_overall_methodology": "semantic_workflow",
+      "methodology_performance": {
+        "direct_exposure": {
+          "avg_f1_score": 0.2621212121212121,
+          "avg_response_time": 15.993115961551666,
+          "avg_confidence": 0.8875,
+          "success_rate": 1.0
+        },
+        "semantic_workflow": {
+          "avg_f1_score": 0.3666666666666667,
+          "avg_response_time": 12.656056642532349,
+          "avg_confidence": 0.8875,
+          "success_rate": 1.0
+        },
+        "hierarchical_categories": {
+          "avg_f1_score": 0.26666666666666666,
+          "avg_response_time": 16.873828291893005,
+          "avg_confidence": 0.9,
+          "success_rate": 1.0
+        },
+        "smart_filtering": {
+          "avg_f1_score": 0.21666666666666667,
+          "avg_response_time": 14.465477406978607,
+          "avg_confidence": 0.905,
+          "success_rate": 1.0
+        }
+      },
+      "recommended_for_kgas": "semantic_workflow"
+    },
+    "production_strategy": {
+      "recommended_approach": "semantic_workflow with up to 100 tools",
+      "kgas_deployment_ready": false,
+      "expected_response_time": "14.6s for 100 tools",
+      "confidence_level": "medium"
+    }
+  },
+  "raw_results": {
+    "cognitive_load_tests": [
+      {
+        "tool_count": 10,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 46.08013153076172,
+        "selection_success": true,
+        "selected_tools": [
+          "chunk_text_semantic",
+          "extract_entities_llm_gpt4",
+          "extract_entities_spacy_md",
+          "query_graph_path",
+          "export_csv"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are typically long documents. This tool is essential for breaking down the full text into manageable, contextually relevant chunks. This pre-processing step optimizes the input for subsequent large language model (LLM) based extraction, ensuring the LLM receives sufficient context without exceeding token limits.",
+          "This is the core tool for the task. Given the 'high complexity' and the need to extract specific, nuanced entities like 'methodologies', 'datasets', and 'performance metrics' along with their 'relationships', a powerful LLM like GPT-4 is indispensable. It can be prompted to accurately identify these domain-specific entities and infer the complex relationships between them from unstructured text, effectively generating the data that forms the knowledge graph.",
+          "While GPT-4 handles complex, targeted extraction, SpaCy's medium model can quickly identify general named entities (e.g., organizations, locations, general concepts) that might complement the LLM's highly focused extraction. This provides a broader, richer base of information for the knowledge graph without over-relying on the more expensive GPT-4 for common entity types.",
+          "Once entities and relationships are extracted (conceptually forming the knowledge graph data from the LLM's output), this tool is crucial for 'analyzing' the created knowledge graph. Although its input is specified as 'graph_ref' and no explicit 'create_graph' tool exists, it is assumed that the structured output from 'extract_entities_llm_gpt4' (e.g., a list of triples) can be implicitly interpreted or programmatically converted into a format suitable for graph queries for the purpose of analysis.",
+          "This tool is necessary for outputting the extracted knowledge (entities and relationships) or the results of graph queries. Exporting to CSV provides a universal, structured format for storing, sharing, or further processing the derived insights from the academic papers."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "exact_match": 0.0,
+          "true_positives": 0,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.85,
+        "error": null
+      },
+      {
+        "tool_count": 25,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 19.06424856185913,
+        "selection_success": true,
+        "selected_tools": [
+          "chunk_text_semantic",
+          "extract_entities_llm_gpt4",
+          "classify_relationship_types",
+          "analyze_graph_centrality",
+          "visualize_network"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are typically long documents. This tool is essential for breaking down the full text into meaningful, context-preserving chunks, which is crucial for subsequent accurate entity and relationship extraction by advanced models like LLMs.",
+          "Given the 'high complexity' and the specific nature of the entities to be extracted (methodologies, datasets, performance metrics), a highly capable and flexible LLM-based extractor like GPT-4 is optimal. It can identify and categorize these nuanced concepts more effectively than general or domain-specific rule-based extractors.",
+          "To 'create knowledge graph with relationships,' it is imperative to identify how the extracted entities (methodologies, datasets, metrics) relate to each other. This tool directly addresses the core requirement of establishing connections, such as 'methodology X uses dataset Y' or 'dataset Y achieved metric Z'.",
+          "After extracting entities and relationships, a knowledge graph is formed. This tool performs a fundamental analysis on the graph, identifying key nodes (e.g., most central methodologies or datasets). This directly supports the 'analyze academic research paper' aspect by revealing important components of the research.",
+          "To effectively 'create knowledge graph with relationships' and make the analysis comprehensible, a visual representation is highly valuable. This tool allows for the clear presentation of the extracted entities and their relationships, making the knowledge graph tangible and easy to interpret for further analysis or sharing."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "exact_match": 0.0,
+          "true_positives": 0,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 17.1521954536438,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_semantic",
+          "extract_entities_scientific",
+          "classify_relationship_types",
+          "build_graph_relationships"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly in PDF format. This tool is essential for ingesting the raw content of the papers into the processing pipeline.",
+          "Academic papers are typically long documents. Semantic chunking ensures that text is broken down into meaningful segments, preserving context for accurate entity and relationship extraction, which is crucial for detailed analysis of methodologies, datasets, and performance metrics.",
+          "Given the domain is 'academic_research', this specialized entity extraction tool is optimally suited to identify domain-specific entities such as 'methodologies', 'datasets', and 'performance metrics' from scientific text, outperforming general-purpose or biomedical extractors.",
+          "After entities are extracted, this tool is vital for identifying and categorizing the relationships between them (e.g., 'Method X uses Dataset Y', 'Method Z achieved Metric A'). This step directly enables the creation of a rich knowledge graph with meaningful connections.",
+          "This tool is fundamental for the task's ultimate goal: to 'create a knowledge graph'. It takes the extracted entities and their classified relationships and formally constructs the graph structure."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 14.637340545654297,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_semantic",
+          "extract_entities_llm_gpt4",
+          "extract_relationships_llm",
+          "build_graph_relationships"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly published in PDF format. This tool is essential as the initial step to ingest the document content for further processing.",
+          "Research papers are lengthy and complex. Semantic chunking is crucial for breaking down the document into contextually meaningful segments. This ensures that subsequent entity and relationship extraction, especially by LLMs, has sufficient, relevant context without exceeding token limits, leading to higher accuracy in identifying methodologies, datasets, and performance metrics.",
+          "Given the 'high complexity' and the need to identify specific, nuanced entity types like 'methodologies', 'datasets', and 'performance metrics' from academic text, a powerful, flexible LLM like GPT-4 is superior. It can understand context and infer these domain-specific categories effectively, which specialized (but less flexible) models might miss without extensive retraining.",
+          "To create a meaningful knowledge graph, identifying complex relationships (e.g., which methodology was used with which dataset, and what performance metrics resulted) is critical. LLM-based relationship extraction is highly effective for discerning these intricate connections from unstructured academic prose, outperforming rule-based or dependency parsing methods for this high-complexity task.",
+          "After entities and their relationships are extracted, this tool is directly responsible for structuring them into a coherent knowledge graph, which is the ultimate goal of the task. It specifically uses the outputs of the relationship extraction step to construct the graph."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.92,
+        "error": null
+      },
+      {
+        "tool_count": 200,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 23.25923180580139,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf_v2",
+          "chunk_text_semantic_v2",
+          "extract_entities_llm_gpt4_v2",
+          "extract_relationships_llm_v2",
+          "build_graph_relationships_v2"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly in PDF format. This enhanced loader is essential for robustly extracting text and metadata from the source documents.",
+          "Research papers are typically long and dense. Semantic chunking is crucial to break down the document into contextually meaningful segments, which improves the accuracy and manageability for subsequent entity and relationship extraction, especially given the token limits and contextual understanding requirements of advanced models.",
+          "For high complexity and the specific task of identifying 'methodologies', 'datasets', and 'performance metrics', a powerful Large Language Model like GPT-4 is optimal. It offers superior semantic understanding and flexibility to accurately extract these nuanced, domain-specific entity types from unstructured text, often outperforming rule-based or general scientific NER models for such specific categorization.",
+          "To identify complex relationships between entities (e.g., 'Methodology X uses Dataset Y', 'Methodology X achieves Performance Metric Z'), an LLM-based approach is superior. It can infer implicit connections and handle the diverse linguistic expressions found in academic text more effectively than pattern-based or dependency parsing methods, which is critical for a high-complexity task.",
+          "This tool is fundamental for constructing the knowledge graph itself. It takes the extracted entities and their relationships and structures them into a coherent graph representation, which is the core output required by the task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "exact_match": 0.0,
+          "true_positives": 0,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 500,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 12.701293468475342,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf_v5",
+          "chunk_text_semantic_v5",
+          "extract_entities_llm_gpt4_v5",
+          "extract_relationships_llm_v5",
+          "build_graph_relationships_v5"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly in PDF format. This tool is essential for the initial ingestion and extraction of text content from the source document.",
+          "Academic papers are long and complex. Semantic chunking ensures that text segments maintain contextual integrity, which is crucial for accurate entity and relationship extraction, especially when identifying nuanced concepts like methodologies, datasets, and performance metrics that might span across sentences or paragraphs.",
+          "Given the 'high complexity' of the task and the need to extract specific, often implicitly defined, concepts like 'methodologies', 'datasets', and 'performance metrics' from unstructured academic text, a highly capable LLM like GPT-4 is optimal. It offers superior understanding and generalization compared to smaller or domain-specific models, which might struggle with the diverse and evolving terminology in academic research.",
+          "Building a knowledge graph requires identifying sophisticated relationships between the extracted entities (e.g., 'Method X used Dataset Y', 'Method X achieved Metric Z'). An LLM-based relationship extraction tool is best suited for discerning these complex, often implicit, semantic connections in high-complexity academic prose, outperforming pattern-based or dependency parsing methods.",
+          "This tool is fundamental for constructing the knowledge graph itself. It takes the extracted entities (nodes) and their relationships (edges) and compiles them into a structured graph format, which is the ultimate goal of this task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "exact_match": 0.0,
+          "true_positives": 0,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      }
+    ],
+    "methodology_comparison": [
+      {
+        "tool_count": 50,
+        "methodology": "direct_exposure",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 16.0278377532959,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_md",
+          "export_csv"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for the first step, which is to process and extract content from the PDF document.",
+          "To extract 'basic entities' from the document's text, a general-purpose entity extraction model like SpaCy's medium model is optimal. It offers a good balance of accuracy and performance, aligning with the 'low complexity' requirement, unlike more complex LLM-based or domain-specific extractors.",
+          "The task requires exporting the results. Extracted entities are typically structured as tabular data (e.g., entity name, type, location), making CSV an ideal and straightforward format for export. While its listed inputs are 'graph_ref', 'analysis_ref', 'query_results_ref', in practical scenarios, entity extraction results can be readily formatted into tabular data suitable for CSV export, effectively acting as 'query_results_ref' for a list of entities."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 16.881738901138306,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_semantic",
+          "extract_entities_llm_gpt4",
+          "classify_relationship_types",
+          "build_graph_relationships"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly published in PDF format, making this tool essential for ingesting the raw document content.",
+          "Research papers are typically long and complex. Semantic chunking helps break down the document into contextually relevant segments, which is crucial for accurate and efficient entity and relationship extraction by downstream tools, especially for identifying nuanced information like methodologies and performance metrics.",
+          "Given the 'high complexity' and the need to extract specific, often nuanced, entities such as methodologies, datasets, and performance metrics from academic texts, an LLM-based extractor like GPT-4 offers superior flexibility, contextual understanding, and accuracy compared to domain-specific or general rule-based extractors. It can be prompted to identify these precise entity types.",
+          "To build a knowledge graph, simply extracting entities is not enough; the relationships between them (e.g., 'method uses dataset', 'method achieved metric on dataset') must be identified. This tool is crucial for categorizing these connections, forming the edges of the knowledge graph.",
+          "After extracting entities and classifying their relationships, this tool is fundamental to consolidate this information into a structured knowledge graph, which is the ultimate goal of the task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "direct_exposure",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 16.712558031082153,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_sm",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for the first step of the task, which is to process a PDF document. It extracts the raw text and metadata necessary for subsequent processing.",
+          "The task specifically requires extracting 'basic entities'. The SpaCy small model is a suitable choice for this, offering a good balance of accuracy and low complexity/resource usage compared to larger models or LLM-based extractors, aligning with the 'low complexity' requirement.",
+          "The final step is to 'export results'. JSON is a standard, versatile format for structured data like extracted entities. While the tool's inputs are listed as 'graph_ref', 'analysis_ref', or 'query_results_ref', for a 'basic' extraction and export task with a '~3' tool constraint, it's a common and logical assumption that this general export tool can handle the output of entity extraction ('entities_ref') as 'data' to be exported. Alternative graph-specific exports would require an extra 'build_graph' step, exceeding the tool count expectation."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.85,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "direct_exposure",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 14.350329160690308,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_semantic",
+          "extract_entities_llm_gpt4",
+          "extract_relationships_llm",
+          "build_graph_relationships",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly distributed in PDF format, making this tool essential for initial data ingestion.",
+          "Academic papers can be lengthy. Semantic chunking is crucial to break down the document into manageable, contextually rich segments, which is vital for accurate and detailed extraction by subsequent LLM-based tools, especially for methodologies, datasets, and performance metrics that often span multiple sentences or paragraphs.",
+          "Given the 'high complexity' and the specific requirement to extract abstract entities like 'methodologies,' 'datasets,' and 'performance metrics' (which are not standard named entity types), a powerful, general-purpose LLM like GPT-4 is best. It offers superior contextual understanding and adaptability compared to rule-based or domain-specific (e.g., scientific) models that might miss these nuanced concepts.",
+          "To establish complex and semantic relationships between the extracted methodologies, datasets, and performance metrics, an LLM-based relationship extractor is indispensable. It can understand implied connections and infer relationships that pattern-based or dependency parsers might miss in the unstructured text of research papers.",
+          "This tool is specifically designed to construct a knowledge graph from the extracted entities and their relationships, which is the core output required by the task.",
+          "To make the resulting knowledge graph usable and interoperable, exporting it in a widely accepted, machine-readable format like JSON is essential for further analysis, storage, or visualization."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.16666666666666666,
+          "recall": 0.2,
+          "f1": 0.1818181818181818,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 6,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "semantic_workflow",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 19.624760150909424,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_sm",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for loading and extracting content from the specified PDF document, which is the initial input for the task.",
+          "The task requires extracting 'basic entities' with 'low complexity'. The SpaCy small model (spacy_sm) is well-suited for this, providing general-purpose entity recognition efficiently.",
+          "The final step is to 'export results'. JSON is a widely used, structured format suitable for outputting extracted entities. While the explicit inputs do not list 'entities_ref', it is assumed that a generic export tool can handle structured data like entities for a 'minimum viable' solution, especially given the 'low complexity' and '~3' tools constraint, where adding an intermediate graph building step would be over-complicating the simple export of entities."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.85,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "semantic_workflow",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 11.59736680984497,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_llm_gpt4",
+          "analyze_relationship_strength",
+          "build_graph_relationships",
+          "export_graphml"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly published and consumed in PDF format. This tool is essential for extracting the raw text content from the papers to begin the analysis.",
+          "Given the 'high complexity' and the need to extract specific, nuanced entities like 'methodologies', 'datasets', and 'performance metrics' (which are not standard NER categories), a powerful LLM like GPT-4 is optimal. It can be prompted to identify these domain-specific concepts accurately, outperforming general-purpose SpaCy models for this task.",
+          "After entities are extracted, the next crucial step is to identify and quantify the relationships between them (e.g., 'Methodology X used Dataset Y'). This tool is the only one provided that takes extracted entities and text to output relationships, making it the most suitable for generating the links needed for the knowledge graph.",
+          "Once entities and their relationships are identified, this tool is directly responsible for constructing the knowledge graph data structure from these inputs. It is a core component for fulfilling the task's requirement to 'create knowledge graph'.",
+          "To effectively 'create knowledge graph with relationships' and make it usable for further analysis or visualization in other graph tools, exporting it in a standard graph format like GraphML is essential. This tool provides a complete and portable representation of the generated knowledge graph."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4000000000000001,
+          "exact_match": 0.0,
+          "true_positives": 2,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "semantic_workflow",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 9.631074905395508,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_sm",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for the initial step of processing, specifically designed to extract text and metadata from PDF documents, which is the stated input format.",
+          "The task explicitly requires extracting 'basic entities'. This tool uses a small SpaCy model, making it efficient and appropriate for 'low complexity' entity extraction, directly fulfilling the core processing requirement.",
+          "The final step is to 'export results'. JSON is a standard, flexible format for structured data, perfectly suited for exporting extracted entities. While its listed inputs are graph/analysis/query results, it's the most general-purpose export tool for structured data, and entities can be represented as JSON."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "semantic_workflow",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 9.771024703979492,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_lg",
+          "analyze_relationship_strength",
+          "build_graph_relationships",
+          "export_graphml"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly published in PDF format. This tool is essential as the initial step to parse and extract content from the source documents.",
+          "To accurately identify and extract specific entities like methodologies, datasets, and performance metrics from complex academic text, a robust and comprehensive entity extraction model is required. SpaCy's large model offers superior performance and is more likely to capture nuanced, domain-specific information crucial for this high-complexity task.",
+          "Creating a knowledge graph necessitates not just identifying entities but also understanding the relationships between them (e.g., 'Methodology X used Dataset Y', 'Methodology Z achieved Metric A'). This tool directly addresses the crucial step of extracting these relationships from the text based on the identified entities.",
+          "Once entities and their relationships are extracted, this tool is the core component for constructing the actual knowledge graph. It takes the identified entities and relationships and integrates them into a structured graph representation.",
+          "To make the generated knowledge graph usable for further analysis, visualization, or integration with graph databases, it must be exported in a standard graph format. GraphML is an excellent choice for preserving the graph structure (nodes and edges) and is widely supported by graph analysis tools."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4000000000000001,
+          "exact_match": 0.0,
+          "true_positives": 2,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "hierarchical_categories",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 10.008354663848877,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_md",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "This tool is essential as the first step to process a PDF document, allowing extraction of text and metadata for subsequent analysis.",
+          "This tool provides robust basic entity extraction from text, which directly addresses the requirement to 'extract basic entities' from the document. The 'md' (medium) model offers a good balance of accuracy and performance for general-purpose basic entity recognition, aligning with the 'low complexity' and 'basic entities' requirements.",
+          "This tool is necessary to fulfill the requirement to 'export results'. JSON is a common and flexible format for exporting structured data like extracted entities, making it suitable for this task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "hierarchical_categories",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 13.31377100944519,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_semantic",
+          "extract_entities_scientific",
+          "classify_relationship_types",
+          "build_graph_relationships"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly in PDF format. This tool is essential for extracting the raw text content from the source document.",
+          "Research papers are typically long documents. Semantic chunking is crucial to break down the document into manageable, contextually relevant segments for subsequent entity and relationship extraction, ensuring that models can process the text effectively while retaining meaning.",
+          "Given the 'academic_research' domain, this specialized entity extraction tool is optimally suited to identify domain-specific concepts such as methodologies, datasets, and performance metrics, which are the core entities to be extracted for the knowledge graph.",
+          "After extracting entities, it's vital to identify and categorize the relationships between them (e.g., 'Methodology uses Dataset', 'Methodology achieves Metric'). This tool facilitates defining the edges and their specific semantic types within the knowledge graph.",
+          "This tool is the ultimate step in creating the knowledge graph. It takes the extracted entities (nodes) and their classified relationships (edges) to construct the final graph structure as required by the task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.92,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "hierarchical_categories",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 32.96511197090149,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_spacy_sm",
+          "export_json"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for the first step of the task: processing a PDF document. It directly loads the specified file type.",
+          "This tool is specifically designed for entity extraction. Given the task specifies 'basic entities' and 'low complexity', the small SpaCy model is the most appropriate and efficient choice. It is assumed the `document_ref` output from `load_document_pdf` can be implicitly processed to provide the `text_ref` or `chunks_ref` required by this tool in a low-complexity pipeline.",
+          "The task requires exporting the results. Exporting data as JSON is a common and flexible format for structured data like extracted entities. While its explicit inputs are `graph_ref`, `analysis_ref`, or `query_results_ref`, for a 'low complexity' task focused on 'export results' (which are the entities), it's assumed this tool can handle the direct export of `entities_ref` as a general form of 'results' or that the platform implicitly converts the entities into a JSON-serializable structure suitable for export."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.85,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "hierarchical_categories",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 11.208075523376465,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "extract_entities_llm_gpt4",
+          "extract_relationships_llm",
+          "build_graph_relationships",
+          "export_graphml"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are predominantly in PDF format. This tool is essential for ingesting the raw document and extracting its text content for subsequent processing.",
+          "Given the 'high complexity' and the need to extract specific, nuanced information like 'methodologies', 'datasets', and 'performance metrics' which are not standard named entities, an LLM-based entity extractor (specifically GPT-4 for its advanced understanding) is optimal for accurately identifying these domain-specific concepts from unstructured text.",
+          "To build a meaningful knowledge graph, identifying the relationships between extracted entities (e.g., 'Method X uses Dataset Y', 'Method X achieves Performance Metric Z') is crucial. An LLM-based approach is best suited for discerning these complex, semantic relationships from academic text, especially for a high-complexity task.",
+          "Once entities and their relationships are extracted, this tool is fundamental for constructing the knowledge graph by taking the identified entities and relationships and formalizing them into a graph structure.",
+          "The final step is to 'create knowledge graph with relationships'. Exporting the graph in GraphML format provides a standardized, interoperable output that can be used for further visualization, analysis, or integration with other graph databases and tools, thus fulfilling the task's output requirement."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.93,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "smart_filtering",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 12.95552396774292,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "tokenize_words",
+          "extract_entities_spacy_sm"
+        ],
+        "selection_reasoning": [
+          "This tool is essential for the initial step of processing a PDF document, as specified in the task.",
+          "The 'load_document_pdf' tool outputs a 'document_ref', but entity extraction tools require 'text_ref' and 'chunks_ref'. 'tokenize_words' bridges this gap by taking a document reference and producing tokenized text and chunks, which are suitable inputs for entity extraction. It's the simplest and lowest complexity text processing tool to achieve this.",
+          "This tool is chosen for extracting 'basic entities' due to its low complexity and general-purpose nature. Among the SpaCy models, 'sm' is the most lightweight, fitting the 'low complexity' requirement of the task. More complex or domain-specific entity extractors are not necessary for 'basic entities'."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.9,
+        "error": null
+      },
+      {
+        "tool_count": 50,
+        "methodology": "smart_filtering",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 12.162919998168945,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "chunk_text_sliding",
+          "extract_entities_llm_gpt4",
+          "classify_relationship_types",
+          "export_graphml"
+        ],
+        "selection_reasoning": [
+          "Academic research papers are typically in PDF format. This tool is essential for extracting the raw text content from the source documents to begin the analysis.",
+          "Research papers can be very long. Chunking the text into manageable, overlapping segments is crucial for efficient and effective entity and relationship extraction, preventing context loss and managing processing limits for subsequent steps.",
+          "Given the 'high complexity' and the need to identify specific, nuanced entities like 'methodologies,' 'datasets,' and 'performance metrics' from academic text, an advanced LLM-based extractor like GPT-4 is optimal. It offers superior flexibility and understanding for custom entity types compared to general SpaCy models or domain-specific ones not aligned with 'academic_research'.",
+          "After extracting entities, the core of creating a knowledge graph is identifying the relationships between them (e.g., 'methodology uses dataset', 'methodology achieves performance'). This tool is fundamental for defining the edges of the knowledge graph.",
+          "The final output is a knowledge graph. Exporting it in a standard graph format like GraphML ensures the structured data (nodes and edges with attributes) can be easily used, shared, and visualized by other graph analysis or visualization tools, completing the 'create knowledge graph' task."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.2,
+          "recall": 0.2,
+          "f1": 0.20000000000000004,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 5,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.92,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "smart_filtering",
+        "scenario": "simple_document_processing",
+        "response_time_seconds": 13.451866388320923,
+        "selection_success": true,
+        "selected_tools": [
+          "load_document_pdf",
+          "clean_text_basic",
+          "extract_entities_spacy_sm"
+        ],
+        "selection_reasoning": [
+          "This tool is essential as the task explicitly requires processing a PDF document. It is the only available tool capable of loading PDF files.",
+          "After loading the PDF, the document content needs to be converted into a `text_ref` or `chunks_ref` format for entity extraction tools. This tool effectively bridges the `document_ref` output from the loader to the `text_ref`/`chunks_ref` input required by entity extractors. Additionally, it performs basic text cleaning, which is beneficial for the accuracy of subsequent entity extraction.",
+          "This tool directly fulfills the requirement to 'extract basic entities'. Given the 'low complexity' and 'basic entities' criteria, the SpaCy small model is the most efficient and sufficient choice among the available entity extraction tools, avoiding the higher computational cost of larger or LLM-based models."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1": 0.3333333333333333,
+          "exact_match": 0.0,
+          "true_positives": 1,
+          "selected_count": 3,
+          "optimal_count": 3
+        },
+        "confidence_score": 0.95,
+        "error": null
+      },
+      {
+        "tool_count": 100,
+        "methodology": "smart_filtering",
+        "scenario": "academic_analysis_complex",
+        "response_time_seconds": 19.29159927368164,
+        "selection_success": true,
+        "selected_tools": [
+          "extract_relationships_knowledge"
+        ],
+        "selection_reasoning": [
+          "This tool is fundamental for the 'create knowledge graph with relationships' aspect of the task. Given that methodologies, datasets, and performance metrics are identified as key entities, this tool can effectively parse the research paper text to discover and formalize the connections and dependencies between these elements and other concepts, forming the core relational structure of the knowledge graph. It directly addresses the most complex part of knowledge graph construction from unstructured text."
+        ],
+        "accuracy_metrics": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "exact_match": 0.0,
+          "true_positives": 0,
+          "selected_count": 1,
+          "optimal_count": 5
+        },
+        "confidence_score": 0.85,
+        "error": null
+      }
+    ],
+    "metadata": {
+      "test_timestamp": 1754312899.862643,
+      "model": "gemini-2.5-flash",
+      "framework_version": "4.0_simple_direct"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-08-24T16:36:29.544156",
+  "test_name": "nexora_pipeline_e2e",
+  "status": "success",
+  "llm_model": "gemini/gemini-2.0-flash-exp",
+  "document_length": 1420,
+  "entities_extracted": 26,
+  "relationships_extracted": 16,
+  "entities_stored": 26,
+  "relationships_stored": 16,
+  "sample_entities": [
+    "Nexora Technologies",
+    "Zara Klingston",
+    "Velmont City",
+    "New Arcadia",
+    "quantum mesh networking",
+    "Luminar Systems",
+    "DataVault Inc.",
+    "CyberDyne Solutions",
+    "Marcus Reeves",
+    "Neo Angeles"
+  ],
+  "queries_tested": 2,
+  "queries_answered": 2,
+  "validation": {
+    "found_nexora": true,
+    "found_zara": true,
+    "correct_leader": true,
+    "correct_location": true
+  }
+}

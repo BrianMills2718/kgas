@@ -1,1 +1,0 @@
-../../personality-prediction/README.md

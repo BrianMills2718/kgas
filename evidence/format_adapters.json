@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-08-24T12:20:08.269451",
+  "test_name": "format_adapters",
+  "conversions": [
+    {
+      "type": "t23c_to_t31",
+      "input_fields": [
+        "entity_id",
+        "canonical_name",
+        "entity_type",
+        "confidence"
+      ],
+      "output_fields": [
+        "text",
+        "entity_type",
+        "confidence",
+        "start",
+        "end",
+        "t23c_entity_id"
+      ],
+      "text_field_present": true
+    },
+    {
+      "type": "t31_to_t34",
+      "input_has_text": false,
+      "output_has_text": true,
+      "text_added": true
+    },
+    {
+      "type": "relationship_normalization",
+      "variations_tested": 4,
+      "all_normalized": true
+    }
+  ],
+  "status": "success"
+}

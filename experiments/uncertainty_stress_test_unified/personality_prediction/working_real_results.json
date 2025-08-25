@@ -1,0 +1,1178 @@
+{
+  "results": [
+    {
+      "user_id": "user500_052_52589219",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.67,
+            "medium_5to7": 0.45499999999999996,
+            "high_8to11": 0.065
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.8949999999999999,
+            "medium_5to7": 0.149,
+            "high_8to11": 0.027000000000000003
+          },
+          "science_denialism": {
+            "low_1to4": 0.925,
+            "medium_5to7": 0.124,
+            "high_8to11": 0.022000000000000002
+          },
+          "narcissism": {
+            "low_1to4": 0.375,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.185
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.2679107775137407,
+          "conspiracy_mentality": 0.5626545546396726,
+          "science_denialism": 0.6223154861256812,
+          "narcissism": 0.1020715378970144
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6,
+          "conspiracy_mentality": 0.6,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9733777851460087,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9838421740168531
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 5
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.9748795478603937,
+        "conspiracy_mentality": 0.8066931418930965,
+        "science_denialism": 0.8055344036348359,
+        "narcissism": 0.8439801960318327
+      }
+    },
+    {
+      "user_id": "user500_013_423211400",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.255,
+            "medium_5to7": 0.73,
+            "high_8to11": 0.155
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.10500000000000001,
+            "medium_5to7": 0.43,
+            "high_8to11": 0.5549999999999999
+          },
+          "science_denialism": {
+            "low_1to4": 0.475,
+            "medium_5to7": 0.32300000000000006,
+            "high_8to11": 0.227
+          },
+          "narcissism": {
+            "low_1to4": 0.78,
+            "medium_5to7": 0.19,
+            "high_8to11": 0.05
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.21067202722711798,
+          "conspiracy_mentality": 0.15681584512214453,
+          "science_denialism": 0.03948892138250637,
+          "narcissism": 0.4000382029899501
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.6,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9733777851460087,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9844854445434833
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 5
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.8288519939459777,
+        "conspiracy_mentality": 0.7872823308567222,
+        "science_denialism": 0.9007307599341566,
+        "narcissism": 0.6900131194329593
+      }
+    },
+    {
+      "user_id": "user500_019_34277326",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.038,
+            "medium_5to7": 0.06800000000000002,
+            "high_8to11": 0.899
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.069,
+            "medium_5to7": 0.22700000000000004,
+            "high_8to11": 0.7140000000000001
+          },
+          "science_denialism": {
+            "low_1to4": 0.079,
+            "medium_5to7": 0.23699999999999996,
+            "high_8to11": 0.694
+          },
+          "narcissism": {
+            "low_1to4": 0.5599999999999999,
+            "medium_5to7": 0.242,
+            "high_8to11": 0.199
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6333685566599696,
+          "conspiracy_mentality": 0.3067568955565485,
+          "science_denialism": 0.27614075931153437,
+          "narcissism": 0.09947498728411419
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6,
+          "conspiracy_mentality": 0.6,
+          "science_denialism": 0.6,
+          "narcissism": 0.6
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.8,
+            "medium_5to7": 0.2,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.8,
+            "medium_5to7": 0.2,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9782811661775044,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.986935194185778
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 8
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.7304905708930267,
+        "conspiracy_mentality": 0.6253236247940999,
+        "science_denialism": 0.7810553089517099,
+        "narcissism": 0.7987839434397065
+      }
+    },
+    {
+      "user_id": "user500_087_26744434",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.047,
+            "medium_5to7": 0.10800000000000001,
+            "high_8to11": 0.915
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.065,
+            "medium_5to7": 0.21000000000000002,
+            "high_8to11": 0.785
+          },
+          "science_denialism": {
+            "low_1to4": 0.06500000000000002,
+            "medium_5to7": 0.18999999999999997,
+            "high_8to11": 0.8049999999999999
+          },
+          "narcissism": {
+            "low_1to4": 0.13000000000000003,
+            "medium_5to7": 0.22500000000000003,
+            "high_8to11": 0.7
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.576415152575651,
+          "conspiracy_mentality": 0.3669913124573839,
+          "science_denialism": 0.3921214765811145,
+          "narcissism": 0.22582013307745374
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.3,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9782344203112443
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 0
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.6450725796941961,
+        "conspiracy_mentality": 0.6773698136122404,
+        "science_denialism": 0.6733640936207355,
+        "narcissism": 0.8159092564350671
+      }
+    },
+    {
+      "user_id": "user500_089_1040750442983170052",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.45299999999999996,
+            "medium_5to7": 0.548,
+            "high_8to11": 0.20500000000000002
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.9349999999999999,
+            "medium_5to7": 0.08900000000000001,
+            "high_8to11": 0.018000000000000002
+          },
+          "science_denialism": {
+            "low_1to4": 0.9349999999999999,
+            "medium_5to7": 0.08900000000000001,
+            "high_8to11": 0.018000000000000002
+          },
+          "narcissism": {
+            "low_1to4": 0.75,
+            "medium_5to7": 0.26,
+            "high_8to11": 0.085
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.07774759049337088,
+          "conspiracy_mentality": 0.6810024149729448,
+          "science_denialism": 0.6810024149729448,
+          "narcissism": 0.29407803606295957
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.3,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9782344203112443
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 0
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.8370372620203242,
+        "conspiracy_mentality": 0.78025780185936,
+        "science_denialism": 0.78025780185936,
+        "narcissism": 0.7451383893444206
+      }
+    },
+    {
+      "user_id": "user500_086_2753981368",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.24000000000000005,
+            "medium_5to7": 0.73,
+            "high_8to11": 0.2
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.8600000000000001,
+            "medium_5to7": 0.144,
+            "high_8to11": 0.028000000000000004
+          },
+          "science_denialism": {
+            "low_1to4": 0.865,
+            "medium_5to7": 0.139,
+            "high_8to11": 0.028000000000000004
+          },
+          "narcissism": {
+            "low_1to4": 0.905,
+            "medium_5to7": 0.11100000000000002,
+            "high_8to11": 0.02
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.18612383959637846,
+          "conspiracy_mentality": 0.5367913169351466,
+          "science_denialism": 0.5450179956302836,
+          "narcissism": 0.6244527290328241
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.3,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9871411629920268
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 8
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.8026288846248449,
+        "conspiracy_mentality": 0.8071214898200506,
+        "science_denialism": 0.805205152232296,
+        "narcissism": 0.6489728605113865
+      }
+    },
+    {
+      "user_id": "user500_083_1037377511498428416",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.31399999999999995,
+            "medium_5to7": 0.5670000000000001,
+            "high_8to11": 0.33899999999999997
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.9400000000000001,
+            "medium_5to7": 0.096,
+            "high_8to11": 0.014000000000000002
+          },
+          "science_denialism": {
+            "low_1to4": 0.9349999999999999,
+            "medium_5to7": 0.098,
+            "high_8to11": 0.017
+          },
+          "narcissism": {
+            "low_1to4": 0.545,
+            "medium_5to7": 0.43500000000000005,
+            "high_8to11": 0.07
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.042287901091134894,
+          "conspiracy_mentality": 0.687886496060214,
+          "science_denialism": 0.6725499963014456,
+          "narcissism": 0.19985912852072407
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.3,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9849916766703415
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 5
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.767727313416719,
+        "conspiracy_mentality": 0.7821822869217303,
+        "science_denialism": 0.7854286666198728,
+        "narcissism": 0.7729413196023623
+      }
+    },
+    {
+      "user_id": "user500_027_2385451142",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.37500000000000006,
+            "medium_5to7": 0.5599999999999999,
+            "high_8to11": 0.11500000000000002
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.515,
+            "medium_5to7": 0.32,
+            "high_8to11": 0.16599999999999998
+          },
+          "science_denialism": {
+            "low_1to4": 0.7500000000000001,
+            "medium_5to7": 0.20800000000000002,
+            "high_8to11": 0.047
+          },
+          "narcissism": {
+            "low_1to4": 0.5149999999999999,
+            "medium_5to7": 0.39499999999999996,
+            "high_8to11": 0.11000000000000003
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.1432519015572714,
+          "conspiracy_mentality": 0.08569711174826489,
+          "science_denialism": 0.3755082667491476,
+          "narcissism": 0.1339513285434587
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.6,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9733777851460087,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.983034041073491
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 4
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.8960855499383468,
+        "conspiracy_mentality": 0.9526128836563349,
+        "science_denialism": 0.8372297010086536,
+        "narcissism": 0.7771807418672435
+      }
+    },
+    {
+      "user_id": "user500_048_944751338059046912",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.9200000000000002,
+            "medium_5to7": 0.07999999999999999,
+            "high_8to11": 0.016000000000000004
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.4450000000000001,
+            "medium_5to7": 0.45999999999999996,
+            "high_8to11": 0.14500000000000002
+          },
+          "science_denialism": {
+            "low_1to4": 0.7580000000000001,
+            "medium_5to7": 0.172,
+            "high_8to11": 0.09
+          },
+          "narcissism": {
+            "low_1to4": 0.65,
+            "medium_5to7": 0.31500000000000006,
+            "high_8to11": 0.06999999999999999
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6860293299698664,
+          "conspiracy_mentality": 0.09202780676761035,
+          "science_denialism": 0.33598006764731725,
+          "narcissism": 0.24446536967015198
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.3,
+          "conspiracy_mentality": 0.3,
+          "science_denialism": 0.6,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9838264844918134
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 4
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.7671542567785871,
+        "conspiracy_mentality": 0.9019687964307241,
+        "science_denialism": 0.8507317349716607,
+        "narcissism": 0.7404331284671011
+      }
+    },
+    {
+      "user_id": "user500_047_1325471822",
+      "tweets_count": 50,
+      "baseline": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.915,
+            "medium_5to7": 0.10000000000000002,
+            "high_8to11": 0.01
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.8800000000000001,
+            "medium_5to7": 0.11499999999999999,
+            "high_8to11": 0.02
+          },
+          "science_denialism": {
+            "low_1to4": 0.9279999999999999,
+            "medium_5to7": 0.07350000000000001,
+            "high_8to11": 0.013500000000000002
+          },
+          "narcissism": {
+            "low_1to4": 0.51,
+            "medium_5to7": 0.33249999999999996,
+            "high_8to11": 0.16749999999999998
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6745068527912063,
+          "conspiracy_mentality": 0.599987644784853,
+          "science_denialism": 0.7093320591581653,
+          "narcissism": 0.08174074972362455
+        },
+        "method": "Likelihood Ratio (Baseline)"
+      },
+      "bert": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.3,
+            "medium_5to7": 0.6,
+            "high_8to11": 0.1
+          },
+          "science_denialism": {
+            "low_1to4": 0.6,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.1
+          },
+          "narcissism": {
+            "low_1to4": 0.1,
+            "medium_5to7": 0.3,
+            "high_8to11": 0.6
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.6,
+          "conspiracy_mentality": 0.6,
+          "science_denialism": 0.3,
+          "narcissism": 0.8
+        },
+        "method": "BERT-style (keyword analysis)"
+      },
+      "beta_bayesian": {
+        "predictions": {
+          "political_orientation": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "conspiracy_mentality": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "science_denialism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          },
+          "narcissism": {
+            "low_1to4": 0.2,
+            "medium_5to7": 0.8,
+            "high_8to11": 0.0
+          }
+        },
+        "confidence_scores": {
+          "political_orientation": 0.9551071417402816,
+          "conspiracy_mentality": 0.9706745277009137,
+          "science_denialism": 0.9725324621959237,
+          "narcissism": 0.9782344203112443
+        },
+        "method": "Beta-Bayesian updating",
+        "additional_info": {
+          "evidence_count": 50,
+          "updates_made": 0
+        }
+      },
+      "agreement": {
+        "political_orientation": 0.7587012751167121,
+        "conspiracy_mentality": 0.7705004306725569,
+        "science_denialism": 0.7619857424946318,
+        "narcissism": 0.7871103796805825
+      }
+    }
+  ],
+  "report": {
+    "summary": {
+      "users_compared": 10,
+      "methods": [
+        "Likelihood Ratio (Baseline)",
+        "BERT-style",
+        "Beta-Bayesian"
+      ],
+      "traits": [
+        "political_orientation",
+        "conspiracy_mentality",
+        "science_denialism",
+        "narcissism"
+      ]
+    },
+    "processing_times": {
+      "baseline": {
+        "mean": 0.00015652179718017578,
+        "std": 3.74583207489488e-05
+      },
+      "bert": {
+        "mean": 0.00023775100708007814,
+        "std": 8.133567271931144e-05
+      },
+      "beta_bayesian": {
+        "mean": 0.0006749868392944336,
+        "std": 0.00014050197017437434
+      }
+    },
+    "agreement_stats": {
+      "political_orientation": {
+        "mean": 0.8008629234289127,
+        "std": 0.08641699502227786
+      },
+      "conspiracy_mentality": {
+        "mean": 0.7891312600516915,
+        "std": 0.08938217609944756
+      },
+      "science_denialism": {
+        "mean": 0.7981523365327913,
+        "std": 0.057072538246350925
+      },
+      "narcissism": {
+        "mean": 0.7620463334812662,
+        "std": 0.055378141139092896
+      }
+    },
+    "confidence_stats": {
+      "baseline": {
+        "political_orientation": {
+          "mean": 0.34983139294757076,
+          "std": 0.24785901051712061
+        },
+        "conspiracy_mentality": {
+          "mean": 0.4076611399044784,
+          "std": 0.22560431031332615
+        },
+        "science_denialism": {
+          "mean": 0.46494574438601416,
+          "std": 0.20670677177929384
+        },
+        "narcissism": {
+          "mean": 0.24059522028022756,
+          "std": 0.15913301573766075
+        }
+      },
+      "bert": {
+        "political_orientation": {
+          "mean": 0.39,
+          "std": 0.1374772708486752
+        },
+        "conspiracy_mentality": {
+          "mean": 0.4499999999999999,
+          "std": 0.15
+        },
+        "science_denialism": {
+          "mean": 0.36,
+          "std": 0.12
+        },
+        "narcissism": {
+          "mean": 0.78,
+          "std": 0.06000000000000001
+        }
+      },
+      "beta_bayesian": {
+        "political_orientation": {
+          "mean": 0.9551071417402814,
+          "std": 1.1102230246251565e-16
+        },
+        "conspiracy_mentality": {
+          "mean": 0.9722461687821011,
+          "std": 0.0023469809218690024
+        },
+        "science_denialism": {
+          "mean": 0.9725324621959237,
+          "std": 0.0
+        },
+        "narcissism": {
+          "mean": 0.982895943890752,
+          "std": 0.0032897685437237043
+        }
+      }
+    }
+  }
+}

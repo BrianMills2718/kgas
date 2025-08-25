@@ -1,0 +1,81 @@
+{
+  "model_type": "graph",
+  "theory_name": "Cognitive Mapping Theory (Young 1996)",
+  "citation": "Young, Michael D. 1996. Cognitive Mapping Meets Semantic Networks. Journal of Conflict Resolution 40(3): 395-414.",
+  "nodes": [
+    {
+      "id": "C1",
+      "label": "United States",
+      "type": "political_entity"
+    },
+    {
+      "id": "C2",
+      "label": "Soviet Union",
+      "type": "political_entity"
+    },
+    {
+      "id": "C3",
+      "label": "Peace",
+      "type": "concept"
+    },
+    {
+      "id": "C4",
+      "label": "Negotiation",
+      "type": "action"
+    }
+  ],
+  "connections": [
+    {
+      "source": "C1",
+      "target": "C2",
+      "type": "negotiate",
+      "properties": {
+        "truth_value": "true",
+        "temporal": "present"
+      }
+    },
+    {
+      "source": "C4",
+      "target": "C3",
+      "type": "+",
+      "properties": {
+        "truth_value": "true",
+        "temporal": "goal"
+      }
+    },
+    {
+      "source": "C1",
+      "target": "C4",
+      "type": "strategy",
+      "properties": {
+        "truth_value": "true",
+        "temporal": "present"
+      }
+    }
+  ],
+  "properties": {
+    "relationship_types": [
+      "+",
+      "-",
+      "strategy",
+      "attribute",
+      "warrant-for"
+    ],
+    "truth_values": [
+      "true",
+      "false",
+      "possible"
+    ],
+    "temporal_modifiers": [
+      "present",
+      "past",
+      "future",
+      "goal",
+      "normative"
+    ]
+  },
+  "modifiers": {
+    "salience_scoring": "1-5 scale",
+    "structural_measures": "connectedness, size metrics"
+  }
+}

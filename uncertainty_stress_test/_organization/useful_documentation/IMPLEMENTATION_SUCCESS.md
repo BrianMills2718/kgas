@@ -1,1 +1,0 @@
-../../personality-prediction/IMPLEMENTATION_SUCCESS.md

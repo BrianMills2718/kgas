@@ -1,0 +1,330 @@
+{
+  "investigation_info": {
+    "timestamp": 1754306913.4128711,
+    "scenario": {
+      "task_id": "academic_ml_paper_analysis",
+      "description": "Analyze this academic machine learning paper: \"Deep Neural Networks for Sentiment Analysis: A Comparative Study\"\n\nThe paper contains:\n- Abstract with key contributions\n- Related work section citing 15 papers  \n- Methodology using BERT, RoBERTa, and custom architectures\n- Experiments on IMDB, Yelp, and Amazon review datasets\n- Results showing 94.2% accuracy on IMDB, 91.8% on Yelp\n- Discussion of limitations and future work\n\nYour task: Extract the methodologies, datasets, performance metrics, and create a knowledge graph showing relationships between methods and their performance on different datasets.",
+      "context": {
+        "document_type": "academic_paper",
+        "domain": "machine_learning",
+        "subdomain": "sentiment_analysis",
+        "complexity": "high",
+        "expected_entities": [
+          "BERT",
+          "RoBERTa",
+          "IMDB",
+          "Yelp",
+          "Amazon",
+          "94.2%",
+          "91.8%"
+        ],
+        "expected_relationships": [
+          "method-dataset",
+          "method-performance",
+          "dataset-accuracy"
+        ],
+        "document_structure": [
+          "abstract",
+          "related_work",
+          "methodology",
+          "experiments",
+          "results",
+          "discussion"
+        ]
+      },
+      "success_criteria": {
+        "must_extract": [
+          "methodologies",
+          "datasets",
+          "performance_metrics"
+        ],
+        "must_identify": [
+          "relationships between methods and performance"
+        ],
+        "must_create": [
+          "structured knowledge graph"
+        ],
+        "quality_metrics": [
+          "completeness",
+          "accuracy",
+          "relationship_quality"
+        ]
+      }
+    },
+    "no_mocking": true,
+    "no_simulation": true,
+    "no_fallbacks": true,
+    "real_api_used": true
+  },
+  "our_assumptions": {
+    "assumed_optimal_tools": {
+      "load_document_comprehensive_pdf": {
+        "reason": "Academic papers are PDFs, need metadata extraction for citations/structure",
+        "assumption": "PDF loading with metadata is essential for academic analysis",
+        "inputs_needed": [
+          "pdf_file"
+        ],
+        "outputs_provided": [
+          "text",
+          "metadata",
+          "structure"
+        ]
+      },
+      "extract_entities_spacy_advanced": {
+        "reason": "Need to extract technical terms like BERT, RoBERTa, dataset names",
+        "assumption": "Advanced NER is needed for technical entity extraction",
+        "inputs_needed": [
+          "structured_text"
+        ],
+        "outputs_provided": [
+          "entities",
+          "entity_types",
+          "confidence_scores"
+        ]
+      },
+      "build_knowledge_graph_academic": {
+        "reason": "Task explicitly requires knowledge graph creation",
+        "assumption": "Academic-specific graph building is superior to generic",
+        "inputs_needed": [
+          "entities",
+          "relationships"
+        ],
+        "outputs_provided": [
+          "knowledge_graph",
+          "academic_structure"
+        ]
+      },
+      "analyze_methodology_patterns": {
+        "reason": "Need to identify method-performance relationships",
+        "assumption": "Specialized methodology analysis is required",
+        "inputs_needed": [
+          "knowledge_graph",
+          "domain_entities"
+        ],
+        "outputs_provided": [
+          "methodology_insights",
+          "performance_analysis"
+        ]
+      },
+      "export_academic_summary": {
+        "reason": "Academic format output with proper citations and structure",
+        "assumption": "Academic-specific export format is preferred",
+        "inputs_needed": [
+          "knowledge_graph",
+          "methodology_analysis"
+        ],
+        "outputs_provided": [
+          "academic_report",
+          "structured_summary"
+        ]
+      }
+    },
+    "total_assumed": 5,
+    "reasoning_basis": "domain_specificity_and_task_requirements",
+    "assumptions_made": [
+      "Academic papers need PDF-specific processing",
+      "Advanced NER is better than basic for technical terms",
+      "Domain-specific tools outperform generic ones",
+      "Multi-step pipeline is necessary for complex tasks",
+      "Academic output format is required"
+    ]
+  },
+  "agent_reasoning": {
+    "selection_time_seconds": 7.402280807495117,
+    "raw_selection": [
+      {
+        "tool": "load_document_pdf",
+        "parameters": {
+          "extract_metadata": true
+        },
+        "reasoning": "Document processing benefits from comprehensive analysis"
+      },
+      {
+        "tool": "extract_keywords",
+        "parameters": {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        },
+        "reasoning": "Selected hybrid method for high complexity task"
+      },
+      {
+        "tool": "analyze_relationship_strength",
+        "parameters": {
+          "include_analytics": true
+        },
+        "reasoning": "Analysis required for insight generation"
+      }
+    ],
+    "agent_type": "gemini-2.5-flash",
+    "timestamp": 1754306913.4128275,
+    "prompt_used": "\nYou are a tool selection expert. You need to select the best tools for this specific task.\n\nTASK: Analyze this academic machine learning paper: \"Deep Neural Networks for Sentiment Analysis: A Comparative Study\"\n\nThe paper contains:\n- Abstract with key contributions\n- Related work section citing 15 papers  \n- Methodology using BERT, RoBERTa, and custom architectures\n- Experiments on IMDB, Yelp, and Amazon review datasets\n- Results showing 94.2% accuracy on IMDB, 91.8% on Yelp\n- Discussion of limitations and future work\n\nYour task: Extract the methodologies, datasets, performance metrics, and create a knowledge graph showing relationships between methods and their performance on different datasets.\n\nCONTEXT: {\n  \"document_type\": \"academic_paper\",\n  \"domain\": \"machine_learning\",\n  \"subdomain\": \"sentiment_analysis\",\n  \"complexity\": \"high\",\n  \"expected_entities\": [\n    \"BERT\",\n    \"RoBERTa\",\n    \"IMDB\",\n    \"Yelp\",\n    \"Amazon\",\n    \"94.2%\",\n    \"91.8%\"\n  ],\n  \"expected_relationships\": [\n    \"method-dataset\",\n    \"method-performance\",\n    \"dataset-accuracy\"\n  ],\n  \"document_structure\": [\n    \"abstract\",\n    \"related_work\",\n    \"methodology\",\n    \"experiments\",\n    \"results\",\n    \"discussion\"\n  ]\n}\n\nSUCCESS CRITERIA: {\n  \"must_extract\": [\n    \"methodologies\",\n    \"datasets\",\n    \"performance_metrics\"\n  ],\n  \"must_identify\": [\n    \"relationships between methods and performance\"\n  ],\n  \"must_create\": [\n    \"structured knowledge graph\"\n  ],\n  \"quality_metrics\": [\n    \"completeness\",\n    \"accuracy\",\n    \"relationship_quality\"\n  ]\n}\n\nAVAILABLE TOOLS (100 total):\n[\n  {\n    \"name\": \"load_document_pdf\",\n    \"description\": \"Extract text and metadata from PDF documents\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_docx\",\n    \"description\": \"Load and parse Microsoft Word documents\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_txt\",\n    \"description\": \"Load plain text files with encoding detection\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_csv\",\n    \"description\": \"Parse CSV files with configurable delimiters\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_json\",\n    \"description\": \"Load and validate JSON documents\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_xml\",\n    \"description\": \"Parse XML documents with schema validation\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_html\",\n    \"description\": \"Extract content from HTML documents\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_xlsx\",\n    \"description\": \"Load Excel spreadsheets with multiple sheets\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_pptx\",\n    \"description\": \"Extract text from PowerPoint presentations\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_epub\",\n    \"description\": \"Load eBook content from EPUB files\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_rtf\",\n    \"description\": \"Parse Rich Text Format documents\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"load_document_odt\",\n    \"description\": \"Load OpenDocument text files\",\n    \"category\": \"document_loaders\",\n    \"inputs\": [],\n    \"outputs\": [\n      \"document_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"chunk_text_fixed\",\n    \"description\": \"Split text into fixed-size chunks\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"chunk_text_semantic\",\n    \"description\": \"Split text using semantic boundaries\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"chunk_text_sliding\",\n    \"description\": \"Create overlapping text chunks\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"clean_text_basic\",\n    \"description\": \"Remove noise and normalize text\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"clean_text_aggressive\",\n    \"description\": \"Intensive text cleaning and normalization\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"tokenize_words\",\n    \"description\": \"Split text into word tokens\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.1\n  },\n  {\n    \"name\": \"tokenize_sentences\",\n    \"description\": \"Split text into sentence tokens\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"extract_keywords\",\n    \"description\": \"Extract important keywords and phrases\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"summarize_extractive\",\n    \"description\": \"Create extractive text summaries\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"summarize_abstractive\",\n    \"description\": \"Generate abstractive summaries\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"translate_text\",\n    \"description\": \"Translate text between languages\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"detect_language\",\n    \"description\": \"Identify text language\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"normalize_unicode\",\n    \"description\": \"Normalize Unicode text encoding\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"remove_stopwords\",\n    \"description\": \"Filter out common stop words\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.1\n  },\n  {\n    \"name\": \"stem_words\",\n    \"description\": \"Apply word stemming algorithms\",\n    \"category\": \"text_processing\",\n    \"inputs\": [\n      \"document_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"extract_entities_spacy_sm\",\n    \"description\": \"SpaCy small model entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"extract_entities_spacy_md\",\n    \"description\": \"SpaCy medium model entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"extract_entities_spacy_lg\",\n    \"description\": \"SpaCy large model entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"extract_entities_spacy_trf\",\n    \"description\": \"SpaCy transformer model extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"extract_entities_llm_gpt4\",\n    \"description\": \"GPT-4 based entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"extract_entities_llm_claude\",\n    \"description\": \"Claude based entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"extract_entities_llm_gemini\",\n    \"description\": \"Gemini based entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"extract_entities_llm_local\",\n    \"description\": \"Local LLM entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_entities_biomedical\",\n    \"description\": \"Biomedical entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_entities_financial\",\n    \"description\": \"Financial entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_entities_legal\",\n    \"description\": \"Legal entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_entities_scientific\",\n    \"description\": \"Scientific entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_entities_news\",\n    \"description\": \"News/media entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"extract_entities_social\",\n    \"description\": \"Social media entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"extract_entities_hybrid\",\n    \"description\": \"Combined rule+ML entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"extract_entities_ensemble\",\n    \"description\": \"Ensemble of multiple extractors\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.9\n  },\n  {\n    \"name\": \"extract_entities_active\",\n    \"description\": \"Active learning entity extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"extract_entities_few_shot\",\n    \"description\": \"Few-shot learning extraction\",\n    \"category\": \"entity_extraction\",\n    \"inputs\": [\n      \"text_ref\",\n      \"chunks_ref\"\n    ],\n    \"outputs\": [\n      \"entities_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_relationships_pattern\",\n    \"description\": \"Pattern-based relationship extraction\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"extract_relationships_dependency\",\n    \"description\": \"Dependency parsing relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"extract_relationships_coreference\",\n    \"description\": \"Coreference-based relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_relationships_llm\",\n    \"description\": \"LLM-based relationship extraction\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"extract_relationships_knowledge\",\n    \"description\": \"Knowledge graph relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"extract_relationships_temporal\",\n    \"description\": \"Temporal relationship analysis\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_relationships_causal\",\n    \"description\": \"Causal relationship detection\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"extract_relationships_spatial\",\n    \"description\": \"Spatial relationship analysis\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"analyze_relationship_strength\",\n    \"description\": \"Quantify relationship strength\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"classify_relationship_types\",\n    \"description\": \"Classify relationship categories\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"validate_relationships\",\n    \"description\": \"Validate extracted relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"merge_relationships\",\n    \"description\": \"Merge duplicate relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"filter_relationships\",\n    \"description\": \"Filter relationships by criteria\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"rank_relationships\",\n    \"description\": \"Rank relationships by importance\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"cluster_relationships\",\n    \"description\": \"Group similar relationships\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"extract_relationship_chains\",\n    \"description\": \"Find relationship chains\",\n    \"category\": \"relationship_analysis\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"text_ref\"\n    ],\n    \"outputs\": [\n      \"relationships_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"build_graph_entities\",\n    \"description\": \"Build graph from entity data\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"build_graph_relationships\",\n    \"description\": \"Build graph from relationship data\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"merge_graphs\",\n    \"description\": \"Merge multiple graphs\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"validate_graph_structure\",\n    \"description\": \"Validate graph consistency\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"optimize_graph_layout\",\n    \"description\": \"Optimize graph for visualization\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"calculate_graph_metrics\",\n    \"description\": \"Calculate graph statistics\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"detect_graph_communities\",\n    \"description\": \"Find communities in graph\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"find_graph_clusters\",\n    \"description\": \"Cluster graph nodes\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"analyze_graph_centrality\",\n    \"description\": \"Calculate centrality measures\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"find_shortest_paths\",\n    \"description\": \"Find shortest paths in graph\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"detect_graph_anomalies\",\n    \"description\": \"Identify unusual graph patterns\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"simplify_graph\",\n    \"description\": \"Reduce graph complexity\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"enrich_graph_metadata\",\n    \"description\": \"Add metadata to graph elements\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"export_graph_format\",\n    \"description\": \"Convert graph to different formats\",\n    \"category\": \"graph_operations\",\n    \"inputs\": [\n      \"entities_ref\",\n      \"relationships_ref\",\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"graph_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"query_graph_multihop\",\n    \"description\": \"Multi-hop graph traversal queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"query_graph_semantic\",\n    \"description\": \"Semantic similarity queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"query_graph_temporal\",\n    \"description\": \"Time-based graph queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"query_graph_pattern\",\n    \"description\": \"Pattern matching queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"query_graph_aggregation\",\n    \"description\": \"Aggregation and statistics queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"query_graph_subgraph\",\n    \"description\": \"Subgraph extraction queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"query_graph_path\",\n    \"description\": \"Path finding queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"query_graph_neighborhood\",\n    \"description\": \"Neighborhood exploration\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"query_graph_similarity\",\n    \"description\": \"Find similar entities/patterns\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"query_graph_ranking\",\n    \"description\": \"Ranking and top-k queries\",\n    \"category\": \"query_systems\",\n    \"inputs\": [\n      \"graph_ref\"\n    ],\n    \"outputs\": [\n      \"query_results_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"calculate_pagerank\",\n    \"description\": \"Calculate PageRank importance scores\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"detect_anomalies\",\n    \"description\": \"Identify anomalous patterns\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"perform_clustering\",\n    \"description\": \"Cluster similar entities\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"analyze_trends\",\n    \"description\": \"Analyze temporal trends\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"calculate_similarity\",\n    \"description\": \"Calculate entity similarities\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.4\n  },\n  {\n    \"name\": \"predict_links\",\n    \"description\": \"Predict missing relationships\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.8\n  },\n  {\n    \"name\": \"analyze_influence\",\n    \"description\": \"Analyze influence propagation\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.7\n  },\n  {\n    \"name\": \"detect_outliers\",\n    \"description\": \"Statistical outlier detection\",\n    \"category\": \"analytics\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"entities_ref\"\n    ],\n    \"outputs\": [\n      \"analysis_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"export_json\",\n    \"description\": \"Export data as JSON\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"export_csv\",\n    \"description\": \"Export tabular data as CSV\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.2\n  },\n  {\n    \"name\": \"export_graphml\",\n    \"description\": \"Export graph as GraphML\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"export_gephi\",\n    \"description\": \"Export for Gephi visualization\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.3\n  },\n  {\n    \"name\": \"visualize_network\",\n    \"description\": \"Create network visualization\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.5\n  },\n  {\n    \"name\": \"generate_report\",\n    \"description\": \"Generate analysis report\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.6\n  },\n  {\n    \"name\": \"create_dashboard\",\n    \"description\": \"Create interactive dashboard\",\n    \"category\": \"export_visualization\",\n    \"inputs\": [\n      \"graph_ref\",\n      \"analysis_ref\",\n      \"query_results_ref\"\n    ],\n    \"outputs\": [\n      \"export_ref\"\n    ],\n    \"complexity\": 0.7\n  }\n]\n\nPlease analyze this task carefully and select the most appropriate tools. For each tool you select, explain:\n\n1. WHY you chose this specific tool over alternatives\n2. HOW this tool contributes to the success criteria  \n3. WHAT alternatives you considered and why you rejected them\n4. WHAT order you would use these tools in\n\nReturn your response as JSON:\n{\n  \"selected_tools\": [\n    {\n      \"tool\": \"exact_tool_name\",\n      \"parameters\": {\"param\": \"value\"},\n      \"reasoning\": \"detailed explanation of why this tool\",\n      \"alternatives_considered\": [\"tool1\", \"tool2\"],\n      \"alternatives_rejected_because\": \"specific reasons\",\n      \"contribution_to_success\": \"how this helps achieve success criteria\",\n      \"execution_order\": 1\n    }\n  ],\n  \"overall_strategy\": \"your high-level approach to this task\",\n  \"potential_weaknesses\": \"what might not work perfectly with this selection\",\n  \"confidence_level\": \"high/medium/low and why\"\n}\n        ",
+    "tools_available": 100
+  },
+  "comparison": {
+    "our_assumptions": {
+      "tools": [
+        "load_document_comprehensive_pdf",
+        "extract_entities_spacy_advanced",
+        "build_knowledge_graph_academic",
+        "analyze_methodology_patterns",
+        "export_academic_summary"
+      ],
+      "count": 5,
+      "approach": "comprehensive_multi_step_academic_pipeline"
+    },
+    "agent_choice": {
+      "tools": [
+        "load_document_pdf",
+        "extract_keywords",
+        "analyze_relationship_strength"
+      ],
+      "count": 3,
+      "selection_time": 7.402280807495117
+    },
+    "overlap": {
+      "common_tools": [],
+      "overlap_count": 0,
+      "overlap_percentage": 0.0
+    },
+    "detailed_tool_analysis": {
+      "load_document_comprehensive_pdf": {
+        "our_reasoning": "Academic papers are PDFs, need metadata extraction for citations/structure",
+        "our_assumption": "PDF loading with metadata is essential for academic analysis",
+        "selected_by_agent": false,
+        "tool_exists": false,
+        "tool_details": "Tool not found in database"
+      },
+      "extract_entities_spacy_advanced": {
+        "our_reasoning": "Need to extract technical terms like BERT, RoBERTa, dataset names",
+        "our_assumption": "Advanced NER is needed for technical entity extraction",
+        "selected_by_agent": false,
+        "tool_exists": false,
+        "tool_details": "Tool not found in database"
+      },
+      "build_knowledge_graph_academic": {
+        "our_reasoning": "Task explicitly requires knowledge graph creation",
+        "our_assumption": "Academic-specific graph building is superior to generic",
+        "selected_by_agent": false,
+        "tool_exists": false,
+        "tool_details": "Tool not found in database"
+      },
+      "analyze_methodology_patterns": {
+        "our_reasoning": "Need to identify method-performance relationships",
+        "our_assumption": "Specialized methodology analysis is required",
+        "selected_by_agent": false,
+        "tool_exists": false,
+        "tool_details": "Tool not found in database"
+      },
+      "export_academic_summary": {
+        "our_reasoning": "Academic format output with proper citations and structure",
+        "our_assumption": "Academic-specific export format is preferred",
+        "selected_by_agent": false,
+        "tool_exists": false,
+        "tool_details": "Tool not found in database"
+      },
+      "load_document_pdf": {
+        "selected_by_agent": true,
+        "selected_by_us": false,
+        "tool_exists": true,
+        "tool_details": {
+          "id": "load_document_pdf",
+          "name": "Load PDF Document",
+          "description": "Extract text and metadata from PDF documents",
+          "category": "document_loaders",
+          "input_types": [],
+          "output_types": [
+            "document_ref"
+          ],
+          "complexity_score": 0.3,
+          "dependencies": [],
+          "parallel_compatible": []
+        }
+      },
+      "extract_keywords": {
+        "selected_by_agent": true,
+        "selected_by_us": false,
+        "tool_exists": true,
+        "tool_details": {
+          "id": "extract_keywords",
+          "name": "Extract Keywords",
+          "description": "Extract important keywords and phrases",
+          "category": "text_processing",
+          "input_types": [
+            "document_ref",
+            "text_ref"
+          ],
+          "output_types": [
+            "text_ref",
+            "chunks_ref"
+          ],
+          "complexity_score": 0.5,
+          "dependencies": [
+            "load_document_*"
+          ],
+          "parallel_compatible": []
+        }
+      },
+      "analyze_relationship_strength": {
+        "selected_by_agent": true,
+        "selected_by_us": false,
+        "tool_exists": true,
+        "tool_details": {
+          "id": "analyze_relationship_strength",
+          "name": "Analyze Relationship Strength",
+          "description": "Quantify relationship strength",
+          "category": "relationship_analysis",
+          "input_types": [
+            "entities_ref",
+            "text_ref"
+          ],
+          "output_types": [
+            "relationships_ref"
+          ],
+          "complexity_score": 0.4,
+          "dependencies": [
+            "extract_entities_*"
+          ],
+          "parallel_compatible": [
+            "extract_entities_*"
+          ]
+        }
+      }
+    },
+    "quality_assessment": {
+      "task_coverage": {
+        "our_coverage": {
+          "document_loading": false,
+          "entity_extraction": false,
+          "knowledge_graph_creation": false
+        },
+        "agent_coverage": {
+          "document_loading": true,
+          "entity_extraction": true,
+          "knowledge_graph_creation": false
+        },
+        "coverage_comparison": "agent"
+      },
+      "efficiency": {
+        "our_tool_count": 5,
+        "agent_tool_count": 3,
+        "more_efficient": "agent"
+      },
+      "appropriateness": {
+        "our_score": 0.0,
+        "agent_score": 0.0,
+        "more_appropriate": "our"
+      },
+      "overall_verdict": {}
+    }
+  },
+  "conclusions": {
+    "choice_quality": "our_assumptions_better",
+    "reasoning": [
+      "Our assumptions are more appropriate for the task"
+    ],
+    "recommendations": [
+      "Consider improving tool descriptions to guide agent selection",
+      "Investigate why agent missed optimal choices"
+    ]
+  }
+}

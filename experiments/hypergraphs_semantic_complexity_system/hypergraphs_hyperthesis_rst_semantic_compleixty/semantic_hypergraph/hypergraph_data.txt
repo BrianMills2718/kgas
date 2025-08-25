@@ -1,0 +1,819 @@
+=== EDGES ===
+Edge ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c
+String: (represents/P.sc (+/B climate/C:Topic change/C:Topic) significant/M:Sentiment challenges/C:Claim (+/B facing/P.sc humanity/C:PoliticalActor) (+/B 21st/C:Topic century/C:Topic))
+Type: None, Domain: None
+Components: 6
+----------------------------------------
+Edge ID: 8a7dbb36-83d1-437a-aeff-237f10bcbabf
+String: represents/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 654f8eee-1234-482b-93f8-b846e014bd9b
+String: (+/B climate/C:Topic change/C:Topic)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 8851e204-c75f-4c52-948e-38fc22b666d0
+String: +/B
+Type: B, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: fb8a4ab7-eba9-4309-bc85-9f11c23facce
+String: climate/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 67bd3aab-1792-464e-9b28-0f06ab833ad7
+String: change/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: a7d667ce-89c0-4e0d-8e72-513189624a0c
+String: significant/M:Sentiment
+Type: M, Domain: Sentiment
+Components: 0
+----------------------------------------
+Edge ID: ebb16599-3ccb-48e0-b756-7b85a1c26b6b
+String: challenges/C:Claim
+Type: C, Domain: Claim
+Components: 0
+----------------------------------------
+Edge ID: 119bbb43-9020-4987-97be-6472fb9583fa
+String: (+/B facing/P.sc humanity/C:PoliticalActor)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: d4e1627a-9711-4e02-83e9-9b66d1b37dab
+String: facing/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: af9a1b8f-cf5a-4a45-8ce1-f5388cbc5873
+String: humanity/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 6611f823-8b50-4a80-9f5b-7262d2258b13
+String: (+/B 21st/C:Topic century/C:Topic)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 2dd71114-4ce6-431e-b78a-e30392a4b425
+String: 21st/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 98e5e0bb-93d0-4b96-a607-3428085d1f8b
+String: century/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: f07a9111-e099-4f09-b524-0ef85e3a578a
+String: (reports/P.sr (+/B dr/C:PoliticalActor jane/C:PoliticalActor roberts/C:PoliticalActor) (that/P.sc (+/B ice/C:Concept core/C:Concept samples/C:Concept) (provide/P.sc (+/B clear/C:M evidence/C:Claim) (+/B accelerated/C:M warming/C:Topic) (+/B over/C:B the/C:B past/C:Topic century/C:Topic) (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic) (+/B over/C:B the/C:B previous/C:M millennium/C:Topic))))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 77170102-0ca8-47b6-afa8-3dca57fbe9ff
+String: reports/P.sr
+Type: P.sr, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 3d63b9ed-5ba1-433e-a5b3-a50d6867d107
+String: (+/B dr/C:PoliticalActor jane/C:PoliticalActor roberts/C:PoliticalActor)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: e198d6ac-ade3-42d6-bc7e-93e737907b22
+String: dr/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 2ffd5a69-2ae9-493c-857a-f0f2f7982d37
+String: jane/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 23770a2f-681e-4cbd-afe4-80af1357d06c
+String: roberts/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: fe92b2c1-b63d-4f90-904b-5a0e971f2581
+String: (that/P.sc (+/B ice/C:Concept core/C:Concept samples/C:Concept) (provide/P.sc (+/B clear/C:M evidence/C:Claim) (+/B accelerated/C:M warming/C:Topic) (+/B over/C:B the/C:B past/C:Topic century/C:Topic) (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic) (+/B over/C:B the/C:B previous/C:M millennium/C:Topic)))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: c2e2f32e-a937-451c-9abf-a4cad3c913da
+String: that/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839
+String: (+/B ice/C:Concept core/C:Concept samples/C:Concept)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: d7dbf0e1-0fa5-4a81-852c-a6af4e862b95
+String: ice/C:Concept
+Type: C, Domain: Concept
+Components: 0
+----------------------------------------
+Edge ID: 01dab78f-6da1-4dbc-a1dc-95fb1e1bbb32
+String: core/C:Concept
+Type: C, Domain: Concept
+Components: 0
+----------------------------------------
+Edge ID: 5ea883a7-2895-4acc-897f-18ea475deca0
+String: samples/C:Concept
+Type: C, Domain: Concept
+Components: 0
+----------------------------------------
+Edge ID: f315045c-4869-4e71-8daf-2f4ffdb27b13
+String: (provide/P.sc (+/B clear/C:M evidence/C:Claim) (+/B accelerated/C:M warming/C:Topic) (+/B over/C:B the/C:B past/C:Topic century/C:Topic) (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic) (+/B over/C:B the/C:B previous/C:M millennium/C:Topic))
+Type: None, Domain: None
+Components: 6
+----------------------------------------
+Edge ID: 0e7a5a98-f3a9-49c5-b023-b3019850a1f3
+String: provide/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 33c56f0b-e3d0-40a0-8c65-5be967c34ec5
+String: (+/B clear/C:M evidence/C:Claim)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 6fa35ea7-e245-46df-9a3e-e2d77824273a
+String: clear/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 86dffb0f-19ca-41f9-af3f-4b7ede3d66f7
+String: evidence/C:Claim
+Type: C, Domain: Claim
+Components: 0
+----------------------------------------
+Edge ID: ed44aa08-0b64-49ff-8c64-04897fea04a6
+String: (+/B accelerated/C:M warming/C:Topic)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: ff9a2345-75b2-4081-aaf7-5c1e26504fa4
+String: accelerated/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: c8a739cc-66cf-44cf-8a9d-35a09a00c7fb
+String: warming/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: bb8a9adf-33f3-4187-a7df-1e9a07ea6086
+String: (+/B over/C:B the/C:B past/C:Topic century/C:Topic)
+Type: None, Domain: None
+Components: 5
+----------------------------------------
+Edge ID: c4c611d4-8df9-4516-aed9-1c538a3d14f5
+String: over/C:B
+Type: C, Domain: B
+Components: 0
+----------------------------------------
+Edge ID: 36dd1a49-8821-4929-a713-c890c3e9ab2e
+String: the/C:B
+Type: C, Domain: B
+Components: 0
+----------------------------------------
+Edge ID: b7b4ce48-0883-43cc-9dc5-696e50b6d9f2
+String: past/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 4e40500a-ca14-484c-99c3-9e67e538ec63
+String: (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic)
+Type: None, Domain: None
+Components: 6
+----------------------------------------
+Edge ID: 5250d9d4-cabf-43bd-86dc-88369aa6bcad
+String: compared/C:P
+Type: C, Domain: P
+Components: 0
+----------------------------------------
+Edge ID: 6f1ab5f3-e6ea-464a-83db-351bc0a2a35a
+String: to/C:B
+Type: C, Domain: B
+Components: 0
+----------------------------------------
+Edge ID: ea19a6d8-cd6c-4e1d-a24a-a4fe6cf560b6
+String: natural/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: f08de717-6a00-441e-961d-d804e49b3140
+String: variations/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 92bfb449-1140-4f95-8563-0a55f211f0ec
+String: (+/B over/C:B the/C:B previous/C:M millennium/C:Topic)
+Type: None, Domain: None
+Components: 5
+----------------------------------------
+Edge ID: f36a5943-9125-4cac-882a-6ca6bb3e1a2c
+String: previous/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 3c1a3b58-d88f-4b3b-b199-d90438ccd1ea
+String: millennium/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: d3852641-8195-4f18-ab8b-1b14c7164286
+String: Here is the hybrid semantic hypergraph representation of the provided text/C:
+
+1. **Trump's Skepticism and Withdrawal
+Type: C, Domain: 
+
+1. **Trump's Skepticism and Withdrawal
+Components: 0
+----------------------------------------
+Edge ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372
+String: (highlight/P.sr (+/B leaders/C:PoliticalActor developing/C:Topic nations/C:Topic) (unfair/C:Sentiment dynamics/C:Topic of/C climate/C:Topic action/C:Topic))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 5350a71f-078f-41a9-865f-3c5aa08fb542
+String: highlight/P.sr
+Type: P.sr, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: e848f289-4044-4f17-9a55-5c4d33ad1067
+String: (+/B leaders/C:PoliticalActor developing/C:Topic nations/C:Topic)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: cf0ca02f-9881-4bc7-87e6-1488bd65f50b
+String: leaders/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 36a3d3c3-6fde-45bf-8a68-3b20da6e6de5
+String: developing/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: d6b11891-e0c8-4641-a57e-dda26cc45587
+String: nations/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 7ba55409-74be-4537-aff1-94781941dfcd
+String: (unfair/C:Sentiment dynamics/C:Topic of/C climate/C:Topic action/C:Topic)
+Type: None, Domain: None
+Components: 5
+----------------------------------------
+Edge ID: abfc2b2a-f1b7-499a-8182-787a9de180ea
+String: unfair/C:Sentiment
+Type: C, Domain: Sentiment
+Components: 0
+----------------------------------------
+Edge ID: 633b7e9e-80c3-4a4e-9df1-1271b699883e
+String: dynamics/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 2219bcda-9bf7-46c4-b9fe-adceaa85920f
+String: of/C
+Type: C, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 8c591d3a-74b0-47f3-97b8-32c6f9594f0c
+String: action/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: fe1cdea1-5961-49d6-a1cf-1bcb6e973ebd
+String: Here is the hybrid semantic hypergraph representation of the provided text/C:
+
+1. **Elon Musk's Argument
+Type: C, Domain: 
+
+1. **Elon Musk's Argument
+Components: 0
+----------------------------------------
+Edge ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7
+String: (argue/P.sr (+/B economists/C:PoliticalActor nicholas/C:PoliticalActor stern/C:PoliticalActor) (outweigh/P.sc (+/B long-term/C:M costs/C:Claim inaction/C:Claim) (far/P.M (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim))))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 8bb93453-e118-45fa-9949-957289520fd9
+String: argue/P.sr
+Type: P.sr, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: e6c7a950-ef35-4831-ae26-0a691765e8aa
+String: (+/B economists/C:PoliticalActor nicholas/C:PoliticalActor stern/C:PoliticalActor)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: fce56e11-b11f-4555-b3d2-6e9fd794f9ca
+String: economists/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 3199adb5-b74e-40f7-85dd-d1d2e509551c
+String: nicholas/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 45db97f7-0fb6-451f-ba75-4100744ce532
+String: stern/C:PoliticalActor
+Type: C, Domain: PoliticalActor
+Components: 0
+----------------------------------------
+Edge ID: 75315f1b-7b0e-48db-842a-82ed3240f8d1
+String: (outweigh/P.sc (+/B long-term/C:M costs/C:Claim inaction/C:Claim) (far/P.M (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim)))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 2c9de877-6ced-42e6-94fc-66e69b71c5e4
+String: outweigh/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 8bfe2c85-8704-4f54-a912-cf1ef153a414
+String: (+/B long-term/C:M costs/C:Claim inaction/C:Claim)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: 8bd828d3-9174-4a25-8072-8004c19d866d
+String: long-term/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 266a19e8-6c2e-4e95-b02f-5f9794e328d1
+String: costs/C:Claim
+Type: C, Domain: Claim
+Components: 0
+----------------------------------------
+Edge ID: ea479838-1935-4877-8eaf-067e2d239abb
+String: inaction/C:Claim
+Type: C, Domain: Claim
+Components: 0
+----------------------------------------
+Edge ID: e54f9c94-c0db-493b-8cad-0cc77b4c6921
+String: (far/P.M (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim))
+Type: None, Domain: None
+Components: 2
+----------------------------------------
+Edge ID: 44c856d7-bac0-498b-98f4-556c774c5380
+String: far/P.M
+Type: P.M, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 4b7bdc61-1373-445c-9b05-39939c4eb628
+String: (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim)
+Type: None, Domain: None
+Components: 5
+----------------------------------------
+Edge ID: e47a7a3f-5155-4b98-8b8d-27846c9021c8
+String: short-term/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 8d407b32-ecc5-4329-9b0a-82f06c781cd2
+String: reducing/C:P
+Type: C, Domain: P
+Components: 0
+----------------------------------------
+Edge ID: 738e8345-8097-4684-b553-5d1d50a06f76
+String: emissions/C:Claim
+Type: C, Domain: Claim
+Components: 0
+----------------------------------------
+Edge ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19
+String: (concludes/P.sc (+/B challenge/C:Topic climate/C:Topic change/C:Topic) (requires/P.sc (+/B coordinated/C:M global/C:M action/C:Concept) (across/B (+/B political/C:Topic technological/C:Topic economic/C:Topic) dimensions/C:Concept)))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: 10261e96-42b5-4c73-9d56-a0586cd5cb2b
+String: concludes/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 6a35b9c9-d067-4e43-b4f5-c9e894c45d27
+String: (+/B challenge/C:Topic climate/C:Topic change/C:Topic)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: c296f7b7-02b9-4864-b84f-a0018a050450
+String: challenge/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: f3941d7d-1b3d-4958-9d78-9c1aa0b53015
+String: (requires/P.sc (+/B coordinated/C:M global/C:M action/C:Concept) (across/B (+/B political/C:Topic technological/C:Topic economic/C:Topic) dimensions/C:Concept))
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: ed63ed39-4645-4019-9e4c-f1503b13fbb2
+String: requires/P.sc
+Type: P.sc, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 8f811a08-00f9-4c5e-a49e-9723b633ce35
+String: (+/B coordinated/C:M global/C:M action/C:Concept)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: 6153f0e9-d6f7-4e36-af01-153d9c22bac1
+String: coordinated/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 9dedc254-79c0-4777-943f-40b4a6aa1b31
+String: global/C:M
+Type: C, Domain: M
+Components: 0
+----------------------------------------
+Edge ID: 4fbd0011-f117-4cdb-9f1b-778a58bec9d8
+String: action/C:Concept
+Type: C, Domain: Concept
+Components: 0
+----------------------------------------
+Edge ID: fff914a5-b8b4-40d3-8e73-8825f0f14394
+String: (across/B (+/B political/C:Topic technological/C:Topic economic/C:Topic) dimensions/C:Concept)
+Type: None, Domain: None
+Components: 3
+----------------------------------------
+Edge ID: e2a9264e-4beb-4af2-a4e7-892aa119e826
+String: across/B
+Type: B, Domain: None
+Components: 0
+----------------------------------------
+Edge ID: 939749eb-2254-46cd-bf9b-79886794a99e
+String: (+/B political/C:Topic technological/C:Topic economic/C:Topic)
+Type: None, Domain: None
+Components: 4
+----------------------------------------
+Edge ID: e1b69dcd-0ea7-4241-a92a-235f514c4743
+String: political/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 279e2438-a069-4048-a531-9f19355f0bbc
+String: technological/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: a6ca3c4f-a952-4f92-949d-220b9da8f03c
+String: economic/C:Topic
+Type: C, Domain: Topic
+Components: 0
+----------------------------------------
+Edge ID: 808d5de8-c755-449e-b379-322579f0e868
+String: dimensions/C:Concept
+Type: C, Domain: Concept
+Components: 0
+----------------------------------------
+
+=== NODES ===
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_0
+Key: represents/P.sc.
+Value: (+/B climate/C:Topic change/C:Topic)
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_1
+Key: represents/P.sc. +/B.
+Value: climate/C:Topic
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_2
+Key: represents/P.sc. +/B.
+Value: change/C:Topic
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_3
+Key: represents/P.sc.
+Value: significant/M:Sentiment
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_4
+Key: represents/P.sc.
+Value: challenges/C:Claim
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_5
+Key: represents/P.sc.
+Value: (+/B facing/P.sc humanity/C:PoliticalActor)
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_6
+Key: represents/P.sc. +/B.
+Value: facing/P.sc
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_7
+Key: represents/P.sc. +/B.
+Value: humanity/C:PoliticalActor
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_8
+Key: represents/P.sc.
+Value: (+/B 21st/C:Topic century/C:Topic)
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_9
+Key: represents/P.sc. +/B.
+Value: 21st/C:Topic
+----------------------------------------
+Node ID: 434b6bda-64c0-4ce2-a1d0-174b0bc6df1c_node_10
+Key: represents/P.sc. +/B.
+Value: century/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_0
+Key: reports/P.sr.
+Value: (+/B dr/C:PoliticalActor jane/C:PoliticalActor roberts/C:PoliticalActor)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_1
+Key: reports/P.sr. +/B.
+Value: dr/C:PoliticalActor
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_2
+Key: reports/P.sr. +/B.
+Value: jane/C:PoliticalActor
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_3
+Key: reports/P.sr. +/B.
+Value: roberts/C:PoliticalActor
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_4
+Key: reports/P.sr.
+Value: (that/P.sc (+/B ice/C:Concept core/C:Concept samples/C:Concept) (provide/P.sc (+/B clear/C:M evidence/C:Claim) (+/B accelerated/C:M warming/C:Topic) (+/B over/C:B the/C:B past/C:Topic century/C:Topic) (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic) (+/B over/C:B the/C:B previous/C:M millennium/C:Topic)))
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_5
+Key: reports/P.sr. that/P.sc.
+Value: (+/B ice/C:Concept core/C:Concept samples/C:Concept)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_6
+Key: reports/P.sr. that/P.sc. +/B.
+Value: ice/C:Concept
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_7
+Key: reports/P.sr. that/P.sc. +/B.
+Value: core/C:Concept
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_8
+Key: reports/P.sr. that/P.sc. +/B.
+Value: samples/C:Concept
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_9
+Key: reports/P.sr. that/P.sc.
+Value: (provide/P.sc (+/B clear/C:M evidence/C:Claim) (+/B accelerated/C:M warming/C:Topic) (+/B over/C:B the/C:B past/C:Topic century/C:Topic) (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic) (+/B over/C:B the/C:B previous/C:M millennium/C:Topic))
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_10
+Key: reports/P.sr. that/P.sc. provide/P.sc.
+Value: (+/B clear/C:M evidence/C:Claim)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_11
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: clear/C:M
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_12
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: evidence/C:Claim
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_13
+Key: reports/P.sr. that/P.sc. provide/P.sc.
+Value: (+/B accelerated/C:M warming/C:Topic)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_14
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: accelerated/C:M
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_15
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: warming/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_16
+Key: reports/P.sr. that/P.sc. provide/P.sc.
+Value: (+/B over/C:B the/C:B past/C:Topic century/C:Topic)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_17
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: over/C:B
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_18
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: the/C:B
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_19
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: past/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_20
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: century/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_21
+Key: reports/P.sr. that/P.sc. provide/P.sc.
+Value: (+/B compared/C:P to/C:B natural/C:M climate/C:Topic variations/C:Topic)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_22
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: compared/C:P
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_23
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: to/C:B
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_24
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: natural/C:M
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_25
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: climate/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_26
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: variations/C:Topic
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_27
+Key: reports/P.sr. that/P.sc. provide/P.sc.
+Value: (+/B over/C:B the/C:B previous/C:M millennium/C:Topic)
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_28
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: over/C:B
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_29
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: the/C:B
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_30
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: previous/C:M
+----------------------------------------
+Node ID: f07a9111-e099-4f09-b524-0ef85e3a578a_node_31
+Key: reports/P.sr. that/P.sc. provide/P.sc. +/B.
+Value: millennium/C:Topic
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_0
+Key: highlight/P.sr.
+Value: (+/B leaders/C:PoliticalActor developing/C:Topic nations/C:Topic)
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_1
+Key: highlight/P.sr. +/B.
+Value: leaders/C:PoliticalActor
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_2
+Key: highlight/P.sr. +/B.
+Value: developing/C:Topic
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_3
+Key: highlight/P.sr. +/B.
+Value: nations/C:Topic
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_4
+Key: highlight/P.sr.
+Value: (unfair/C:Sentiment dynamics/C:Topic of/C climate/C:Topic action/C:Topic)
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_5
+Key: highlight/P.sr. unfair/C.
+Value: dynamics/C:Topic
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_6
+Key: highlight/P.sr. unfair/C.
+Value: of/C
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_7
+Key: highlight/P.sr. unfair/C.
+Value: climate/C:Topic
+----------------------------------------
+Node ID: 4e0059ed-b95a-42d4-ab6d-ee348b86f372_node_8
+Key: highlight/P.sr. unfair/C.
+Value: action/C:Topic
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_0
+Key: argue/P.sr.
+Value: (+/B economists/C:PoliticalActor nicholas/C:PoliticalActor stern/C:PoliticalActor)
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_1
+Key: argue/P.sr. +/B.
+Value: economists/C:PoliticalActor
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_2
+Key: argue/P.sr. +/B.
+Value: nicholas/C:PoliticalActor
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_3
+Key: argue/P.sr. +/B.
+Value: stern/C:PoliticalActor
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_4
+Key: argue/P.sr.
+Value: (outweigh/P.sc (+/B long-term/C:M costs/C:Claim inaction/C:Claim) (far/P.M (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim)))
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_5
+Key: argue/P.sr. outweigh/P.sc.
+Value: (+/B long-term/C:M costs/C:Claim inaction/C:Claim)
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_6
+Key: argue/P.sr. outweigh/P.sc. +/B.
+Value: long-term/C:M
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_7
+Key: argue/P.sr. outweigh/P.sc. +/B.
+Value: costs/C:Claim
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_8
+Key: argue/P.sr. outweigh/P.sc. +/B.
+Value: inaction/C:Claim
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_9
+Key: argue/P.sr. outweigh/P.sc.
+Value: (far/P.M (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim))
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_10
+Key: argue/P.sr. outweigh/P.sc. far/P.M.
+Value: (+/B short-term/C:M costs/C:Claim reducing/C:P emissions/C:Claim)
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_11
+Key: argue/P.sr. outweigh/P.sc. far/P.M. +/B.
+Value: short-term/C:M
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_12
+Key: argue/P.sr. outweigh/P.sc. far/P.M. +/B.
+Value: costs/C:Claim
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_13
+Key: argue/P.sr. outweigh/P.sc. far/P.M. +/B.
+Value: reducing/C:P
+----------------------------------------
+Node ID: a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7_node_14
+Key: argue/P.sr. outweigh/P.sc. far/P.M. +/B.
+Value: emissions/C:Claim
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_0
+Key: concludes/P.sc.
+Value: (+/B challenge/C:Topic climate/C:Topic change/C:Topic)
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_1
+Key: concludes/P.sc. +/B.
+Value: challenge/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_2
+Key: concludes/P.sc. +/B.
+Value: climate/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_3
+Key: concludes/P.sc. +/B.
+Value: change/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_4
+Key: concludes/P.sc.
+Value: (requires/P.sc (+/B coordinated/C:M global/C:M action/C:Concept) (across/B (+/B political/C:Topic technological/C:Topic economic/C:Topic) dimensions/C:Concept))
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_5
+Key: concludes/P.sc. requires/P.sc.
+Value: (+/B coordinated/C:M global/C:M action/C:Concept)
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_6
+Key: concludes/P.sc. requires/P.sc. +/B.
+Value: coordinated/C:M
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_7
+Key: concludes/P.sc. requires/P.sc. +/B.
+Value: global/C:M
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_8
+Key: concludes/P.sc. requires/P.sc. +/B.
+Value: action/C:Concept
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_9
+Key: concludes/P.sc. requires/P.sc.
+Value: (across/B (+/B political/C:Topic technological/C:Topic economic/C:Topic) dimensions/C:Concept)
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_10
+Key: concludes/P.sc. requires/P.sc. across/B.
+Value: (+/B political/C:Topic technological/C:Topic economic/C:Topic)
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_11
+Key: concludes/P.sc. requires/P.sc. across/B. +/B.
+Value: political/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_12
+Key: concludes/P.sc. requires/P.sc. across/B. +/B.
+Value: technological/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_13
+Key: concludes/P.sc. requires/P.sc. across/B. +/B.
+Value: economic/C:Topic
+----------------------------------------
+Node ID: 66a58116-fe2b-4206-bf4e-3aa71873fd19_node_14
+Key: concludes/P.sc. requires/P.sc. across/B.
+Value: dimensions/C:Concept
+----------------------------------------
+
+=== INDICES ===
+SH Indices:
+type: {'P.sc': {'c2e2f32e-a937-451c-9abf-a4cad3c913da', '2c9de877-6ced-42e6-94fc-66e69b71c5e4', 'd4e1627a-9711-4e02-83e9-9b66d1b37dab', 'ed63ed39-4645-4019-9e4c-f1503b13fbb2', '10261e96-42b5-4c73-9d56-a0586cd5cb2b', '0e7a5a98-f3a9-49c5-b023-b3019850a1f3', '8a7dbb36-83d1-437a-aeff-237f10bcbabf'}, 'B': {'e2a9264e-4beb-4af2-a4e7-892aa119e826', '8851e204-c75f-4c52-948e-38fc22b666d0'}, 'C': {'01dab78f-6da1-4dbc-a1dc-95fb1e1bbb32', 'd7dbf0e1-0fa5-4a81-852c-a6af4e862b95', '3199adb5-b74e-40f7-85dd-d1d2e509551c', '2219bcda-9bf7-46c4-b9fe-adceaa85920f', '4fbd0011-f117-4cdb-9f1b-778a58bec9d8', 'c296f7b7-02b9-4864-b84f-a0018a050450', '5250d9d4-cabf-43bd-86dc-88369aa6bcad', 'cf0ca02f-9881-4bc7-87e6-1488bd65f50b', '8bd828d3-9174-4a25-8072-8004c19d866d', 'ea19a6d8-cd6c-4e1d-a24a-a4fe6cf560b6', '98e5e0bb-93d0-4b96-a607-3428085d1f8b', '6153f0e9-d6f7-4e36-af01-153d9c22bac1', '6fa35ea7-e245-46df-9a3e-e2d77824273a', '8c591d3a-74b0-47f3-97b8-32c6f9594f0c', 'f36a5943-9125-4cac-882a-6ca6bb3e1a2c', '3c1a3b58-d88f-4b3b-b199-d90438ccd1ea', 'c4c611d4-8df9-4516-aed9-1c538a3d14f5', 'fe1cdea1-5961-49d6-a1cf-1bcb6e973ebd', 'd6b11891-e0c8-4641-a57e-dda26cc45587', 'ff9a2345-75b2-4081-aaf7-5c1e26504fa4', '808d5de8-c755-449e-b379-322579f0e868', '8d407b32-ecc5-4329-9b0a-82f06c781cd2', '45db97f7-0fb6-451f-ba75-4100744ce532', 'e198d6ac-ade3-42d6-bc7e-93e737907b22', 'ebb16599-3ccb-48e0-b756-7b85a1c26b6b', 'e47a7a3f-5155-4b98-8b8d-27846c9021c8', 'd3852641-8195-4f18-ab8b-1b14c7164286', '67bd3aab-1792-464e-9b28-0f06ab833ad7', '9dedc254-79c0-4777-943f-40b4a6aa1b31', '738e8345-8097-4684-b553-5d1d50a06f76', 'ea479838-1935-4877-8eaf-067e2d239abb', 'f08de717-6a00-441e-961d-d804e49b3140', '2dd71114-4ce6-431e-b78a-e30392a4b425', '5ea883a7-2895-4acc-897f-18ea475deca0', 'b7b4ce48-0883-43cc-9dc5-696e50b6d9f2', 'fb8a4ab7-eba9-4309-bc85-9f11c23facce', '279e2438-a069-4048-a531-9f19355f0bbc', 'c8a739cc-66cf-44cf-8a9d-35a09a00c7fb', 'a6ca3c4f-a952-4f92-949d-220b9da8f03c', '2ffd5a69-2ae9-493c-857a-f0f2f7982d37', '633b7e9e-80c3-4a4e-9df1-1271b699883e', '23770a2f-681e-4cbd-afe4-80af1357d06c', '266a19e8-6c2e-4e95-b02f-5f9794e328d1', 'af9a1b8f-cf5a-4a45-8ce1-f5388cbc5873', '86dffb0f-19ca-41f9-af3f-4b7ede3d66f7', '6f1ab5f3-e6ea-464a-83db-351bc0a2a35a', '36a3d3c3-6fde-45bf-8a68-3b20da6e6de5', 'e1b69dcd-0ea7-4241-a92a-235f514c4743', 'abfc2b2a-f1b7-499a-8182-787a9de180ea', '36dd1a49-8821-4929-a713-c890c3e9ab2e', 'fce56e11-b11f-4555-b3d2-6e9fd794f9ca'}, 'M': {'a7d667ce-89c0-4e0d-8e72-513189624a0c'}, 'P.sr': {'8bb93453-e118-45fa-9949-957289520fd9', '77170102-0ca8-47b6-afa8-3dca57fbe9ff', '5350a71f-078f-41a9-865f-3c5aa08fb542'}, 'P.M': {'44c856d7-bac0-498b-98f4-556c774c5380'}}
+content: {'represents': {'8a7dbb36-83d1-437a-aeff-237f10bcbabf'}, '+': {'8851e204-c75f-4c52-948e-38fc22b666d0'}, 'climate': {'fb8a4ab7-eba9-4309-bc85-9f11c23facce'}, 'change': {'67bd3aab-1792-464e-9b28-0f06ab833ad7'}, 'significant': {'a7d667ce-89c0-4e0d-8e72-513189624a0c'}, 'challenges': {'ebb16599-3ccb-48e0-b756-7b85a1c26b6b'}, 'facing': {'d4e1627a-9711-4e02-83e9-9b66d1b37dab'}, 'humanity': {'af9a1b8f-cf5a-4a45-8ce1-f5388cbc5873'}, '21st': {'2dd71114-4ce6-431e-b78a-e30392a4b425'}, 'century': {'98e5e0bb-93d0-4b96-a607-3428085d1f8b'}, 'reports': {'77170102-0ca8-47b6-afa8-3dca57fbe9ff'}, 'dr': {'e198d6ac-ade3-42d6-bc7e-93e737907b22'}, 'jane': {'2ffd5a69-2ae9-493c-857a-f0f2f7982d37'}, 'roberts': {'23770a2f-681e-4cbd-afe4-80af1357d06c'}, 'that': {'c2e2f32e-a937-451c-9abf-a4cad3c913da'}, 'ice': {'d7dbf0e1-0fa5-4a81-852c-a6af4e862b95'}, 'core': {'01dab78f-6da1-4dbc-a1dc-95fb1e1bbb32'}, 'samples': {'5ea883a7-2895-4acc-897f-18ea475deca0'}, 'provide': {'0e7a5a98-f3a9-49c5-b023-b3019850a1f3'}, 'clear': {'6fa35ea7-e245-46df-9a3e-e2d77824273a'}, 'evidence': {'86dffb0f-19ca-41f9-af3f-4b7ede3d66f7'}, 'accelerated': {'ff9a2345-75b2-4081-aaf7-5c1e26504fa4'}, 'warming': {'c8a739cc-66cf-44cf-8a9d-35a09a00c7fb'}, 'over': {'c4c611d4-8df9-4516-aed9-1c538a3d14f5'}, 'the': {'36dd1a49-8821-4929-a713-c890c3e9ab2e'}, 'past': {'b7b4ce48-0883-43cc-9dc5-696e50b6d9f2'}, 'compared': {'5250d9d4-cabf-43bd-86dc-88369aa6bcad'}, 'to': {'6f1ab5f3-e6ea-464a-83db-351bc0a2a35a'}, 'natural': {'ea19a6d8-cd6c-4e1d-a24a-a4fe6cf560b6'}, 'variations': {'f08de717-6a00-441e-961d-d804e49b3140'}, 'previous': {'f36a5943-9125-4cac-882a-6ca6bb3e1a2c'}, 'millennium': {'3c1a3b58-d88f-4b3b-b199-d90438ccd1ea'}, 'Here is the hybrid semantic hypergraph representation of the provided text': {'d3852641-8195-4f18-ab8b-1b14c7164286', 'fe1cdea1-5961-49d6-a1cf-1bcb6e973ebd'}, 'highlight': {'5350a71f-078f-41a9-865f-3c5aa08fb542'}, 'leaders': {'cf0ca02f-9881-4bc7-87e6-1488bd65f50b'}, 'developing': {'36a3d3c3-6fde-45bf-8a68-3b20da6e6de5'}, 'nations': {'d6b11891-e0c8-4641-a57e-dda26cc45587'}, 'unfair': {'abfc2b2a-f1b7-499a-8182-787a9de180ea'}, 'dynamics': {'633b7e9e-80c3-4a4e-9df1-1271b699883e'}, 'of': {'2219bcda-9bf7-46c4-b9fe-adceaa85920f'}, 'action': {'4fbd0011-f117-4cdb-9f1b-778a58bec9d8', '8c591d3a-74b0-47f3-97b8-32c6f9594f0c'}, 'argue': {'8bb93453-e118-45fa-9949-957289520fd9'}, 'economists': {'fce56e11-b11f-4555-b3d2-6e9fd794f9ca'}, 'nicholas': {'3199adb5-b74e-40f7-85dd-d1d2e509551c'}, 'stern': {'45db97f7-0fb6-451f-ba75-4100744ce532'}, 'outweigh': {'2c9de877-6ced-42e6-94fc-66e69b71c5e4'}, 'long-term': {'8bd828d3-9174-4a25-8072-8004c19d866d'}, 'costs': {'266a19e8-6c2e-4e95-b02f-5f9794e328d1'}, 'inaction': {'ea479838-1935-4877-8eaf-067e2d239abb'}, 'far': {'44c856d7-bac0-498b-98f4-556c774c5380'}, 'short-term': {'e47a7a3f-5155-4b98-8b8d-27846c9021c8'}, 'reducing': {'8d407b32-ecc5-4329-9b0a-82f06c781cd2'}, 'emissions': {'738e8345-8097-4684-b553-5d1d50a06f76'}, 'concludes': {'10261e96-42b5-4c73-9d56-a0586cd5cb2b'}, 'challenge': {'c296f7b7-02b9-4864-b84f-a0018a050450'}, 'requires': {'ed63ed39-4645-4019-9e4c-f1503b13fbb2'}, 'coordinated': {'6153f0e9-d6f7-4e36-af01-153d9c22bac1'}, 'global': {'9dedc254-79c0-4777-943f-40b4a6aa1b31'}, 'across': {'e2a9264e-4beb-4af2-a4e7-892aa119e826'}, 'political': {'e1b69dcd-0ea7-4241-a92a-235f514c4743'}, 'technological': {'279e2438-a069-4048-a531-9f19355f0bbc'}, 'economic': {'a6ca3c4f-a952-4f92-949d-220b9da8f03c'}, 'dimensions': {'808d5de8-c755-449e-b379-322579f0e868'}}
+component: {'8a7dbb36-83d1-437a-aeff-237f10bcbabf': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, '8851e204-c75f-4c52-948e-38fc22b666d0': {'92bfb449-1140-4f95-8563-0a55f211f0ec', 'e6c7a950-ef35-4831-ae26-0a691765e8aa', '8bfe2c85-8704-4f54-a912-cf1ef153a414', '6611f823-8b50-4a80-9f5b-7262d2258b13', '3d63b9ed-5ba1-433e-a5b3-a50d6867d107', 'ed44aa08-0b64-49ff-8c64-04897fea04a6', '4b7bdc61-1373-445c-9b05-39939c4eb628', '654f8eee-1234-482b-93f8-b846e014bd9b', '939749eb-2254-46cd-bf9b-79886794a99e', '33c56f0b-e3d0-40a0-8c65-5be967c34ec5', '119bbb43-9020-4987-97be-6472fb9583fa', '8f811a08-00f9-4c5e-a49e-9723b633ce35', 'bb8a9adf-33f3-4187-a7df-1e9a07ea6086', 'e848f289-4044-4f17-9a55-5c4d33ad1067', '4e40500a-ca14-484c-99c3-9e67e538ec63', 'be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839', '6a35b9c9-d067-4e43-b4f5-c9e894c45d27'}, 'fb8a4ab7-eba9-4309-bc85-9f11c23facce': {'4e40500a-ca14-484c-99c3-9e67e538ec63', '6a35b9c9-d067-4e43-b4f5-c9e894c45d27', '654f8eee-1234-482b-93f8-b846e014bd9b', '7ba55409-74be-4537-aff1-94781941dfcd'}, '67bd3aab-1792-464e-9b28-0f06ab833ad7': {'6a35b9c9-d067-4e43-b4f5-c9e894c45d27', '654f8eee-1234-482b-93f8-b846e014bd9b'}, '654f8eee-1234-482b-93f8-b846e014bd9b': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, 'a7d667ce-89c0-4e0d-8e72-513189624a0c': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, 'ebb16599-3ccb-48e0-b756-7b85a1c26b6b': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, 'd4e1627a-9711-4e02-83e9-9b66d1b37dab': {'119bbb43-9020-4987-97be-6472fb9583fa'}, 'af9a1b8f-cf5a-4a45-8ce1-f5388cbc5873': {'119bbb43-9020-4987-97be-6472fb9583fa'}, '119bbb43-9020-4987-97be-6472fb9583fa': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, '2dd71114-4ce6-431e-b78a-e30392a4b425': {'6611f823-8b50-4a80-9f5b-7262d2258b13'}, '98e5e0bb-93d0-4b96-a607-3428085d1f8b': {'6611f823-8b50-4a80-9f5b-7262d2258b13', 'bb8a9adf-33f3-4187-a7df-1e9a07ea6086'}, '6611f823-8b50-4a80-9f5b-7262d2258b13': {'434b6bda-64c0-4ce2-a1d0-174b0bc6df1c'}, '77170102-0ca8-47b6-afa8-3dca57fbe9ff': {'f07a9111-e099-4f09-b524-0ef85e3a578a'}, 'e198d6ac-ade3-42d6-bc7e-93e737907b22': {'3d63b9ed-5ba1-433e-a5b3-a50d6867d107'}, '2ffd5a69-2ae9-493c-857a-f0f2f7982d37': {'3d63b9ed-5ba1-433e-a5b3-a50d6867d107'}, '23770a2f-681e-4cbd-afe4-80af1357d06c': {'3d63b9ed-5ba1-433e-a5b3-a50d6867d107'}, '3d63b9ed-5ba1-433e-a5b3-a50d6867d107': {'f07a9111-e099-4f09-b524-0ef85e3a578a'}, 'c2e2f32e-a937-451c-9abf-a4cad3c913da': {'fe92b2c1-b63d-4f90-904b-5a0e971f2581'}, 'd7dbf0e1-0fa5-4a81-852c-a6af4e862b95': {'be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839'}, '01dab78f-6da1-4dbc-a1dc-95fb1e1bbb32': {'be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839'}, '5ea883a7-2895-4acc-897f-18ea475deca0': {'be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839'}, 'be1c4b5b-ebf2-42ec-b344-8b0ad2fa8839': {'fe92b2c1-b63d-4f90-904b-5a0e971f2581'}, '0e7a5a98-f3a9-49c5-b023-b3019850a1f3': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, '6fa35ea7-e245-46df-9a3e-e2d77824273a': {'33c56f0b-e3d0-40a0-8c65-5be967c34ec5'}, '86dffb0f-19ca-41f9-af3f-4b7ede3d66f7': {'33c56f0b-e3d0-40a0-8c65-5be967c34ec5'}, '33c56f0b-e3d0-40a0-8c65-5be967c34ec5': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, 'ff9a2345-75b2-4081-aaf7-5c1e26504fa4': {'ed44aa08-0b64-49ff-8c64-04897fea04a6'}, 'c8a739cc-66cf-44cf-8a9d-35a09a00c7fb': {'ed44aa08-0b64-49ff-8c64-04897fea04a6'}, 'ed44aa08-0b64-49ff-8c64-04897fea04a6': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, 'c4c611d4-8df9-4516-aed9-1c538a3d14f5': {'92bfb449-1140-4f95-8563-0a55f211f0ec', 'bb8a9adf-33f3-4187-a7df-1e9a07ea6086'}, '36dd1a49-8821-4929-a713-c890c3e9ab2e': {'92bfb449-1140-4f95-8563-0a55f211f0ec', 'bb8a9adf-33f3-4187-a7df-1e9a07ea6086'}, 'b7b4ce48-0883-43cc-9dc5-696e50b6d9f2': {'bb8a9adf-33f3-4187-a7df-1e9a07ea6086'}, 'bb8a9adf-33f3-4187-a7df-1e9a07ea6086': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, '5250d9d4-cabf-43bd-86dc-88369aa6bcad': {'4e40500a-ca14-484c-99c3-9e67e538ec63'}, '6f1ab5f3-e6ea-464a-83db-351bc0a2a35a': {'4e40500a-ca14-484c-99c3-9e67e538ec63'}, 'ea19a6d8-cd6c-4e1d-a24a-a4fe6cf560b6': {'4e40500a-ca14-484c-99c3-9e67e538ec63'}, 'f08de717-6a00-441e-961d-d804e49b3140': {'4e40500a-ca14-484c-99c3-9e67e538ec63'}, '4e40500a-ca14-484c-99c3-9e67e538ec63': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, 'f36a5943-9125-4cac-882a-6ca6bb3e1a2c': {'92bfb449-1140-4f95-8563-0a55f211f0ec'}, '3c1a3b58-d88f-4b3b-b199-d90438ccd1ea': {'92bfb449-1140-4f95-8563-0a55f211f0ec'}, '92bfb449-1140-4f95-8563-0a55f211f0ec': {'f315045c-4869-4e71-8daf-2f4ffdb27b13'}, 'f315045c-4869-4e71-8daf-2f4ffdb27b13': {'fe92b2c1-b63d-4f90-904b-5a0e971f2581'}, 'fe92b2c1-b63d-4f90-904b-5a0e971f2581': {'f07a9111-e099-4f09-b524-0ef85e3a578a'}, '5350a71f-078f-41a9-865f-3c5aa08fb542': {'4e0059ed-b95a-42d4-ab6d-ee348b86f372'}, 'cf0ca02f-9881-4bc7-87e6-1488bd65f50b': {'e848f289-4044-4f17-9a55-5c4d33ad1067'}, '36a3d3c3-6fde-45bf-8a68-3b20da6e6de5': {'e848f289-4044-4f17-9a55-5c4d33ad1067'}, 'd6b11891-e0c8-4641-a57e-dda26cc45587': {'e848f289-4044-4f17-9a55-5c4d33ad1067'}, 'e848f289-4044-4f17-9a55-5c4d33ad1067': {'4e0059ed-b95a-42d4-ab6d-ee348b86f372'}, 'abfc2b2a-f1b7-499a-8182-787a9de180ea': {'7ba55409-74be-4537-aff1-94781941dfcd'}, '633b7e9e-80c3-4a4e-9df1-1271b699883e': {'7ba55409-74be-4537-aff1-94781941dfcd'}, '2219bcda-9bf7-46c4-b9fe-adceaa85920f': {'7ba55409-74be-4537-aff1-94781941dfcd'}, '8c591d3a-74b0-47f3-97b8-32c6f9594f0c': {'7ba55409-74be-4537-aff1-94781941dfcd'}, '7ba55409-74be-4537-aff1-94781941dfcd': {'4e0059ed-b95a-42d4-ab6d-ee348b86f372'}, '8bb93453-e118-45fa-9949-957289520fd9': {'a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7'}, 'fce56e11-b11f-4555-b3d2-6e9fd794f9ca': {'e6c7a950-ef35-4831-ae26-0a691765e8aa'}, '3199adb5-b74e-40f7-85dd-d1d2e509551c': {'e6c7a950-ef35-4831-ae26-0a691765e8aa'}, '45db97f7-0fb6-451f-ba75-4100744ce532': {'e6c7a950-ef35-4831-ae26-0a691765e8aa'}, 'e6c7a950-ef35-4831-ae26-0a691765e8aa': {'a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7'}, '2c9de877-6ced-42e6-94fc-66e69b71c5e4': {'75315f1b-7b0e-48db-842a-82ed3240f8d1'}, '8bd828d3-9174-4a25-8072-8004c19d866d': {'8bfe2c85-8704-4f54-a912-cf1ef153a414'}, '266a19e8-6c2e-4e95-b02f-5f9794e328d1': {'8bfe2c85-8704-4f54-a912-cf1ef153a414', '4b7bdc61-1373-445c-9b05-39939c4eb628'}, 'ea479838-1935-4877-8eaf-067e2d239abb': {'8bfe2c85-8704-4f54-a912-cf1ef153a414'}, '8bfe2c85-8704-4f54-a912-cf1ef153a414': {'75315f1b-7b0e-48db-842a-82ed3240f8d1'}, '44c856d7-bac0-498b-98f4-556c774c5380': {'e54f9c94-c0db-493b-8cad-0cc77b4c6921'}, 'e47a7a3f-5155-4b98-8b8d-27846c9021c8': {'4b7bdc61-1373-445c-9b05-39939c4eb628'}, '8d407b32-ecc5-4329-9b0a-82f06c781cd2': {'4b7bdc61-1373-445c-9b05-39939c4eb628'}, '738e8345-8097-4684-b553-5d1d50a06f76': {'4b7bdc61-1373-445c-9b05-39939c4eb628'}, '4b7bdc61-1373-445c-9b05-39939c4eb628': {'e54f9c94-c0db-493b-8cad-0cc77b4c6921'}, 'e54f9c94-c0db-493b-8cad-0cc77b4c6921': {'75315f1b-7b0e-48db-842a-82ed3240f8d1'}, '75315f1b-7b0e-48db-842a-82ed3240f8d1': {'a80f1e7d-5f6f-48b6-b052-7d34cec8d1c7'}, '10261e96-42b5-4c73-9d56-a0586cd5cb2b': {'66a58116-fe2b-4206-bf4e-3aa71873fd19'}, 'c296f7b7-02b9-4864-b84f-a0018a050450': {'6a35b9c9-d067-4e43-b4f5-c9e894c45d27'}, '6a35b9c9-d067-4e43-b4f5-c9e894c45d27': {'66a58116-fe2b-4206-bf4e-3aa71873fd19'}, 'ed63ed39-4645-4019-9e4c-f1503b13fbb2': {'f3941d7d-1b3d-4958-9d78-9c1aa0b53015'}, '6153f0e9-d6f7-4e36-af01-153d9c22bac1': {'8f811a08-00f9-4c5e-a49e-9723b633ce35'}, '9dedc254-79c0-4777-943f-40b4a6aa1b31': {'8f811a08-00f9-4c5e-a49e-9723b633ce35'}, '4fbd0011-f117-4cdb-9f1b-778a58bec9d8': {'8f811a08-00f9-4c5e-a49e-9723b633ce35'}, '8f811a08-00f9-4c5e-a49e-9723b633ce35': {'f3941d7d-1b3d-4958-9d78-9c1aa0b53015'}, 'e2a9264e-4beb-4af2-a4e7-892aa119e826': {'fff914a5-b8b4-40d3-8e73-8825f0f14394'}, 'e1b69dcd-0ea7-4241-a92a-235f514c4743': {'939749eb-2254-46cd-bf9b-79886794a99e'}, '279e2438-a069-4048-a531-9f19355f0bbc': {'939749eb-2254-46cd-bf9b-79886794a99e'}, 'a6ca3c4f-a952-4f92-949d-220b9da8f03c': {'939749eb-2254-46cd-bf9b-79886794a99e'}, '939749eb-2254-46cd-bf9b-79886794a99e': {'fff914a5-b8b4-40d3-8e73-8825f0f14394'}, '808d5de8-c755-449e-b379-322579f0e868': {'fff914a5-b8b4-40d3-8e73-8825f0f14394'}, 'fff914a5-b8b4-40d3-8e73-8825f0f14394': {'f3941d7d-1b3d-4958-9d78-9c1aa0b53015'}, 'f3941d7d-1b3d-4958-9d78-9c1aa0b53015': {'66a58116-fe2b-4206-bf4e-3aa71873fd19'}}
+
+OG Indices:
+domain_type: {'Topic': {'67bd3aab-1792-464e-9b28-0f06ab833ad7', '279e2438-a069-4048-a531-9f19355f0bbc', '98e5e0bb-93d0-4b96-a607-3428085d1f8b', 'c8a739cc-66cf-44cf-8a9d-35a09a00c7fb', 'a6ca3c4f-a952-4f92-949d-220b9da8f03c', '8c591d3a-74b0-47f3-97b8-32c6f9594f0c', '633b7e9e-80c3-4a4e-9df1-1271b699883e', 'c296f7b7-02b9-4864-b84f-a0018a050450', 'e1b69dcd-0ea7-4241-a92a-235f514c4743', 'f08de717-6a00-441e-961d-d804e49b3140', '3c1a3b58-d88f-4b3b-b199-d90438ccd1ea', '2dd71114-4ce6-431e-b78a-e30392a4b425', '36a3d3c3-6fde-45bf-8a68-3b20da6e6de5', 'd6b11891-e0c8-4641-a57e-dda26cc45587', 'b7b4ce48-0883-43cc-9dc5-696e50b6d9f2', 'fb8a4ab7-eba9-4309-bc85-9f11c23facce'}, 'Sentiment': {'abfc2b2a-f1b7-499a-8182-787a9de180ea', 'a7d667ce-89c0-4e0d-8e72-513189624a0c'}, 'Claim': {'738e8345-8097-4684-b553-5d1d50a06f76', 'ea479838-1935-4877-8eaf-067e2d239abb', '266a19e8-6c2e-4e95-b02f-5f9794e328d1', '86dffb0f-19ca-41f9-af3f-4b7ede3d66f7', 'ebb16599-3ccb-48e0-b756-7b85a1c26b6b'}, 'PoliticalActor': {'3199adb5-b74e-40f7-85dd-d1d2e509551c', '2ffd5a69-2ae9-493c-857a-f0f2f7982d37', '23770a2f-681e-4cbd-afe4-80af1357d06c', 'af9a1b8f-cf5a-4a45-8ce1-f5388cbc5873', 'fce56e11-b11f-4555-b3d2-6e9fd794f9ca', 'cf0ca02f-9881-4bc7-87e6-1488bd65f50b', '45db97f7-0fb6-451f-ba75-4100744ce532', 'e198d6ac-ade3-42d6-bc7e-93e737907b22'}, 'Concept': {'01dab78f-6da1-4dbc-a1dc-95fb1e1bbb32', 'd7dbf0e1-0fa5-4a81-852c-a6af4e862b95', '4fbd0011-f117-4cdb-9f1b-778a58bec9d8', '808d5de8-c755-449e-b379-322579f0e868', '5ea883a7-2895-4acc-897f-18ea475deca0'}, 'M': {'ea19a6d8-cd6c-4e1d-a24a-a4fe6cf560b6', '6153f0e9-d6f7-4e36-af01-153d9c22bac1', '9dedc254-79c0-4777-943f-40b4a6aa1b31', '6fa35ea7-e245-46df-9a3e-e2d77824273a', 'f36a5943-9125-4cac-882a-6ca6bb3e1a2c', 'ff9a2345-75b2-4081-aaf7-5c1e26504fa4', '8bd828d3-9174-4a25-8072-8004c19d866d', 'e47a7a3f-5155-4b98-8b8d-27846c9021c8'}, 'B': {'6f1ab5f3-e6ea-464a-83db-351bc0a2a35a', 'c4c611d4-8df9-4516-aed9-1c538a3d14f5', '36dd1a49-8821-4929-a713-c890c3e9ab2e'}, 'P': {'8d407b32-ecc5-4329-9b0a-82f06c781cd2', '5250d9d4-cabf-43bd-86dc-88369aa6bcad'}, "\n\n1. **Trump's Skepticism and Withdrawal": {'d3852641-8195-4f18-ab8b-1b14c7164286'}, "\n\n1. **Elon Musk's Argument": {'fe1cdea1-5961-49d6-a1cf-1bcb6e973ebd'}}
+role: {}

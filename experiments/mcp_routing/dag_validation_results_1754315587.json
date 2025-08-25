@@ -1,0 +1,2268 @@
+{
+  "validation_summary": {
+    "timestamp": 1754315587.3748887,
+    "total_tasks": 3,
+    "total_queries": 9,
+    "framework_version": "1.0_dag_validation"
+  },
+  "aggregate_metrics": {
+    "total_tests": 9,
+    "successful_generations": 9,
+    "overall_scores": [
+      0.7293650793650794,
+      0.8005952380952381,
+      0.6958333333333333,
+      0.7696428571428572,
+      0.7696428571428572,
+      0.7696428571428572,
+      0.7526190476190476,
+      0.6211111111111111,
+      0.6416666666666667
+    ],
+    "metric_averages": {
+      "structural_similarity": 0.4838095238095238,
+      "tool_overlap": 0.25925925925925924,
+      "workflow_efficiency": 1.0,
+      "dependency_correctness": 1.0,
+      "parameter_appropriateness": 0.8490740740740741,
+      "output_completeness": 0.7746031746031746,
+      "overall_score": 0.7277910052910053
+    },
+    "task_performance": {},
+    "average_overall_score": 0.7277910052910053,
+    "success_rate": 1.0
+  },
+  "task_results": {
+    "academic_paper_analysis": {
+      "task_description": "Extract methodologies, datasets, and performance metrics from academic ML paper",
+      "query_results": [
+        {
+          "test_case": {
+            "query": "Analyze this machine learning research paper to extract the methodologies used, datasets tested, and performance results achieved",
+            "task_id": "academic_paper_analysis",
+            "timestamp": 1754315459.8725169,
+            "comparison_id": "1095c8f7"
+          },
+          "automated_metrics": {
+            "overall_score": 0.7293650793650794,
+            "individual_scores": {
+              "structural_similarity": 0.2571428571428571,
+              "tool_overlap": 0.2857142857142857,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.8333333333333334,
+              "output_completeness": 1.0,
+              "overall_score": 0.7293650793650794
+            },
+            "interpretation": {
+              "structural_similarity": "Poor",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Excellent",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract methodologies, datasets, and performance metrics from academic ML paper",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "extract_metadata": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "chunk_text",
+                  "tool": "chunk_text_semantic",
+                  "params": {
+                    "chunk_size": 1000,
+                    "overlap": 100
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "chunks_ref"
+                  ]
+                },
+                {
+                  "id": "extract_methods",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "METHOD",
+                      "ALGORITHM"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "methods_ref"
+                  ]
+                },
+                {
+                  "id": "extract_datasets",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "DATASET",
+                      "CORPUS"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "datasets_ref"
+                  ]
+                },
+                {
+                  "id": "extract_metrics",
+                  "tool": "extract_performance_metrics",
+                  "params": {
+                    "metric_types": [
+                      "ACCURACY",
+                      "F1",
+                      "PRECISION"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "metrics_ref"
+                  ]
+                },
+                {
+                  "id": "link_method_performance",
+                  "tool": "extract_relationships_llm",
+                  "params": {
+                    "relationship_types": [
+                      "ACHIEVES",
+                      "PERFORMS"
+                    ]
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "metrics_ref"
+                  ],
+                  "outputs": [
+                    "relationships_ref"
+                  ]
+                },
+                {
+                  "id": "build_graph",
+                  "tool": "build_knowledge_graph",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "datasets_ref",
+                    "metrics_ref",
+                    "relationships_ref"
+                  ],
+                  "outputs": [
+                    "graph_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "tool_count": 7,
+              "complexity": "complex"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_research_paper",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref_paper"
+                  ]
+                },
+                {
+                  "id": "chunk_paper_content",
+                  "tool": "chunk_text_semantic",
+                  "params": {},
+                  "inputs": [
+                    "document_ref_paper"
+                  ],
+                  "outputs": [
+                    "chunks_ref_paper_content"
+                  ]
+                },
+                {
+                  "id": "extract_ml_details",
+                  "tool": "extract_entities_llm_gpt4",
+                  "params": {},
+                  "inputs": [
+                    "chunks_ref_paper_content"
+                  ],
+                  "outputs": [
+                    "entities_ml_paper_analysis"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_research_paper -> chunk_paper_content",
+                "chunk_paper_content -> extract_ml_details"
+              ],
+              "tool_count": 3,
+              "rationale": "The workflow begins by using 'load_document_pdf' to ingest the research paper, assuming it is in PDF format, which is common for scientific publications. Following ingestion, 'chunk_text_semantic' is employed to break down the document into semantically coherent sections. This is crucial for managing the context when processing large research papers, ensuring that logical blocks of information (like a full methodology description or a set of related results) are kept together, which enhances the accuracy of subsequent extraction. Finally, 'extract_entities_llm_gpt4' is used to perform the core task. An LLM-based entity extractor is chosen because the requested information ('methodologies used', 'datasets tested', and 'performance results achieved') are specific and often require a nuanced understanding of the text that goes beyond general named entity recognition. GPT-4's advanced capabilities are well-suited for identifying and extracting these complex, domain-specific details from the semantically chunked text."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "chunk_text_semantic",
+                "extract_entities_scientific",
+                "extract_entities_scientific",
+                "extract_performance_metrics",
+                "extract_relationships_llm",
+                "build_knowledge_graph"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "chunk_text_semantic",
+                "extract_entities_llm_gpt4"
+              ],
+              "tools_only_in_reference": [
+                "extract_relationships_llm",
+                "extract_performance_metrics",
+                "extract_entities_scientific",
+                "build_knowledge_graph"
+              ],
+              "tools_only_in_gemini": [
+                "extract_entities_llm_gpt4"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 7,
+              "gemini_step_count": 3,
+              "reference_flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "gemini_flow": [
+                "load_research_paper -> chunk_paper_content",
+                "chunk_paper_content -> extract_ml_details"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by using 'load_document_pdf' to ingest the research paper, assuming it is in PDF format, which is common for scientific publications. Following ingestion, 'chunk_text_semantic' is employed to break down the document into semantically coherent sections. This is crucial for managing the context when processing large research papers, ensuring that logical blocks of information (like a full methodology description or a set of related results) are kept together, which enhances the accuracy of subsequent extraction. Finally, 'extract_entities_llm_gpt4' is used to perform the core task. An LLM-based entity extractor is chosen because the requested information ('methodologies used', 'datasets tested', and 'performance results achieved') are specific and often require a nuanced understanding of the text that goes beyond general named entity recognition. GPT-4's advanced capabilities are well-suited for identifying and extracting these complex, domain-specific details from the semantically chunked text."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Extract all the ML methods, datasets, and accuracy scores from this academic paper and show their relationships",
+            "task_id": "academic_paper_analysis",
+            "timestamp": 1754315481.922792,
+            "comparison_id": "4011cd51"
+          },
+          "automated_metrics": {
+            "overall_score": 0.8005952380952381,
+            "individual_scores": {
+              "structural_similarity": 0.42857142857142855,
+              "tool_overlap": 0.375,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 1.0,
+              "output_completeness": 1.0,
+              "overall_score": 0.8005952380952381
+            },
+            "interpretation": {
+              "structural_similarity": "Fair",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Excellent",
+              "overall_score": "Excellent"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract methodologies, datasets, and performance metrics from academic ML paper",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "extract_metadata": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "chunk_text",
+                  "tool": "chunk_text_semantic",
+                  "params": {
+                    "chunk_size": 1000,
+                    "overlap": 100
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "chunks_ref"
+                  ]
+                },
+                {
+                  "id": "extract_methods",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "METHOD",
+                      "ALGORITHM"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "methods_ref"
+                  ]
+                },
+                {
+                  "id": "extract_datasets",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "DATASET",
+                      "CORPUS"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "datasets_ref"
+                  ]
+                },
+                {
+                  "id": "extract_metrics",
+                  "tool": "extract_performance_metrics",
+                  "params": {
+                    "metric_types": [
+                      "ACCURACY",
+                      "F1",
+                      "PRECISION"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "metrics_ref"
+                  ]
+                },
+                {
+                  "id": "link_method_performance",
+                  "tool": "extract_relationships_llm",
+                  "params": {
+                    "relationship_types": [
+                      "ACHIEVES",
+                      "PERFORMS"
+                    ]
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "metrics_ref"
+                  ],
+                  "outputs": [
+                    "relationships_ref"
+                  ]
+                },
+                {
+                  "id": "build_graph",
+                  "tool": "build_knowledge_graph",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "datasets_ref",
+                    "metrics_ref",
+                    "relationships_ref"
+                  ],
+                  "outputs": [
+                    "graph_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "tool_count": 7,
+              "complexity": "complex"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_academic_paper",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref_paper"
+                  ]
+                },
+                {
+                  "id": "clean_paper_content",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "document_ref_paper"
+                  ],
+                  "outputs": [
+                    "text_ref_cleaned_full",
+                    "chunks_ref_cleaned_initial"
+                  ]
+                },
+                {
+                  "id": "semantically_chunk_text",
+                  "tool": "chunk_text_semantic",
+                  "params": {},
+                  "inputs": [
+                    "text_ref_cleaned_full"
+                  ],
+                  "outputs": [
+                    "text_ref_semantically_chunked_context",
+                    "chunks_ref_semantically_processed"
+                  ]
+                },
+                {
+                  "id": "extract_ml_entities",
+                  "tool": "extract_entities_llm_gpt4",
+                  "params": {
+                    "entity_types": [
+                      "ML_Method",
+                      "Dataset",
+                      "Accuracy_Score"
+                    ]
+                  },
+                  "inputs": [
+                    "text_ref_semantically_chunked_context",
+                    "chunks_ref_semantically_processed"
+                  ],
+                  "outputs": [
+                    "entities_ml_data_accuracy"
+                  ]
+                },
+                {
+                  "id": "extract_relationships",
+                  "tool": "extract_relationships_llm",
+                  "params": {
+                    "relationship_types": [
+                      "applies_to_dataset",
+                      "achieves_accuracy_on_dataset"
+                    ]
+                  },
+                  "inputs": [
+                    "entities_ml_data_accuracy",
+                    "text_ref_semantically_chunked_context"
+                  ],
+                  "outputs": [
+                    "relationships_ml_data_accuracy"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_academic_paper -> clean_paper_content",
+                "clean_paper_content -> semantically_chunk_text",
+                "semantically_chunk_text -> extract_ml_entities",
+                "extract_ml_entities + semantically_chunk_text -> extract_relationships"
+              ],
+              "tool_count": 5,
+              "rationale": "The workflow begins by loading the academic paper using 'load_document_pdf', assuming PDF is the common format. The extracted text is then passed to 'clean_text_basic' to remove any noise and normalize its content, providing a cleaner 'text_ref_cleaned_full'. To optimize for LLM processing, the cleaned text is then semantically chunked using 'chunk_text_semantic'. This ensures that logical sections of the paper are maintained, which is critical for context in subsequent steps. 'extract_entities_llm_gpt4' is then used to identify the specific entities: ML methods, datasets, and accuracy scores, leveraging its advanced natural language understanding capabilities and allowing for custom entity type definition. Finally, 'extract_relationships_llm' takes these extracted entities and the semantically chunked text context to infer and output the relationships between ML methods, datasets, and their corresponding accuracy scores, fulfilling the task requirement to 'show their relationships'."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "chunk_text_semantic",
+                "extract_entities_scientific",
+                "extract_entities_scientific",
+                "extract_performance_metrics",
+                "extract_relationships_llm",
+                "build_knowledge_graph"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "chunk_text_semantic",
+                "extract_entities_llm_gpt4",
+                "extract_relationships_llm"
+              ],
+              "tools_only_in_reference": [
+                "extract_performance_metrics",
+                "extract_entities_scientific",
+                "build_knowledge_graph"
+              ],
+              "tools_only_in_gemini": [
+                "clean_text_basic",
+                "extract_entities_llm_gpt4"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 7,
+              "gemini_step_count": 5,
+              "reference_flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "gemini_flow": [
+                "load_academic_paper -> clean_paper_content",
+                "clean_paper_content -> semantically_chunk_text",
+                "semantically_chunk_text -> extract_ml_entities",
+                "extract_ml_entities + semantically_chunk_text -> extract_relationships"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the academic paper using 'load_document_pdf', assuming PDF is the common format. The extracted text is then passed to 'clean_text_basic' to remove any noise and normalize its content, providing a cleaner 'text_ref_cleaned_full'. To optimize for LLM processing, the cleaned text is then semantically chunked using 'chunk_text_semantic'. This ensures that logical sections of the paper are maintained, which is critical for context in subsequent steps. 'extract_entities_llm_gpt4' is then used to identify the specific entities: ML methods, datasets, and accuracy scores, leveraging its advanced natural language understanding capabilities and allowing for custom entity type definition. Finally, 'extract_relationships_llm' takes these extracted entities and the semantically chunked text context to infer and output the relationships between ML methods, datasets, and their corresponding accuracy scores, fulfilling the task requirement to 'show their relationships'."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Process this research paper to identify algorithms, training data, and experimental results, then create a knowledge graph",
+            "task_id": "academic_paper_analysis",
+            "timestamp": 1754315494.7275708,
+            "comparison_id": "201223bf"
+          },
+          "automated_metrics": {
+            "overall_score": 0.6958333333333333,
+            "individual_scores": {
+              "structural_similarity": 0.42857142857142855,
+              "tool_overlap": 0.375,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.8,
+              "output_completeness": 0.5714285714285714,
+              "overall_score": 0.6958333333333333
+            },
+            "interpretation": {
+              "structural_similarity": "Fair",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Fair",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract methodologies, datasets, and performance metrics from academic ML paper",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "extract_metadata": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "chunk_text",
+                  "tool": "chunk_text_semantic",
+                  "params": {
+                    "chunk_size": 1000,
+                    "overlap": 100
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "chunks_ref"
+                  ]
+                },
+                {
+                  "id": "extract_methods",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "METHOD",
+                      "ALGORITHM"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "methods_ref"
+                  ]
+                },
+                {
+                  "id": "extract_datasets",
+                  "tool": "extract_entities_scientific",
+                  "params": {
+                    "entity_types": [
+                      "DATASET",
+                      "CORPUS"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "datasets_ref"
+                  ]
+                },
+                {
+                  "id": "extract_metrics",
+                  "tool": "extract_performance_metrics",
+                  "params": {
+                    "metric_types": [
+                      "ACCURACY",
+                      "F1",
+                      "PRECISION"
+                    ]
+                  },
+                  "inputs": [
+                    "chunks_ref"
+                  ],
+                  "outputs": [
+                    "metrics_ref"
+                  ]
+                },
+                {
+                  "id": "link_method_performance",
+                  "tool": "extract_relationships_llm",
+                  "params": {
+                    "relationship_types": [
+                      "ACHIEVES",
+                      "PERFORMS"
+                    ]
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "metrics_ref"
+                  ],
+                  "outputs": [
+                    "relationships_ref"
+                  ]
+                },
+                {
+                  "id": "build_graph",
+                  "tool": "build_knowledge_graph",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "methods_ref",
+                    "datasets_ref",
+                    "metrics_ref",
+                    "relationships_ref"
+                  ],
+                  "outputs": [
+                    "graph_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "tool_count": 7,
+              "complexity": "complex"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_research_paper",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "research_paper_document"
+                  ]
+                },
+                {
+                  "id": "clean_extracted_text",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "research_paper_document"
+                  ],
+                  "outputs": [
+                    "cleaned_paper_text"
+                  ]
+                },
+                {
+                  "id": "chunk_text_for_extraction",
+                  "tool": "chunk_text_semantic",
+                  "params": {},
+                  "inputs": [
+                    "research_paper_document",
+                    "cleaned_paper_text"
+                  ],
+                  "outputs": [
+                    "semantic_chunks"
+                  ]
+                },
+                {
+                  "id": "extract_algorithms_data_results",
+                  "tool": "extract_entities_llm_local",
+                  "params": {},
+                  "inputs": [
+                    "cleaned_paper_text",
+                    "semantic_chunks"
+                  ],
+                  "outputs": [
+                    "identified_entities"
+                  ]
+                },
+                {
+                  "id": "create_knowledge_graph_relationships",
+                  "tool": "extract_relationships_llm",
+                  "params": {},
+                  "inputs": [
+                    "identified_entities",
+                    "cleaned_paper_text"
+                  ],
+                  "outputs": [
+                    "knowledge_graph_relationships"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_research_paper -> clean_extracted_text",
+                "clean_extracted_text -> chunk_text_for_extraction",
+                "chunk_text_for_extraction + cleaned_paper_text -> extract_algorithms_data_results",
+                "extract_algorithms_data_results + cleaned_paper_text -> create_knowledge_graph_relationships"
+              ],
+              "tool_count": 5,
+              "rationale": "The workflow begins by loading the research paper, assuming it's in PDF format (`load_document_pdf`), as is common for academic papers. The extracted content is then passed to `clean_text_basic` to remove noise and normalize the text, ensuring better quality for subsequent processing. `chunk_text_semantic` is then used to intelligently split the cleaned text into semantically meaningful chunks, which is crucial for maintaining context during information extraction from complex documents like research papers. To identify specific information like 'algorithms', 'training data', and 'experimental results' (which might not be standard named entities but rather conceptual pieces of information), `extract_entities_llm_local` is chosen due to its flexibility and general-purpose understanding capabilities, which can be superior to domain-specific models for such abstract concepts. Finally, `extract_relationships_llm` is employed to identify the connections and relationships between these extracted entities, forming the core components of the desired knowledge graph. The use of LLM-based tools for both entity and relationship extraction provides a robust solution for understanding the nuanced information within a research paper."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "chunk_text_semantic",
+                "extract_entities_scientific",
+                "extract_entities_scientific",
+                "extract_performance_metrics",
+                "extract_relationships_llm",
+                "build_knowledge_graph"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "chunk_text_semantic",
+                "extract_entities_llm_local",
+                "extract_relationships_llm"
+              ],
+              "tools_only_in_reference": [
+                "extract_performance_metrics",
+                "extract_entities_scientific",
+                "build_knowledge_graph"
+              ],
+              "tools_only_in_gemini": [
+                "extract_entities_llm_local",
+                "clean_text_basic"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 7,
+              "gemini_step_count": 5,
+              "reference_flow": [
+                "load_doc -> chunk_text",
+                "chunk_text -> extract_methods",
+                "chunk_text -> extract_datasets",
+                "chunk_text -> extract_metrics",
+                "extract_methods + extract_metrics -> link_method_performance",
+                "extract_methods + extract_datasets + extract_metrics + link_method_performance -> build_graph"
+              ],
+              "gemini_flow": [
+                "load_research_paper -> clean_extracted_text",
+                "clean_extracted_text -> chunk_text_for_extraction",
+                "chunk_text_for_extraction + cleaned_paper_text -> extract_algorithms_data_results",
+                "extract_algorithms_data_results + cleaned_paper_text -> create_knowledge_graph_relationships"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the research paper, assuming it's in PDF format (`load_document_pdf`), as is common for academic papers. The extracted content is then passed to `clean_text_basic` to remove noise and normalize the text, ensuring better quality for subsequent processing. `chunk_text_semantic` is then used to intelligently split the cleaned text into semantically meaningful chunks, which is crucial for maintaining context during information extraction from complex documents like research papers. To identify specific information like 'algorithms', 'training data', and 'experimental results' (which might not be standard named entities but rather conceptual pieces of information), `extract_entities_llm_local` is chosen due to its flexibility and general-purpose understanding capabilities, which can be superior to domain-specific models for such abstract concepts. Finally, `extract_relationships_llm` is employed to identify the connections and relationships between these extracted entities, forming the core components of the desired knowledge graph. The use of LLM-based tools for both entity and relationship extraction provides a robust solution for understanding the nuanced information within a research paper."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        }
+      ],
+      "task_summary": {
+        "queries_tested": 3,
+        "average_score": 0.741931216931217,
+        "best_score": 0.8005952380952381,
+        "worst_score": 0.6958333333333333,
+        "consistency": 0.10476190476190483
+      }
+    },
+    "simple_document_processing": {
+      "task_description": "Extract key entities and create basic summary from business document",
+      "query_results": [
+        {
+          "test_case": {
+            "query": "Extract the key information and create a summary from this business document",
+            "task_id": "simple_document_processing",
+            "timestamp": 1754315510.2923782,
+            "comparison_id": "0d5ea96d"
+          },
+          "automated_metrics": {
+            "overall_score": 0.7696428571428572,
+            "individual_scores": {
+              "structural_similarity": 0.6,
+              "tool_overlap": 0.14285714285714285,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.875,
+              "output_completeness": 1.0,
+              "overall_score": 0.7696428571428572
+            },
+            "interpretation": {
+              "structural_similarity": "Good",
+              "tool_overlap": "Very Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Excellent",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract key entities and create basic summary from business document",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_entities",
+                  "tool": "extract_entities_basic",
+                  "params": {
+                    "entity_types": [
+                      "PERSON",
+                      "ORG",
+                      "DATE",
+                      "MONEY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "entities_ref"
+                  ]
+                },
+                {
+                  "id": "create_summary",
+                  "tool": "summarize_extractive",
+                  "params": {
+                    "max_sentences": 5
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "summary_ref"
+                  ]
+                },
+                {
+                  "id": "export_results",
+                  "tool": "export_json",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "entities_ref",
+                    "summary_ref"
+                  ],
+                  "outputs": [
+                    "results_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "tool_count": 4,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "step_load_document",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref_1"
+                  ]
+                },
+                {
+                  "id": "step_clean_text",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "document_ref_1"
+                  ],
+                  "outputs": [
+                    "cleaned_text_ref"
+                  ]
+                },
+                {
+                  "id": "step_extract_key_information",
+                  "tool": "extract_entities_llm_gpt4",
+                  "params": {},
+                  "inputs": [
+                    "cleaned_text_ref"
+                  ],
+                  "outputs": [
+                    "extracted_entities_ref"
+                  ]
+                },
+                {
+                  "id": "step_create_summary",
+                  "tool": "summarize_abstractive",
+                  "params": {},
+                  "inputs": [
+                    "cleaned_text_ref"
+                  ],
+                  "outputs": [
+                    "abstractive_summary_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "step_load_document -> step_clean_text",
+                "step_clean_text -> step_extract_key_information",
+                "step_clean_text -> step_create_summary"
+              ],
+              "tool_count": 4,
+              "rationale": "The workflow begins by loading the business document using 'load_document_pdf', chosen as a common format for such documents. The resulting document reference is then passed to 'clean_text_basic' to preprocess the text, removing noise and normalizing it for improved accuracy in subsequent NLP tasks. From this cleaned text, two parallel operations are performed: 'extract_entities_llm_gpt4' is used to extract key information (entities) due to its advanced capabilities in understanding context and identifying relevant details in complex documents. Simultaneously, 'summarize_abstractive' is employed to generate a concise, coherent summary of the document, which is generally preferred over an extractive summary for creating new content. This parallel execution enhances efficiency, and the final outputs are the extracted key entities and the abstractive summary, fulfilling all task requirements."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_basic",
+                "summarize_extractive",
+                "export_json"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "extract_entities_llm_gpt4",
+                "summarize_abstractive"
+              ],
+              "tools_only_in_reference": [
+                "export_json",
+                "summarize_extractive",
+                "extract_entities_basic"
+              ],
+              "tools_only_in_gemini": [
+                "clean_text_basic",
+                "extract_entities_llm_gpt4",
+                "summarize_abstractive"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 4,
+              "gemini_step_count": 4,
+              "reference_flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "gemini_flow": [
+                "step_load_document -> step_clean_text",
+                "step_clean_text -> step_extract_key_information",
+                "step_clean_text -> step_create_summary"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the business document using 'load_document_pdf', chosen as a common format for such documents. The resulting document reference is then passed to 'clean_text_basic' to preprocess the text, removing noise and normalizing it for improved accuracy in subsequent NLP tasks. From this cleaned text, two parallel operations are performed: 'extract_entities_llm_gpt4' is used to extract key information (entities) due to its advanced capabilities in understanding context and identifying relevant details in complex documents. Simultaneously, 'summarize_abstractive' is employed to generate a concise, coherent summary of the document, which is generally preferred over an extractive summary for creating new content. This parallel execution enhances efficiency, and the final outputs are the extracted key entities and the abstractive summary, fulfilling all task requirements."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Process this document to find important entities and generate a brief summary",
+            "task_id": "simple_document_processing",
+            "timestamp": 1754315525.2336998,
+            "comparison_id": "2d95e8fa"
+          },
+          "automated_metrics": {
+            "overall_score": 0.7696428571428572,
+            "individual_scores": {
+              "structural_similarity": 0.6,
+              "tool_overlap": 0.14285714285714285,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.875,
+              "output_completeness": 1.0,
+              "overall_score": 0.7696428571428572
+            },
+            "interpretation": {
+              "structural_similarity": "Good",
+              "tool_overlap": "Very Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Excellent",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract key entities and create basic summary from business document",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_entities",
+                  "tool": "extract_entities_basic",
+                  "params": {
+                    "entity_types": [
+                      "PERSON",
+                      "ORG",
+                      "DATE",
+                      "MONEY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "entities_ref"
+                  ]
+                },
+                {
+                  "id": "create_summary",
+                  "tool": "summarize_extractive",
+                  "params": {
+                    "max_sentences": 5
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "summary_ref"
+                  ]
+                },
+                {
+                  "id": "export_results",
+                  "tool": "export_json",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "entities_ref",
+                    "summary_ref"
+                  ],
+                  "outputs": [
+                    "results_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "tool_count": 4,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_document",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "clean_and_chunk_text",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "cleaned_text_ref",
+                    "document_chunks_ref"
+                  ]
+                },
+                {
+                  "id": "extract_entities",
+                  "tool": "extract_entities_spacy_lg",
+                  "params": {},
+                  "inputs": [
+                    "cleaned_text_ref",
+                    "document_chunks_ref"
+                  ],
+                  "outputs": [
+                    "important_entities_ref"
+                  ]
+                },
+                {
+                  "id": "generate_summary",
+                  "tool": "summarize_abstractive",
+                  "params": {},
+                  "inputs": [
+                    "document_ref",
+                    "cleaned_text_ref"
+                  ],
+                  "outputs": [
+                    "brief_summary_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_document -> clean_and_chunk_text",
+                "clean_and_chunk_text -> extract_entities",
+                "load_document + clean_and_chunk_text -> generate_summary"
+              ],
+              "tool_count": 4,
+              "rationale": "The workflow begins by loading the document using 'load_document_pdf' (assuming a PDF format, though any 'load_document_*' tool could be used based on the actual document type). This provides the 'document_ref' needed for subsequent steps. Next, 'clean_text_basic' is applied to the loaded document to preprocess the text, removing noise and normalizing it. This step is crucial as clean text improves the accuracy of downstream NLP tasks. It outputs 'cleaned_text_ref' and 'document_chunks_ref'. From the cleaned text and chunks, 'extract_entities_spacy_lg' is used to identify important entities. The 'spacy_lg' model is chosen for its balance of performance and accuracy in general-purpose entity extraction. Concurrently, 'summarize_abstractive' is employed to generate a brief summary. Abstractive summarization is preferred over extractive for 'brief summaries' as it can rephrase content more concisely. This tool utilizes both the original 'document_ref' for full context and the 'cleaned_text_ref' for the processed content. The flow ensures that text cleaning precedes both entity extraction and summarization, and that summarization also has access to the raw document reference for richer context, ensuring a logical and efficient processing pipeline."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_basic",
+                "summarize_extractive",
+                "export_json"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "extract_entities_spacy_lg",
+                "summarize_abstractive"
+              ],
+              "tools_only_in_reference": [
+                "export_json",
+                "summarize_extractive",
+                "extract_entities_basic"
+              ],
+              "tools_only_in_gemini": [
+                "clean_text_basic",
+                "extract_entities_spacy_lg",
+                "summarize_abstractive"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 4,
+              "gemini_step_count": 4,
+              "reference_flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "gemini_flow": [
+                "load_document -> clean_and_chunk_text",
+                "clean_and_chunk_text -> extract_entities",
+                "load_document + clean_and_chunk_text -> generate_summary"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the document using 'load_document_pdf' (assuming a PDF format, though any 'load_document_*' tool could be used based on the actual document type). This provides the 'document_ref' needed for subsequent steps. Next, 'clean_text_basic' is applied to the loaded document to preprocess the text, removing noise and normalizing it. This step is crucial as clean text improves the accuracy of downstream NLP tasks. It outputs 'cleaned_text_ref' and 'document_chunks_ref'. From the cleaned text and chunks, 'extract_entities_spacy_lg' is used to identify important entities. The 'spacy_lg' model is chosen for its balance of performance and accuracy in general-purpose entity extraction. Concurrently, 'summarize_abstractive' is employed to generate a brief summary. Abstractive summarization is preferred over extractive for 'brief summaries' as it can rephrase content more concisely. This tool utilizes both the original 'document_ref' for full context and the 'cleaned_text_ref' for the processed content. The flow ensures that text cleaning precedes both entity extraction and summarization, and that summarization also has access to the raw document reference for richer context, ensuring a logical and efficient processing pipeline."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Get the main entities and summarize this document in JSON format",
+            "task_id": "simple_document_processing",
+            "timestamp": 1754315542.156039,
+            "comparison_id": "3150194e"
+          },
+          "automated_metrics": {
+            "overall_score": 0.7696428571428572,
+            "individual_scores": {
+              "structural_similarity": 0.6,
+              "tool_overlap": 0.14285714285714285,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.875,
+              "output_completeness": 1.0,
+              "overall_score": 0.7696428571428572
+            },
+            "interpretation": {
+              "structural_similarity": "Good",
+              "tool_overlap": "Very Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Excellent",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Extract key entities and create basic summary from business document",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_entities",
+                  "tool": "extract_entities_basic",
+                  "params": {
+                    "entity_types": [
+                      "PERSON",
+                      "ORG",
+                      "DATE",
+                      "MONEY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "entities_ref"
+                  ]
+                },
+                {
+                  "id": "create_summary",
+                  "tool": "summarize_extractive",
+                  "params": {
+                    "max_sentences": 5
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "summary_ref"
+                  ]
+                },
+                {
+                  "id": "export_results",
+                  "tool": "export_json",
+                  "params": {
+                    "include_metadata": true
+                  },
+                  "inputs": [
+                    "entities_ref",
+                    "summary_ref"
+                  ],
+                  "outputs": [
+                    "results_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "tool_count": 4,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_source_document",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "process_document_text",
+                  "tool": "chunk_text_fixed",
+                  "params": {},
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "full_text_content",
+                    "text_chunks"
+                  ]
+                },
+                {
+                  "id": "extract_main_entities",
+                  "tool": "extract_entities_llm_gpt4",
+                  "params": {},
+                  "inputs": [
+                    "full_text_content"
+                  ],
+                  "outputs": [
+                    "main_entities"
+                  ]
+                },
+                {
+                  "id": "generate_abstractive_summary",
+                  "tool": "summarize_abstractive",
+                  "params": {},
+                  "inputs": [
+                    "full_text_content"
+                  ],
+                  "outputs": [
+                    "document_summary"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_source_document -> process_document_text",
+                "process_document_text -> extract_main_entities",
+                "process_document_text -> generate_abstractive_summary"
+              ],
+              "tool_count": 4,
+              "rationale": "To accomplish the task of getting main entities and summarizing a document, the workflow first requires loading the document content. 'load_document_pdf' is chosen as a generic document loader. The output 'document_ref' is then fed into 'chunk_text_fixed' to extract the raw textual content ('full_text_content') and potentially segment it into 'text_chunks'. This 'full_text_content' is crucial as it serves as the primary input for the subsequent parallel operations. 'extract_entities_llm_gpt4' is selected for entity extraction due to its advanced capabilities in identifying 'main entities' comprehensively. Simultaneously, 'summarize_abstractive' is chosen to generate a concise, human-readable summary, as it provides new textual output rather than just extracting sentences. The outputs 'main_entities' and 'document_summary' can then be combined into the final desired JSON format by an orchestrating system."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_basic",
+                "summarize_extractive",
+                "export_json"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "chunk_text_fixed",
+                "extract_entities_llm_gpt4",
+                "summarize_abstractive"
+              ],
+              "tools_only_in_reference": [
+                "export_json",
+                "summarize_extractive",
+                "extract_entities_basic"
+              ],
+              "tools_only_in_gemini": [
+                "chunk_text_fixed",
+                "extract_entities_llm_gpt4",
+                "summarize_abstractive"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 4,
+              "gemini_step_count": 4,
+              "reference_flow": [
+                "load_doc -> extract_entities",
+                "load_doc -> create_summary",
+                "extract_entities + create_summary -> export_results"
+              ],
+              "gemini_flow": [
+                "load_source_document -> process_document_text",
+                "process_document_text -> extract_main_entities",
+                "process_document_text -> generate_abstractive_summary"
+              ]
+            },
+            "gemini_rationale": "To accomplish the task of getting main entities and summarizing a document, the workflow first requires loading the document content. 'load_document_pdf' is chosen as a generic document loader. The output 'document_ref' is then fed into 'chunk_text_fixed' to extract the raw textual content ('full_text_content') and potentially segment it into 'text_chunks'. This 'full_text_content' is crucial as it serves as the primary input for the subsequent parallel operations. 'extract_entities_llm_gpt4' is selected for entity extraction due to its advanced capabilities in identifying 'main entities' comprehensively. Simultaneously, 'summarize_abstractive' is chosen to generate a concise, human-readable summary, as it provides new textual output rather than just extracting sentences. The outputs 'main_entities' and 'document_summary' can then be combined into the final desired JSON format by an orchestrating system."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        }
+      ],
+      "task_summary": {
+        "queries_tested": 3,
+        "average_score": 0.7696428571428572,
+        "best_score": 0.7696428571428572,
+        "worst_score": 0.7696428571428572,
+        "consistency": 0.0
+      }
+    },
+    "business_report_analysis": {
+      "task_description": "Analyze financial report for key metrics, trends, and insights",
+      "query_results": [
+        {
+          "test_case": {
+            "query": "Analyze this financial report to extract revenue, profit, and expense data and identify trends",
+            "task_id": "business_report_analysis",
+            "timestamp": 1754315557.6862876,
+            "comparison_id": "14d6f58c"
+          },
+          "automated_metrics": {
+            "overall_score": 0.7526190476190476,
+            "individual_scores": {
+              "structural_similarity": 0.48,
+              "tool_overlap": 0.2857142857142857,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.75,
+              "output_completeness": 1.0,
+              "overall_score": 0.7526190476190476
+            },
+            "interpretation": {
+              "structural_similarity": "Fair",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Good",
+              "output_completeness": "Excellent",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Analyze financial report for key metrics, trends, and insights",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "preserve_tables": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_financials",
+                  "tool": "extract_entities_financial",
+                  "params": {
+                    "entity_types": [
+                      "REVENUE",
+                      "PROFIT",
+                      "EXPENSE"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "financials_ref"
+                  ]
+                },
+                {
+                  "id": "extract_dates",
+                  "tool": "extract_entities_temporal",
+                  "params": {
+                    "date_formats": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4",
+                      "YYYY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "dates_ref"
+                  ]
+                },
+                {
+                  "id": "analyze_trends",
+                  "tool": "analyze_financial_trends",
+                  "params": {
+                    "trend_types": [
+                      "GROWTH",
+                      "DECLINE",
+                      "SEASONAL"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "dates_ref"
+                  ],
+                  "outputs": [
+                    "trends_ref"
+                  ]
+                },
+                {
+                  "id": "create_dashboard",
+                  "tool": "create_financial_dashboard",
+                  "params": {
+                    "chart_types": [
+                      "line",
+                      "bar",
+                      "pie"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "trends_ref"
+                  ],
+                  "outputs": [
+                    "dashboard_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "tool_count": 5,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_financial_report",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "clean_and_prepare_text",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "text_ref",
+                    "chunks_ref"
+                  ]
+                },
+                {
+                  "id": "extract_financial_data_entities",
+                  "tool": "extract_entities_financial",
+                  "params": {},
+                  "inputs": [
+                    "text_ref"
+                  ],
+                  "outputs": [
+                    "entities_ref"
+                  ]
+                },
+                {
+                  "id": "identify_trends_from_relationships",
+                  "tool": "extract_relationships_llm",
+                  "params": {},
+                  "inputs": [
+                    "entities_ref",
+                    "text_ref"
+                  ],
+                  "outputs": [
+                    "relationships_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_financial_report -> clean_and_prepare_text",
+                "clean_and_prepare_text -> extract_financial_data_entities",
+                "clean_and_prepare_text + extract_financial_data_entities -> identify_trends_from_relationships"
+              ],
+              "tool_count": 4,
+              "rationale": "The workflow begins by loading the financial report. Assuming a common document format, 'load_document_pdf' is chosen as the initial step to extract the content. Next, 'clean_text_basic' is used to process the raw document text, removing noise and normalizing it, which is crucial for accurate downstream analysis; this step outputs a cleaned text reference. Subsequently, 'extract_entities_financial' is employed to specifically identify and extract financial data such as revenue, profit, and expenses from the cleaned text. Finally, to identify trends, 'extract_relationships_llm' is utilized. This tool is capable of understanding complex relationships and patterns (trends) between the extracted financial entities within the context of the original cleaned text, providing a robust solution for the 'identify trends' requirement."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_financial",
+                "extract_entities_temporal",
+                "analyze_financial_trends",
+                "create_financial_dashboard"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "extract_entities_financial",
+                "extract_relationships_llm"
+              ],
+              "tools_only_in_reference": [
+                "extract_entities_temporal",
+                "create_financial_dashboard",
+                "analyze_financial_trends"
+              ],
+              "tools_only_in_gemini": [
+                "extract_relationships_llm",
+                "clean_text_basic"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 5,
+              "gemini_step_count": 4,
+              "reference_flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "gemini_flow": [
+                "load_financial_report -> clean_and_prepare_text",
+                "clean_and_prepare_text -> extract_financial_data_entities",
+                "clean_and_prepare_text + extract_financial_data_entities -> identify_trends_from_relationships"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the financial report. Assuming a common document format, 'load_document_pdf' is chosen as the initial step to extract the content. Next, 'clean_text_basic' is used to process the raw document text, removing noise and normalizing it, which is crucial for accurate downstream analysis; this step outputs a cleaned text reference. Subsequently, 'extract_entities_financial' is employed to specifically identify and extract financial data such as revenue, profit, and expenses from the cleaned text. Finally, to identify trends, 'extract_relationships_llm' is utilized. This tool is capable of understanding complex relationships and patterns (trends) between the extracted financial entities within the context of the original cleaned text, providing a robust solution for the 'identify trends' requirement."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Process this quarterly report to find key financial metrics and create a dashboard showing trends",
+            "task_id": "business_report_analysis",
+            "timestamp": 1754315570.3346572,
+            "comparison_id": "65a8a430"
+          },
+          "automated_metrics": {
+            "overall_score": 0.6211111111111111,
+            "individual_scores": {
+              "structural_similarity": 0.36,
+              "tool_overlap": 0.3333333333333333,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.8333333333333334,
+              "output_completeness": 0.2,
+              "overall_score": 0.6211111111111111
+            },
+            "interpretation": {
+              "structural_similarity": "Poor",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Poor",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Analyze financial report for key metrics, trends, and insights",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "preserve_tables": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_financials",
+                  "tool": "extract_entities_financial",
+                  "params": {
+                    "entity_types": [
+                      "REVENUE",
+                      "PROFIT",
+                      "EXPENSE"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "financials_ref"
+                  ]
+                },
+                {
+                  "id": "extract_dates",
+                  "tool": "extract_entities_temporal",
+                  "params": {
+                    "date_formats": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4",
+                      "YYYY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "dates_ref"
+                  ]
+                },
+                {
+                  "id": "analyze_trends",
+                  "tool": "analyze_financial_trends",
+                  "params": {
+                    "trend_types": [
+                      "GROWTH",
+                      "DECLINE",
+                      "SEASONAL"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "dates_ref"
+                  ],
+                  "outputs": [
+                    "trends_ref"
+                  ]
+                },
+                {
+                  "id": "create_dashboard",
+                  "tool": "create_financial_dashboard",
+                  "params": {
+                    "chart_types": [
+                      "line",
+                      "bar",
+                      "pie"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "trends_ref"
+                  ],
+                  "outputs": [
+                    "dashboard_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "tool_count": 5,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_report",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "report_document"
+                  ]
+                },
+                {
+                  "id": "chunk_report",
+                  "tool": "chunk_text_semantic",
+                  "params": {},
+                  "inputs": [
+                    "report_document"
+                  ],
+                  "outputs": [
+                    "report_text",
+                    "report_chunks"
+                  ]
+                },
+                {
+                  "id": "extract_financial_metrics",
+                  "tool": "extract_entities_financial",
+                  "params": {},
+                  "inputs": [
+                    "report_chunks"
+                  ],
+                  "outputs": [
+                    "financial_metrics"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_report -> chunk_report",
+                "chunk_report -> extract_financial_metrics"
+              ],
+              "tool_count": 3,
+              "rationale": "The primary goal is to find key financial metrics from a quarterly report and create a dashboard. This workflow focuses on the data extraction phase, as no direct tool for dashboard creation or trend visualization is available. The process begins by loading the quarterly report, assumed to be in PDF format, using 'load_document_pdf'. Next, the loaded document is processed by 'chunk_text_semantic' to break it down into semantically coherent segments, which is crucial for maintaining context during subsequent analysis. This output ('report_chunks') is then fed into 'extract_entities_financial', a specialized tool for identifying financial entities and metrics. The 'financial_metrics' output would serve as the foundational data for a dashboard, completing the data processing aspect of the task. The final step of 'creating a dashboard showing trends' would need to be handled by an external process or a tool not listed here, as the available tools do not include visualization or reporting functionalities."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_financial",
+                "extract_entities_temporal",
+                "analyze_financial_trends",
+                "create_financial_dashboard"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "chunk_text_semantic",
+                "extract_entities_financial"
+              ],
+              "tools_only_in_reference": [
+                "extract_entities_temporal",
+                "create_financial_dashboard",
+                "analyze_financial_trends"
+              ],
+              "tools_only_in_gemini": [
+                "chunk_text_semantic"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 5,
+              "gemini_step_count": 3,
+              "reference_flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "gemini_flow": [
+                "load_report -> chunk_report",
+                "chunk_report -> extract_financial_metrics"
+              ]
+            },
+            "gemini_rationale": "The primary goal is to find key financial metrics from a quarterly report and create a dashboard. This workflow focuses on the data extraction phase, as no direct tool for dashboard creation or trend visualization is available. The process begins by loading the quarterly report, assumed to be in PDF format, using 'load_document_pdf'. Next, the loaded document is processed by 'chunk_text_semantic' to break it down into semantically coherent segments, which is crucial for maintaining context during subsequent analysis. This output ('report_chunks') is then fed into 'extract_entities_financial', a specialized tool for identifying financial entities and metrics. The 'financial_metrics' output would serve as the foundational data for a dashboard, completing the data processing aspect of the task. The final step of 'creating a dashboard showing trends' would need to be handled by an external process or a tool not listed here, as the available tools do not include visualization or reporting functionalities."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        },
+        {
+          "test_case": {
+            "query": "Extract financial data from this business report and analyze growth patterns over time",
+            "task_id": "business_report_analysis",
+            "timestamp": 1754315585.374417,
+            "comparison_id": "645aa8dc"
+          },
+          "automated_metrics": {
+            "overall_score": 0.6416666666666667,
+            "individual_scores": {
+              "structural_similarity": 0.6,
+              "tool_overlap": 0.25,
+              "workflow_efficiency": 1.0,
+              "dependency_correctness": 1.0,
+              "parameter_appropriateness": 0.8,
+              "output_completeness": 0.2,
+              "overall_score": 0.6416666666666667
+            },
+            "interpretation": {
+              "structural_similarity": "Good",
+              "tool_overlap": "Poor",
+              "workflow_efficiency": "Excellent",
+              "dependency_correctness": "Excellent",
+              "parameter_appropriateness": "Excellent",
+              "output_completeness": "Poor",
+              "overall_score": "Good"
+            }
+          },
+          "side_by_side_comparison": {
+            "reference_workflow": {
+              "description": "Analyze financial report for key metrics, trends, and insights",
+              "steps": [
+                {
+                  "id": "load_doc",
+                  "tool": "load_document_pdf",
+                  "params": {
+                    "preserve_tables": true
+                  },
+                  "inputs": [],
+                  "outputs": [
+                    "document_ref"
+                  ]
+                },
+                {
+                  "id": "extract_financials",
+                  "tool": "extract_entities_financial",
+                  "params": {
+                    "entity_types": [
+                      "REVENUE",
+                      "PROFIT",
+                      "EXPENSE"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "financials_ref"
+                  ]
+                },
+                {
+                  "id": "extract_dates",
+                  "tool": "extract_entities_temporal",
+                  "params": {
+                    "date_formats": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4",
+                      "YYYY"
+                    ]
+                  },
+                  "inputs": [
+                    "document_ref"
+                  ],
+                  "outputs": [
+                    "dates_ref"
+                  ]
+                },
+                {
+                  "id": "analyze_trends",
+                  "tool": "analyze_financial_trends",
+                  "params": {
+                    "trend_types": [
+                      "GROWTH",
+                      "DECLINE",
+                      "SEASONAL"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "dates_ref"
+                  ],
+                  "outputs": [
+                    "trends_ref"
+                  ]
+                },
+                {
+                  "id": "create_dashboard",
+                  "tool": "create_financial_dashboard",
+                  "params": {
+                    "chart_types": [
+                      "line",
+                      "bar",
+                      "pie"
+                    ]
+                  },
+                  "inputs": [
+                    "financials_ref",
+                    "trends_ref"
+                  ],
+                  "outputs": [
+                    "dashboard_ref"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "tool_count": 5,
+              "complexity": "medium"
+            },
+            "gemini_workflow": {
+              "steps": [
+                {
+                  "id": "load_business_report",
+                  "tool": "load_document_pdf",
+                  "params": {},
+                  "inputs": [],
+                  "outputs": [
+                    "business_report_document"
+                  ]
+                },
+                {
+                  "id": "clean_report_text",
+                  "tool": "clean_text_basic",
+                  "params": {},
+                  "inputs": [
+                    "business_report_document"
+                  ],
+                  "outputs": [
+                    "cleaned_text_content"
+                  ]
+                },
+                {
+                  "id": "chunk_report_text",
+                  "tool": "chunk_text_semantic",
+                  "params": {},
+                  "inputs": [
+                    "cleaned_text_content"
+                  ],
+                  "outputs": [
+                    "report_text_chunks"
+                  ]
+                },
+                {
+                  "id": "extract_financial_data",
+                  "tool": "extract_entities_financial",
+                  "params": {},
+                  "inputs": [
+                    "report_text_chunks"
+                  ],
+                  "outputs": [
+                    "financial_entities"
+                  ]
+                },
+                {
+                  "id": "analyze_growth_patterns",
+                  "tool": "extract_relationships_llm",
+                  "params": {},
+                  "inputs": [
+                    "financial_entities",
+                    "cleaned_text_content"
+                  ],
+                  "outputs": [
+                    "growth_patterns_analysis"
+                  ]
+                }
+              ],
+              "flow": [
+                "load_business_report -> clean_report_text",
+                "clean_report_text -> chunk_report_text",
+                "chunk_report_text -> extract_financial_data",
+                "extract_financial_data + clean_report_text -> analyze_growth_patterns"
+              ],
+              "tool_count": 5,
+              "rationale": "The workflow begins by loading the business report, assuming it's in PDF format as it's a common format for such documents. The loaded document is then passed to `clean_text_basic` to preprocess and normalize the text, which improves the accuracy of subsequent NLP tasks. For efficient processing and to handle potentially large reports, the cleaned text is split into semantically meaningful chunks using `chunk_text_semantic`. These chunks are then fed into `extract_entities_financial`, a specialized tool for identifying and extracting financial data points. Finally, to analyze growth patterns over time, `extract_relationships_llm` is utilized. This powerful LLM-based tool can infer complex relationships and temporal trends from the extracted financial entities, leveraging the original cleaned text content for additional context, enabling it to 'understand' and articulate growth patterns."
+            }
+          },
+          "key_differences": {
+            "tool_comparison": {
+              "reference_tools": [
+                "load_document_pdf",
+                "extract_entities_financial",
+                "extract_entities_temporal",
+                "analyze_financial_trends",
+                "create_financial_dashboard"
+              ],
+              "gemini_tools": [
+                "load_document_pdf",
+                "clean_text_basic",
+                "chunk_text_semantic",
+                "extract_entities_financial",
+                "extract_relationships_llm"
+              ],
+              "tools_only_in_reference": [
+                "extract_entities_temporal",
+                "create_financial_dashboard",
+                "analyze_financial_trends"
+              ],
+              "tools_only_in_gemini": [
+                "extract_relationships_llm",
+                "clean_text_basic",
+                "chunk_text_semantic"
+              ]
+            },
+            "workflow_comparison": {
+              "reference_step_count": 5,
+              "gemini_step_count": 5,
+              "reference_flow": [
+                "load_doc -> extract_financials",
+                "load_doc -> extract_dates",
+                "extract_financials + extract_dates -> analyze_trends",
+                "extract_financials + analyze_trends -> create_dashboard"
+              ],
+              "gemini_flow": [
+                "load_business_report -> clean_report_text",
+                "clean_report_text -> chunk_report_text",
+                "chunk_report_text -> extract_financial_data",
+                "extract_financial_data + clean_report_text -> analyze_growth_patterns"
+              ]
+            },
+            "gemini_rationale": "The workflow begins by loading the business report, assuming it's in PDF format as it's a common format for such documents. The loaded document is then passed to `clean_text_basic` to preprocess and normalize the text, which improves the accuracy of subsequent NLP tasks. For efficient processing and to handle potentially large reports, the cleaned text is split into semantically meaningful chunks using `chunk_text_semantic`. These chunks are then fed into `extract_entities_financial`, a specialized tool for identifying and extracting financial data points. Finally, to analyze growth patterns over time, `extract_relationships_llm` is utilized. This powerful LLM-based tool can infer complex relationships and temporal trends from the extracted financial entities, leveraging the original cleaned text content for additional context, enabling it to 'understand' and articulate growth patterns."
+          },
+          "human_review_questions": [
+            "Is Gemini's workflow logically sound?",
+            "Does Gemini's approach achieve the same goal more efficiently?",
+            "Are there critical steps missing in Gemini's workflow?",
+            "Are Gemini's tool choices appropriate for the task?",
+            "Overall, which workflow would you prefer and why?"
+          ],
+          "review_template": {
+            "overall_preference": "[reference/gemini/neither] - Fill in your preference",
+            "reasoning": "[Explain your reasoning here]",
+            "score_agreement": "[agree/disagree with automated scores] - Do you agree with the automated assessment?",
+            "gemini_strengths": "[What did Gemini do well?]",
+            "gemini_weaknesses": "[What could Gemini improve?]",
+            "notes": "[Additional observations]"
+          }
+        }
+      ],
+      "task_summary": {
+        "queries_tested": 3,
+        "average_score": 0.6717989417989418,
+        "best_score": 0.7526190476190476,
+        "worst_score": 0.6211111111111111,
+        "consistency": 0.13150793650793657
+      }
+    }
+  },
+  "overall_assessment": {
+    "assessment": "Good - Gemini generates generally appropriate DAGs with some room for improvement",
+    "confidence": "high",
+    "recommendations": [
+      "Gemini DAG generation suitable for production with monitoring",
+      "Use human review template for validation of critical workflows",
+      "Consider fine-tuning prompts based on identified weaknesses"
+    ]
+  },
+  "human_review_summary": {
+    "review_instructions": [
+      "Each test case includes side-by-side DAG comparison",
+      "Focus on workflow logic and tool appropriateness",
+      "Use provided review template for consistent evaluation",
+      "Pay attention to Gemini's rationale for its choices"
+    ],
+    "key_areas_to_evaluate": [
+      "Logical flow of operations",
+      "Completeness of task coverage",
+      "Efficiency of tool selection",
+      "Appropriateness of parameters",
+      "Quality of dependency management"
+    ],
+    "total_cases_for_review": 9
+  }
+}

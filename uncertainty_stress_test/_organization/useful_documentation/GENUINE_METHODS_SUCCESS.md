@@ -1,1 +1,0 @@
-../../personality-prediction/GENUINE_METHODS_SUCCESS.md

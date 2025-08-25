@@ -1,0 +1,277 @@
+{
+  "test_info": {
+    "timestamp": 1754305808.9666636,
+    "total_tools_generated": 100,
+    "scenarios_tested": 2,
+    "toolsets_tested": [
+      "direct_exposure_100",
+      "direct_exposure_50",
+      "direct_exposure_25",
+      "semantic_workflow"
+    ]
+  },
+  "results": [
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_100",
+      "toolset_size": 100,
+      "scenario": "academic_paper_processing",
+      "selection_time_seconds": 7.1409149169921875,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_html",
+        "extract_relationships_llm"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_comprehensive_pdf",
+        "extract_entities_spacy_advanced",
+        "build_knowledge_graph_academic",
+        "analyze_methodology_patterns",
+        "export_academic_summary"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_50",
+      "toolset_size": 50,
+      "scenario": "academic_paper_processing",
+      "selection_time_seconds": 6.255471706390381,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_html",
+        "extract_relationships_pattern"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_comprehensive_pdf",
+        "extract_entities_spacy_advanced",
+        "build_knowledge_graph_academic",
+        "analyze_methodology_patterns",
+        "export_academic_summary"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_25",
+      "toolset_size": 25,
+      "scenario": "academic_paper_processing",
+      "selection_time_seconds": 6.7816691398620605,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_csv",
+        "summarize_extractive"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_comprehensive_pdf",
+        "extract_entities_spacy_advanced",
+        "build_knowledge_graph_academic",
+        "analyze_methodology_patterns",
+        "export_academic_summary"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "semantic_workflow",
+      "toolset_size": 7,
+      "scenario": "academic_paper_processing",
+      "selection_time_seconds": 6.111740589141846,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_comprehensive",
+        "extract_knowledge_adaptive"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_comprehensive_pdf",
+        "extract_entities_spacy_advanced",
+        "build_knowledge_graph_academic",
+        "analyze_methodology_patterns",
+        "export_academic_summary"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_100",
+      "toolset_size": 100,
+      "scenario": "simple_document_analysis",
+      "selection_time_seconds": 6.470840692520142,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_html",
+        "extract_relationships_llm"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_basic_text",
+        "extract_entities_spacy_basic",
+        "export_simple_json"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_50",
+      "toolset_size": 50,
+      "scenario": "simple_document_analysis",
+      "selection_time_seconds": 5.943761110305786,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_html",
+        "extract_relationships_pattern"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_basic_text",
+        "extract_entities_spacy_basic",
+        "export_simple_json"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "direct_exposure_25",
+      "toolset_size": 25,
+      "scenario": "simple_document_analysis",
+      "selection_time_seconds": 6.151480674743652,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_csv",
+        "summarize_extractive"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_basic_text",
+        "extract_entities_spacy_basic",
+        "export_simple_json"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    },
+    {
+      "agent": "gemini-2.5-flash",
+      "toolset": "semantic_workflow",
+      "toolset_size": 7,
+      "scenario": "simple_document_analysis",
+      "selection_time_seconds": 5.683857202529907,
+      "tools_selected": 2,
+      "selected_tools": [
+        "load_document_comprehensive",
+        "extract_knowledge_adaptive"
+      ],
+      "selection_success": true,
+      "optimal_tools": [
+        "load_document_basic_text",
+        "extract_entities_spacy_basic",
+        "export_simple_json"
+      ],
+      "accuracy_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "true_positives": 0
+      },
+      "optimal_matches": 0,
+      "optimal_match_rate": 0.0
+    }
+  ],
+  "analysis": {
+    "toolset_performance": {
+      "direct_exposure_100": {
+        "toolset_size": 100,
+        "success_rate": 1.0,
+        "avg_selection_time": 6.8058778047561646,
+        "avg_tools_selected": 2.0,
+        "avg_accuracy": 0.0,
+        "total_tests": 2
+      },
+      "direct_exposure_50": {
+        "toolset_size": 50,
+        "success_rate": 1.0,
+        "avg_selection_time": 6.0996164083480835,
+        "avg_tools_selected": 2.0,
+        "avg_accuracy": 0.0,
+        "total_tests": 2
+      },
+      "direct_exposure_25": {
+        "toolset_size": 25,
+        "success_rate": 1.0,
+        "avg_selection_time": 6.4665749073028564,
+        "avg_tools_selected": 2.0,
+        "avg_accuracy": 0.0,
+        "total_tests": 2
+      },
+      "semantic_workflow": {
+        "toolset_size": 7,
+        "success_rate": 1.0,
+        "avg_selection_time": 5.8977988958358765,
+        "avg_tools_selected": 2.0,
+        "avg_accuracy": 0.0,
+        "total_tests": 2
+      }
+    },
+    "cognitive_load_impact": {
+      "time_increase_factor": 1.1539691205072176,
+      "accuracy_difference": 0.0,
+      "success_rate_difference": 0.0
+    },
+    "key_findings": [
+      "Best performing toolset: direct_exposure_100 (accuracy: 0.00)",
+      "Fastest selection: semantic_workflow (5.9s)"
+    ],
+    "recommendations": []
+  }
+}

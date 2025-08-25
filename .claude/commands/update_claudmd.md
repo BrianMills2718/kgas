@@ -1,9 +1,34 @@
-update the claude.md to contain instructions to fix all the identified issues. The instructions should be detailed enough so that a new LLM could implement the instructions with no other context than the CLAUDE.md and the files it points to. remove all outdate or extraneous information. every claude.md should have a "coding philosopy" section which mandates no lazy mocking/stubs/fallbacks/pseudo code/ and no simplified implementations that provide reduced functioanlity. the philosophy should also include a fall fast approach rather than hiding errors and mandate extensive testing with the assumption that nothing is working until it can be demonstrated that it does work. all claims need to be backed by raw evidence logs in an Evidence.md file for each claim before declaring success. Every Claude.md file should also have a "code base structure" section that concisely lays out the structure and entry points of the codebase. 
+## Overview
+commit and then update CLAUDE.md to clear out resolved tasks and populate it with instructions for resolving the next tasks using evidence-based development practices. The instructions should be detailed enough for a new LLM to implement with no context beyond CLAUDE.md and referenced files.
 
-The CLAUDE.md also needs to contain instructions that after success has been totally achieved and the evidence files for that success generated and assessed and confirmed, the the next step is to make a detailed review of the config parameters in gemini-review. Carefully set up the parameters so that gemini-review is optimized to validatioe the claims you just made. Take the claims of success you just stated, add the full detail of these claims under `claims_of_success:` in `gemini-review-tool/verification-review.yaml`, run `python gemini-review-tool/gemini_review.py --config gemini-review-tool/verification-review.yaml`. Make sure to only include the files relevant to this review. 
+## Core CLAUDE.md Requirements
+### 1. Coding Philosophy Section (Mandatory)
+Every CLAUDE.md must include:
+- **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
+- **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
+- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
+- **Use Test Driven Design where possible.
+### 2. Codebase Structure Section (Mandatory)  
+Concisely document:
+- Key entry points and main orchestration files
+- Module organization and responsibilities
+- Important integration points (ResourceOrchestrator, healing_integration.py, etc.)
 
-Then update the claude.md to contain instructions to fix all the identified issues. The instructions should be detailed enough so that a new LLM could implement the instructions with no other context than the CLAUDE.md and the files it points to. remove all outdate or extraneous information. every claude.md should have a "coding philosopy" section which mandates no lazy mocking/stubs/fallbacks/pseudo code/ and no simplified implementations that provide reduced functioanlity. the philosophy should also include a fall fast approach rather than hiding errors and mandate extensive testing with the assumption that nothing is working until it can be demonstrated that it does work. all claims need to be backed by raw evidence logs in an Evidence.md file for each claim before declaring success. Every Claude.md file should also have a "code base structure" section that concisely lays out the structure and entry points of the codebase. 
+### 3. Evidence Structure Requirements (Updated)
+**CURRENT PRACTICE**: Use structured evidence organization instead of single Evidence.md:
 
-REMEMBER TO ALWAYS USE REAL API CALLS AND SERVICES IN TESTS. DO NOT USE MOCKS OR FALLBACKS
+```
+evidence/
+├── current/
+│   └── Evidence_[PHASE]_[TASK].md     # Current development phase only
+├── completed/  
+│   └── Evidence_[PHASE]_[TASK].md     # Completed phases (archived)
+```
 
-Repeat this process untill gemini-review reveals no issues.
+**CRITICAL**: 
+- Evidence files must contain ONLY current phase work (no historical contradictions)
+- Raw execution logs required for all claims
+- No success declarations without demonstrable proof
+- Archive completed phases to avoid chronological confusion
+
+

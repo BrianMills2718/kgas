@@ -1,0 +1,289 @@
+{
+  "speech_info": {
+    "speaker": "Jimmy Carter",
+    "title": "Remarks at the 31st Annual Meeting of the Southern Legislative Conference",
+    "location": "Charleston, South Carolina",
+    "date": "July 21, 1977",
+    "context": "6 months into presidency, addressing Soviet-American relations",
+    "path": "/home/brian/projects/Digimons/lit_review/data/test_texts/texts/carter_speech.txt"
+  },
+  "theory_applied": "Kunst et al. (2024) AI-Psychological Conspiracy Theory Support Model",
+  "analysis_results": {
+    "psychological_factor_analysis": {
+      "narcissism": {
+        "factor": "narcissism",
+        "definition": "Grandiose self-regard and need for attention",
+        "indicator_count": 1246,
+        "anti_indicator_count": 173,
+        "presence_score": 0.878,
+        "presence_level": "high",
+        "indicator_examples": [
+          "jimmy carter\n39th president of the united states: 1977 \u2010 1981\ncharleston, south carolina remarks at the 31st annual meeting of the southern legislative conference",
+          "july 21, 1977\n\nsenator hollings and senator eastland, senator stennis, governor edwards, chairman bragg, distinguished members of congress, those representatives from state government, who share the leadership of america, and my friends in a personal way who come out to welcome me back to the south:\n\nit's not often that a president comes as a substitute speaker",
+          "i realize that my brother, billy, was the first choice"
+        ],
+        "anti_indicator_examples": [
+          "july 21, 1977\n\nsenator hollings and senator eastland, senator stennis, governor edwards, chairman bragg, distinguished members of congress, those representatives from state government, who share the leadership of america, and my friends in a personal way who come out to welcome me back to the south:\n\nit's not often that a president comes as a substitute speaker",
+          "[laughter]\n\nvery quickly i realized that the congress was treating me like i was still governor of georgia, but now, with the help of a great number of friends in the congress, we've formed a kind of relationship that ought to exist between the white house and our nation's capitol",
+          "and i want to talk to you today about the hopes and problems that we as southerners and as americans share together"
+        ],
+        "interpretation": "High self-focus, potentially indicating elevated conspiracy risk"
+      },
+      "denialism": {
+        "factor": "denialism",
+        "definition": "Rejection of expert narratives, seeking unconventional explanations",
+        "indicator_count": 3,
+        "anti_indicator_count": 1,
+        "presence_score": 0.75,
+        "presence_level": "high",
+        "indicator_examples": [
+          "there are no hidden meanings in our commitment to human rights",
+          "\"\n\ni see no hidden meaning in that",
+          "i'm also proud to be with you today where two great rivers come together, as they say in charleston, to form the atlantic ocean"
+        ],
+        "anti_indicator_examples": [
+          "and what is perhaps more important of all, we have, for our part, learned, all of us, this fact, these facts in a spirit not of increasing resignation, but of increasing maturity"
+        ],
+        "interpretation": "Strong rejection of conventional narratives, high conspiracy risk"
+      },
+      "need_for_chaos": {
+        "factor": "need_for_chaos",
+        "definition": "Desire to provoke or exacerbate disorder",
+        "indicator_count": 0,
+        "anti_indicator_count": 19,
+        "presence_score": 0.0,
+        "presence_level": "absent",
+        "indicator_examples": [],
+        "anti_indicator_examples": [
+          "we want to see the soviets further engaged in the growing pattern of international activities designed to deal with human problems--not only because they can be of real help but because we both should be seeking for a greater stake in the creation of a constructive and peaceful world order",
+          "it's not a question of a \"hard\" policy or of a \"soft\" policy, but of a clear-eyed recognition of how most effectively to protect our own security and to create the kind of international order that i've just described",
+          "our job---my job, your job--is to explore those shared interests and use them to enlarge the areas of cooperation between us on a basis of equality and mutual respect"
+        ],
+        "interpretation": "Standard presence level"
+      },
+      "conspiracy_mentality": {
+        "factor": "conspiracy_mentality",
+        "definition": "General disposition towards conspiratorial viewpoints",
+        "indicator_count": 10,
+        "anti_indicator_count": 12,
+        "presence_score": 0.455,
+        "presence_level": "moderate",
+        "indicator_examples": [
+          "in the past i think our nation's leaders have been guilty of making decisions in secret",
+          "and even when the decision turns out to be the fight one, it makes the president, the secretary of state speak with a weak voice when they speak alone",
+          "i'm also proud to be with you today where two great rivers come together, as they say in charleston, to form the atlantic ocean"
+        ],
+        "anti_indicator_examples": [
+          "we have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+          "we have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+          "when i took office almost exactly 6 months ago, our nation was faced with a series of problems around the world--in southern africa, the middle east, in our relationships with our nato allies, and on such tough questions as nuclear proliferation, negotiations with our former adversaries, a panama canal treaty, human rights, world poverty"
+        ],
+        "interpretation": "Some conspiratorial language but not dominant"
+      },
+      "misinformation_susceptibility": {
+        "factor": "misinformation_susceptibility",
+        "definition": "Propensity to accept false information",
+        "indicator_count": 1,
+        "anti_indicator_count": 0,
+        "presence_score": 1.0,
+        "presence_level": "high",
+        "indicator_examples": [
+          "i'm also proud to be with you today where two great rivers come together, as they say in charleston, to form the atlantic ocean"
+        ],
+        "anti_indicator_examples": [],
+        "interpretation": "Standard presence level"
+      },
+      "political_extremity": {
+        "factor": "political_extremity",
+        "definition": "Self-identification at far ends of political spectrum",
+        "indicator_count": 0,
+        "anti_indicator_count": 2,
+        "presence_score": 0.0,
+        "presence_level": "absent",
+        "indicator_examples": [],
+        "anti_indicator_examples": [
+          "our goal has not been to reach easy or transient agreements, but to find solutions that are meaningful, balanced, and lasting",
+          "in the talks on strategic arms limitations, the salt talks, we advanced a comprehensive proposal for genuine reductions, limitations, and a freeze on new technology which would maintain balanced strategic strength"
+        ],
+        "interpretation": "No extreme political language detected"
+      },
+      "overconfidence": {
+        "factor": "overconfidence",
+        "definition": "Excessive confidence in ability to detect misinformation",
+        "indicator_count": 1,
+        "anti_indicator_count": 3,
+        "presence_score": 0.25,
+        "presence_level": "low",
+        "indicator_examples": [
+          "i feel more secure as president making decisions if i know that either the most difficult, the most complex questions that face me have been understood and debated by you and understood and debated by the congress"
+        ],
+        "anti_indicator_examples": [
+          "now, a president has a responsibility to present to the people of this nation reports and summations of complex and important matters",
+          "i feel more secure as president making decisions if i know that either the most difficult, the most complex questions that face me have been understood and debated by you and understood and debated by the congress",
+          "in many areas we are in fact addressing for the first time the tough, complex core of longstanding problems"
+        ],
+        "interpretation": "Standard presence level"
+      }
+    },
+    "contextual_theme_analysis": {
+      "transparency_vs_secrecy": {
+        "transparency_indicators": {
+          "count": 8,
+          "examples": [
+            "we have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+            "we have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+            "today, i want to discuss a vitally important aspect of our foreign relations, the one that may most directly shape the chances for peace for us and for our children"
+          ]
+        },
+        "secrecy_indicators": {
+          "count": 4,
+          "examples": [
+            "in the past i think our nation's leaders have been guilty of making decisions in secret",
+            "and even when the decision turns out to be the fight one, it makes the president, the secretary of state speak with a weak voice when they speak alone",
+            "there are no hidden meanings in our commitment to human rights"
+          ]
+        },
+        "overall_balance": "transparency-oriented",
+        "theme_interpretation": "Strong emphasis on openness and public disclosure, countering conspiracy narratives"
+      },
+      "trust_in_institutions": {
+        "trust_indicators": {
+          "count": 8,
+          "examples": [
+            "at the same time, we were beginning to regain our sense of confidence and our purpose and unity as a nation",
+            "our actions must be faithful to the essential values to which our own society is dedicated, because our faith in those values is the source of our confidence that this relationship will evolve in a more constructive direction",
+            "our actions must be faithful to the essential values to which our own society is dedicated, because our faith in those values is the source of our confidence that this relationship will evolve in a more constructive direction"
+          ]
+        },
+        "distrust_indicators": {
+          "count": 1,
+          "examples": [
+            "if these threats can be controlled, and i believe they can, then we are prepared to limit our own strategic programs"
+          ]
+        },
+        "overall_balance": "trust-oriented",
+        "theme_interpretation": "Promotes institutional trust, protective against conspiracy beliefs"
+      },
+      "us_vs_them": {
+        "unity_indicators": {
+          "count": 175,
+          "examples": [
+            "july 21, 1977\n\nsenator hollings and senator eastland, senator stennis, governor edwards, chairman bragg, distinguished members of congress, those representatives from state government, who share the leadership of america, and my friends in a personal way who come out to welcome me back to the south:\n\nit's not often that a president comes as a substitute speaker",
+            "[laughter]\n\nvery quickly i realized that the congress was treating me like i was still governor of georgia, but now, with the help of a great number of friends in the congress, we've formed a kind of relationship that ought to exist between the white house and our nation's capitol",
+            "and i want to talk to you today about the hopes and problems that we as southerners and as americans share together"
+          ]
+        },
+        "division_indicators": {
+          "count": 16,
+          "examples": [
+            "i'm also proud to be with you today where two great rivers come together, as they say in charleston, to form the atlantic ocean",
+            "and even when the decision turns out to be the fight one, it makes the president, the secretary of state speak with a weak voice when they speak alone",
+            "all of us can remember times when relations seemed especially dangerous and other times when they seemed especially bright"
+          ]
+        },
+        "overall_balance": "unity-oriented",
+        "theme_interpretation": "Emphasis on unity and shared purpose, reduces conspiracy thinking"
+      }
+    },
+    "discourse_patterns": {
+      "rhetorical_questions": [],
+      "certainty_language": [
+        "Therefore, the agreements that we reach must be anchored on each side in enlightened self-interest-what's best for us, what's best for the Soviet Union",
+        "But if an agreement cannot be reached, there should be no doubt that the United States can and will do what it must to protect our security and to ensure the adequacy of our strategic posture",
+        "Our actions must be faithful to the essential values to which our own society is dedicated, because our faith in those values is the source of our confidence that this relationship will evolve in a more constructive direction"
+      ],
+      "transparency_statements": [
+        "We have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+        "In this situation, I decided that it was time for honest discussions about international issues with the American people"
+      ],
+      "historical_references": [
+        "We have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past",
+        "In the past I think our Nation's leaders have been guilty of making decisions in secret",
+        "For decades, the central problems of our foreign policy revolved around antagonism between two coalitions, one headed by the United States and the other headed by the Soviet Union",
+        "The whole history of Soviet-American relations teaches us that we will be misled if we base our long-range policies on the mood of the moment, whether that mood be euphoric or grim",
+        "That competition is real and deeply rooted in the history and the values of our respective societies",
+        "In the past 6 months we've made clear our determination--both to give voice to Americans' fundamental beliefs and to obtain lasting solutions to East-West differences"
+      ],
+      "call_to_action": [
+        "I think there's a genuine sense of sharing of responsibility and the burden of government, and you are a part of that circle of leaders in the State legislature and the Governors' offices, who join in with the President, the Congress, and others in making sure that our government works",
+        "Now, a President has a responsibility to present to the people of this Nation reports and summations of complex and important matters",
+        "I mention these familiar changes with which you are familiar because I think that to understand today's Soviet-American relationship, we must place it in perspective, both historically and in terms of the overall global scene",
+        "Our job---my job, your job--is to explore those shared interests and use them to enlarge the areas of cooperation between us on a basis of equality and mutual respect",
+        "In the strategic arms limitation talks, confirming and then building on Vladivostok accords, we need to make steady progress toward our long-term goals of genuine reductions and strict limitations, while maintaining the basic strategic balance",
+        "We must always combine realism with principle",
+        "And that responsibility falls most heavily on those like you, of course, but particularly like President Brezhnev and me, who hold in our hands the terrible power conferred on us by the modern engines of war"
+      ]
+    },
+    "quantitative_metrics": {
+      "total_words": 3455,
+      "total_sentences": 161,
+      "risk_factors_score": 1.205,
+      "protective_factors_score": 1.622,
+      "conspiracy_risk_score": 0.426,
+      "risk_level": "moderate",
+      "transparency_mentions": 8,
+      "secrecy_mentions": 4,
+      "unity_language_ratio": 0.916,
+      "discourse_complexity": 8
+    },
+    "text_segments": {
+      "transparency_passages": [
+        "We have openly and publicly addressed these and other many difficult and controversial issues--some of which had been either skirted or postponed in the past."
+      ],
+      "unity_passages": [
+        "And as Americans we cannot overlook the way that our fate is bound to that of other nations. This interdependence stretches from the health of our economy, through war and peace, to the security of our own energy supplies. It's a new world in which we cannot afford to be narrow in our vision, limited in our foresight, or selfish in our purpose.",
+        "Today, I want to discuss a vitally important aspect of our foreign relations, the one that may most directly shape the chances for peace for us and for our children. I would like to spell out my view of what we have done and where we are going in our relations with the Soviet Union and to reaffirm the basic principles of our national policy.",
+        "Our national security was often defined almost exclusively in terms of military competition with the Soviet Union. This competition is still critical, because it does involve issues which could lead to war. But however important this relationship of military balance, it cannot be our sole preoccupation to the exclusion of other world issues which also concern us both."
+      ],
+      "trust_building_passages": [
+        "I've become even more proud of being an American. And I have become even more proud of being a southerner, too. I'm also proud to be with you today where two great rivers come together, as they say in Charleston, to form the Atlantic Ocean. This is one of our Nation's most gracious cities.",
+        "And I want to talk to you today about the hopes and problems that we as southerners and as Americans share together. I feel a special kinship with your State legislators. For 4 years I was a member of the Georgia Senate, and I still prize State government not only for the talents of those who work in it but, as Fritz Hollings says, for the closeness to the people it represents.",
+        "The profound differences in what our two governments believe about freedom and power and the inner lives of human beings, those differences are likely to remain; and so are other elements of competition between the United States and the Soviet Union. That competition is real and deeply rooted in the history and the values of our respective societies. But it's also true that our two countries share many important overlapping interests. Our job---my job, your job--is to explore those shared interests and use them to enlarge the areas of cooperation between us on a basis of equality and mutual respect."
+      ],
+      "key_policy_statements": [
+        "As I pointed out in a recent press conference, a period of debate, disagreement, probing was inevitable. Our goal has not been to reach easy or transient agreements, but to find solutions that are meaningful, balanced, and lasting.",
+        "Today, I want to discuss a vitally important aspect of our foreign relations, the one that may most directly shape the chances for peace for us and for our children. I would like to spell out my view of what we have done and where we are going in our relations with the Soviet Union and to reaffirm the basic principles of our national policy.",
+        "For decades, the central problems of our foreign policy revolved around antagonism between two coalitions, one headed by the United States and the other headed by the Soviet Union."
+      ]
+    }
+  },
+  "insights": [
+    {
+      "category": "Overall Risk Assessment",
+      "finding": "Carter's speech shows moderate conspiracy theory risk (score: 0.426)",
+      "explanation": "Based on Kunst model psychological factors, the speech exhibits protective factors against conspiracy thinking",
+      "evidence": "Protective factors: 1.622, Risk factors: 1.205"
+    },
+    {
+      "category": "Transparency vs Secrecy",
+      "finding": "Strong transparency orientation (ratio: 2.0:1)",
+      "explanation": "Carter explicitly advocates for open discussion and public debate, directly countering secretive conspiracy narratives",
+      "evidence": "2 explicit transparency statements"
+    },
+    {
+      "category": "Social Cohesion",
+      "finding": "High unity language ratio (91.6%)",
+      "explanation": "Predominant use of inclusive 'we/us/our' language promotes collective identity over divisive 'us vs them' thinking",
+      "evidence": "Unity indicators significantly outnumber division indicators"
+    },
+    {
+      "category": "Historical Context",
+      "finding": "Extensive historical grounding (6 references)",
+      "explanation": "Grounds current challenges in historical context, providing rational explanations rather than conspiratorial ones",
+      "evidence": "Multiple references to past decades, historical patterns, and precedents"
+    },
+    {
+      "category": "Policy Communication",
+      "finding": "Clear articulation of policy goals and strategies",
+      "explanation": "Transparent discussion of foreign policy reduces space for conspiracy theories about hidden agendas",
+      "evidence": "3 explicit policy statements identified"
+    },
+    {
+      "category": "Rhetorical Style",
+      "finding": "Balanced certainty without overconfidence",
+      "explanation": "Avoids the overconfident language associated with conspiracy susceptibility while maintaining leadership authority",
+      "evidence": "Limited certainty language (3 instances), emphasizes complexity and nuance"
+    }
+  ],
+  "timestamp": "20250724_161403"
+}

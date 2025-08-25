@@ -1,0 +1,21 @@
+{
+  "original_request": "Extract the theoretical framework from this academic paper using meta-schema v10 approach",
+  "refined_query": "Extract the theoretical framework from this academic paper using meta-schema v10 approach",
+  "methodology_explanation": "This workflow will:\n1. Load and process 1 documents using KGAS MCP tools\n2. Apply open-ended exploration methodology\n3. Use tools: T01_pdf_loader, T15A_text_chunker, T23A_entity_extractor...\n4. Generate structured outputs with full provenance\n5. Provide results suitable for general research",
+  "interpretation": "\n## Exploratory Analysis Results\n\n### Document Overview\n- **Entities Extracted**: 5\n- **Relationships Identified**: 2\n- **Graph Complexity**: Network analysis reveals interconnected knowledge structure\n\n### Key Entities\nThe most central entities based on PageRank analysis include...\n\n### Relationship Patterns\nAnalysis identified several relationship types connecting key concepts...\n",
+  "visualizations": [
+    "knowledge_graph_network.html",
+    "factor_distribution_chart.png",
+    "risk_assessment_gauge.html",
+    "entity_centrality_plot.png"
+  ],
+  "follow_up_suggestions": [
+    "Apply the same theoretical framework to additional texts for comparison",
+    "Explore specific factor relationships in more detail using graph queries",
+    "Conduct temporal analysis if documents span different time periods",
+    "Compare results with baseline texts to validate findings",
+    "Export knowledge graph for visualization in specialized tools"
+  ],
+  "execution_time": 2.1e-05,
+  "status": "success"
+}

@@ -1,1 +1,0 @@
-../../personality-prediction/beta_bayesian_predictor.py

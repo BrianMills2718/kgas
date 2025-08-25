@@ -1,0 +1,96 @@
+name: Interface Validation
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - 'src/tools/**/*.py'
+      - 'src/core/**/*.py'
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'src/tools/**/*.py'
+      - 'src/core/**/*.py'
+
+jobs:
+  validate-interfaces:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        # Install additional dependencies for interface validation
+        pip install spacy==3.7.2
+        pip install neo4j==5.14.1
+        python -m spacy download en_core_web_sm
+    
+    - name: Run interface validation
+      run: |
+        python validate_tool_interfaces.py
+        if [ $? -ne 0 ]; then
+          echo "❌ Interface validation failed!"
+          echo "Please run 'python fix_toolresult_interfaces.py' to fix violations"
+          exit 1
+        fi
+    
+    - name: Validate contract compliance
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from src.core.contract_validator import ContractValidator
+        
+        validator = ContractValidator()
+        result = validator.validate_all_tools()
+        
+        if not result['all_valid']:
+            print('❌ Contract validation failed!')
+            for issue in result['issues']:
+                print(f'  - {issue}')
+            sys.exit(1)
+        else:
+            print('✅ All tool contracts valid!')
+        "
+    
+    - name: Check for deprecated interfaces
+      run: |
+        echo "🔍 Checking for deprecated ToolResult patterns..."
+        
+        # Check for old ToolResult(success=...) patterns
+        DEPRECATED_PATTERNS=$(grep -r "ToolResult.*success\s*=" src/tools/ || true)
+        if [ ! -z "$DEPRECATED_PATTERNS" ]; then
+          echo "❌ Found deprecated ToolResult(success=...) patterns:"
+          echo "$DEPRECATED_PATTERNS"
+          echo ""
+          echo "🔧 Fix with: ToolResult(status='success'|'error', ...)"
+          exit 1
+        fi
+        
+        # Check for old ToolResult(error=...) patterns (should be error_message=)
+        OLD_ERROR_PATTERNS=$(grep -r "ToolResult.*\berror\s*=" src/tools/ | grep -v "error_message\|error_code" || true)
+        if [ ! -z "$OLD_ERROR_PATTERNS" ]; then
+          echo "❌ Found deprecated ToolResult(error=...) patterns:"
+          echo "$OLD_ERROR_PATTERNS"
+          echo ""
+          echo "🔧 Fix with: ToolResult(error_message='...', ...)"
+          exit 1
+        fi
+        
+        echo "✅ No deprecated interface patterns found!"
+    
+    - name: Summary
+      if: success()
+      run: |
+        echo "🎉 All interface validations passed!"
+        echo "✅ ToolResult interfaces are compliant"
+        echo "✅ Tool contracts are valid"
+        echo "✅ No deprecated patterns found"

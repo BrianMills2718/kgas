@@ -1,0 +1,22 @@
+{
+  "framework": "Meta-Schema v10",
+  "components": {
+    "nodes": "Fundamental elements (concepts, entities, actors)",
+    "connections": "Relationships (directed/undirected, binary/n-ary)",
+    "properties": "Attributes (salience, type codes, measures)",
+    "modifiers": "Qualifiers (temporal, modal, certainty)"
+  },
+  "model_types": [
+    "graph",
+    "hypergraph",
+    "table",
+    "sequence",
+    "tree",
+    "network"
+  ],
+  "extraction_process": {
+    "phase1": "Comprehensive vocabulary extraction",
+    "phase2": "Ontological classification",
+    "phase3": "Theory-adaptive schema generation"
+  }
+}

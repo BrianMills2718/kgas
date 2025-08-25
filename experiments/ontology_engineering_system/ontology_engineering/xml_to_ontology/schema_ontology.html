@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_InformationPedigree", "label": "InformationPedigree\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: A couple that asserts that a Thing is a member of a Type.\n\nExamples:\n\n* I am a member of the type People (hard to believe, but true)\n* Field Marshal is of the type Rank\n* Viscount Bernard Montgomery is of the type Person\n* The state of Viscount Bernard Montgomery from 1945 to his death is of type Field Marshal"}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_NamingScheme", "label": "NamingScheme\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_IndividualType", "label": "IndividualType\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_IndividualTypeType", "label": "IndividualTypeType\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_WholePartType", "label": "WholePartType\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_superSubtype", "label": "superSubtype\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_Individual", "label": "Individual\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#3498DB", "font": {"color": "#000000"}, "id": "complexType_typeInstance", "label": "typeInstance\n(complexType)", "shape": "box", "size": 30, "title": "Type: complexType\nDetails: "}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_NamingScheme", "label": "NamingScheme\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: An NameType and a RepresentationScheme whose members are intentionally Names. \n\nExamples:\n\nISO 3166 Country Codes\nIdeasNames"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_PedigreeInformation", "label": "PedigreeInformation\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: Information describing pedigree"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_PedigreeInformationType", "label": "PedigreeInformationType\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: The Powertype of PedigreeInformation."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_Activity", "label": "Activity\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: Work, not specific to a single organization, weapon system or individual that transforms inputs (Resources) into outputs (Resources) or changes their state."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_activityConsumesResource", "label": "activityConsumesResource\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: Represents that an activity consumes a resource"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_activityProducesResource", "label": "activityProducesResource\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: Represents that an activity produces a resource"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_ruleConstrainsActivity", "label": "ruleConstrainsActivity\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: An overlap between a Rule and the Activities it allows"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_measureOfTypeActivity", "label": "measureOfTypeActivity\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: A measureOfType that relates an Activity to a Measure"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_Measure", "label": "Measure\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: The magnitude of some attribute of an individual."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_LocationType", "label": "LocationType\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: The powertype of Location"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_Rule", "label": "Rule\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: A principle or condition that governs behavior; a prescribed guide for conduct or action"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_MeasureTypeUnitsOfMeasure", "label": "MeasureTypeUnitsOfMeasure\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: The subtype of MeasureType that has units."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_Performer", "label": "Performer\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: Any entity - human, automated, or any aggregation of human and/or automated - that performs an activity and provides a capability."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_measureOfTypeResource", "label": "measureOfTypeResource\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: ResourceType is a member of Measure"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_activityPerformedByPerformer", "label": "activityPerformedByPerformer\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: An overlap between a Performer and an Activity that is non-specific as to whether:\n1. the Activity is solely performed by the Performer\n2. the Activity is performed by several Performers\n3. the Performer performs only this Activity\n4. the Performer performs other Activities"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_resourceInLocationType", "label": "resourceInLocationType\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: The relationship that describes the location of a performer or type of performer"}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_Location", "label": "Location\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: A point or extent in space that may be referred to physically or logically."}, {"color": "#2ECC71", "font": {"color": "#000000"}, "id": "element_typeInstance", "label": "typeInstance\n(element)", "shape": "dot", "size": 25, "title": "Type: element\nDetails: A couple that asserts that a Thing is a member of a Type.\n\nExamples:\n\n* I am a member of the type People (hard to believe, but true)\n* Field Marshal is of the type Rank\n* Viscount Bernard Montgomery is of the type Person\n* The state of Viscount Bernard Montgomery from 1945 to his death is of type Field Marshal"}]);
+                  edges = new vis.DataSet([{"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_MeasureTypeUnitsOfMeasure", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualTypeType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_Activity", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_measureOfTypeActivity", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_superSubtype", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_superSubtype", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_Location", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_Individual", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_ruleConstrainsActivity", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_superSubtype", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_activityProducesResource", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_WholePartType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_activityPerformedByPerformer", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_WholePartType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_typeInstance", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_NamingScheme", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_NamingScheme", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_resourceInLocationType", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_WholePartType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_PedigreeInformation", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_Individual", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualTypeType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_NamingScheme", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_typeInstance", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_typeInstance", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_LocationType", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_measureOfTypeResource", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_superSubtype", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_InformationPedigree", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_WholePartType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_PedigreeInformationType", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualTypeType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_Measure", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_Rule", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_activityConsumesResource", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_WholePartType", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": "#E74C3C", "font": {"color": "#2C3E50", "size": 10}, "from": "element_Performer", "label": "extends", "smooth": {"roundness": 0.2, "type": "curvedCW"}, "title": "Relationship: extends", "to": "complexType_IndividualType", "width": 2}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -100, "centralGravity": 0.01, "springLength": 200, "springConstant": 0.08}, "maxVelocity": 50, "solver": "forceAtlas2Based", "timestep": 0.35, "stabilization": {"enabled": true, "iterations": 1000}}, "edges": {"smooth": {"type": "curvedCW", "roundness": 0.2}}, "interaction": {"hover": true, "navigationButtons": true, "keyboard": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+        <div style="position: absolute; top: 10px; right: 10px; background: white; padding: 10px; border: 1px solid #ccc;">
+            <h3>Legend</h3>
+            <p><span style="color: #2ECC71;">●</span> Element</p>
+            <p><span style="color: #3498DB;">■</span> Complex Type</p>
+            <p><span style="color: #9B59B6;">●</span> Simple Type</p>
+            <p><span style="color: #E67E22;">●</span> Attribute</p>
+            <hr>
+            <p><span style="color: #E74C3C;">→</span> Extends</p>
+            <p><span style="color: #27AE60;">→</span> Contains</p>
+            <p><span style="color: #3498DB;">→</span> Has Type</p>
+            <p><span style="color: #F1C40F;">→</span> Choice</p>
+            <p><span style="color: #9B59B6;">→</span> Has Attribute</p>
+        </div>
+        </body>
+</html>

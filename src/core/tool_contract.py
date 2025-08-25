@@ -44,6 +44,10 @@ class ToolRequest:
     workflow_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     request_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     timestamp: datetime = field(default_factory=datetime.now)
+    # ADD REQUIRED FIELDS
+    operation: str = "execute"
+    parameters: Dict[str, Any] = field(default_factory=dict)
+    validation_mode: bool = False
 
 
 @dataclass(frozen=True)

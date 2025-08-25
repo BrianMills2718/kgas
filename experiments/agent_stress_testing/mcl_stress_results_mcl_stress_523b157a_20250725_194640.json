@@ -1,0 +1,21 @@
+{
+  "test_id": "mcl_stress_523b157a",
+  "start_time": "2025-07-25T19:46:40.116199",
+  "architecture_tested": "6_stage_uncertainty_propagation_with_mcl",
+  "stress_tests": [
+    "MCLStressResult(test_name='concept_extraction_overload', success=False, breaking_point='CONCEPT_OVERLOAD_NOT_FILTERED', performance_metrics={'extraction_time': 0.10011839866638184, 'concepts_identified': 75, 'conflicts_detected': 1}, quality_issues=['CONCEPT_OVERLOAD_NOT_FILTERED'], uncertainty_propagation={'extraction_confidence': 0.7, 'mapping_uncertainty': 0.3, 'conflict_uncertainty': 0.4}, insights_discovered=[])",
+    "MCLStressResult(test_name='theory_conflict_cascade', success=False, breaking_point='MISSED_CONFLICT: rational_choice_theory vs social_identity_theory', performance_metrics={'conflict_detection_time': 0.05015110969543457, 'theories_analyzed': 3, 'tensions_found': 1}, quality_issues=['MISSED_CONFLICT: rational_choice_theory vs social_identity_theory'], uncertainty_propagation={'conflict_confidence': 0.85}, insights_discovered=[])",
+    "MCLStressResult(test_name='cross_modal_losslessness', success=False, breaking_point='MISSED_INCONSISTENCY: Mary_graph_table_inversion', performance_metrics={'validation_time': 0.02015852928161621, 'inconsistencies_detected': 1, 'losslessness_score': 0.4}, quality_issues=['MISSED_INCONSISTENCY: Mary_graph_table_inversion'], uncertainty_propagation={'modal_consistency_confidence': 0.75}, insights_discovered=[])",
+    "MCLStressResult(test_name='multi_theory_synthesis_chaos', success=False, breaking_point=\"FAILED_TO_REJECT_INCOMPATIBLE: ('rational_choice_theory', 'chaos_theory')\", performance_metrics={'synthesis_time': 0.10011053085327148, 'theories_integrated': 1, 'synthesis_coherence': 0.3}, quality_issues=[\"FAILED_TO_REJECT_INCOMPATIBLE: ('rational_choice_theory', 'chaos_theory')\"], uncertainty_propagation={'synthesis_confidence': 0.6}, insights_discovered=[])",
+    "MCLStressResult(test_name='uncertainty_propagation_breakdown', success=True, breaking_point=None, performance_metrics={'propagation_time': 0.06071591377258301, 'stages_completed': 6, 'final_uncertainty': 0.5629366}, quality_issues=[], uncertainty_propagation={'final_uncertainty': 0.5629366}, insights_discovered=[])",
+    "MCLStressResult(test_name='llm_hallucination_detection', success=True, breaking_point=None, performance_metrics={'detection_time': 0.03029775619506836, 'scenarios_tested': 3, 'hallucinations_caught': 3}, quality_issues=[], uncertainty_propagation={'detection_confidence': 1.0}, insights_discovered=[])"
+  ],
+  "breaking_points": [
+    "Hierarchical filtering failed with >50 concepts"
+  ],
+  "insights_discovered": [],
+  "uncertainty_analysis": {},
+  "final_assessment": {},
+  "end_time": "2025-07-25T19:46:40.477894",
+  "total_duration": 0.3618021011352539
+}

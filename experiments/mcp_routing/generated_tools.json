@@ -1,0 +1,3598 @@
+{
+  "total_tools": 100,
+  "categories": {
+    "document_loaders": 12,
+    "text_processing": 15,
+    "entity_extraction": 18,
+    "relationship_analysis": 16,
+    "graph_operations": 14,
+    "query_systems": 10,
+    "analytics": 8,
+    "export_visualization": 7
+  },
+  "tools": [
+    {
+      "tool_id": "load_document_pdf",
+      "name": "Load PDF Document",
+      "description": "Extract text and metadata from PDF documents",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to pdf file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_docx",
+      "name": "Load DOCX Document",
+      "description": "Load and parse Microsoft Word documents",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to docx file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_txt",
+      "name": "Load TXT Document",
+      "description": "Load plain text files with encoding detection",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to txt file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_csv",
+      "name": "Load CSV Document",
+      "description": "Parse CSV files with configurable delimiters",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to csv file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_json",
+      "name": "Load JSON Document",
+      "description": "Load and validate JSON documents",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to json file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_xml",
+      "name": "Load XML Document",
+      "description": "Parse XML documents with schema validation",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to xml file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_html",
+      "name": "Load HTML Document",
+      "description": "Extract content from HTML documents",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to html file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_xlsx",
+      "name": "Load XLSX Document",
+      "description": "Load Excel spreadsheets with multiple sheets",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to xlsx file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_pptx",
+      "name": "Load PPTX Document",
+      "description": "Extract text from PowerPoint presentations",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to pptx file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_epub",
+      "name": "Load EPUB Document",
+      "description": "Load eBook content from EPUB files",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to epub file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_rtf",
+      "name": "Load RTF Document",
+      "description": "Parse Rich Text Format documents",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to rtf file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "load_document_odt",
+      "name": "Load ODT Document",
+      "description": "Load OpenDocument text files",
+      "category": "ToolCategory.DOCUMENT_LOADERS",
+      "input_types": [],
+      "output_types": [
+        "document_ref"
+      ],
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "description": "Path to odt file"
+        },
+        "encoding": {
+          "type": "string",
+          "default": "auto",
+          "description": "Text encoding"
+        },
+        "extract_metadata": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "chunk_text_fixed",
+      "name": "Chunk Text Fixed",
+      "description": "Split text into fixed-size chunks",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "chunk_text_semantic",
+      "name": "Chunk Text Semantic",
+      "description": "Split text using semantic boundaries",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "chunk_text_sliding",
+      "name": "Chunk Text Sliding",
+      "description": "Create overlapping text chunks",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "clean_text_basic",
+      "name": "Clean Text Basic",
+      "description": "Remove noise and normalize text",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "clean_text_aggressive",
+      "name": "Clean Text Aggressive",
+      "description": "Intensive text cleaning and normalization",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "tokenize_words",
+      "name": "Tokenize Words",
+      "description": "Split text into word tokens",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.1,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "tokenize_sentences",
+      "name": "Tokenize Sentences",
+      "description": "Split text into sentence tokens",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "extract_keywords",
+      "name": "Extract Keywords",
+      "description": "Extract important keywords and phrases",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "summarize_extractive",
+      "name": "Summarize Extractive",
+      "description": "Create extractive text summaries",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "summarize_abstractive",
+      "name": "Summarize Abstractive",
+      "description": "Generate abstractive summaries",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "translate_text",
+      "name": "Translate Text",
+      "description": "Translate text between languages",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "detect_language",
+      "name": "Detect Language",
+      "description": "Identify text language",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "normalize_unicode",
+      "name": "Normalize Unicode",
+      "description": "Normalize Unicode text encoding",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "remove_stopwords",
+      "name": "Remove Stopwords",
+      "description": "Filter out common stop words",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.1,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "stem_words",
+      "name": "Stem Words",
+      "description": "Apply word stemming algorithms",
+      "category": "ToolCategory.TEXT_PROCESSING",
+      "input_types": [
+        "document_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "parameters": {
+        "chunk_size": {
+          "type": "integer",
+          "default": 1000,
+          "description": "Size of text chunks"
+        },
+        "overlap": {
+          "type": "integer",
+          "default": 100,
+          "description": "Overlap between chunks"
+        },
+        "preserve_formatting": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "load_document_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "extract_entities_spacy_sm",
+      "name": "Extract Entities Spacy Sm",
+      "description": "SpaCy small model entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_spacy_md",
+      "name": "Extract Entities Spacy Md",
+      "description": "SpaCy medium model entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_spacy_lg",
+      "name": "Extract Entities Spacy Lg",
+      "description": "SpaCy large model entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_spacy_trf",
+      "name": "Extract Entities Spacy Trf",
+      "description": "SpaCy transformer model extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_llm_gpt4",
+      "name": "Extract Entities Llm Gpt4",
+      "description": "GPT-4 based entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_llm_claude",
+      "name": "Extract Entities Llm Claude",
+      "description": "Claude based entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_llm_gemini",
+      "name": "Extract Entities Llm Gemini",
+      "description": "Gemini based entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_llm_local",
+      "name": "Extract Entities Llm Local",
+      "description": "Local LLM entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_biomedical",
+      "name": "Extract Entities Biomedical",
+      "description": "Biomedical entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_financial",
+      "name": "Extract Entities Financial",
+      "description": "Financial entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_legal",
+      "name": "Extract Entities Legal",
+      "description": "Legal entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_scientific",
+      "name": "Extract Entities Scientific",
+      "description": "Scientific entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_news",
+      "name": "Extract Entities News",
+      "description": "News/media entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_social",
+      "name": "Extract Entities Social",
+      "description": "Social media entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_hybrid",
+      "name": "Extract Entities Hybrid",
+      "description": "Combined rule+ML entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_ensemble",
+      "name": "Extract Entities Ensemble",
+      "description": "Ensemble of multiple extractors",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.9,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_active",
+      "name": "Extract Entities Active",
+      "description": "Active learning entity extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_entities_few_shot",
+      "name": "Extract Entities Few Shot",
+      "description": "Few-shot learning extraction",
+      "category": "ToolCategory.ENTITY_EXTRACTION",
+      "input_types": [
+        "text_ref",
+        "chunks_ref"
+      ],
+      "output_types": [
+        "entities_ref"
+      ],
+      "parameters": {
+        "confidence_threshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "entity_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Entity types to extract"
+        },
+        "max_entities": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum entities to extract"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "chunk_text_*",
+        "clean_text_*"
+      ],
+      "parallel_compatible": [
+        "extract_relationships_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_pattern",
+      "name": "Extract Relationships Pattern",
+      "description": "Pattern-based relationship extraction",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_dependency",
+      "name": "Extract Relationships Dependency",
+      "description": "Dependency parsing relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_coreference",
+      "name": "Extract Relationships Coreference",
+      "description": "Coreference-based relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_llm",
+      "name": "Extract Relationships Llm",
+      "description": "LLM-based relationship extraction",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_knowledge",
+      "name": "Extract Relationships Knowledge",
+      "description": "Knowledge graph relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_temporal",
+      "name": "Extract Relationships Temporal",
+      "description": "Temporal relationship analysis",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_causal",
+      "name": "Extract Relationships Causal",
+      "description": "Causal relationship detection",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationships_spatial",
+      "name": "Extract Relationships Spatial",
+      "description": "Spatial relationship analysis",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "analyze_relationship_strength",
+      "name": "Analyze Relationship Strength",
+      "description": "Quantify relationship strength",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "classify_relationship_types",
+      "name": "Classify Relationship Types",
+      "description": "Classify relationship categories",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "validate_relationships",
+      "name": "Validate Relationships",
+      "description": "Validate extracted relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "merge_relationships",
+      "name": "Merge Relationships",
+      "description": "Merge duplicate relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "filter_relationships",
+      "name": "Filter Relationships",
+      "description": "Filter relationships by criteria",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "rank_relationships",
+      "name": "Rank Relationships",
+      "description": "Rank relationships by importance",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "cluster_relationships",
+      "name": "Cluster Relationships",
+      "description": "Group similar relationships",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "extract_relationship_chains",
+      "name": "Extract Relationship Chains",
+      "description": "Find relationship chains",
+      "category": "ToolCategory.RELATIONSHIP_ANALYSIS",
+      "input_types": [
+        "entities_ref",
+        "text_ref"
+      ],
+      "output_types": [
+        "relationships_ref"
+      ],
+      "parameters": {
+        "relationship_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_confidence": {
+          "type": "number",
+          "default": 0.7
+        },
+        "max_distance": {
+          "type": "integer",
+          "default": 5,
+          "description": "Max word distance"
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "extract_entities_*"
+      ],
+      "parallel_compatible": [
+        "extract_entities_*"
+      ]
+    },
+    {
+      "tool_id": "build_graph_entities",
+      "name": "Build Graph Entities",
+      "description": "Build graph from entity data",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "build_graph_relationships",
+      "name": "Build Graph Relationships",
+      "description": "Build graph from relationship data",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "merge_graphs",
+      "name": "Merge Graphs",
+      "description": "Merge multiple graphs",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "validate_graph_structure",
+      "name": "Validate Graph Structure",
+      "description": "Validate graph consistency",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "optimize_graph_layout",
+      "name": "Optimize Graph Layout",
+      "description": "Optimize graph for visualization",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "calculate_graph_metrics",
+      "name": "Calculate Graph Metrics",
+      "description": "Calculate graph statistics",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "detect_graph_communities",
+      "name": "Detect Graph Communities",
+      "description": "Find communities in graph",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "find_graph_clusters",
+      "name": "Find Graph Clusters",
+      "description": "Cluster graph nodes",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "analyze_graph_centrality",
+      "name": "Analyze Graph Centrality",
+      "description": "Calculate centrality measures",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "find_shortest_paths",
+      "name": "Find Shortest Paths",
+      "description": "Find shortest paths in graph",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "detect_graph_anomalies",
+      "name": "Detect Graph Anomalies",
+      "description": "Identify unusual graph patterns",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "simplify_graph",
+      "name": "Simplify Graph",
+      "description": "Reduce graph complexity",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "enrich_graph_metadata",
+      "name": "Enrich Graph Metadata",
+      "description": "Add metadata to graph elements",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "export_graph_format",
+      "name": "Export Graph Format",
+      "description": "Convert graph to different formats",
+      "category": "ToolCategory.GRAPH_OPERATIONS",
+      "input_types": [
+        "entities_ref",
+        "relationships_ref",
+        "graph_ref"
+      ],
+      "output_types": [
+        "graph_ref"
+      ],
+      "parameters": {
+        "layout_algorithm": {
+          "type": "string",
+          "enum": [
+            "force",
+            "circular",
+            "hierarchical"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "max_nodes": {
+          "type": "integer",
+          "default": 1000
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "build_graph_*",
+        "extract_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_multihop",
+      "name": "Query Graph Multihop",
+      "description": "Multi-hop graph traversal queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_semantic",
+      "name": "Query Graph Semantic",
+      "description": "Semantic similarity queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_temporal",
+      "name": "Query Graph Temporal",
+      "description": "Time-based graph queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_pattern",
+      "name": "Query Graph Pattern",
+      "description": "Pattern matching queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_aggregation",
+      "name": "Query Graph Aggregation",
+      "description": "Aggregation and statistics queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_subgraph",
+      "name": "Query Graph Subgraph",
+      "description": "Subgraph extraction queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_path",
+      "name": "Query Graph Path",
+      "description": "Path finding queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_neighborhood",
+      "name": "Query Graph Neighborhood",
+      "description": "Neighborhood exploration",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_similarity",
+      "name": "Query Graph Similarity",
+      "description": "Find similar entities/patterns",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "query_graph_ranking",
+      "name": "Query Graph Ranking",
+      "description": "Ranking and top-k queries",
+      "category": "ToolCategory.QUERY_SYSTEMS",
+      "input_types": [
+        "graph_ref"
+      ],
+      "output_types": [
+        "query_results_ref"
+      ],
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Natural language query"
+        },
+        "max_results": {
+          "type": "integer",
+          "default": 10
+        },
+        "include_paths": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "calculate_pagerank",
+      "name": "Calculate Pagerank",
+      "description": "Calculate PageRank importance scores",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "detect_anomalies",
+      "name": "Detect Anomalies",
+      "description": "Identify anomalous patterns",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "perform_clustering",
+      "name": "Perform Clustering",
+      "description": "Cluster similar entities",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "analyze_trends",
+      "name": "Analyze Trends",
+      "description": "Analyze temporal trends",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "calculate_similarity",
+      "name": "Calculate Similarity",
+      "description": "Calculate entity similarities",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.4,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "predict_links",
+      "name": "Predict Links",
+      "description": "Predict missing relationships",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.8,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "analyze_influence",
+      "name": "Analyze Influence",
+      "description": "Analyze influence propagation",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "detect_outliers",
+      "name": "Detect Outliers",
+      "description": "Statistical outlier detection",
+      "category": "ToolCategory.ANALYTICS",
+      "input_types": [
+        "graph_ref",
+        "entities_ref"
+      ],
+      "output_types": [
+        "analysis_ref"
+      ],
+      "parameters": {
+        "algorithm": {
+          "type": "string",
+          "description": "Algorithm to use"
+        },
+        "sensitivity": {
+          "type": "number",
+          "default": 0.5
+        },
+        "iterations": {
+          "type": "integer",
+          "default": 100
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "build_graph_*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "export_json",
+      "name": "Export Json",
+      "description": "Export data as JSON",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "export_csv",
+      "name": "Export Csv",
+      "description": "Export tabular data as CSV",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.2,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "export_graphml",
+      "name": "Export Graphml",
+      "description": "Export graph as GraphML",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "export_gephi",
+      "name": "Export Gephi",
+      "description": "Export for Gephi visualization",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.3,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "visualize_network",
+      "name": "Visualize Network",
+      "description": "Create network visualization",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.5,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "generate_report",
+      "name": "Generate Report",
+      "description": "Generate analysis report",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.6,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    },
+    {
+      "tool_id": "create_dashboard",
+      "name": "Create Dashboard",
+      "description": "Create interactive dashboard",
+      "category": "ToolCategory.EXPORT_VISUALIZATION",
+      "input_types": [
+        "graph_ref",
+        "analysis_ref",
+        "query_results_ref"
+      ],
+      "output_types": [
+        "export_ref"
+      ],
+      "parameters": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "html",
+            "pdf"
+          ]
+        },
+        "include_metadata": {
+          "type": "boolean",
+          "default": true
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "none",
+            "gzip",
+            "zip"
+          ]
+        }
+      },
+      "complexity_score": 0.7,
+      "dependencies": [
+        "*"
+      ],
+      "parallel_compatible": []
+    }
+  ]
+}

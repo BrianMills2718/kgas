@@ -1,0 +1,3349 @@
+{
+  "validation_info": {
+    "timestamp": "2025-08-04T03:23:23.348887",
+    "total_duration_seconds": 4.532562255859375,
+    "agents_tested": [
+      "gpt-4",
+      "gpt-4o-mini",
+      "claude-3-5-sonnet-20241022",
+      "claude-3-haiku-20240307",
+      "gemini-2.5-flash"
+    ],
+    "strategies_tested": [
+      "semantic_workflow",
+      "dynamic_filtering",
+      "direct_exposure"
+    ]
+  },
+  "agent_setup": {
+    "gpt-4": "\ud83d\udd11 Mock Agent (No API Key)",
+    "gpt-4o-mini": "\ud83d\udd11 Mock Agent (No API Key)",
+    "claude-3-5-sonnet-20241022": "\ud83d\udd11 Mock Agent (No API Key)",
+    "claude-3-haiku-20240307": "\ud83d\udd11 Mock Agent (No API Key)",
+    "gemini-2.5-flash": "\ud83d\udd11 Mock Agent (No API Key)"
+  },
+  "strategy_comparison": {
+    "semantic_workflow": {
+      "academic_paper_analysis": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.24261474609375,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.25453567504883,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.23069381713867,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.20041465759277,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.17943382263184,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        }
+      },
+      "simple_entity_extraction": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.52800178527832,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.33965110778809,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.25572776794434,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.2192497253418,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": false,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.20947456359863,
+          "tools_used": [
+            "extract_knowledge_adaptive"
+          ],
+          "errors": [
+            "Mock execution error"
+          ]
+        }
+      }
+    },
+    "dynamic_filtering": {
+      "academic_paper_analysis": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.17633438110352,
+          "tools_used": [
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.54278373718262,
+          "tools_used": [
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.26049613952637,
+          "tools_used": [
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.21114349365234,
+          "tools_used": [
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.22425651550293,
+          "tools_used": [
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        }
+      },
+      "simple_entity_extraction": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.19898414611816,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": false,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.19850730895996,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "errors": [
+            "Mock execution error"
+          ]
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.16417503356934,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.26669502258301,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.28862953186035,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "errors": []
+        }
+      }
+    },
+    "direct_exposure": {
+      "academic_paper_analysis": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.53896903991699,
+          "tools_used": [
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": false,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.39424896240234,
+          "tools_used": [
+            "extract_keywords"
+          ],
+          "errors": [
+            "Mock execution error"
+          ]
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.24166107177734,
+          "tools_used": [
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.24619102478027,
+          "tools_used": [
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": true,
+          "overall_score": 0.0,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.0,
+          "execution_time_ms": 100.61526298522949,
+          "tools_used": [
+            "extract_keywords"
+          ],
+          "errors": []
+        }
+      },
+      "simple_entity_extraction": {
+        "gpt-4": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.9526252746582,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "gpt-4o-mini": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.50511360168457,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "claude-3-5-sonnet-20241022": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.63886642456055,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "claude-3-haiku-20240307": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.27694702148438,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "errors": []
+        },
+        "gemini-2.5-flash": {
+          "success": true,
+          "overall_score": 0.12,
+          "tool_selection_accuracy": 0.0,
+          "parameter_accuracy": 0.3,
+          "execution_time_ms": 100.22521018981934,
+          "tools_used": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "errors": []
+        }
+      }
+    }
+  },
+  "behavior_analysis": {
+    "gpt-4": {
+      "consistency_tests": [
+        {
+          "run": 1,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 2,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 3,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        }
+      ],
+      "parameter_patterns": {},
+      "tool_preferences": {},
+      "error_patterns": []
+    },
+    "gpt-4o-mini": {
+      "consistency_tests": [
+        {
+          "run": 1,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 2,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 3,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        }
+      ],
+      "parameter_patterns": {},
+      "tool_preferences": {},
+      "error_patterns": []
+    },
+    "claude-3-5-sonnet-20241022": {
+      "consistency_tests": [
+        {
+          "run": 1,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 2,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 3,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        }
+      ],
+      "parameter_patterns": {},
+      "tool_preferences": {},
+      "error_patterns": []
+    },
+    "claude-3-haiku-20240307": {
+      "consistency_tests": [
+        {
+          "run": 1,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 2,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 3,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        }
+      ],
+      "parameter_patterns": {},
+      "tool_preferences": {},
+      "error_patterns": []
+    },
+    "gemini-2.5-flash": {
+      "consistency_tests": [
+        {
+          "run": 1,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 2,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        },
+        {
+          "run": 3,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "parameters": [
+            {
+              "method": "hybrid",
+              "ontology_mode": "mixed"
+            }
+          ],
+          "score": 0.0
+        }
+      ],
+      "parameter_patterns": {},
+      "tool_preferences": {},
+      "error_patterns": []
+    }
+  },
+  "analysis": {
+    "strategy_performance": {
+      "semantic_workflow": {
+        "average_score": 0.0,
+        "success_rate": 0.9,
+        "total_tests": 10,
+        "successful_tests": 9
+      },
+      "dynamic_filtering": {
+        "average_score": 0.05333333333333333,
+        "success_rate": 0.9,
+        "total_tests": 10,
+        "successful_tests": 9
+      },
+      "direct_exposure": {
+        "average_score": 0.06666666666666667,
+        "success_rate": 0.9,
+        "total_tests": 10,
+        "successful_tests": 9
+      }
+    },
+    "agent_rankings": {
+      "gpt-4": {
+        "average_score": 0.04,
+        "test_count": 6,
+        "consistency": 0.12
+      },
+      "gpt-4o-mini": {
+        "average_score": 0.03,
+        "test_count": 4,
+        "consistency": 0.12
+      },
+      "claude-3-5-sonnet-20241022": {
+        "average_score": 0.04,
+        "test_count": 6,
+        "consistency": 0.12
+      },
+      "claude-3-haiku-20240307": {
+        "average_score": 0.04,
+        "test_count": 6,
+        "consistency": 0.12
+      },
+      "gemini-2.5-flash": {
+        "average_score": 0.048,
+        "test_count": 5,
+        "consistency": 0.12
+      }
+    },
+    "key_findings": [
+      "Best performing strategy: direct_exposure (avg score: 0.07)",
+      "Best performing agent: gemini-2.5-flash (avg score: 0.05)"
+    ],
+    "recommendations": [
+      "Semantic workflow strategy needs improvement before production deployment"
+    ]
+  },
+  "framework_results": [
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.24261474609375,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.25453567504883,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.23069381713867,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.20041465759277,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.17943382263184,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.52800178527832,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.33965110778809,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.25572776794434,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "semantic_workflow",
+      "success": true,
+      "execution_time_ms": 100.2192497253418,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "semantic_workflow",
+      "success": false,
+      "execution_time_ms": 100.20947456359863,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [
+        "Mock execution error"
+      ],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.17633438110352,
+      "tools_used": [
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.54278373718262,
+      "tools_used": [
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.26049613952637,
+      "tools_used": [
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.21114349365234,
+      "tools_used": [
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.22425651550293,
+      "tools_used": [
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.19898414611816,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "dynamic_filtering",
+      "success": false,
+      "execution_time_ms": 100.19850730895996,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [
+        "Mock execution error"
+      ],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.16417503356934,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.26669502258301,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "dynamic_filtering",
+      "success": true,
+      "execution_time_ms": 100.28862953186035,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_relationships_knowledge"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_relationships_knowledge"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.53896903991699,
+      "tools_used": [
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "direct_exposure",
+      "success": false,
+      "execution_time_ms": 100.39424896240234,
+      "tools_used": [
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [
+        "Mock execution error"
+      ],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.24166107177734,
+      "tools_used": [
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.24619102478027,
+      "tools_used": [
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.61526298522949,
+      "tools_used": [
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.9526252746582,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.50511360168457,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.63886642456055,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.27694702148438,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "direct_exposure",
+      "success": true,
+      "execution_time_ms": 100.22521018981934,
+      "tools_used": [
+        "load_document_pdf",
+        "extract_keywords"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.12,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_pdf",
+            "extract_keywords"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic, extract_knowledge_graph",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.20804405212402,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": false,
+      "execution_time_ms": 100.4788875579834,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [
+        "Mock execution error"
+      ],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4",
+        "_name_": "GPT_4",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 0
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.30221939086914,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.23903846740723,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.19421577453613,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gpt-4o-mini",
+        "_name_": "GPT_4O_MINI",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 3
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.46029090881348,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.19850730895996,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.2199649810791,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-5-sonnet-20241022",
+        "_name_": "CLAUDE_SONNET",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 1
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.1899242401123,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.24833679199219,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.21781921386719,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "claude-3-haiku-20240307",
+        "_name_": "CLAUDE_HAIKU",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 4
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.19636154174805,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.61883926391602,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.30436515808105,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": {
+        "_value_": "gemini-2.5-flash",
+        "_name_": "GEMINI_FLASH",
+        "__objclass__": "{'_generate_next_value_': <staticmethod(<function Enum._generate_next_value_ at 0x720c015b3ec0>)>, '__module__': 'agent_validation_framework', '_new_member_': <built-in method __new__ of type object at 0xa44820>, '_use_args_': False, '_member_names_': ['GPT_4', 'CLAUDE_SONNET', 'GEMINI_FLASH', 'GPT_4O_MINI', 'CLAUDE_HAIKU'], '_member_map_': {'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_value2member_map_': {'gpt-4': <AgentType.GPT_4: 'gpt-4'>, 'claude-3-5-sonnet-20241022': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'gemini-2.5-flash': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'gpt-4o-mini': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'claude-3-haiku-20240307': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>}, '_unhashable_values_': [], '_member_type_': <class 'object'>, '_value_repr_': None, '__doc__': None, 'GPT_4': <AgentType.GPT_4: 'gpt-4'>, 'CLAUDE_SONNET': <AgentType.CLAUDE_SONNET: 'claude-3-5-sonnet-20241022'>, 'GEMINI_FLASH': <AgentType.GEMINI_FLASH: 'gemini-2.5-flash'>, 'GPT_4O_MINI': <AgentType.GPT_4O_MINI: 'gpt-4o-mini'>, 'CLAUDE_HAIKU': <AgentType.CLAUDE_HAIKU: 'claude-3-haiku-20240307'>, '__new__': <function Enum.__new__ at 0x720c015b3d80>}",
+        "_sort_order_": 2
+      },
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.40879249572754,
+      "tools_used": [
+        "extract_knowledge_adaptive"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.0,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.0,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.0,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_adaptive"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: extract_knowledge_graph, analyze_graph_insights, load_document_comprehensive"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: quality_check, extract_metadata"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-../../personality-prediction/BRUTAL_CRITICAL_ASSESSMENT.md

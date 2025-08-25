@@ -1,0 +1,34 @@
+{
+  "factor_presence_scores": {
+    "narcissism": 0.878,
+    "denialism": 0.75,
+    "need_for_chaos": 0.0,
+    "conspiracy_mentality": 0.455,
+    "misinformation_susceptibility": 1.0,
+    "political_extremity": 0.0,
+    "overconfidence": 0.25
+  },
+  "theme_balances": {
+    "transparency_vs_secrecy": "transparency-oriented",
+    "trust_in_institutions": "trust-oriented",
+    "us_vs_them": "unity-oriented"
+  },
+  "risk_assessment": {
+    "risk_score": 0.426,
+    "protective_score": 0.5740000000000001,
+    "risk_level": "moderate"
+  },
+  "discourse_pattern_counts": {
+    "rhetorical_questions": 0,
+    "certainty_language": 3,
+    "transparency_statements": 2,
+    "historical_references": 6,
+    "call_to_action": 7
+  },
+  "word_frequency": {
+    "transparency_words": 8,
+    "secrecy_words": 4,
+    "unity_indicators": 175,
+    "division_indicators": 16
+  }
+}

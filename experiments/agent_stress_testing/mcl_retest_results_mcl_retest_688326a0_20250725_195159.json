@@ -1,0 +1,17 @@
+{
+  "retest_id": "mcl_retest_688326a0",
+  "start_time": "2025-07-25T19:51:58.684394",
+  "improved_architecture_version": "v1.1_post_stress_test",
+  "retest_sequence": [
+    "MCLRetestResult(test_name='concept_extraction_overload', success=True, breaking_point=None, performance_metrics={'extraction_time': 0.08034801483154297, 'concepts_identified': 10}, quality_issues=[], improvement_over_original='Reduced from 75 to 10 concepts', confidence_metrics={'relevance_filtering_effectiveness': 0.9})",
+    "MCLRetestResult(test_name='theory_conflict_cascade', success=True, breaking_point=None, performance_metrics={'conflict_detection_time': 0.09098958969116211, 'theories_analyzed': 3, 'tensions_found': 3}, quality_issues=[], improvement_over_original='Detected 3 conflicts (was 1), missed 0 (was 1)', confidence_metrics={'conflict_detection_accuracy': 0.9})",
+    "MCLRetestResult(test_name='cross_modal_losslessness', success=True, breaking_point=None, performance_metrics={'validation_time': 0.030457258224487305, 'inconsistencies_detected': 0, 'losslessness_score': 0.5233333333333333}, quality_issues=[], improvement_over_original='Losslessness score: 0.52 (was >0.7)', confidence_metrics={'cross_modal_validation_accuracy': 0.85})",
+    "MCLRetestResult(test_name='multi_theory_synthesis_chaos', success=True, breaking_point=None, performance_metrics={'synthesis_time': 0.06044888496398926, 'theories_analyzed': 3, 'incompatible_pairs': 2}, quality_issues=[], improvement_over_original='Detected 2 incompatible pairs (was 0)', confidence_metrics={'synthesis_validation_accuracy': 0.9})",
+    "MCLRetestResult(test_name='uncertainty_propagation_breakdown', success=True, breaking_point=None, performance_metrics={'propagation_time': 0.10019850730895996, 'stages_completed': 6, 'final_uncertainty': 0.35}, quality_issues=[], improvement_over_original='Maintained previous success', confidence_metrics={'propagation_reliability': 0.9})",
+    "MCLRetestResult(test_name='llm_hallucination_detection', success=True, breaking_point=None, performance_metrics={'detection_time': 0.05012083053588867, 'scenarios_tested': 3, 'hallucinations_caught': 3}, quality_issues=[], improvement_over_original='Maintained previous success', confidence_metrics={'hallucination_detection_reliability': 0.85})"
+  ],
+  "improvement_summary": {},
+  "final_assessment": {},
+  "end_time": "2025-07-25T19:51:59.097052",
+  "total_duration": 0.4126763343811035
+}

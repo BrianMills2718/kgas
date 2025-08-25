@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/social_network.owl"
+         xmlns="http://example.org/social_network.owl#">
+
+<owl:Ontology rdf:about="http://example.org/social_network.owl"/>
+
+<owl:ObjectProperty rdf:about="#follows">
+  <rdfs:domain rdf:resource="#Person"/>
+  <rdfs:range rdf:resource="#Person"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#tweets">
+  <rdfs:domain rdf:resource="#Person"/>
+  <rdfs:range rdf:resource="#Post"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#might_have_seen">
+  <rdfs:domain rdf:resource="#Person"/>
+  <rdfs:range rdf:resource="#Post"/>
+  <owl:equivalentProperty>
+    <rdf:Description>
+      <rdf:first rdf:resource="#follows"/>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first rdf:resource="#tweets"/>
+          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </owl:equivalentProperty>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Person">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Post">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#Alice">
+  <rdf:type rdf:resource="#Person"/>
+  <follows rdf:resource="#Bob"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bob">
+  <rdf:type rdf:resource="#Person"/>
+  <follows rdf:resource="#Charlie"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Charlie">
+  <rdf:type rdf:resource="#Person"/>
+  <tweets rdf:resource="#PostX"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PostX">
+  <rdf:type rdf:resource="#Post"/>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>

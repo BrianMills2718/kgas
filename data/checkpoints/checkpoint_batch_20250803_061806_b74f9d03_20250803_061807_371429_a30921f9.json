@@ -1,0 +1,87 @@
+{
+  "batch_id": "batch_20250803_061806_b74f9d03",
+  "checkpoint_id": "checkpoint_batch_20250803_061806_b74f9d03_20250803_061807_371429_a30921f9",
+  "timestamp": "2025-08-03T06:18:07.371461",
+  "status": "in_progress",
+  "completed_documents": [],
+  "failed_documents": [],
+  "pending_documents": [
+    "doc_0",
+    "doc_1",
+    "doc_2",
+    "doc_3",
+    "doc_4"
+  ],
+  "processing_state": {
+    "job_queue": [
+      {
+        "document_id": "doc_0",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_1",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_2",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_3",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_4",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      }
+    ],
+    "dependency_graph": {
+      "doc_0": [],
+      "doc_1": [],
+      "doc_2": [],
+      "doc_3": [],
+      "doc_4": []
+    },
+    "job_results": {}
+  },
+  "resource_state": {
+    "available_memory_mb": 3752,
+    "cpu_usage_percent": 2.0,
+    "max_workers": 2,
+    "active_workers": 0
+  },
+  "error_log": [],
+  "metadata": {
+    "scheduler_stats": {
+      "total_jobs": 5,
+      "successful_jobs": 0,
+      "failed_jobs": 0,
+      "retried_jobs": 0,
+      "success_rate": 0.0,
+      "failure_rate": 0.0,
+      "avg_processing_time": 0.0,
+      "active_jobs": 0,
+      "queued_jobs": 5,
+      "system_resources": {
+        "available_memory_mb": 3752,
+        "cpu_usage_percent": 3.9
+      }
+    },
+    "checkpoint_version": "1.0"
+  }
+}

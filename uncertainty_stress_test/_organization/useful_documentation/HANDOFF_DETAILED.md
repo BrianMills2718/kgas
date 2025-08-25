@@ -1,1 +1,0 @@
-../../personality-prediction/HANDOFF_DETAILED.md

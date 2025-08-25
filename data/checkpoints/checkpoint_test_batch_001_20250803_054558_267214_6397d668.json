@@ -1,0 +1,39 @@
+{
+  "batch_id": "test_batch_001",
+  "checkpoint_id": "checkpoint_test_batch_001_20250803_054558_267214_6397d668",
+  "timestamp": "2025-08-03T05:45:58.267248",
+  "status": "in_progress",
+  "completed_documents": [],
+  "failed_documents": [],
+  "pending_documents": [],
+  "processing_state": {
+    "job_queue": [],
+    "dependency_graph": {},
+    "job_results": {}
+  },
+  "resource_state": {
+    "available_memory_mb": 4768,
+    "cpu_usage_percent": 0.0,
+    "max_workers": 4,
+    "active_workers": 0
+  },
+  "error_log": [],
+  "metadata": {
+    "scheduler_stats": {
+      "total_jobs": 0,
+      "successful_jobs": 0,
+      "failed_jobs": 0,
+      "retried_jobs": 0,
+      "success_rate": 0.0,
+      "failure_rate": 0.0,
+      "avg_processing_time": 0.0,
+      "active_jobs": 0,
+      "queued_jobs": 0,
+      "system_resources": {
+        "available_memory_mb": 4768,
+        "cpu_usage_percent": 3.0
+      }
+    },
+    "checkpoint_version": "1.0"
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "test_results": [
+    {
+      "prompt": "Extract entities and relationships from this research paper and build a knowledge graph",
+      "success": true,
+      "generation_time": 18.617146015167236,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "load_paper",
+            "tool": "load_document_pdf",
+            "params": {
+              "file_path": "research_paper.pdf",
+              "extract_metadata": true,
+              "preserve_structure": false
+            },
+            "inputs": [],
+            "outputs": [
+              "paper_content"
+            ]
+          },
+          {
+            "id": "clean_content",
+            "tool": "clean_text_aggressive",
+            "params": {
+              "language": "auto",
+              "max_length": 10000
+            },
+            "inputs": [
+              "paper_content"
+            ],
+            "outputs": [
+              "cleaned_text"
+            ]
+          },
+          {
+            "id": "extract_academic_entities",
+            "tool": "extract_entities_academic",
+            "params": {
+              "entity_types": [
+                "PERSON",
+                "ORG",
+                "LOC",
+                "DATE"
+              ],
+              "confidence_threshold": 0.7
+            },
+            "inputs": [
+              "cleaned_text"
+            ],
+            "outputs": [
+              "extracted_entities"
+            ]
+          }
+        ],
+        "flow": [
+          "load_paper -> clean_content",
+          "clean_content -> extract_academic_entities"
+        ],
+        "rationale": "The workflow begins by loading the research paper. Assuming the research paper is in PDF format, the 'load_document_pdf' tool is selected to extract its content. The 'extract_metadata' parameter is set to true to capture any relevant document information, and 'preserve_structure' is set to false as the primary goal is text content for NLP. Next, the extracted text undergoes aggressive cleaning using 'clean_text_aggressive' to remove noise, normalize formatting, and ensure optimal quality for subsequent entity extraction. The 'language' is set to 'auto' for automatic detection, and 'max_length' is set to a generous 10000 to accommodate potentially long research papers. Finally, 'extract_entities_academic' is used to identify and extract entities from the cleaned content. This specialized tool is chosen over general entity extractors due to its focus on academic text analysis, using its default entity types (PERSON, ORG, LOC, DATE) and a standard confidence threshold. The prompt requests 'relationships' and 'building a knowledge graph'; however, no dedicated tools for explicit relationship extraction or knowledge graph construction are available in the provided list. This workflow successfully extracts the entities, which are a foundational component for building a knowledge graph. Subsequent steps for defining and extracting relationships, and then constructing the knowledge graph, would need to be performed by external processes or tools not included in the current set."
+      },
+      "gemini_tools": [
+        "load_document_pdf",
+        "clean_text_aggressive",
+        "extract_entities_academic"
+      ],
+      "tool_count": 3,
+      "uses_mcp_format": true,
+      "parameter_complexity": "high",
+      "workflow_logic": "logical"
+    },
+    {
+      "prompt": "Process this business document to find key people, organizations, and financial information",
+      "success": true,
+      "generation_time": 14.778277397155762,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "load_business_document",
+            "tool": "load_document_txt",
+            "params": {
+              "file_path": "business_document.txt",
+              "extract_metadata": true,
+              "preserve_structure": false
+            },
+            "outputs": [
+              "document_content"
+            ]
+          },
+          {
+            "id": "extract_people_and_orgs",
+            "tool": "extract_entities_business",
+            "params": {
+              "entity_types": [
+                "PERSON",
+                "ORG"
+              ],
+              "confidence_threshold": 0.7
+            },
+            "inputs": [
+              "document_content"
+            ],
+            "outputs": [
+              "people_and_organizations"
+            ]
+          },
+          {
+            "id": "extract_financial_info",
+            "tool": "extract_entities_financial",
+            "params": {
+              "confidence_threshold": 0.7
+            },
+            "inputs": [
+              "document_content"
+            ],
+            "outputs": [
+              "financial_data"
+            ]
+          }
+        ],
+        "flow": [
+          "load_business_document -> extract_people_and_orgs",
+          "load_business_document -> extract_financial_info"
+        ],
+        "rationale": "The workflow begins by loading the business document. Since the specific file type was not provided, 'load_document_txt' is used as a generic loader, assuming the document content can be treated as plain text; this step can be replaced with the appropriate document loader (e.g., 'load_document_pdf', 'load_document_docx', 'load_document_xlsx') if the file type is known. Once the document content is extracted, two parallel entity extraction steps are executed:\n\n1.  'extract_people_and_orgs' uses the 'extract_entities_business' tool, which is specialized for business document analysis. This step is configured to specifically extract 'PERSON' and 'ORG' entity types, directly addressing the request for key people and organizations.\n2.  'extract_financial_info' utilizes the 'extract_entities_financial' tool, which is designed for financial document and data extraction. Although its input schema shows generic entity types, the tool's name and description imply its inherent capability to identify and extract financial information relevant to business documents. This step leverages that specialized capability to fulfill the 'financial information' requirement.\n\nRunning the entity extraction steps in parallel improves efficiency, as they both operate independently on the same initial document content."
+      },
+      "gemini_tools": [
+        "load_document_txt",
+        "extract_entities_business",
+        "extract_entities_financial"
+      ],
+      "tool_count": 3,
+      "uses_mcp_format": true,
+      "parameter_complexity": "high",
+      "workflow_logic": "logical"
+    },
+    {
+      "prompt": "Analyze this academic paper for methodologies, datasets, and performance metrics",
+      "success": true,
+      "generation_time": 20.237937688827515,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "load_academic_paper",
+            "tool": "load_document_pdf",
+            "params": {
+              "file_path": "/path/to/your/academic_paper.pdf",
+              "extract_metadata": true,
+              "preserve_structure": true
+            },
+            "outputs": [
+              "document_text"
+            ]
+          },
+          {
+            "id": "extract_academic_entities",
+            "tool": "extract_entities_llm_gemini",
+            "params": {
+              "entity_types": [
+                "METHODOLOGY",
+                "DATASET",
+                "PERFORMANCE_METRIC"
+              ],
+              "confidence_threshold": 0.7
+            },
+            "inputs": [
+              "document_text"
+            ],
+            "outputs": [
+              "extracted_information"
+            ]
+          }
+        ],
+        "flow": [
+          "load_academic_paper -> extract_academic_entities"
+        ],
+        "rationale": "The task requires analyzing an academic paper for specific information: methodologies, datasets, and performance metrics. \n\n1.  **Load Document**: The `load_document_pdf` tool is selected as academic papers are most commonly found in PDF format. Setting `preserve_structure` to `true` is beneficial for academic papers, as structure often provides context for understanding content, and `extract_metadata` is useful for general document information. The output, `document_text`, will be the raw content of the paper.\n\n2.  **Extract Entities**: The `extract_entities_llm_gemini` tool is chosen for extracting the specific information (methodologies, datasets, performance metrics). While the default `entity_types` for generic entity extraction tools often include common categories like PERSON or ORG, LLM-based extractors like Gemini are flexible enough to be prompted to identify custom, domain-specific categories. By explicitly passing 'METHODOLOGY', 'DATASET', and 'PERFORMANCE_METRIC' to the `entity_types` parameter, the Gemini LLM is guided to extract these specific types of information from the academic paper's text. A `confidence_threshold` of 0.7 is a standard default, balancing precision and recall.\n\nThis workflow efficiently loads the document and then leverages the advanced capabilities of an LLM-based entity extractor to specifically target and extract the requested academic information."
+      },
+      "gemini_tools": [
+        "load_document_pdf",
+        "extract_entities_llm_gemini"
+      ],
+      "tool_count": 2,
+      "uses_mcp_format": true,
+      "parameter_complexity": "high",
+      "workflow_logic": "logical"
+    },
+    {
+      "prompt": "Load this PDF document, extract important entities, and create a summary report",
+      "success": true,
+      "generation_time": 6.39421820640564,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "load_pdf",
+            "tool": "load_document_pdf",
+            "params": {
+              "file_path": "${pdf_file_path}",
+              "extract_metadata": true,
+              "preserve_structure": false
+            },
+            "inputs": [],
+            "outputs": [
+              "document_content"
+            ]
+          },
+          {
+            "id": "extract_entities",
+            "tool": "extract_entities_llm_gpt4",
+            "params": {
+              "text": "${load_pdf.document_content}",
+              "entity_types": [
+                "PERSON",
+                "ORG",
+                "LOC",
+                "DATE",
+                "PRODUCT",
+                "EVENT"
+              ],
+              "confidence_threshold": 0.8
+            },
+            "inputs": [
+              "load_pdf.document_content"
+            ],
+            "outputs": [
+              "extracted_entities"
+            ]
+          },
+          {
+            "id": "summarize_report",
+            "tool": "summarize_abstractive",
+            "params": {
+              "text": "${load_pdf.document_content}",
+              "language": "auto",
+              "max_length": 500
+            },
+            "inputs": [
+              "load_pdf.document_content"
+            ],
+            "outputs": [
+              "summary_report"
+            ]
+          }
+        ],
+        "flow": [
+          "load_pdf -> extract_entities",
+          "load_pdf -> summarize_report"
+        ],
+        "rationale": "The workflow begins by using the 'load_document_pdf' tool to extract the text content from the specified PDF document. This step is crucial as it provides the raw text for subsequent processing. Once the document content is available, two parallel operations are initiated: 'extract_entities' and 'summarize_report'.\n\n'extract_entities_llm_gpt4' is chosen for entity extraction due to its advanced capabilities in identifying various types of important entities. The 'entity_types' parameter is explicitly set to include common and relevant types like PERSON, ORG, LOC, DATE, PRODUCT, and EVENT, and a 'confidence_threshold' of 0.8 is applied to ensure higher relevance and accuracy of extracted entities. This tool processes the full text content from the loaded PDF.\n\nSimultaneously, 'summarize_abstractive' is used to generate a concise summary report. An abstractive summarizer is preferred over an extractive one for report generation as it creates new, coherent sentences, providing a more fluent and readable summary. The 'max_length' is set to 500 to ensure a reasonably detailed yet concise report, and 'language' is set to 'auto' for flexibility.\n\nThis parallel design allows for efficient processing, as entity extraction and summarization can occur concurrently once the document is loaded, leading to a faster overall workflow execution. The outputs are the extracted entities and the generated summary report, fulfilling the user's request."
+      },
+      "gemini_tools": [
+        "load_document_pdf",
+        "extract_entities_llm_gpt4",
+        "summarize_abstractive"
+      ],
+      "tool_count": 3,
+      "uses_mcp_format": true,
+      "parameter_complexity": "high",
+      "workflow_logic": "inconsistent"
+    },
+    {
+      "prompt": "Build a comprehensive knowledge graph from scientific literature with entity extraction",
+      "success": true,
+      "generation_time": 21.031991481781006,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "step_load_scientific_document",
+            "tool": "load_document_pdf",
+            "params": {
+              "file_path": "path/to/scientific_paper.pdf",
+              "extract_metadata": true,
+              "preserve_structure": true
+            },
+            "inputs": [],
+            "outputs": [
+              "document_content"
+            ]
+          },
+          {
+            "id": "step_clean_text",
+            "tool": "clean_text_aggressive",
+            "params": {},
+            "inputs": [
+              "document_content"
+            ],
+            "outputs": [
+              "cleaned_text"
+            ]
+          },
+          {
+            "id": "step_extract_scientific_entities",
+            "tool": "extract_entities_scientific",
+            "params": {
+              "entity_types": [
+                "PERSON",
+                "ORG",
+                "LOC",
+                "DATE",
+                "RESEARCH_FIELD",
+                "CHEMICAL",
+                "GENE",
+                "DISEASE",
+                "METHOD",
+                "DATA_TYPE",
+                "EQUIPMENT"
+              ],
+              "confidence_threshold": 0.75
+            },
+            "inputs": [
+              "cleaned_text"
+            ],
+            "outputs": [
+              "extracted_entities"
+            ]
+          }
+        ],
+        "flow": [
+          "step_load_scientific_document -> step_clean_text",
+          "step_clean_text -> step_extract_scientific_entities"
+        ],
+        "rationale": "The workflow aims to build a comprehensive knowledge graph from scientific literature by first loading the document, then cleaning its content, and finally extracting relevant entities. \n\n1.  **Load Scientific Document (step_load_scientific_document):** Scientific literature is commonly found in PDF format, so `load_document_pdf` is selected. `extract_metadata` and `preserve_structure` are set to `true` to ensure all available information is captured, which is beneficial for building a comprehensive knowledge graph. The `file_path` is a placeholder that would be provided at runtime.\n2.  **Clean Text (step_clean_text):** Scientific documents can contain complex formatting, symbols, and references that might interfere with downstream NLP tasks. `clean_text_aggressive` is chosen to robustly remove noise and normalize the text, preparing it for accurate entity extraction.\n3.  **Extract Scientific Entities (step_extract_scientific_entities):** To build a knowledge graph specifically from scientific literature, the `extract_entities_scientific` tool is the most appropriate choice due to its domain-specific capabilities. A comprehensive list of common scientific entity types (e.g., RESEARCH_FIELD, CHEMICAL, GENE, DISEASE, METHOD, DATA_TYPE, EQUIPMENT) is explicitly requested, along with general entities like PERSON, ORG, LOC, and DATE. A `confidence_threshold` of 0.75 is set to ensure higher precision in the extracted entities, which is crucial for the accuracy of a knowledge graph."
+      },
+      "gemini_tools": [
+        "load_document_pdf",
+        "clean_text_aggressive",
+        "extract_entities_scientific"
+      ],
+      "tool_count": 3,
+      "uses_mcp_format": true,
+      "parameter_complexity": "medium",
+      "workflow_logic": "logical"
+    },
+    {
+      "prompt": "Process financial reports to identify trends, ratios, and forecasting insights",
+      "success": true,
+      "generation_time": 23.854475259780884,
+      "gemini_dag": {
+        "steps": [
+          {
+            "id": "load_financial_report",
+            "tool": "load_document_pdf",
+            "params": {
+              "file_path": "/path/to/financial_report.pdf",
+              "extract_metadata": true,
+              "preserve_structure": true
+            },
+            "inputs": [],
+            "outputs": [
+              "raw_document_content"
+            ]
+          },
+          {
+            "id": "clean_financial_text",
+            "tool": "clean_text_business",
+            "params": {
+              "language": "auto"
+            },
+            "inputs": [
+              "raw_document_content"
+            ],
+            "outputs": [
+              "cleaned_text"
+            ]
+          },
+          {
+            "id": "extract_financial_data",
+            "tool": "extract_entities_financial",
+            "params": {
+              "confidence_threshold": 0.7
+            },
+            "inputs": [
+              "cleaned_text"
+            ],
+            "outputs": [
+              "extracted_ratios_and_data"
+            ]
+          },
+          {
+            "id": "generate_forecasting_insights",
+            "tool": "summarize_abstractive",
+            "params": {
+              "language": "auto",
+              "max_length": 500
+            },
+            "inputs": [
+              "cleaned_text"
+            ],
+            "outputs": [
+              "forecasting_insights_summary"
+            ]
+          }
+        ],
+        "flow": [
+          "load_financial_report -> clean_financial_text",
+          "clean_financial_text -> extract_financial_data",
+          "clean_financial_text -> generate_forecasting_insights"
+        ],
+        "rationale": "To effectively process financial reports and extract relevant information, the workflow is designed as follows:\n1.  **Load Financial Report:** The `load_document_pdf` tool is selected as PDF is a common format for financial reports. It is configured to extract metadata and preserve structure, ensuring all available information from the document is captured.\n2.  **Clean Financial Text:** The `clean_text_business` tool is then used to clean the extracted text. This step is crucial for financial documents, as it removes noise and normalizes formatting, making the text more suitable for accurate analysis in subsequent steps.\n3.  **Extract Financial Data:** The `extract_entities_financial` tool is applied to the cleaned text. This specialized tool is designed for 'financial document and data extraction,' which directly addresses the requirement to identify 'ratios' and numerical data points necessary for detecting 'trends'. While the default entity types in its schema are general, the tool's specific focus implies its capability to identify financial-specific entities.\n4.  **Generate Forecasting Insights:** In parallel with entity extraction, the `summarize_abstractive` tool processes the `cleaned_text`. This AI-powered summarizer can synthesize information from the document's narrative to articulate higher-level 'trends' (beyond just numerical data points) and provide interpretive 'forecasting insights' that might not be explicitly listed as entities. This dual approach ensures both granular data extraction and comprehensive, interpretive summarization, fulfilling all aspects of the task."
+      },
+      "gemini_tools": [
+        "load_document_pdf",
+        "clean_text_business",
+        "extract_entities_financial",
+        "summarize_abstractive"
+      ],
+      "tool_count": 4,
+      "uses_mcp_format": true,
+      "parameter_complexity": "high",
+      "workflow_logic": "logical"
+    }
+  ],
+  "aggregate_analysis": {
+    "total_tests": 6,
+    "successful_tests": 6,
+    "success_rate": 1.0,
+    "avg_generation_time": 17.485674341519672,
+    "avg_tool_count": 3.0,
+    "mcp_format_usage": 1.0,
+    "parameter_complexity_distribution": {
+      "high": 5,
+      "medium": 1,
+      "low": 0,
+      "none": 0
+    },
+    "workflow_logic_distribution": {
+      "logical": 5,
+      "mostly_logical": 0,
+      "inconsistent": 1,
+      "linear": 0,
+      "simple": 0
+    }
+  },
+  "tool_catalog_size": 100,
+  "mcp_compliant": true,
+  "timestamp": 1754321211.520578
+}

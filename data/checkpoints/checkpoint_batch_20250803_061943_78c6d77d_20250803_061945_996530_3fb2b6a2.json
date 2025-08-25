@@ -1,0 +1,76 @@
+{
+  "batch_id": "batch_20250803_061943_78c6d77d",
+  "checkpoint_id": "checkpoint_batch_20250803_061943_78c6d77d_20250803_061945_996530_3fb2b6a2",
+  "timestamp": "2025-08-03T06:19:45.996567",
+  "status": "recovered",
+  "completed_documents": [
+    "/tmp/tmpwyxhe7dm.txt"
+  ],
+  "failed_documents": [],
+  "pending_documents": [
+    "real_doc"
+  ],
+  "processing_state": {
+    "job_queue": [
+      {
+        "document_id": "real_doc",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      }
+    ],
+    "dependency_graph": {
+      "real_doc": []
+    },
+    "job_results": {
+      "/tmp/tmpwyxhe7dm.txt": {
+        "document": "/tmp/tmpwyxhe7dm.txt",
+        "status": "success",
+        "document_ref": "storage://document/streaming_20250803_061945_1d1a011e_tmpwyxhe7dm",
+        "chunks_created": 1,
+        "entities_extracted": 4,
+        "entity_types": {
+          "ORG": 2,
+          "GPE": 1,
+          "PERSON": 1
+        },
+        "text_length": 213,
+        "processing_time": 2.425349235534668,
+        "memory_used_mb": 0,
+        "document_size": 213,
+        "workflow_id": "streaming_20250803_061945_1d1a011e",
+        "tools_used": [
+          "T01_PDF_LOADER",
+          "T15A_TEXT_CHUNKER",
+          "T23A_SPACY_NER"
+        ]
+      }
+    }
+  },
+  "resource_state": {
+    "available_memory_mb": 3511,
+    "cpu_usage_percent": 0.0,
+    "max_workers": 2,
+    "active_workers": 0
+  },
+  "error_log": [],
+  "metadata": {
+    "scheduler_stats": {
+      "total_jobs": 1,
+      "successful_jobs": 0,
+      "failed_jobs": 0,
+      "retried_jobs": 0,
+      "success_rate": 0.0,
+      "failure_rate": 0.0,
+      "avg_processing_time": 0.0,
+      "active_jobs": 0,
+      "queued_jobs": 1,
+      "system_resources": {
+        "available_memory_mb": 3511,
+        "cpu_usage_percent": 4.1
+      }
+    },
+    "checkpoint_version": "1.0"
+  }
+}

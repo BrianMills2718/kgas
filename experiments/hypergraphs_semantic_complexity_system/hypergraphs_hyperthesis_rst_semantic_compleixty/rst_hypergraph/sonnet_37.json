@@ -1,0 +1,77 @@
+{
+  "edus": [
+    "I was excited to try this new sushi restaurant",
+    "but the excitement quickly faded",
+    "The lighting was too dim",
+    "the service was slow",
+    "and the fish didn't taste fresh",
+    "Because of all these issues",
+    "I won't be coming back"
+  ],
+  "relations": [
+    {
+      "type": "contrast",
+      "nuclei": [
+        1,
+        2
+      ],
+      "satellites": [],
+      "id": "r1",
+      "description": "EDUs 1 and 2 present contrasting attitudes toward the restaurant - initial excitement versus subsequent disappointment."
+    },
+    {
+      "type": "joint",
+      "nuclei": [
+        3,
+        4,
+        5
+      ],
+      "satellites": [],
+      "id": "r2",
+      "description": "These three complaints about the restaurant (lighting, service, and food quality) are presented as parallel issues of equal importance."
+    },
+    {
+      "type": "elaboration",
+      "nuclei": [
+        2
+      ],
+      "satellites": [
+        "r2"
+      ],
+      "id": "r3",
+      "description": "The specific complaints in relation r2 elaborate on why 'the excitement quickly faded' from EDU 2, providing detailed reasons."
+    },
+    {
+      "type": "cause-effect",
+      "nuclei": [
+        7
+      ],
+      "satellites": [
+        6
+      ],
+      "id": "r4",
+      "description": "EDU 7 ('I won't be coming back') is the effect or result, while EDU 6 ('Because of all these issues') is the cause or reason. The decision not to return is the main point."
+    },
+    {
+      "type": "result",
+      "nuclei": [
+        "r3"
+      ],
+      "satellites": [
+        "r4"
+      ],
+      "id": "r5",
+      "description": "The decision not to return (r4) is a direct result of the negative experience detailed in r3. This relation connects the issues with their outcome."
+    },
+    {
+      "type": "joint",
+      "nuclei": [
+        "r5",
+        "r1"
+      ],
+      "satellites": [],
+      "id": "r6",
+      "description": "Root relation connecting multiple discourse components."
+    }
+  ]
+}

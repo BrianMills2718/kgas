@@ -1,784 +1,649 @@
-# KGAS Critical Fixes Required
+# KGAS Tool Integration - Complete Implementation Guide
 
-## Current Status: Partially Working - Critical Issues Found
+## 1. Coding Philosophy (MANDATORY)
 
-**Last Updated**: 2025-08-22
+### Core Principles
+- **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
+- **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them  
+- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
+- **TEST DRIVEN DESIGN**: Write tests first, then implementation
+- **LLM-FIRST EXTRACTION**: Use real LLMs (Gemini-2.5-flash via LiteLLM), NO SpaCy fallbacks
 
-### What's Working ✅
-- Tools execute without crashing
-- Data flows through pipeline without errors  
-- Neo4j connections established
-- Entities and edges are created in Neo4j
-- PageRank calculates scores
-
-### What's BROKEN ❌
-1. **Query Answering Returns Wrong Results** - "Who leads Apple?" returns "Apple Inc. RELATED_TO Apple Inc." instead of "Tim Cook"
-2. **Database Contamination** - 173 nodes found when only 14 created (old data persisting)
-3. **Excessive Edges** - 182 edges from 14 entities (should be max 91)
-4. **Entity Resolution Fails** - Can't match "Apple" to "Apple Inc."
-5. **All Relationships Generic** - Everything is "RELATED_TO" instead of semantic types
-6. **PDF Processing Untested** - Core requirement never validated
-
-## Critical Fix Instructions
-
-### Fix 1: Database Isolation (MUST DO FIRST)
-
-**Problem**: Neo4j data persists between runs, contaminating results.
-
-**Solution**: Implement session-based isolation with cleanup.
-
-Create file: `/src/tools/utils/database_manager.py`
-```python
-import uuid
-from neo4j import GraphDatabase
-from datetime import datetime
-
-class DatabaseSessionManager:
-    """Manage isolated database sessions"""
-    
-    def __init__(self, neo4j_driver):
-        self.driver = neo4j_driver
-        self.session_id = str(uuid.uuid4())[:8]
-        self.session_prefix = f"TEST_{self.session_id}_"
-    
-    def cleanup_session(self):
-        """Remove all nodes/edges from current session"""
-        with self.driver.session() as session:
-            # Delete only nodes with our session prefix
-            session.run(f"""
-                MATCH (n) 
-                WHERE n.session_id = $session_id
-                DETACH DELETE n
-            """, session_id=self.session_id)
-    
-    def cleanup_all(self):
-        """Complete database cleanup (use with caution)"""
-        with self.driver.session() as session:
-            session.run("MATCH (n) DETACH DELETE n")
-    
-    def get_node_count(self):
-        """Get count of nodes in current session"""
-        with self.driver.session() as session:
-            result = session.run(f"""
-                MATCH (n)
-                WHERE n.session_id = $session_id
-                RETURN count(n) as count
-            """, session_id=self.session_id)
-            return result.single()["count"]
+### Evidence Requirements
+Every implementation MUST generate evidence files with ACTUAL data:
+```json
+{
+  "timestamp": "ISO-8601",
+  "test_name": "descriptive_name",
+  "status": "success|failure",
+  "llm_model": "gemini-2.5-flash",
+  "raw_llm_response": "actual LLM output",
+  "extracted_entities": ["actual", "entities", "from", "LLM"],
+  "assertions": [
+    {"test": "description", "passed": true/false, "actual": "value", "expected": "value"}
+  ]
+}
 ```
-
-**Integration**: Update `/src/facade/unified_kgas_facade.py` at line 15:
-```python
-def __init__(self, cleanup_on_init=True):
-    # Add database cleanup
-    self.db_manager = DatabaseSessionManager(self.neo4j_driver)
-    if cleanup_on_init:
-        self.db_manager.cleanup_all()  # Start fresh
-    
-    # Add session_id to all entity/edge creation
-    self.session_id = self.db_manager.session_id
-```
-
-### Fix 2: Query Answering
-
-**Problem**: Query returns wrong answers due to poor entity extraction and matching.
-
-**Solution**: Improve entity extraction and add fuzzy matching.
-
-Replace `/src/tools/compatibility/t49_adapter.py` entirely:
-```python
-"""
-T49 Query Tool Adapter - FIXED VERSION
-Properly extracts entities and answers questions
-"""
-
-import re
-from typing import List, Dict, Any
-from neo4j import GraphDatabase
-import spacy
-from fuzzywuzzy import fuzz
-
-class T49QueryAdapter:
-    def __init__(self, neo4j_driver):
-        self.driver = neo4j_driver
-        # Load spaCy for better entity extraction
-        try:
-            self.nlp = spacy.load("en_core_web_sm")
-        except:
-            import subprocess
-            subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
-            self.nlp = spacy.load("en_core_web_sm")
-        
-        # Question patterns for different query types
-        self.question_patterns = {
-            "who_leads": r"who (?:leads?|runs?|manages?|heads?|is ceo of|is the ceo of)\s+(.+?)[\?\.]?$",
-            "where_located": r"where (?:is|are)\s+(.+?)\s+(?:located|headquartered|based)[\?\.]?$",
-            "who_founded": r"who (?:founded|created|started|established)\s+(.+?)[\?\.]?$",
-            "what_does": r"what (?:does|do)\s+(.+?)\s+(?:do|make|produce|sell)[\?\.]?$",
-        }
-    
-    def query(self, question: str) -> List[Dict[str, Any]]:
-        """Execute query with improved entity extraction and matching"""
-        
-        # Detect question type
-        question_lower = question.lower()
-        question_type = self._detect_question_type(question_lower)
-        
-        # Extract entities using spaCy
-        entities = self._extract_entities_improved(question)
-        
-        if not entities:
-            return [{"answer": "Could not understand the question", "confidence": 0.0}]
-        
-        # Query based on question type
-        with self.driver.session() as session:
-            answers = []
-            
-            for entity in entities:
-                # Try fuzzy matching for entities
-                fuzzy_matches = self._find_fuzzy_matches(session, entity)
-                
-                if not fuzzy_matches:
-                    continue
-                
-                # Get relationships based on question type
-                for matched_entity in fuzzy_matches:
-                    if question_type == "who_leads":
-                        result = self._query_leadership(session, matched_entity)
-                    elif question_type == "where_located":
-                        result = self._query_location(session, matched_entity)
-                    elif question_type == "who_founded":
-                        result = self._query_founder(session, matched_entity)
-                    else:
-                        result = self._query_general(session, matched_entity)
-                    
-                    answers.extend(result)
-            
-            # Sort by confidence and return top answer
-            if answers:
-                answers.sort(key=lambda x: x.get("confidence", 0), reverse=True)
-                return [answers[0]]  # Return best answer
-            
-            return [{"answer": f"No information found about {', '.join(entities)}", "confidence": 0.0}]
-    
-    def _detect_question_type(self, question: str) -> str:
-        """Detect the type of question being asked"""
-        for q_type, pattern in self.question_patterns.items():
-            if re.search(pattern, question, re.IGNORECASE):
-                return q_type
-        return "general"
-    
-    def _extract_entities_improved(self, question: str) -> List[str]:
-        """Extract entities using spaCy NER"""
-        doc = self.nlp(question)
-        entities = []
-        
-        # Get named entities
-        for ent in doc.ents:
-            if ent.label_ in ["ORG", "PERSON", "GPE", "PRODUCT"]:
-                entities.append(ent.text)
-        
-        # Also try to extract capitalized sequences (fallback)
-        if not entities:
-            entities = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', question)
-        
-        return entities
-    
-    def _find_fuzzy_matches(self, session, entity: str, threshold: int = 80) -> List[str]:
-        """Find entities in database using fuzzy matching"""
-        # Get all entity names from database
-        result = session.run("""
-            MATCH (n:Entity)
-            RETURN DISTINCT n.canonical_name as name
-            LIMIT 1000
-        """)
-        
-        matches = []
-        for record in result:
-            name = record["name"]
-            if name:
-                # Calculate fuzzy match score
-                score = fuzz.ratio(entity.lower(), name.lower())
-                if score >= threshold:
-                    matches.append(name)
-                # Also check partial ratio for substring matches
-                elif fuzz.partial_ratio(entity.lower(), name.lower()) >= 90:
-                    matches.append(name)
-        
-        return matches
-    
-    def _query_leadership(self, session, entity_name: str) -> List[Dict[str, Any]]:
-        """Query for leadership relationships"""
-        result = session.run("""
-            MATCH (org:Entity {canonical_name: $name})-[r]-(person:Entity)
-            WHERE type(r) IN ['LED_BY', 'HAS_CEO', 'MANAGED_BY', 'RELATED_TO']
-            AND person.entity_type = 'PERSON'
-            RETURN person.canonical_name as leader,
-                   type(r) as relationship,
-                   COALESCE(person.pagerank_score, 0.5) as confidence
-            ORDER BY confidence DESC
-            LIMIT 1
-        """, name=entity_name)
-        
-        answers = []
-        for record in result:
-            answers.append({
-                "answer": f"{entity_name} is led by {record['leader']}",
-                "confidence": float(record['confidence']),
-                "relationship": record['relationship']
-            })
-        return answers
-    
-    def _query_location(self, session, entity_name: str) -> List[Dict[str, Any]]:
-        """Query for location relationships"""
-        result = session.run("""
-            MATCH (entity:Entity {canonical_name: $name})-[r]-(location:Entity)
-            WHERE type(r) IN ['HEADQUARTERED_IN', 'LOCATED_IN', 'BASED_IN', 'RELATED_TO']
-            AND location.entity_type IN ['GPE', 'LOC']
-            RETURN location.canonical_name as location,
-                   type(r) as relationship,
-                   COALESCE(location.pagerank_score, 0.5) as confidence
-            ORDER BY confidence DESC
-            LIMIT 1
-        """, name=entity_name)
-        
-        answers = []
-        for record in result:
-            answers.append({
-                "answer": f"{entity_name} is located in {record['location']}",
-                "confidence": float(record['confidence']),
-                "relationship": record['relationship']
-            })
-        return answers
-    
-    def _query_founder(self, session, entity_name: str) -> List[Dict[str, Any]]:
-        """Query for founder relationships"""
-        result = session.run("""
-            MATCH (entity:Entity {canonical_name: $name})-[r]-(founder:Entity)
-            WHERE type(r) IN ['FOUNDED_BY', 'CREATED_BY', 'ESTABLISHED_BY', 'RELATED_TO']
-            AND founder.entity_type = 'PERSON'
-            RETURN collect(founder.canonical_name) as founders,
-                   type(r) as relationship,
-                   AVG(COALESCE(founder.pagerank_score, 0.5)) as confidence
-            LIMIT 1
-        """, name=entity_name)
-        
-        answers = []
-        for record in result:
-            if record['founders']:
-                founders_str = ", ".join(record['founders'])
-                answers.append({
-                    "answer": f"{entity_name} was founded by {founders_str}",
-                    "confidence": float(record['confidence']),
-                    "relationship": record['relationship']
-                })
-        return answers
-    
-    def _query_general(self, session, entity_name: str) -> List[Dict[str, Any]]:
-        """General relationship query"""
-        result = session.run("""
-            MATCH (n:Entity {canonical_name: $name})-[r]-(m:Entity)
-            RETURN n.canonical_name as source,
-                   type(r) as relationship,
-                   m.canonical_name as target,
-                   COALESCE(m.pagerank_score, 0.5) as confidence
-            ORDER BY confidence DESC
-            LIMIT 3
-        """, name=entity_name)
-        
-        answers = []
-        for record in result:
-            answers.append({
-                "answer": f"{record['source']} {record['relationship']} {record['target']}",
-                "confidence": float(record['confidence']),
-                "relationship": record['relationship']
-            })
-        return answers
-```
-
-**Required Package**: Install fuzzywuzzy for fuzzy matching:
-```bash
-pip install fuzzywuzzy python-Levenshtein
-```
-
-### Fix 3: Semantic Relationship Types
-
-**Problem**: All relationships are generic "RELATED_TO".
-
-**Solution**: Update relationship extraction to use semantic types.
-
-Create file: `/src/tools/utils/relationship_patterns.py`:
-
-```python
-"""
-T34 Edge Builder Adapter
-Converts relationships to T34-expected format
-"""
-
-def convert_relationships_for_t34(relationships, entity_map):
-    """
-    Convert relationships from standard format to T34 format
-    
-    Standard format:
-    {
-        "source": "Apple",
-        "target": "Tim Cook",
-        "type": "LED_BY"
-    }
-    
-    T34 format:
-    {
-        "subject": {"text": "Apple", "entity_id": "...", "canonical_name": "Apple"},
-        "object": {"text": "Tim Cook", "entity_id": "...", "canonical_name": "Tim Cook"},
-        "relationship_type": "LED_BY"
-    }
-    """
-    t34_relationships = []
-    
-    for rel in relationships:
-        # Handle different field names
-        source = rel.get("source") or rel.get("source_entity") or rel.get("subject")
-        target = rel.get("target") or rel.get("target_entity") or rel.get("object")
-        rel_type = rel.get("type") or rel.get("relationship_type") or rel.get("predicate")
-        
-        # Convert to T34 format
-        t34_rel = {
-            "subject": {
-                "text": source if isinstance(source, str) else source.get("text"),
-                "entity_id": entity_map.get(source, source) if isinstance(source, str) else source.get("entity_id"),
-                "canonical_name": source if isinstance(source, str) else source.get("canonical_name", source.get("text"))
-            },
-            "object": {
-                "text": target if isinstance(target, str) else target.get("text"),
-                "entity_id": entity_map.get(target, target) if isinstance(target, str) else target.get("entity_id"),
-                "canonical_name": target if isinstance(target, str) else target.get("canonical_name", target.get("text"))
-            },
-            "relationship_type": rel_type,
-            "confidence": rel.get("confidence", 0.75),
-            "evidence_text": rel.get("evidence_text", ""),
-            "extraction_method": rel.get("extraction_method", "unknown")
-        }
-        
-        t34_relationships.append(t34_rel)
-    
-    return t34_relationships
-```
-
-### Step 3: Fix T49 Query Tool (1 hour)
-
-Create `/src/tools/compatibility/t49_adapter.py`:
-
-```python
-"""
-T49 Query Tool Adapter
-Makes T49 work with the pipeline
-"""
-
-import re
-from typing import List, Dict, Any
-from neo4j import GraphDatabase
-
-class T49QueryAdapter:
-    def __init__(self, neo4j_driver):
-        self.driver = neo4j_driver
-    
-    def query(self, question: str) -> List[Dict[str, Any]]:
-        """
-        Execute query by extracting entities and finding paths
-        """
-        # Extract entities from question
-        entities = self._extract_entities_from_question(question)
-        
-        if not entities:
-            return [{"answer": "No entities found in question", "confidence": 0.0}]
-        
-        # Find paths between entities in Neo4j
-        with self.driver.session() as session:
-            # For each entity, find related information
-            answers = []
-            
-            for entity in entities:
-                # Simple 1-hop query
-                result = session.run("""
-                    MATCH (n:Entity {canonical_name: $name})-[r]-(m:Entity)
-                    RETURN n.canonical_name as source, 
-                           type(r) as relationship,
-                           m.canonical_name as target,
-                           m.pagerank_score as importance
-                    ORDER BY m.pagerank_score DESC
-                    LIMIT 5
-                """, name=entity)
-                
-                for record in result:
-                    answers.append({
-                        "answer": f"{record['source']} {record['relationship']} {record['target']}",
-                        "confidence": record['importance'] or 0.5,
-                        "source": record['source'],
-                        "target": record['target'],
-                        "relationship": record['relationship']
-                    })
-        
-        return answers if answers else [{"answer": "No relationships found", "confidence": 0.0}]
-    
-    def _extract_entities_from_question(self, question: str) -> List[str]:
-        """Extract potential entity names from question"""
-        # Simple approach: find capitalized words
-        entities = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', question)
-        return entities
-```
-
-### Step 4: Integrate T68 PageRank (30 minutes)
-
-Create `/src/tools/compatibility/t68_integration.py`:
-
-```python
-"""
-T68 PageRank Integration
-Adds PageRank calculation to the pipeline
-"""
-
-import networkx as nx
-from neo4j import GraphDatabase
-
-class T68PageRankIntegration:
-    def __init__(self, neo4j_driver):
-        self.driver = neo4j_driver
-    
-    def calculate_and_store_pagerank(self):
-        """
-        Calculate PageRank and store scores in Neo4j
-        """
-        # Load graph from Neo4j
-        G = nx.DiGraph()
-        
-        with self.driver.session() as session:
-            # Get all nodes
-            nodes = session.run("MATCH (n:Entity) RETURN n.entity_id as id, n.canonical_name as name")
-            for node in nodes:
-                G.add_node(node['id'], name=node['name'])
-            
-            # Get all edges
-            edges = session.run("MATCH (n:Entity)-[r]->(m:Entity) RETURN n.entity_id as source, m.entity_id as target, r.weight as weight")
-            for edge in edges:
-                G.add_edge(edge['source'], edge['target'], weight=edge['weight'] or 1.0)
-        
-        # Calculate PageRank
-        if G.number_of_nodes() > 0:
-            pagerank = nx.pagerank(G, alpha=0.85)
-            
-            # Store scores back to Neo4j
-            with self.driver.session() as session:
-                for node_id, score in pagerank.items():
-                    session.run("""
-                        MATCH (n:Entity {entity_id: $id})
-                        SET n.pagerank_score = $score
-                        RETURN n
-                    """, id=node_id, score=score)
-            
-            return pagerank
-        
-        return {}
-```
-
-### Step 5: Create Unified Facade (1 hour)
-
-Create `/src/facade/unified_kgas_facade.py`:
-
-```python
-"""
-Unified KGAS Facade
-Single interface that makes all tools work together
-"""
-
-import os
-import sys
-sys.path.insert(0, '/home/brian/projects/Digimons')
-
-from typing import Dict, Any, List
-import spacy
-import re
-from neo4j import GraphDatabase
-
-# Import compatibility layers
-from src.tools.compatibility.tool_patches import PatchedToolRequest
-from src.tools.compatibility.t34_adapter import convert_relationships_for_t34
-from src.tools.compatibility.t49_adapter import T49QueryAdapter
-from src.tools.compatibility.t68_integration import T68PageRankIntegration
-
-# Import tools
-from src.core.service_manager import ServiceManager
-from src.tools.phase1.t31_entity_builder_unified import T31EntityBuilderUnified
-from src.tools.phase1.t34_edge_builder_unified import T34EdgeBuilderUnified
-
-class UnifiedKGASFacade:
-    """
-    Facade that makes all KGAS tools work together
-    Hides all compatibility issues and interface mismatches
-    """
-    
-    def __init__(self):
-        # Initialize services
-        self.service_manager = ServiceManager()
-        
-        # Initialize Neo4j
-        self.neo4j_driver = GraphDatabase.driver(
-            os.getenv('NEO4J_URI', 'bolt://localhost:7687'),
-            auth=(os.getenv('NEO4J_USER', 'neo4j'), 
-                  os.getenv('NEO4J_PASSWORD', 'devpassword'))
-        )
-        
-        # Initialize tools
-        self.t31_entity_builder = T31EntityBuilderUnified(self.service_manager)
-        self.t34_edge_builder = T34EdgeBuilderUnified(self.service_manager)
-        
-        # Initialize adapters
-        self.t49_query = T49QueryAdapter(self.neo4j_driver)
-        self.t68_pagerank = T68PageRankIntegration(self.neo4j_driver)
-        
-        # Initialize NLP
-        try:
-            self.nlp = spacy.load("en_core_web_sm")
-        except:
-            self.nlp = None
-    
-    def process_document(self, text: str) -> Dict[str, Any]:
-        """
-        Complete pipeline: Text → Entities → Graph → PageRank
-        """
-        results = {
-            "entities": [],
-            "edges": [],
-            "pagerank": {},
-            "success": False
-        }
-        
-        try:
-            # Step 1: Extract entities
-            entities = self._extract_entities(text)
-            
-            # Step 2: Build entities in Neo4j
-            graph_entities = self._build_entities(entities)
-            results["entities"] = graph_entities
-            
-            # Step 3: Extract relationships
-            relationships = self._extract_relationships(text, entities)
-            
-            # Step 4: Build edges in Neo4j
-            if relationships and graph_entities:
-                entity_map = self._build_entity_map(graph_entities)
-                graph_edges = self._build_edges(relationships, entity_map)
-                results["edges"] = graph_edges
-            
-            # Step 5: Calculate PageRank
-            if graph_entities:
-                pagerank = self.t68_pagerank.calculate_and_store_pagerank()
-                results["pagerank"] = pagerank
-            
-            results["success"] = True
-            
-        except Exception as e:
-            results["error"] = str(e)
-        
-        return results
-    
-    def query(self, question: str) -> List[Dict[str, Any]]:
-        """
-        Answer questions using the knowledge graph
-        """
-        return self.t49_query.query(question)
-    
-    def _extract_entities(self, text: str) -> List[Dict[str, Any]]:
-        """Extract entities from text"""
-        entities = []
-        
-        if self.nlp:
-            doc = self.nlp(text)
-            for ent in doc.ents:
-                entities.append({
-                    "text": ent.text,
-                    "entity_type": ent.label_,
-                    "start_pos": ent.start_char,
-                    "end_pos": ent.end_char,
-                    "confidence": 0.85
-                })
-        
-        return entities
-    
-    def _build_entities(self, entities: List[Dict]) -> List[Dict]:
-        """Build entities in Neo4j using T31"""
-        if not entities:
-            return []
-        
-        request = PatchedToolRequest(input_data={"mentions": entities})
-        result = self.t31_entity_builder.execute(request)
-        
-        if result.status == "success":
-            return result.data.get("entities", [])
-        return []
-    
-    def _extract_relationships(self, text: str, entities: List[Dict]) -> List[Dict]:
-        """Extract relationships between entities"""
-        relationships = []
-        entity_texts = [e["text"] for e in entities]
-        
-        # Simple pattern-based extraction
-        patterns = {
-            "led by": "LED_BY",
-            "CEO of": "CEO_OF",
-            "founded": "FOUNDED",
-            "headquartered in": "HEADQUARTERED_IN",
-            "works for": "WORKS_FOR"
-        }
-        
-        for i, source in enumerate(entity_texts):
-            for j, target in enumerate(entity_texts):
-                if i != j:
-                    for pattern, rel_type in patterns.items():
-                        if pattern in text.lower() and source in text and target in text:
-                            relationships.append({
-                                "source": source,
-                                "target": target,
-                                "type": rel_type,
-                                "confidence": 0.75
-                            })
-                            break
-        
-        return relationships
-    
-    def _build_entity_map(self, entities: List[Dict]) -> Dict[str, str]:
-        """Build mapping from entity names to IDs"""
-        entity_map = {}
-        for entity in entities:
-            name = entity.get("canonical_name", "")
-            entity_id = entity.get("entity_id", "")
-            entity_map[name] = entity_id
-            
-            # Also map surface forms
-            for surface in entity.get("surface_forms", []):
-                entity_map[surface] = entity_id
-        
-        return entity_map
-    
-    def _build_edges(self, relationships: List[Dict], entity_map: Dict) -> List[Dict]:
-        """Build edges in Neo4j using T34"""
-        # Convert to T34 format
-        t34_relationships = convert_relationships_for_t34(relationships, entity_map)
-        
-        # Create request with compatibility patch
-        request = PatchedToolRequest(
-            input_data={"relationships": t34_relationships},
-            options={"verify_entities": False}
-        )
-        
-        result = self.t34_edge_builder.execute(request)
-        
-        if result.status == "success":
-            return result.data.get("edges", [])
-        return []
-```
-
-### Step 6: Create Test Suite (30 minutes)
-
-Create `/src/tests/test_facade_integration.py`:
-
-```python
-"""
-Integration tests for the unified facade
-"""
-
-import pytest
-from src.facade.unified_kgas_facade import UnifiedKGASFacade
-
-def test_full_pipeline():
-    """Test complete pipeline: Text → Entities → Graph → PageRank → Query"""
-    
-    # Initialize facade
-    facade = UnifiedKGASFacade()
-    
-    # Test text
-    text = """
-    Apple Inc., led by CEO Tim Cook, is headquartered in Cupertino, California.
-    Microsoft Corporation, led by CEO Satya Nadella, is based in Redmond, Washington.
-    """
-    
-    # Process document
-    result = facade.process_document(text)
-    
-    # Verify entities created
-    assert result["success"] == True
-    assert len(result["entities"]) > 0
-    assert len(result["edges"]) > 0
-    assert len(result["pagerank"]) > 0
-    
-    # Test query
-    answers = facade.query("Who leads Apple?")
-    assert len(answers) > 0
-    
-    print(f"✅ Pipeline test passed!")
-    print(f"  Entities: {len(result['entities'])}")
-    print(f"  Edges: {len(result['edges'])}")
-    print(f"  PageRank scores: {len(result['pagerank'])}")
-    print(f"  Query answers: {len(answers)}")
-
-if __name__ == "__main__":
-    test_full_pipeline()
-```
-
-## Usage Instructions
-
-### Prerequisites
-1. Neo4j running: `docker run -p 7687:7687 -e NEO4J_AUTH=neo4j/devpassword neo4j`
-2. Python environment with dependencies installed
-3. spaCy model: `python -m spacy download en_core_web_sm`
-
-### Quick Start
-```python
-from src.facade.unified_kgas_facade import UnifiedKGASFacade
-
-# Initialize
-facade = UnifiedKGASFacade()
-
-# Process document
-text = "Your document text here..."
-result = facade.process_document(text)
-
-# Query the graph
-answers = facade.query("Your question here?")
-```
-
-### Running Tests
-```bash
-cd /home/brian/projects/Digimons
-python src/tests/test_facade_integration.py
-```
-
-## Validation Checklist
-
-- [ ] T31 creates entities in Neo4j
-- [ ] T34 creates edges with proper format
-- [ ] T68 calculates and stores PageRank scores
-- [ ] T49 answers queries from the graph
-- [ ] Full pipeline works end-to-end
-- [ ] Integration tests pass
-
-## Known Limitations
-
-1. **Entity Resolution**: Simple name matching, no advanced deduplication
-2. **Relationship Extraction**: Pattern-based, not ML-powered
-3. **Query Understanding**: Basic entity extraction from questions
-4. **Scale**: Not optimized for large documents (>10MB)
-5. **Async**: No concurrent processing support
-
-## Next Steps After Fixes
-
-1. Add comprehensive error handling
-2. Implement entity deduplication
-3. Add async processing support
-4. Integrate advanced NLP models
-5. Add performance monitoring
 
 ---
 
-*Last updated: 2025-08-22*
-*Status: Ready for implementation*
-*Estimated time: 4-6 hours total*
+## 2. Environment Setup
+
+### Prerequisites
+```bash
+# Check these are installed:
+docker ps | grep neo4j  # Neo4j must be running on port 7687
+pip list | grep litellm  # LiteLLM must be installed (current: 1.74.14)
+ls -la .env | grep GEMINI_API_KEY  # API key must be present
+```
+
+### Required Services
+1. **Neo4j Database**
+   - Running in Docker on port 7687
+   - Credentials: neo4j/devpassword
+   - Test connection: `docker exec neo4j cypher-shell -u neo4j -p devpassword "RETURN 1"`
+
+2. **LiteLLM Configuration**
+   - Model: `gemini/gemini-2.5-flash` (note the gemini/ prefix)
+   - API Key: In `.env` file as `GEMINI_API_KEY`
+   - Test: `python3 -c "import litellm; print(litellm.__version__)"`
+
+---
+
+## 3. Current Status (2025-08-24)
+
+### ✅ Interface Issues Fixed
+Located in these files:
+- `/src/core/tool_contract.py` - ToolRequest has required fields
+- `/src/core/service_manager.py` - Identity service fails without Neo4j
+- `/src/core/format_adapters.py` - 7 conversion functions implemented
+
+### ❌ Real Functionality NOT Yet Validated
+- T23C never called real LLM (only used hardcoded test data)
+- Never processed the fictional test document
+- Never built knowledge graph from LLM-extracted entities
+- Never answered queries using the graph
+
+### ⚠️ Critical Gap
+**We fixed the plumbing but haven't run water through the pipes**
+
+---
+
+## 4. Implementation Instructions
+
+### STEP 1: Create LLM Extractor
+
+**File to create**: `/src/tools/phase2/t23c_llm_extractor.py`
+
+```python
+#!/usr/bin/env python3
+"""T23C LLM Extractor using Gemini-2.5-flash - NO FALLBACKS"""
+
+import os
+import sys
+import json
+import litellm
+from dotenv import load_dotenv
+from typing import Dict, List, Any
+from datetime import datetime
+
+sys.path.insert(0, '/home/brian/projects/Digimons')
+
+class T23CLLMExtractor:
+    """Extract entities using REAL LLM - no mocks, no fallbacks"""
+    
+    def __init__(self):
+        load_dotenv()
+        self.api_key = os.getenv("GEMINI_API_KEY")
+        if not self.api_key:
+            raise RuntimeError("GEMINI_API_KEY required - no fallbacks allowed")
+        
+        # Configure LiteLLM
+        litellm.drop_params = True  # Drop unsupported params
+        self.model = "gemini/gemini-2.5-flash"  # Note: gemini/ prefix required
+    
+    def extract_entities(self, text: str) -> Dict[str, Any]:
+        """Extract entities and relationships using Gemini-2.5-flash"""
+        
+        # Build extraction prompt
+        prompt = """You are an expert at extracting entities and relationships from text.
+        
+Extract ALL entities and relationships from the following text.
+
+Return a valid JSON object with this exact structure:
+{
+    "entities": [
+        {"name": "entity name", "type": "PERSON|ORG|LOC|PRODUCT", "confidence": 0.95}
+    ],
+    "relationships": [
+        {"source": "entity1", "relation": "LED_BY|HEADQUARTERED_IN|ACQUIRED|etc", "target": "entity2", "confidence": 0.9}
+    ]
+}
+
+Important:
+- Extract ALL entities mentioned (people, companies, locations, products)
+- Include confidence scores (0.0-1.0)
+- Use consistent entity names across entities and relationships
+- Common relations: LED_BY, FOUNDED_BY, HEADQUARTERED_IN, ACQUIRED, WORKS_FOR, BASED_IN, PARTNERED_WITH
+
+Text to analyze:
+""" + text
+
+        try:
+            # Call LLM via LiteLLM
+            response = litellm.completion(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "You are a precise entity extraction system. Always return valid JSON."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.1,  # Low temperature for consistency
+                max_tokens=2000
+            )
+            
+            # Extract content from response
+            llm_output = response.choices[0].message.content
+            
+            # Parse JSON from LLM response
+            # Handle potential markdown code blocks
+            if "```json" in llm_output:
+                json_str = llm_output.split("```json")[1].split("```")[0].strip()
+            elif "```" in llm_output:
+                json_str = llm_output.split("```")[1].split("```")[0].strip()
+            else:
+                json_str = llm_output.strip()
+            
+            extracted_data = json.loads(json_str)
+            
+            # Add metadata
+            result = {
+                "extraction_timestamp": datetime.now().isoformat(),
+                "model": self.model,
+                "text_length": len(text),
+                "entities": extracted_data.get("entities", []),
+                "relationships": extracted_data.get("relationships", []),
+                "raw_llm_response": llm_output
+            }
+            
+            return result
+            
+        except json.JSONDecodeError as e:
+            raise RuntimeError(f"LLM returned invalid JSON: {e}\nResponse: {llm_output}")
+        except Exception as e:
+            raise RuntimeError(f"LLM extraction failed: {e}")
+```
+
+### STEP 2: Create Pipeline Integration
+
+**File to create**: `/src/pipeline/kgas_pipeline.py`
+
+```python
+#!/usr/bin/env python3
+"""KGAS Pipeline - Document → Entities → Graph → Query"""
+
+import os
+import sys
+from typing import Dict, Any, List
+
+sys.path.insert(0, '/home/brian/projects/Digimons')
+
+from src.tools.phase2.t23c_llm_extractor import T23CLLMExtractor
+from src.core.service_manager import ServiceManager
+from src.core.format_adapters import FormatAdapter
+from neo4j import GraphDatabase
+
+class KGASPipeline:
+    """Full pipeline: Document → LLM → Entities → Neo4j → Query"""
+    
+    def __init__(self):
+        # Initialize components
+        self.llm_extractor = T23CLLMExtractor()
+        self.service_manager = ServiceManager()
+        self.format_adapter = FormatAdapter()
+        
+        # Neo4j connection
+        self.neo4j_driver = GraphDatabase.driver(
+            "bolt://localhost:7687",
+            auth=("neo4j", "devpassword")
+        )
+    
+    def process_document(self, text: str) -> Dict[str, Any]:
+        """Process document through full pipeline"""
+        
+        results = {
+            "pipeline_stages": []
+        }
+        
+        # Stage 1: LLM Extraction
+        print("Stage 1: Extracting entities with LLM...")
+        extraction = self.llm_extractor.extract_entities(text)
+        results["llm_extraction"] = extraction
+        results["pipeline_stages"].append({
+            "stage": "llm_extraction",
+            "entities_found": len(extraction["entities"]),
+            "relationships_found": len(extraction["relationships"])
+        })
+        
+        # Stage 2: Store Entities in Neo4j
+        print("Stage 2: Storing entities in Neo4j...")
+        stored_entities = self._store_entities_in_neo4j(extraction["entities"])
+        results["stored_entities"] = stored_entities
+        results["pipeline_stages"].append({
+            "stage": "entity_storage",
+            "entities_stored": len(stored_entities)
+        })
+        
+        # Stage 3: Store Relationships in Neo4j
+        print("Stage 3: Storing relationships in Neo4j...")
+        stored_relationships = self._store_relationships_in_neo4j(
+            extraction["relationships"], 
+            stored_entities
+        )
+        results["stored_relationships"] = stored_relationships
+        results["pipeline_stages"].append({
+            "stage": "relationship_storage",
+            "relationships_stored": len(stored_relationships)
+        })
+        
+        return results
+    
+    def _store_entities_in_neo4j(self, entities: List[Dict]) -> List[Dict]:
+        """Store entities as nodes in Neo4j"""
+        stored = []
+        
+        with self.neo4j_driver.session() as session:
+            for entity in entities:
+                # Create node
+                result = session.run("""
+                    MERGE (e:Entity {name: $name})
+                    SET e.type = $type,
+                        e.confidence = $confidence,
+                        e.created_at = timestamp()
+                    RETURN e.name as name, id(e) as node_id
+                """, 
+                name=entity["name"],
+                type=entity["type"],
+                confidence=entity.get("confidence", 0.9)
+                )
+                
+                record = result.single()
+                if record:
+                    stored.append({
+                        "name": record["name"],
+                        "node_id": record["node_id"],
+                        "type": entity["type"]
+                    })
+        
+        return stored
+    
+    def _store_relationships_in_neo4j(self, relationships: List[Dict], 
+                                     entities: List[Dict]) -> List[Dict]:
+        """Store relationships as edges in Neo4j"""
+        stored = []
+        
+        with self.neo4j_driver.session() as session:
+            for rel in relationships:
+                # Create relationship
+                rel_type = rel["relation"].upper().replace(" ", "_")
+                
+                result = session.run(f"""
+                    MATCH (a:Entity {{name: $source}})
+                    MATCH (b:Entity {{name: $target}})
+                    MERGE (a)-[r:{rel_type}]->(b)
+                    SET r.confidence = $confidence,
+                        r.created_at = timestamp()
+                    RETURN a.name as source, b.name as target, type(r) as relation
+                """,
+                source=rel["source"],
+                target=rel["target"],
+                confidence=rel.get("confidence", 0.8)
+                )
+                
+                record = result.single()
+                if record:
+                    stored.append({
+                        "source": record["source"],
+                        "target": record["target"],
+                        "relation": record["relation"]
+                    })
+        
+        return stored
+    
+    def query(self, question: str) -> Dict[str, Any]:
+        """Query the knowledge graph"""
+        
+        # Extract key entity from question
+        # Simple approach - look for capitalized words
+        import re
+        entities_in_question = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', question)
+        
+        results = {
+            "question": question,
+            "entities_identified": entities_in_question,
+            "answers": []
+        }
+        
+        with self.neo4j_driver.session() as session:
+            # Query patterns based on question type
+            if "who leads" in question.lower() or "who is the ceo" in question.lower():
+                for entity in entities_in_question:
+                    result = session.run("""
+                        MATCH (org:Entity {name: $name})-[:LED_BY|CEO|FOUNDED_BY]->(person:Entity)
+                        RETURN person.name as leader, person.type as type
+                        LIMIT 1
+                    """, name=entity)
+                    
+                    record = result.single()
+                    if record:
+                        results["answers"].append({
+                            "entity": entity,
+                            "answer": f"{entity} is led by {record['leader']}",
+                            "leader": record["leader"]
+                        })
+            
+            elif "where" in question.lower() and "headquartered" in question.lower():
+                for entity in entities_in_question:
+                    result = session.run("""
+                        MATCH (org:Entity {name: $name})-[:HEADQUARTERED_IN|BASED_IN|LOCATED_IN]->(loc:Entity)
+                        RETURN loc.name as location, loc.type as type
+                        LIMIT 1
+                    """, name=entity)
+                    
+                    record = result.single()
+                    if record:
+                        results["answers"].append({
+                            "entity": entity,
+                            "answer": f"{entity} is headquartered in {record['location']}",
+                            "location": record["location"]
+                        })
+        
+        return results
+    
+    def cleanup(self):
+        """Clean up connections"""
+        if self.neo4j_driver:
+            self.neo4j_driver.close()
+```
+
+### STEP 3: Create End-to-End Test
+
+**File to create**: `/tests/test_real_llm_pipeline.py`
+
+```python
+#!/usr/bin/env python3
+"""Test KGAS Pipeline with REAL LLM and fictional data"""
+
+import os
+import sys
+import json
+from datetime import datetime
+
+sys.path.insert(0, '/home/brian/projects/Digimons')
+
+from src.pipeline.kgas_pipeline import KGASPipeline
+
+def test_nexora_pipeline():
+    """Full pipeline test with fictional Nexora Technologies document"""
+    
+    print("=" * 60)
+    print("KGAS PIPELINE TEST WITH REAL LLM")
+    print("=" * 60)
+    
+    # Initialize pipeline
+    pipeline = KGASPipeline()
+    
+    # Load fictional document
+    with open("test_data/nexora_technologies.txt", "r") as f:
+        document = f.read()
+    
+    print(f"\n1. Document loaded: {len(document)} characters")
+    print(f"   First 100 chars: {document[:100]}...")
+    
+    # Process document through pipeline
+    print("\n2. Processing document through pipeline...")
+    results = pipeline.process_document(document)
+    
+    # Validate LLM extraction
+    print("\n3. Validating LLM extraction...")
+    entities = results["llm_extraction"]["entities"]
+    relationships = results["llm_extraction"]["relationships"]
+    
+    print(f"   Entities found: {len(entities)}")
+    print(f"   Relationships found: {len(relationships)}")
+    
+    # Check for expected fictional entities
+    entity_names = [e["name"] for e in entities]
+    expected_entities = ["Nexora Technologies", "Zara Klingston", "Velmont City"]
+    
+    for expected in expected_entities:
+        found = any(expected in name for name in entity_names)
+        print(f"   ✓ Found '{expected}': {found}")
+        assert found, f"Missing expected entity: {expected}"
+    
+    # Test queries
+    print("\n4. Testing queries...")
+    queries = [
+        "Who leads Nexora Technologies?",
+        "Where is Nexora Technologies headquartered?",
+    ]
+    
+    query_results = []
+    for query in queries:
+        print(f"\n   Query: {query}")
+        answer = pipeline.query(query)
+        query_results.append(answer)
+        
+        if answer["answers"]:
+            for ans in answer["answers"]:
+                print(f"   Answer: {ans['answer']}")
+        else:
+            print("   No answer found")
+    
+    # Validate specific answers
+    print("\n5. Validating answers...")
+    
+    # Query 1: Who leads Nexora?
+    q1_answer = query_results[0]
+    assert q1_answer["answers"], "No answer for leadership query"
+    assert "Zara Klingston" in q1_answer["answers"][0]["answer"], \
+        f"Wrong leader: {q1_answer['answers'][0]['answer']}"
+    print("   ✓ Correctly identified Zara Klingston as leader")
+    
+    # Query 2: Where is Nexora headquartered?
+    q2_answer = query_results[1]
+    assert q2_answer["answers"], "No answer for location query"
+    assert "Velmont City" in q2_answer["answers"][0]["answer"], \
+        f"Wrong location: {q2_answer['answers'][0]['answer']}"
+    print("   ✓ Correctly identified Velmont City as headquarters")
+    
+    # Generate evidence
+    evidence = {
+        "timestamp": datetime.now().isoformat(),
+        "test_name": "nexora_pipeline_e2e",
+        "status": "success",
+        "llm_model": results["llm_extraction"]["model"],
+        "document_length": len(document),
+        "entities_extracted": len(entities),
+        "relationships_extracted": len(relationships),
+        "entities_stored": results["pipeline_stages"][1]["entities_stored"],
+        "relationships_stored": results["pipeline_stages"][2]["relationships_stored"],
+        "sample_entities": entity_names[:10],
+        "queries_tested": len(queries),
+        "queries_answered": sum(1 for q in query_results if q["answers"]),
+        "validation": {
+            "found_nexora": "Nexora Technologies" in entity_names,
+            "found_zara": "Zara Klingston" in entity_names,
+            "correct_leader": "Zara Klingston" in str(query_results[0]),
+            "correct_location": "Velmont City" in str(query_results[1])
+        }
+    }
+    
+    # Save evidence
+    os.makedirs("evidence", exist_ok=True)
+    with open("evidence/pipeline_end_to_end.json", "w") as f:
+        json.dump(evidence, f, indent=2)
+    
+    # Save raw LLM response
+    with open("evidence/llm_extraction_nexora.json", "w") as f:
+        json.dump(results["llm_extraction"], f, indent=2)
+    
+    print("\n" + "=" * 60)
+    print("✅ PIPELINE TEST SUCCESSFUL")
+    print("Evidence saved to:")
+    print("  - evidence/pipeline_end_to_end.json")
+    print("  - evidence/llm_extraction_nexora.json")
+    print("=" * 60)
+    
+    # Cleanup
+    pipeline.cleanup()
+    
+    return True
+
+if __name__ == "__main__":
+    success = test_nexora_pipeline()
+    exit(0 if success else 1)
+```
+
+---
+
+## 5. Test Data Location
+
+### Fictional Test Document
+**File**: `/test_data/nexora_technologies.txt`
+
+This file contains a completely fictional company (Nexora Technologies) with fictional people and locations. This ensures the LLM is actually extracting entities, not using general knowledge about real companies.
+
+Key fictional entities to extract:
+- Nexora Technologies (company)
+- Zara Klingston (CEO)
+- Velmont City, New Arcadia (headquarters)
+- CyberDyne Solutions (competitor)
+- Marcus Reeves (competitor's CEO)
+
+---
+
+## 6. Execution Instructions
+
+### Step-by-Step Execution
+
+```bash
+# 1. Verify environment
+cd /home/brian/projects/Digimons
+cat .env | grep GEMINI_API_KEY  # Must show API key
+
+# 2. Check Neo4j is running
+docker ps | grep neo4j
+docker exec neo4j cypher-shell -u neo4j -p devpassword "MATCH (n) RETURN count(n)"
+
+# 3. Create the implementation files
+# Create: src/tools/phase2/t23c_llm_extractor.py (code above)
+# Create: src/pipeline/kgas_pipeline.py (code above)
+# Create: tests/test_real_llm_pipeline.py (code above)
+
+# 4. Run the test
+python3 tests/test_real_llm_pipeline.py
+
+# 5. Verify evidence generated
+ls -la evidence/pipeline_end_to_end.json
+ls -la evidence/llm_extraction_nexora.json
+cat evidence/pipeline_end_to_end.json | jq .validation
+```
+
+### Expected Output
+```
+KGAS PIPELINE TEST WITH REAL LLM
+============================================================
+1. Document loaded: 1053 characters
+2. Processing document through pipeline...
+3. Validating LLM extraction...
+   Entities found: 15+
+   ✓ Found 'Nexora Technologies': True
+   ✓ Found 'Zara Klingston': True
+4. Testing queries...
+   Query: Who leads Nexora Technologies?
+   Answer: Nexora Technologies is led by Zara Klingston
+5. Validating answers...
+   ✓ Correctly identified Zara Klingston as leader
+✅ PIPELINE TEST SUCCESSFUL
+```
+
+---
+
+## 7. Troubleshooting
+
+### Common Issues and Solutions
+
+1. **GEMINI_API_KEY not found**
+   ```bash
+   echo 'GEMINI_API_KEY=your_key_here' >> .env
+   ```
+
+2. **Neo4j connection refused**
+   ```bash
+   docker start neo4j
+   # Wait 30 seconds for startup
+   ```
+
+3. **LiteLLM import error**
+   ```bash
+   pip install --break-system-packages litellm
+   ```
+
+4. **JSON parsing error from LLM**
+   - Check the raw response in evidence/llm_extraction_nexora.json
+   - The LLM might be returning markdown-wrapped JSON
+
+5. **No entities extracted**
+   - Verify API key is valid
+   - Check rate limits
+   - Try with shorter document first
+
+---
+
+## 8. Success Criteria Checklist
+
+A new LLM implementing this should verify:
+
+- [ ] GEMINI_API_KEY is in .env file
+- [ ] Neo4j is running with password "devpassword"
+- [ ] LiteLLM is installed (pip list | grep litellm)
+- [ ] test_data/nexora_technologies.txt exists
+- [ ] T23CLLMExtractor makes real API calls to Gemini
+- [ ] Pipeline stores entities in Neo4j
+- [ ] Queries return correct answers about fictional companies
+- [ ] Evidence files are generated with actual LLM responses
+- [ ] NO SpaCy fallbacks used
+- [ ] NO mock data used
+
+---
+
+## 9. File Structure Summary
+
+```
+/home/brian/projects/Digimons/
+├── .env                                    # Contains GEMINI_API_KEY
+├── CLAUDE.md                              # This file
+├── test_data/
+│   └── nexora_technologies.txt           # Fictional test document
+├── src/
+│   ├── core/
+│   │   ├── tool_contract.py              # Has ToolRequest with required fields
+│   │   ├── service_manager.py            # Identity service (fails without Neo4j)
+│   │   └── format_adapters.py            # Format conversion utilities
+│   ├── tools/
+│   │   └── phase2/
+│   │       └── t23c_llm_extractor.py     # TO CREATE: LLM extraction
+│   └── pipeline/
+│       └── kgas_pipeline.py              # TO CREATE: Full pipeline
+├── tests/
+│   └── test_real_llm_pipeline.py         # TO CREATE: End-to-end test
+└── evidence/
+    ├── pipeline_end_to_end.json          # Will be generated
+    └── llm_extraction_nexora.json        # Will be generated
+```
+
+---
+
+*Last Updated: 2025-08-24*
+*Status: Ready for implementation by any LLM with only this file*
+*No additional context required*

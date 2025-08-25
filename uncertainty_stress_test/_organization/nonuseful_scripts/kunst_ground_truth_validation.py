@@ -1,1 +1,0 @@
-../../personality-prediction/kunst_ground_truth_validation.py

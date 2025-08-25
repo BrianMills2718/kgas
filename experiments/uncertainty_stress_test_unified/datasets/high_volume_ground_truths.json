@@ -1,0 +1,510 @@
+{
+  "ground_truths": [
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 7.6,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 9.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 5.0
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 9.8,
+      "science_denialism": 5.0,
+      "narcissism": 3.5
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 8.6,
+      "science_denialism": 4.0,
+      "narcissism": 3.75
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 7.8,
+      "science_denialism": 5.666666666666667,
+      "narcissism": 3.0
+    },
+    {
+      "political_orientation": 11.0,
+      "conspiracy_mentality": 11.0,
+      "science_denialism": 3.0,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 10.0,
+      "conspiracy_mentality": 9.0,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 5.2,
+      "science_denialism": 3.0,
+      "narcissism": 3.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 7.6,
+      "science_denialism": 4.0,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 6.0,
+      "narcissism": 3.0
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 5.2,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 2.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 10.0,
+      "science_denialism": 4.0,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 6.4,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.5
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 8.6,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 3.5
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 9.0,
+      "science_denialism": 5.0,
+      "narcissism": 2.0
+    },
+    {
+      "political_orientation": 7.0,
+      "conspiracy_mentality": 5.0,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 7.0,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 8.0,
+      "conspiracy_mentality": 8.8,
+      "science_denialism": 6.0,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 4.0,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 8.0,
+      "conspiracy_mentality": 10.2,
+      "science_denialism": 6.333333333333333,
+      "narcissism": 1.5
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 5.2,
+      "science_denialism": 4.0,
+      "narcissism": 4.5
+    },
+    {
+      "political_orientation": 7.0,
+      "conspiracy_mentality": 6.4,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 3.25
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 4.2,
+      "science_denialism": 3.0,
+      "narcissism": 1.5
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 5.4,
+      "science_denialism": 2.3333333333333335,
+      "narcissism": 2.0
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 9.2,
+      "science_denialism": 4.666666666666667,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 7.0,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 2.25
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 8.2,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 3.5
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 9.8,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 1.6666666666666667,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 2.6,
+      "science_denialism": 4.0,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 7.0,
+      "science_denialism": 5.0,
+      "narcissism": 2.75
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 7.6,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 3.6,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 6.25
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 9.0,
+      "science_denialism": 6.666666666666667,
+      "narcissism": 2.25
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 4.0,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 8.0,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 3.0,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 7.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 4.0,
+      "science_denialism": 4.0,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 4.0,
+      "narcissism": 2.0
+    },
+    {
+      "political_orientation": 11.0,
+      "conspiracy_mentality": 11.0,
+      "science_denialism": 7.0,
+      "narcissism": 6.75
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 5.6,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 1.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 3.75
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 8.8,
+      "science_denialism": 5.666666666666667,
+      "narcissism": 1.5
+    },
+    {
+      "political_orientation": 8.0,
+      "conspiracy_mentality": 6.2,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 6.4,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.75
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 5.0
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 8.6,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 5.0
+    },
+    {
+      "political_orientation": 0.0,
+      "conspiracy_mentality": 0,
+      "science_denialism": 0,
+      "narcissism": 0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 5.0,
+      "narcissism": 1.5
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 5.2,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.5
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 8.0,
+      "science_denialism": 4.0,
+      "narcissism": 3.75
+    },
+    {
+      "political_orientation": 7.0,
+      "conspiracy_mentality": 4.4,
+      "science_denialism": 2.6666666666666665,
+      "narcissism": 1.5
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 5.0,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 3.3333333333333335,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 9.0,
+      "conspiracy_mentality": 4.6,
+      "science_denialism": 2.3333333333333335,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 4.6,
+      "science_denialism": 2.6666666666666665,
+      "narcissism": 4.5
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 6.4,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 6.25
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 8.8,
+      "science_denialism": 3.0,
+      "narcissism": 3.75
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 7.2,
+      "science_denialism": 4.666666666666667,
+      "narcissism": 4.75
+    },
+    {
+      "political_orientation": 7.0,
+      "conspiracy_mentality": 8.8,
+      "science_denialism": 4.0,
+      "narcissism": 7.0
+    },
+    {
+      "political_orientation": 0.0,
+      "conspiracy_mentality": 0,
+      "science_denialism": 0,
+      "narcissism": 0
+    },
+    {
+      "political_orientation": 9.0,
+      "conspiracy_mentality": 9.0,
+      "science_denialism": 6.333333333333333,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 4.666666666666667,
+      "narcissism": 5.25
+    },
+    {
+      "political_orientation": 8.0,
+      "conspiracy_mentality": 7.0,
+      "science_denialism": 4.666666666666667,
+      "narcissism": 5.0
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 5.0,
+      "conspiracy_mentality": 10.2,
+      "science_denialism": 5.0,
+      "narcissism": 5.75
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 6.4,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 2.5
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 5.2,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 3.5
+    },
+    {
+      "political_orientation": 8.0,
+      "conspiracy_mentality": 8.4,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 6.2,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 7.4,
+      "science_denialism": 5.0,
+      "narcissism": 5.25
+    },
+    {
+      "political_orientation": 9.0,
+      "conspiracy_mentality": 10.0,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 3.5
+    },
+    {
+      "political_orientation": 3.0,
+      "conspiracy_mentality": 6.8,
+      "science_denialism": 2.0,
+      "narcissism": 1.25
+    },
+    {
+      "political_orientation": 11.0,
+      "conspiracy_mentality": 9.6,
+      "science_denialism": 6.333333333333333,
+      "narcissism": 1.25
+    },
+    {
+      "political_orientation": 11.0,
+      "conspiracy_mentality": 7.0,
+      "science_denialism": 4.0,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 6.0,
+      "science_denialism": 4.0,
+      "narcissism": 4.0
+    },
+    {
+      "political_orientation": 2.0,
+      "conspiracy_mentality": 8.4,
+      "science_denialism": 4.666666666666667,
+      "narcissism": 3.75
+    },
+    {
+      "political_orientation": 4.0,
+      "conspiracy_mentality": 3.6,
+      "science_denialism": 2.6666666666666665,
+      "narcissism": 1.25
+    },
+    {
+      "political_orientation": 9.0,
+      "conspiracy_mentality": 5.8,
+      "science_denialism": 5.333333333333333,
+      "narcissism": 4.25
+    },
+    {
+      "political_orientation": 1.0,
+      "conspiracy_mentality": 7.8,
+      "science_denialism": 4.333333333333333,
+      "narcissism": 6.25
+    },
+    {
+      "political_orientation": 6.0,
+      "conspiracy_mentality": 5.6,
+      "science_denialism": 3.6666666666666665,
+      "narcissism": 2.0
+    }
+  ],
+  "user_count": 84,
+  "creation_method": "pattern_replication"
+}

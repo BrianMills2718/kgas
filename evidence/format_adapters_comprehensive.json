@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-08-24T12:23:30.776346",
+  "test_name": "format_adapters_comprehensive",
+  "functions_tested": [
+    "t23c_to_t31",
+    "t31_to_t34",
+    "normalize_relationship",
+    "wrap_for_tool_request",
+    "unwrap_tool_response",
+    "convert_entity_mentions_to_t31",
+    "convert_relationships_for_t34"
+  ],
+  "tests_passed": [
+    "t23c_to_t31 conversion",
+    "t31_to_t34 text field addition",
+    "normalize_relationship (4 variations)",
+    "wrap_for_tool_request",
+    "unwrap_tool_response (3 cases)",
+    "convert_entity_mentions_to_t31",
+    "convert_relationships_for_t34"
+  ],
+  "tests_failed": [],
+  "status": "success"
+}

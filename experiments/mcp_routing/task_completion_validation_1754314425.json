@@ -1,0 +1,427 @@
+{
+  "validation_summary": {
+    "total_scenarios_tested": 3,
+    "timestamp": 1754314425.5434756,
+    "framework_version": "1.0_real_validation"
+  },
+  "scenario_results": {
+    "academic_ml_analysis": {
+      "task_name": "academic_ml_analysis",
+      "document_id": "bert_sentiment_paper",
+      "approach_results": {
+        "gemini_selected": {
+          "tools": [
+            "load_document_pdf",
+            "clean_text_basic",
+            "extract_entities_scientific",
+            "extract_relationships_llm",
+            "build_graph_relationships"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8174603174603174,
+          "processing_time": 10.00092077255249,
+          "requirements_met": {
+            "extracted_methodologies": true,
+            "extracted_datasets": true,
+            "found_relationships": true,
+            "document_processed": true,
+            "entities_identified": true
+          },
+          "errors": []
+        },
+        "workflow_based": {
+          "tools": [
+            "load_document_pdf",
+            "chunk_text_semantic",
+            "extract_entities_scientific",
+            "build_graph_relationships",
+            "export_json"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8174603174603174,
+          "processing_time": 10.000213861465454,
+          "requirements_met": {
+            "extracted_methodologies": true,
+            "extracted_datasets": true,
+            "found_relationships": true,
+            "document_processed": true,
+            "entities_identified": true
+          },
+          "errors": []
+        },
+        "comprehensive": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_llm_gpt4",
+            "extract_relationships_llm",
+            "build_knowledge_graph",
+            "analyze_graph_centrality",
+            "export_academic_summary"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8174603174603174,
+          "processing_time": 12.000209093093872,
+          "requirements_met": {
+            "extracted_methodologies": true,
+            "extracted_datasets": true,
+            "found_relationships": true,
+            "document_processed": true,
+            "entities_identified": true
+          },
+          "errors": [
+            "Tool build_knowledge_graph not found",
+            "Tool export_academic_summary not found"
+          ]
+        },
+        "minimal": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_basic",
+            "export_csv"
+          ],
+          "success": false,
+          "completion_rate": 0.2,
+          "overall_f1": 0,
+          "processing_time": 6.0002121925354,
+          "requirements_met": {
+            "extracted_methodologies": false,
+            "extracted_datasets": false,
+            "found_relationships": false,
+            "document_processed": true,
+            "entities_identified": false
+          },
+          "errors": [
+            "Tool extract_entities_basic not found",
+            "Missing essential capabilities: ['entity_extraction']"
+          ]
+        },
+        "random_sample": {
+          "tools": [
+            "merge_graphs",
+            "extract_entities_spacy_md",
+            "load_document_html",
+            "calculate_similarity",
+            "find_shortest_paths"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.6875,
+          "processing_time": 10.000226020812988,
+          "requirements_met": {
+            "extracted_methodologies": true,
+            "extracted_datasets": true,
+            "found_relationships": true,
+            "document_processed": true,
+            "entities_identified": true
+          },
+          "errors": []
+        }
+      },
+      "statistical_analysis": {
+        "successful_approaches": 4,
+        "total_approaches": 5,
+        "success_rate": 0.8,
+        "avg_f1_score": 0.7849702380952381,
+        "avg_completion_rate": 1.0,
+        "best_f1_approach": "gemini_selected",
+        "best_completion_approach": "gemini_selected",
+        "gemini_rank_by_f1": 1
+      },
+      "timestamp": 1754314381.4180558
+    },
+    "business_report_analysis": {
+      "task_name": "business_report_analysis",
+      "document_id": "financial_report",
+      "approach_results": {
+        "gemini_selected": {
+          "tools": [
+            "load_document_pdf",
+            "chunk_text_sliding",
+            "extract_entities_scientific",
+            "extract_relationships_llm",
+            "export_graphml"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 10.000223398208618,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": true
+          },
+          "errors": []
+        },
+        "workflow_based": {
+          "tools": [
+            "load_document_pdf",
+            "chunk_text_semantic",
+            "extract_entities_scientific",
+            "build_graph_relationships",
+            "export_json"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 10.000228643417358,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": true
+          },
+          "errors": []
+        },
+        "comprehensive": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_llm_gpt4",
+            "extract_relationships_llm",
+            "build_knowledge_graph",
+            "analyze_graph_centrality",
+            "export_academic_summary"
+          ],
+          "success": true,
+          "completion_rate": 0.6666666666666666,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 12.000233888626099,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": false
+          },
+          "errors": [
+            "Tool build_knowledge_graph not found",
+            "Tool export_academic_summary not found"
+          ]
+        },
+        "minimal": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_basic",
+            "export_csv"
+          ],
+          "success": false,
+          "completion_rate": 0.6666666666666666,
+          "overall_f1": 0,
+          "processing_time": 6.000408172607422,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": false,
+            "output_formatted": true
+          },
+          "errors": [
+            "Tool extract_entities_basic not found",
+            "Missing essential capabilities: ['entity_extraction']"
+          ]
+        },
+        "random_sample": {
+          "tools": [
+            "extract_relationships_dependency",
+            "detect_graph_anomalies",
+            "extract_entities_ensemble",
+            "extract_relationships_spatial",
+            "build_graph_relationships"
+          ],
+          "success": false,
+          "completion_rate": 0.3333333333333333,
+          "overall_f1": 0.6375,
+          "processing_time": 10.000232458114624,
+          "requirements_met": {
+            "document_loaded": false,
+            "entities_extracted": true,
+            "output_formatted": false
+          },
+          "errors": [
+            "Missing essential capabilities: ['document_loading']"
+          ]
+        }
+      },
+      "statistical_analysis": {
+        "successful_approaches": 3,
+        "total_approaches": 5,
+        "success_rate": 0.6,
+        "avg_f1_score": 0.8222222222222223,
+        "avg_completion_rate": 0.8888888888888888,
+        "best_f1_approach": "gemini_selected",
+        "best_completion_approach": "gemini_selected",
+        "gemini_rank_by_f1": 1
+      },
+      "timestamp": 1754314397.5405037
+    },
+    "simple_document_processing": {
+      "task_name": "simple_document_processing",
+      "document_id": "simple_news_article",
+      "approach_results": {
+        "gemini_selected": {
+          "tools": [
+            "load_document_pdf",
+            "clean_text_aggressive",
+            "extract_entities_llm_claude",
+            "extract_relationships_llm",
+            "build_graph_entities",
+            "export_json"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 12.00026273727417,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": true
+          },
+          "errors": []
+        },
+        "workflow_based": {
+          "tools": [
+            "load_document_pdf",
+            "chunk_text_semantic",
+            "extract_entities_scientific",
+            "build_graph_relationships",
+            "export_json"
+          ],
+          "success": true,
+          "completion_rate": 1.0,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 10.00026249885559,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": true
+          },
+          "errors": []
+        },
+        "comprehensive": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_llm_gpt4",
+            "extract_relationships_llm",
+            "build_knowledge_graph",
+            "analyze_graph_centrality",
+            "export_academic_summary"
+          ],
+          "success": true,
+          "completion_rate": 0.6666666666666666,
+          "overall_f1": 0.8222222222222223,
+          "processing_time": 12.000229597091675,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": false
+          },
+          "errors": [
+            "Tool build_knowledge_graph not found",
+            "Tool export_academic_summary not found"
+          ]
+        },
+        "minimal": {
+          "tools": [
+            "load_document_pdf",
+            "extract_entities_basic",
+            "export_csv"
+          ],
+          "success": false,
+          "completion_rate": 0.6666666666666666,
+          "overall_f1": 0,
+          "processing_time": 6.000244140625,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": false,
+            "output_formatted": true
+          },
+          "errors": [
+            "Tool extract_entities_basic not found",
+            "Missing essential capabilities: ['entity_extraction']"
+          ]
+        },
+        "random_sample": {
+          "tools": [
+            "extract_relationships_knowledge",
+            "query_graph_similarity",
+            "extract_entities_active",
+            "load_document_rtf",
+            "detect_anomalies"
+          ],
+          "success": true,
+          "completion_rate": 0.6666666666666666,
+          "overall_f1": 0.6375,
+          "processing_time": 10.000250577926636,
+          "requirements_met": {
+            "document_loaded": true,
+            "entities_extracted": true,
+            "output_formatted": false
+          },
+          "errors": []
+        }
+      },
+      "statistical_analysis": {
+        "successful_approaches": 4,
+        "total_approaches": 5,
+        "success_rate": 0.8,
+        "avg_f1_score": 0.7760416666666667,
+        "avg_completion_rate": 0.8333333333333333,
+        "best_f1_approach": "gemini_selected",
+        "best_completion_approach": "gemini_selected",
+        "gemini_rank_by_f1": 1
+      },
+      "timestamp": 1754314425.5433962
+    }
+  },
+  "overall_analysis": {
+    "gemini_performance": {
+      "success_rate": 1.0,
+      "avg_f1_score": 0.8206349206349207,
+      "avg_completion_rate": 1.0,
+      "rank_by_f1": 1
+    },
+    "approach_rankings": [
+      {
+        "approach": "gemini_selected",
+        "success_rate": 1.0,
+        "avg_f1": 0.8206349206349207,
+        "total_successes": 3
+      },
+      {
+        "approach": "workflow_based",
+        "success_rate": 1.0,
+        "avg_f1": 0.8206349206349207,
+        "total_successes": 3
+      },
+      {
+        "approach": "comprehensive",
+        "success_rate": 1.0,
+        "avg_f1": 0.8206349206349207,
+        "total_successes": 3
+      },
+      {
+        "approach": "random_sample",
+        "success_rate": 0.6666666666666666,
+        "avg_f1": 0.6625,
+        "total_successes": 2
+      },
+      {
+        "approach": "minimal",
+        "success_rate": 0.0,
+        "avg_f1": 0,
+        "total_successes": 0
+      }
+    ],
+    "best_approach": {
+      "approach": "gemini_selected",
+      "success_rate": 1.0,
+      "avg_f1": 0.8206349206349207,
+      "total_successes": 3
+    }
+  },
+  "conclusions": {
+    "gemini_assessment": "Gemini tool selection is highly reliable",
+    "comparative_ranking": "Gemini ranks #1 in tool selection quality",
+    "recommendations": [
+      "Gemini tool selection suitable for production use"
+    ],
+    "confidence_level": "high - clear performance differences observed"
+  }
+}

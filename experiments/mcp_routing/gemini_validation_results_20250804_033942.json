@@ -1,0 +1,157 @@
+{
+  "validation_info": {
+    "timestamp": "2025-08-04T03:39:42.237857",
+    "duration_seconds": 18.523642539978027,
+    "focus": "gemini-2.5-flash",
+    "strategy_tested": "semantic_workflow"
+  },
+  "agent_setup": {
+    "gemini-2.5-flash": "\ud83d\udd11 Mock Agent (No API Key)",
+    "gpt-4": "\u2705 Real Agent",
+    "gpt-4o-mini": "\u2705 Real Agent",
+    "claude-3-5-sonnet-20241022": "\ud83d\udd11 Mock Agent (No API Key)",
+    "claude-3-haiku-20240307": "\ud83d\udd11 Mock Agent (No API Key)"
+  },
+  "test_results": {
+    "academic_paper_analysis": {
+      "gemini-2.5-flash": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 100.21018981933594,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "ontology_mode": "mixed"
+          }
+        ],
+        "agent_reasoning": "Mock agent reasoning process",
+        "errors": []
+      },
+      "gpt-4": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 5.975278615951538,
+        "tools_used": [],
+        "parameters_used": [],
+        "agent_reasoning": null,
+        "errors": [
+          "'tool'"
+        ]
+      },
+      "gpt-4o-mini": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 5.718765020370483,
+        "tools_used": [],
+        "parameters_used": [],
+        "agent_reasoning": null,
+        "errors": [
+          "'tool'"
+        ]
+      }
+    },
+    "simple_entity_extraction": {
+      "gemini-2.5-flash": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 100.25691986083984,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "ontology_mode": "mixed"
+          }
+        ],
+        "agent_reasoning": "Mock agent reasoning process",
+        "errors": []
+      },
+      "gpt-4": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 3.180858612060547,
+        "tools_used": [],
+        "parameters_used": [],
+        "agent_reasoning": null,
+        "errors": [
+          "'tool'"
+        ]
+      },
+      "gpt-4o-mini": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 3.053501605987549,
+        "tools_used": [],
+        "parameters_used": [],
+        "agent_reasoning": null,
+        "errors": [
+          "'tool'"
+        ]
+      }
+    }
+  },
+  "analysis": {
+    "gemini_performance": {
+      "average_score": 0.0,
+      "best_score": 0.0,
+      "worst_score": 0.0,
+      "consistency": 0.0,
+      "workflow_details": {
+        "academic_paper_analysis": {
+          "score": 0.0,
+          "tool_accuracy": 0.0,
+          "param_accuracy": 0.0,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "success": true
+        },
+        "simple_entity_extraction": {
+          "score": 0.0,
+          "tool_accuracy": 0.0,
+          "param_accuracy": 0.0,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "success": true
+        }
+      },
+      "total_tests": 2
+    },
+    "comparative_analysis": {
+      "gpt-4": {
+        "average_score": 0.0,
+        "vs_gemini": 0.0
+      },
+      "gpt-4o-mini": {
+        "average_score": 0.0,
+        "vs_gemini": 0.0
+      }
+    },
+    "strategy_validation": {
+      "semantic_workflow_effectiveness": 0.0,
+      "passes_threshold": false,
+      "tool_selection_quality": "needs_improvement"
+    },
+    "recommendations": [
+      "\u26a0\ufe0f Gemini performance suggests semantic workflow needs refinement",
+      "\u26a0\ufe0f Additional refinement needed before production deployment"
+    ]
+  }
+}

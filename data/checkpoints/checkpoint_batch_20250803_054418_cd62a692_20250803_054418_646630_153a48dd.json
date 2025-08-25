@@ -1,0 +1,69 @@
+{
+  "batch_id": "batch_20250803_054418_cd62a692",
+  "checkpoint_id": "checkpoint_batch_20250803_054418_cd62a692_20250803_054418_646630_153a48dd",
+  "timestamp": "2025-08-03T05:44:18.646649",
+  "status": "in_progress",
+  "completed_documents": [],
+  "failed_documents": [],
+  "pending_documents": [
+    "research1",
+    "research2",
+    "research3"
+  ],
+  "processing_state": {
+    "job_queue": [
+      {
+        "document_id": "research1",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "research2",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "research3",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      }
+    ],
+    "dependency_graph": {
+      "research1": [],
+      "research2": [],
+      "research3": []
+    },
+    "job_results": {}
+  },
+  "resource_state": {
+    "available_memory_mb": 4686,
+    "cpu_usage_percent": 6.9,
+    "max_workers": 4,
+    "active_workers": 0
+  },
+  "error_log": [],
+  "metadata": {
+    "scheduler_stats": {
+      "total_jobs": 3,
+      "successful_jobs": 0,
+      "failed_jobs": 0,
+      "retried_jobs": 0,
+      "success_rate": 0.0,
+      "failure_rate": 0.0,
+      "avg_processing_time": 0.0,
+      "active_jobs": 0,
+      "queued_jobs": 3,
+      "system_resources": {
+        "available_memory_mb": 4688,
+        "cpu_usage_percent": 2.0
+      }
+    },
+    "checkpoint_version": "1.0"
+  }
+}

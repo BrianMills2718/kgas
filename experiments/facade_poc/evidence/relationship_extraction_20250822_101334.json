@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-08-22T10:13:34.486324",
+  "operation": "relationship_extraction_fix",
+  "tests": {
+    "extraction_results": [
+      {
+        "test_case": 1,
+        "entities_correct": 3,
+        "entities_total": 3,
+        "relationships_correct": 1,
+        "relationships_total": 2,
+        "entity_percentage": 100.0,
+        "relationship_percentage": 50.0
+      },
+      {
+        "test_case": 2,
+        "entities_correct": 4,
+        "entities_total": 4,
+        "relationships_correct": 2,
+        "relationships_total": 2,
+        "entity_percentage": 100.0,
+        "relationship_percentage": 100.0
+      },
+      {
+        "test_case": 3,
+        "entities_correct": 3,
+        "entities_total": 3,
+        "relationships_correct": 2,
+        "relationships_total": 2,
+        "entity_percentage": 100.0,
+        "relationship_percentage": 100.0
+      }
+    ]
+  },
+  "success_criteria": {
+    "entities_extracted": true,
+    "relationships_75_percent": true,
+    "all_tests_passed": false
+  },
+  "metrics": {
+    "entity_extraction_rate": 1.0,
+    "relationship_extraction_rate": 0.8333333333333334,
+    "entities_found": "10/10",
+    "relationships_found": "5/6"
+  }
+}

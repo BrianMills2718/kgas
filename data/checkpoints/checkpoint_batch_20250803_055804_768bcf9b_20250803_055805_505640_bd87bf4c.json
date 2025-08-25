@@ -1,0 +1,139 @@
+{
+  "batch_id": "batch_20250803_055804_768bcf9b",
+  "checkpoint_id": "checkpoint_batch_20250803_055804_768bcf9b_20250803_055805_505640_bd87bf4c",
+  "timestamp": "2025-08-03T05:58:05.505672",
+  "status": "recovered",
+  "completed_documents": [
+    "/tmp/test_doc_0.txt",
+    "/tmp/test_doc_1.txt",
+    "/tmp/test_doc_2.txt",
+    "/tmp/test_doc_4.txt",
+    "/tmp/test_doc_3.txt"
+  ],
+  "failed_documents": [],
+  "pending_documents": [
+    "doc_0",
+    "doc_1",
+    "doc_2",
+    "doc_3",
+    "doc_4"
+  ],
+  "processing_state": {
+    "job_queue": [
+      {
+        "document_id": "doc_0",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_1",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_2",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_3",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      },
+      {
+        "document_id": "doc_4",
+        "priority": "NORMAL",
+        "complexity": "SIMPLE",
+        "retry_count": 0,
+        "dependencies": []
+      }
+    ],
+    "dependency_graph": {
+      "doc_0": [],
+      "doc_1": [],
+      "doc_2": [],
+      "doc_3": [],
+      "doc_4": []
+    },
+    "job_results": {
+      "/tmp/test_doc_0.txt": {
+        "document": "/tmp/test_doc_0.txt",
+        "status": "success",
+        "entities_extracted": 5,
+        "chunks_created": 1,
+        "processing_time": 0.10120105743408203,
+        "memory_used_mb": 0,
+        "document_size": 19456
+      },
+      "/tmp/test_doc_1.txt": {
+        "document": "/tmp/test_doc_1.txt",
+        "status": "success",
+        "entities_extracted": 5,
+        "chunks_created": 1,
+        "processing_time": 0.10123181343078613,
+        "memory_used_mb": 0,
+        "document_size": 19456
+      },
+      "/tmp/test_doc_2.txt": {
+        "document": "/tmp/test_doc_2.txt",
+        "status": "success",
+        "entities_extracted": 5,
+        "chunks_created": 1,
+        "processing_time": 0.10120797157287598,
+        "memory_used_mb": 0,
+        "document_size": 19456
+      },
+      "/tmp/test_doc_3.txt": {
+        "document": "/tmp/test_doc_3.txt",
+        "status": "success",
+        "entities_extracted": 5,
+        "chunks_created": 1,
+        "processing_time": 0.10119271278381348,
+        "memory_used_mb": 0,
+        "document_size": 19456
+      },
+      "/tmp/test_doc_4.txt": {
+        "document": "/tmp/test_doc_4.txt",
+        "status": "success",
+        "entities_extracted": 5,
+        "chunks_created": 1,
+        "processing_time": 0.10122871398925781,
+        "memory_used_mb": 0,
+        "document_size": 19456
+      }
+    }
+  },
+  "resource_state": {
+    "available_memory_mb": 4038,
+    "cpu_usage_percent": 1.0,
+    "max_workers": 2,
+    "active_workers": 0
+  },
+  "error_log": [],
+  "metadata": {
+    "scheduler_stats": {
+      "total_jobs": 5,
+      "successful_jobs": 0,
+      "failed_jobs": 0,
+      "retried_jobs": 0,
+      "success_rate": 0.0,
+      "failure_rate": 0.0,
+      "avg_processing_time": 0.0,
+      "active_jobs": 0,
+      "queued_jobs": 5,
+      "system_resources": {
+        "available_memory_mb": 4038,
+        "cpu_usage_percent": 1.0
+      }
+    },
+    "checkpoint_version": "1.0"
+  }
+}

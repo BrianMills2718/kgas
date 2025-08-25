@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-08-24T12:14:20.336169",
+  "test_name": "identity_service_requirements",
+  "tests": [
+    {
+      "name": "fails_without_neo4j",
+      "passed": true,
+      "description": "Identity service should fail-fast without Neo4j"
+    },
+    {
+      "name": "works_with_neo4j",
+      "passed": false,
+      "description": "Identity service should work with Neo4j"
+    }
+  ],
+  "status": "failure"
+}

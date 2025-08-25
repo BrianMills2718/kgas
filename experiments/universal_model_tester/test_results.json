@@ -1,0 +1,368 @@
+{
+  "individual_tests": [
+    {
+      "model": "gemini-2.5-pro",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-pro",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-pro",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-pro",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gpt-4-1",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gpt-4-1",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gpt-4-1",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "gpt-4-1",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o4-mini",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o4-mini",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o4-mini",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o4-mini",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o3",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o3",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o3",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "o3",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-opus-4-20250514",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-opus-4-20250514",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-opus-4-20250514",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-opus-4-20250514",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-7-sonnet-20250219",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-7-sonnet-20250219",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-7-sonnet-20250219",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-7-sonnet-20250219",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-5-haiku-20241022",
+      "test_case": "Character Generation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-5-haiku-20241022",
+      "test_case": "Product Creation",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-5-haiku-20241022",
+      "test_case": "Data Analysis",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    },
+    {
+      "model": "claude-3-5-haiku-20241022",
+      "test_case": "Simple Response",
+      "success": false,
+      "error": "All models failed. Attempts: []",
+      "json_valid": false,
+      "response_content": null,
+      "parsed_json": null
+    }
+  ],
+  "fallback_test": {
+    "success": false,
+    "error": "All models failed. Attempts: []"
+  }
+}

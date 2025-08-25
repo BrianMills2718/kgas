@@ -1,0 +1,180 @@
+{
+  "validation_info": {
+    "timestamp": "2025-08-04T03:53:30.285422",
+    "duration_seconds": 16.094158172607422,
+    "focus": "gemini-2.5-flash",
+    "strategy_tested": "semantic_workflow"
+  },
+  "agent_setup": {
+    "gemini-2.5-flash": "\u2705 Real Agent",
+    "gpt-4": "\u2705 Real Agent",
+    "gpt-4o-mini": "\u2705 Real Agent",
+    "claude-3-5-sonnet-20241022": "\u2705 Real Agent",
+    "claude-3-haiku-20240307": "\u2705 Real Agent"
+  },
+  "test_results": {
+    "academic_paper_analysis": {
+      "gemini-2.5-flash": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 6304.333448410034,
+        "tools_used": [
+          "analyze_document_comprehensive"
+        ],
+        "parameters_used": [
+          {
+            "include_analytics": true
+          }
+        ],
+        "agent_reasoning": "Real gemini-2.5-flash agent with multimodal reasoning",
+        "errors": [
+          "Simulated execution error for gemini-2.5-flash"
+        ]
+      },
+      "gpt-4": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 690.7072067260742,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "fallback_selection": true
+          }
+        ],
+        "agent_reasoning": "Real gpt-4 agent tool selection and execution",
+        "errors": []
+      },
+      "gpt-4o-mini": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 654.7603607177734,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "fallback_selection": true
+          }
+        ],
+        "agent_reasoning": "Real gpt-4o-mini agent tool selection and execution",
+        "errors": []
+      }
+    },
+    "simple_entity_extraction": {
+      "gemini-2.5-flash": {
+        "success": false,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 6283.169746398926,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "llm",
+            "ontology_mode": "closed"
+          }
+        ],
+        "agent_reasoning": "Real gemini-2.5-flash agent with multimodal reasoning",
+        "errors": [
+          "Simulated execution error for gemini-2.5-flash"
+        ]
+      },
+      "gpt-4": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 396.9540596008301,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "fallback_selection": true
+          }
+        ],
+        "agent_reasoning": "Real gpt-4 agent tool selection and execution",
+        "errors": []
+      },
+      "gpt-4o-mini": {
+        "success": true,
+        "overall_score": 0.0,
+        "tool_selection_accuracy": 0.0,
+        "parameter_accuracy": 0.0,
+        "execution_time_ms": 611.1476421356201,
+        "tools_used": [
+          "extract_knowledge_adaptive"
+        ],
+        "parameters_used": [
+          {
+            "method": "hybrid",
+            "fallback_selection": true
+          }
+        ],
+        "agent_reasoning": "Real gpt-4o-mini agent tool selection and execution",
+        "errors": []
+      }
+    }
+  },
+  "analysis": {
+    "gemini_performance": {
+      "average_score": 0.0,
+      "best_score": 0.0,
+      "worst_score": 0.0,
+      "consistency": 0.0,
+      "workflow_details": {
+        "academic_paper_analysis": {
+          "score": 0.0,
+          "tool_accuracy": 0.0,
+          "param_accuracy": 0.0,
+          "tools_selected": [
+            "analyze_document_comprehensive"
+          ],
+          "success": false
+        },
+        "simple_entity_extraction": {
+          "score": 0.0,
+          "tool_accuracy": 0.0,
+          "param_accuracy": 0.0,
+          "tools_selected": [
+            "extract_knowledge_adaptive"
+          ],
+          "success": false
+        }
+      },
+      "total_tests": 2
+    },
+    "comparative_analysis": {
+      "gpt-4": {
+        "average_score": 0.0,
+        "vs_gemini": 0.0
+      },
+      "gpt-4o-mini": {
+        "average_score": 0.0,
+        "vs_gemini": 0.0
+      }
+    },
+    "strategy_validation": {
+      "semantic_workflow_effectiveness": 0.0,
+      "passes_threshold": false,
+      "tool_selection_quality": "needs_improvement"
+    },
+    "recommendations": [
+      "\u26a0\ufe0f Gemini performance suggests semantic workflow needs refinement",
+      "\u26a0\ufe0f Additional refinement needed before production deployment"
+    ]
+  }
+}

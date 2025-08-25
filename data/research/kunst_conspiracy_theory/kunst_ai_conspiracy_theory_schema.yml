@@ -1,0 +1,293 @@
+# Kunst et al. (2024) AI-Psychological Conspiracy Theory Support Model
+# Meta-Schema v10 Format
+
+model_type: network
+theory_name: "AI-Psychological Conspiracy Theory Support Model"
+citation: "Kunst, J. R., Gundersen, A. B., Krysińska, I., Piasecki, J., Wójtowicz, T., Rygula, R., van der Linden, S., & Morzy, M. (2024). Leveraging artificial intelligence to identify the psychological factors associated with conspiracy theory beliefs online. Nature Communications, 15, Article 7497."
+
+# Core components following meta-schema v10 structure
+
+nodes:
+  # Psychological Traits (Individual Differences)
+  - id: "narcissism"
+    label: "Narcissism"
+    type: "psychological_trait"
+    properties:
+      definition: "Grandiose self-regard and need for attention"
+      measurement: "Narcissistic personality inventory"
+      theoretical_role: "risk_factor"
+      effect_size: "strong"
+  
+  - id: "denialism"
+    label: "Denialism"
+    type: "psychological_trait"
+    properties:
+      definition: "Rejection of expert narratives and tendency to seek unconventional explanations"
+      measurement: "Denialism scale"
+      theoretical_role: "risk_factor"
+      effect_size: "consistent"
+  
+  - id: "need_for_chaos"
+    label: "Need for Chaos"
+    type: "psychological_trait"
+    properties:
+      definition: "Desire to provoke or exacerbate disorder"
+      measurement: "Need for chaos scale"
+      theoretical_role: "risk_factor"
+      effect_size: "moderate"
+  
+  - id: "conspiracy_mentality"
+    label: "Conspiracy Mentality"
+    type: "psychological_disposition"
+    properties:
+      definition: "General disposition towards conspiratorial viewpoints across various subjects"
+      measurement: "Conspiracy mentality questionnaire (CMQ)"
+      theoretical_role: "risk_factor"
+      effect_size: "strong"
+  
+  - id: "misinformation_susceptibility"
+    label: "Misinformation Susceptibility"
+    type: "cognitive_vulnerability"
+    properties:
+      definition: "Propensity to accept false information and reject accurate information"
+      measurement: "Misinformation susceptibility scale"
+      theoretical_role: "risk_factor"
+      effect_size: "strong"
+  
+  - id: "overconfidence"
+    label: "Overconfidence in Detection Ability"
+    type: "cognitive_bias"
+    properties:
+      definition: "Excessive confidence in ability to identify false information"
+      measurement: "Self-reported confidence ratings"
+      theoretical_role: "risk_factor"
+      effect_size: "moderate"
+  
+  # Social/Political Factors
+  - id: "political_extremity"
+    label: "Political Extremity"
+    type: "social_position"
+    properties:
+      definition: "Self-identification at far ends of political spectrum"
+      measurement: "Political orientation scale (1-7)"
+      theoretical_role: "risk_factor"
+      effect_size: "quadratic_relationship"
+  
+  - id: "political_conservatism"
+    label: "Political Conservatism"
+    type: "political_orientation"
+    properties:
+      definition: "Right-leaning political ideology"
+      measurement: "Political party affiliation"
+      theoretical_role: "risk_factor"
+      effect_size: "weak_to_moderate"
+  
+  # Behavioral Outcomes
+  - id: "conspiracy_theory_support"
+    label: "Conspiracy Theory Support"
+    type: "behavioral_outcome"
+    properties:
+      definition: "Behavioral endorsement and amplification of conspiracy theories online"
+      measurement: "ML classification of social media engagements"
+      categories: ["economic_instability", "bioweapon", "population_control", "government_misinformation", "vaccine_safety", "intentional_misleading"]
+  
+  - id: "social_media_engagement"
+    label: "Social Media Engagement"
+    type: "behavioral_manifestation"
+    properties:
+      definition: "Likes, posts, replies, and reposts on social media platforms"
+      measurement: "Twitter/X API data"
+      volume: "7.7 million engagements analyzed"
+  
+  # Contextual Factors
+  - id: "covid19_pandemic"
+    label: "COVID-19 Pandemic"
+    type: "contextual_event"
+    properties:
+      definition: "Global health crisis providing context for conspiracy theories"
+      timeframe: "2020-2022"
+      role: "environmental_context"
+  
+  - id: "infodemic"
+    label: "Information Epidemic"
+    type: "information_environment"
+    properties:
+      definition: "Overwhelming flood of information, often misleading"
+      measurement: "Volume of misinformation content"
+      WHO_designation: "official_infodemic"
+  
+  # Demographic Factors
+  - id: "age"
+    label: "Age"
+    type: "demographic_variable"
+    properties:
+      theoretical_role: "risk_factor"
+      direction: "older_higher_risk"
+      effect_size: "86% increased likelihood"
+  
+  - id: "gender"
+    label: "Gender"
+    type: "demographic_variable"
+    properties:
+      theoretical_role: "mixed_findings"
+      effect_size: "inconsistent"
+  
+  - id: "education"
+    label: "Education Level"
+    type: "demographic_variable"
+    properties:
+      theoretical_role: "protective_factor"
+      direction: "higher_education_lower_risk"
+      effect_size: "moderate"
+
+connections:
+  # Individual psychological factors → conspiracy support
+  - source: "narcissism"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "strong"
+      mechanism: "attention_seeking_uniqueness"
+      evidence: "meta_analytic"
+    modifiers: ["validated", "replicated"]
+  
+  - source: "denialism"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "consistent"
+      mechanism: "rejection_mainstream_narratives"
+      evidence: "multiple_studies"
+    modifiers: ["covid19_specific"]
+  
+  - source: "need_for_chaos"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "moderate"
+      mechanism: "disorder_promotion"
+      evidence: "recent_findings"
+    modifiers: ["political_context"]
+  
+  - source: "conspiracy_mentality"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "strong"
+      mechanism: "general_conspiratorial_worldview"
+      evidence: "well_established"
+    modifiers: ["cross_domain"]
+  
+  - source: "misinformation_susceptibility"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "strong"
+      mechanism: "false_information_acceptance"
+      evidence: "recent_scale_validation"
+    modifiers: ["covid19_specific"]
+  
+  - source: "overconfidence"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "moderate"
+      mechanism: "dunning_kruger_effect"
+      evidence: "mixed_findings"
+    modifiers: ["context_dependent"]
+  
+  # Political factors → conspiracy support
+  - source: "political_extremity"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "strong"
+      relationship: "quadratic"
+      mechanism: "distrust_mainstream"
+      evidence: "cross_cultural"
+    modifiers: ["both_extremes"]
+  
+  - source: "political_conservatism"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "weak_to_moderate"
+      mechanism: "specific_conspiracy_types"
+      evidence: "us_specific"
+    modifiers: ["trump_voting"]
+  
+  # Behavioral manifestation
+  - source: "conspiracy_theory_support"
+    target: "social_media_engagement"
+    type: "manifests_as"
+    properties:
+      strength: "direct"
+      forms: ["likes", "posts", "replies", "reposts"]
+      amplification: "algorithmic_boost"
+    modifiers: ["observable", "measurable"]
+  
+  # Contextual influences
+  - source: "covid19_pandemic"
+    target: "infodemic"
+    type: "creates"
+    properties:
+      strength: "direct"
+      mechanism: "uncertainty_information_void"
+      WHO_recognition: true
+    modifiers: ["global_scale"]
+  
+  - source: "infodemic"
+    target: "conspiracy_theory_support"
+    type: "facilitates"
+    properties:
+      strength: "moderate"
+      mechanism: "information_overload"
+      volume: "150k-350k tweets/month"
+    modifiers: ["social_media_specific"]
+  
+  # Demographic influences
+  - source: "age"
+    target: "conspiracy_theory_support"
+    type: "predicts"
+    properties:
+      strength: "moderate_to_strong"
+      direction: "positive"
+      specific_finding: "86% increased likelihood"
+    modifiers: ["economic_conspiracy_specific"]
+
+properties:
+  # Theory-specific metadata
+  type_system:
+    psychological_traits: ["narcissism", "denialism", "need_for_chaos"]
+    cognitive_factors: ["conspiracy_mentality", "misinformation_susceptibility", "overconfidence"]
+    social_factors: ["political_extremity", "political_conservatism"]
+    behavioral_outcomes: ["conspiracy_theory_support", "social_media_engagement"]
+    contextual_factors: ["covid19_pandemic", "infodemic"]
+    demographic_factors: ["age", "gender", "education"]
+  
+  measurement_approach:
+    self_report: "2,506 Twitter users psychological surveys"
+    behavioral: "7.7 million social media engagements"
+    ml_classification: "Six COVID-19 conspiracy theory categories"
+    integration: "Combined AI analysis with psychological assessment"
+  
+  conspiracy_theories_studied:
+    - "Virus/response for economic instability benefiting corporations"
+    - "Virus is human-made bioweapon"
+    - "Vaccines unsafe or population control"
+    - "Government intentionally spreading misinformation"
+    - "Public misled about virus nature and prevention"
+    - "China intentionally spread virus"
+  
+  key_findings:
+    most_consistent_risk_factors: ["older_age", "political_extremity", "false_information_belief"]
+    theory_based_factors: ["denialism", "confidence_spotting_misinfo", "conservatism"]
+    protective_factors: ["education", "moderate_politics", "information_verification_attitudes"]
+
+modifiers:
+  # Available modifiers in this theory
+  evidence_quality: ["meta_analytic", "replicated", "validated", "mixed_findings"]
+  temporal: ["covid19_specific", "pandemic_period", "prospective"]
+  scope: ["cross_cultural", "us_specific", "global_scale"]
+  certainty: ["well_established", "recent_findings", "context_dependent"]
+  relationship_type: ["linear", "quadratic", "interaction_effect"]

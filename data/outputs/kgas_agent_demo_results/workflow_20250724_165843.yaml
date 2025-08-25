@@ -1,0 +1,32 @@
+description: Open-ended exploration of documents
+name: Exploratory Analysis Workflow
+outputs:
+- format: json
+  name: entities
+- format: json
+  name: relationships
+- format: json
+  name: graph_metrics
+phases:
+- name: ingestion
+  tools:
+  - inputs:
+      file_paths:
+      - /home/brian/projects/Digimons/kunst_paper.txt
+    tool: T01_pdf_loader
+  - inputs:
+      chunk_size: 1000
+    tool: T15A_text_chunker
+- name: extraction
+  tools:
+  - tool: T23A_entity_extractor
+  - tool: T27_relationship_extractor
+- name: construction
+  tools:
+  - tool: T31_entity_builder
+  - tool: T34_edge_builder
+- name: analysis
+  tools:
+  - tool: T68_pagerank
+  - tool: T49_query_engine
+version: '1.0'

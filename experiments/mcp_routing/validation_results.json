@@ -1,0 +1,306 @@
+{
+  "validation_run_info": {
+    "timestamp": "2025-08-04T03:19:25.992535",
+    "total_tests": 5,
+    "framework_version": "1.0"
+  },
+  "test_results": [
+    {
+      "agent_type": "AgentType.GPT_4",
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.83270072937012,
+      "tools_used": [
+        "extract_knowledge_graph"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.5,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.3,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.5,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_graph"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_comprehensive, analyze_graph_insights"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata, quality_check"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": "AgentType.GPT_4",
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.2354621887207,
+      "tools_used": [
+        "extract_knowledge_graph"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.5,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.3,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.5,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_graph"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_comprehensive, analyze_graph_insights"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata, quality_check"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": "AgentType.GPT_4",
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.21376609802246,
+      "tools_used": [
+        "load_document_comprehensive",
+        "extract_knowledge_graph"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.5,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.42,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.5,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": "AgentType.CLAUDE_SONNET",
+      "workflow_id": "academic_paper_analysis",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.20852088928223,
+      "tools_used": [
+        "extract_knowledge_graph"
+      ],
+      "parameters_used": [
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.5,
+      "parameter_accuracy": 0.0,
+      "overall_score": 0.3,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.5,
+          "optimal_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph",
+            "analyze_graph_insights"
+          ],
+          "agent_sequence": [
+            "extract_knowledge_graph"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_comprehensive, analyze_graph_insights"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.0,
+            "issues": [
+              "Missing parameters: extract_metadata, quality_check"
+            ],
+            "suggestions": [],
+            "is_valid": false
+          }
+        ]
+      }
+    },
+    {
+      "agent_type": "AgentType.CLAUDE_SONNET",
+      "workflow_id": "simple_entity_extraction",
+      "strategy_name": "test_strategy",
+      "success": true,
+      "execution_time_ms": 100.21090507507324,
+      "tools_used": [
+        "load_document_comprehensive",
+        "extract_knowledge_graph"
+      ],
+      "parameters_used": [
+        {
+          "extract_metadata": true
+        },
+        {
+          "method": "hybrid",
+          "ontology_mode": "mixed"
+        }
+      ],
+      "tool_selection_accuracy": 0.5,
+      "parameter_accuracy": 0.3,
+      "overall_score": 0.42,
+      "errors": [],
+      "warnings": [],
+      "agent_reasoning": "Mock agent reasoning process",
+      "validation_details": {
+        "tool_validation": {
+          "sequence_similarity": 0.5,
+          "optimal_sequence": [
+            "load_document_basic",
+            "extract_knowledge_graph"
+          ],
+          "agent_sequence": [
+            "load_document_comprehensive",
+            "extract_knowledge_graph"
+          ],
+          "mistakes_made": [],
+          "is_optimal": false,
+          "improvement_suggestions": [
+            "Consider using these optimal tools: load_document_basic",
+            "Tool sequence could be reordered for better efficiency"
+          ]
+        },
+        "parameter_validations": [
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal extract_metadata: got True, expected False"
+            ],
+            "suggestions": [
+              "For this scenario, extract_metadata should be False"
+            ],
+            "is_valid": false
+          },
+          {
+            "validation_score": 0.3,
+            "issues": [
+              "Suboptimal method: got hybrid, expected spacy",
+              "Suboptimal ontology_mode: got mixed, expected closed"
+            ],
+            "suggestions": [
+              "For this scenario, method should be spacy",
+              "For this scenario, ontology_mode should be closed"
+            ],
+            "is_valid": false
+          }
+        ]
+      }
+    }
+  ],
+  "workflows_tested": [
+    "academic_paper_analysis",
+    "multi_document_comparison",
+    "simple_entity_extraction"
+  ],
+  "agents_tested": [
+    "AgentType.GPT_4",
+    "AgentType.CLAUDE_SONNET"
+  ]
+}

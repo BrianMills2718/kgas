@@ -1,0 +1,87 @@
+# Agent Stress Testing - Quality Configuration
+# All thresholds and parameters - NO HARDCODED VALUES
+
+quality_thresholds:
+  # Minimum acceptable quality scores by tool type
+  document_processing: 0.7
+  entity_extraction: 0.6
+  relationship_extraction: 0.65
+  network_analysis: 0.5
+  
+  # Global minimum - below this triggers retry
+  global_minimum: 0.6
+  
+  # Quality scoring weights
+  scoring_weights:
+    entity_confidence: 0.4      # spaCy confidence scores
+    result_completeness: 0.3    # How much data was extracted
+    processing_success: 0.3     # No errors/timeouts
+
+retry_configuration:
+  max_attempts: 3
+  backoff_multiplier: 1.5     # 1s, 1.5s, 2.25s delays
+  initial_delay_seconds: 1.0
+  
+  # Quality improvement strategies per retry
+  retry_strategies:
+    - name: "increase_confidence"
+      adjustment: { confidence: 0.1 }  # Raise from 0.7 to 0.8
+    - name: "reduce_chunk_size" 
+      adjustment: { chunk_size: 0.8 }  # 80% of original
+    - name: "alternative_model"
+      adjustment: { model: "alternative" }
+
+tool_timeouts:
+  # Per-tool timeouts (seconds) - adjust based on real performance
+  pdf_loader: 30
+  text_chunker: 10
+  entity_extractor: 15
+  relationship_extractor: 20
+  network_analyzer: 25
+  
+  # Default for unknown tools
+  default: 60
+
+resource_limits:
+  max_concurrent_agents: 5
+  max_document_size_chars: 100000
+  max_memory_mb: 2048
+  max_file_handles: 1000
+
+mcp_connection:
+  server_paths:
+    - "${KGAS_MCP_SERVER_PATH}"
+    - "/home/brian/projects/Digimons/src/mcp_server.py" 
+    - "/home/brian/projects/Digimons/kgas_simple_mcp_server.py"
+  
+  connection_timeout: 30
+  health_check_interval: 60
+  max_reconnect_attempts: 5
+
+monitoring:
+  # Metrics collection intervals
+  metrics_collection_interval: 30
+  performance_logging: true
+  detailed_tracing: false  # Set true for debugging
+  
+  # Alert thresholds
+  alerts:
+    workflow_success_rate_below: 0.8
+    average_latency_above_seconds: 15
+    error_rate_above: 0.1
+
+# Development vs Production settings
+environment_overrides:
+  development:
+    quality_thresholds:
+      global_minimum: 0.4  # More lenient for dev
+    tool_timeouts:
+      default: 120  # Longer timeouts for debugging
+    monitoring:
+      detailed_tracing: true
+      
+  production:
+    retry_configuration:
+      max_attempts: 5  # More retries in prod
+    monitoring:
+      detailed_tracing: false  # Less verbose

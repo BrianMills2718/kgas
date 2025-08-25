@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-08-22T11:00:36.291146",
+  "pipeline": "complete",
+  "tools_used": [
+    "T23C",
+    "T31",
+    "T34",
+    "T68"
+  ],
+  "results": {
+    "t23c_entities": 10,
+    "t31_entities": 10,
+    "t34_edges": 4,
+    "t68_nodes": 0,
+    "final_nodes": 20,
+    "final_relationships": 4,
+    "no_contamination": false
+  }
+}

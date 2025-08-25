@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-08-22T10:10:56.864703",
+  "operation": "synthetic_extraction_test",
+  "description": "Testing extraction without T23C due to T23C bugs",
+  "tests": {
+    "extraction_results": [
+      {
+        "test_case": 1,
+        "text": "Apple Inc., led by CEO Tim Cook, is headquartered in Cupertino.",
+        "entities_expected": 3,
+        "entities_found": 2,
+        "relationships_expected": 2,
+        "relationships_found": 0,
+        "entities": [
+          "Apple Inc",
+          "Tim Cook",
+          "Cupertino"
+        ],
+        "relationships": []
+      },
+      {
+        "test_case": 2,
+        "text": "Microsoft Corporation was founded by Bill Gates and Paul Allen in 1975.",
+        "entities_expected": 4,
+        "entities_found": 4,
+        "relationships_expected": 2,
+        "relationships_found": 2,
+        "entities": [
+          "Microsoft Corporation",
+          "Bill Gates",
+          "Paul Allen",
+          "1975"
+        ],
+        "relationships": [
+          [
+            "Microsoft Corporation",
+            "FOUNDED_BY",
+            "Bill Gates"
+          ],
+          [
+            "Microsoft Corporation",
+            "FOUNDED_BY",
+            "Paul Allen"
+          ]
+        ]
+      },
+      {
+        "test_case": 3,
+        "text": "Google competes with Microsoft and Apple in cloud services.",
+        "entities_expected": 3,
+        "entities_found": 3,
+        "relationships_expected": 2,
+        "relationships_found": 2,
+        "entities": [
+          "Google",
+          "Microsoft",
+          "Apple"
+        ],
+        "relationships": [
+          [
+            "Google",
+            "COMPETES_WITH",
+            "Microsoft"
+          ],
+          [
+            "Google",
+            "COMPETES_WITH",
+            "Apple"
+          ]
+        ]
+      }
+    ]
+  },
+  "success_criteria": {
+    "all_tests_passed": false
+  },
+  "metrics": {
+    "entity_extraction_rate": 0.9,
+    "relationship_extraction_rate": 0.6666666666666666,
+    "total_entities_found": 9,
+    "total_relationships_found": 4
+  }
+}

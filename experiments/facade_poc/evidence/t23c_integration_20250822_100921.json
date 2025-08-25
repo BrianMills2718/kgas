@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-22T10:09:21.168129",
+  "operation": "t23c_integration",
+  "tests": {
+    "output_format": {
+      "error": "'T23CRequest' object has no attribute 'operation'"
+    },
+    "compatibility": {
+      "error": "'T23CRequest' object has no attribute 'operation'"
+    },
+    "entity_extraction": {
+      "error": "'T23CRequest' object has no attribute 'operation'"
+    }
+  },
+  "success_criteria": {
+    "t23c_executes": false,
+    "t23c_t31_compatible": false,
+    "entities_extracted": false
+  }
+}

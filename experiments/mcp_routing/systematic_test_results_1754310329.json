@@ -1,0 +1,37 @@
+{
+  "test_summary": {
+    "total_duration_seconds": 1.204582691192627,
+    "total_tests_completed": 0,
+    "success_rate": 0.0,
+    "completion_timestamp": 1754310329.311314
+  },
+  "cognitive_load_analysis": [],
+  "methodology_comparison": [],
+  "cross_model_validation": [],
+  "production_recommendations": {
+    "primary_recommendation": null,
+    "alternative_options": [],
+    "model_specific_guidance": {},
+    "deployment_strategy": "",
+    "risk_assessment": {},
+    "scaling_roadmap": {}
+  },
+  "raw_results": {
+    "cognitive_load": [],
+    "methodology_comparison": [],
+    "cross_model_validation": [],
+    "metadata": {
+      "test_timestamp": 1754310328.106546,
+      "framework_version": "2.0",
+      "total_tests_planned": 0
+    },
+    "production_recommendations": {
+      "primary_recommendation": null,
+      "alternative_options": [],
+      "model_specific_guidance": {},
+      "deployment_strategy": "",
+      "risk_assessment": {},
+      "scaling_roadmap": {}
+    }
+  }
+}

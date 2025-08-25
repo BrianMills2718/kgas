@@ -1,0 +1,150 @@
+{
+  "network_graph": {
+    "nodes": [
+      {
+        "id": "N1",
+        "label": "Narcissism",
+        "type": "psychological_trait",
+        "definition": "Grandiose self-regard and need for attention"
+      },
+      {
+        "id": "N2",
+        "label": "Denialism",
+        "type": "psychological_trait",
+        "definition": "Rejection of expert narratives and seeking unconventional explanations"
+      },
+      {
+        "id": "N3",
+        "label": "Need For Chaos",
+        "type": "psychological_trait",
+        "definition": "Desire to provoke or exacerbate disorder"
+      },
+      {
+        "id": "N4",
+        "label": "Conspiracy Mentality",
+        "type": "psychological_disposition",
+        "definition": "General disposition towards conspiratorial viewpoints"
+      },
+      {
+        "id": "N5",
+        "label": "Misinformation Susceptibility",
+        "type": "cognitive_vulnerability",
+        "definition": "Propensity to accept false information"
+      },
+      {
+        "id": "N6",
+        "label": "Social Media Engagement",
+        "type": "behavior",
+        "definition": "Likes, posts, replies, and reposts on social media"
+      },
+      {
+        "id": "N7",
+        "label": "Conspiracy Theory Support",
+        "type": "behavior",
+        "definition": "Behavioral endorsement and amplification of conspiracy theories"
+      },
+      {
+        "id": "N8",
+        "label": "Political Extremity",
+        "type": "social_factor",
+        "definition": "Self-identification at far left or far right of political spectrum"
+      },
+      {
+        "id": "N9",
+        "label": "Political Polarization",
+        "type": "social_process",
+        "definition": "Increased division and opposition between political groups"
+      },
+      {
+        "id": "N10",
+        "label": "Covid19 Pandemic",
+        "type": "contextual_event",
+        "definition": "Global health crisis providing context for conspiracy theories"
+      },
+      {
+        "id": "N11",
+        "label": "Infodemic",
+        "type": "information_phenomenon",
+        "definition": "Overwhelming flood of information, often misleading"
+      }
+    ],
+    "edges": [
+      {
+        "source": "N1",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "strong"
+      },
+      {
+        "source": "N2",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "strong"
+      },
+      {
+        "source": "N3",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "moderate"
+      },
+      {
+        "source": "N4",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "strong"
+      },
+      {
+        "source": "N5",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "strong"
+      },
+      {
+        "source": "N8",
+        "target": "N7",
+        "type": "predicts",
+        "strength": "strong"
+      },
+      {
+        "source": "N7",
+        "target": "N6",
+        "type": "manifests_as",
+        "strength": "direct"
+      },
+      {
+        "source": "N10",
+        "target": "N11",
+        "type": "creates",
+        "strength": "direct"
+      },
+      {
+        "source": "N11",
+        "target": "N7",
+        "type": "facilitates",
+        "strength": "moderate"
+      }
+    ],
+    "description": "Network visualization of psychological factors and conspiracy theory support"
+  },
+  "factor_frequency": {
+    "data": {
+      "denialism": 1,
+      "conspiracy_mentality": 2,
+      "overconfidence": 1,
+      "misinformation_susceptibility": 1,
+      "political_extremity": 1
+    },
+    "description": "Frequency of psychological factors in analyzed texts"
+  },
+  "theory_coverage": {
+    "coverage_percentage": 100.0,
+    "detected_factors": [
+      "denialism",
+      "misinformation_susceptibility",
+      "conspiracy_mentality",
+      "political_extremity",
+      "overconfidence"
+    ],
+    "description": "How well the theory explained the analyzed texts"
+  }
+}

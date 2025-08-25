@@ -1,0 +1,236 @@
+{
+  "extraction_timestamp": "2025-08-24T16:36:25.113588",
+  "model": "gemini/gemini-2.0-flash-exp",
+  "text_length": 1420,
+  "entities": [
+    {
+      "name": "Nexora Technologies",
+      "type": "ORG",
+      "confidence": 0.99
+    },
+    {
+      "name": "Zara Klingston",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Velmont City",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "New Arcadia",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "quantum mesh networking",
+      "type": "PRODUCT",
+      "confidence": 0.95
+    },
+    {
+      "name": "Luminar Systems",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "DataVault Inc.",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "CyberDyne Solutions",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "Marcus Reeves",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Neo Angeles",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "OpenMesh protocol",
+      "type": "PRODUCT",
+      "confidence": 0.95
+    },
+    {
+      "name": "Dr. Elena Vasquez",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Quantum Works",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "Robert Chen",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "FinanceCore",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "Sarah Mitchell",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "AeroLink Industries",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "Dr. Yuki Tanaka",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Velmont Research Center",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "Neo Tokyo Innovation Lab",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "Crystal Bay Development Campus",
+      "type": "LOC",
+      "confidence": 0.98
+    },
+    {
+      "name": "Jennifer Wu",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "TechVentures Capital",
+      "type": "ORG",
+      "confidence": 0.98
+    },
+    {
+      "name": "Michael Sterling",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Dr. Amara Okonkwo",
+      "type": "PERSON",
+      "confidence": 0.99
+    },
+    {
+      "name": "Neo Exchange",
+      "type": "ORG",
+      "confidence": 0.98
+    }
+  ],
+  "relationships": [
+    {
+      "source": "Nexora Technologies",
+      "relation": "FOUNDED_BY",
+      "target": "Zara Klingston",
+      "confidence": 0.95
+    },
+    {
+      "source": "Nexora Technologies",
+      "relation": "HEADQUARTERED_IN",
+      "target": "Velmont City",
+      "confidence": 0.95
+    },
+    {
+      "source": "Velmont City",
+      "relation": "LOCATED_IN",
+      "target": "New Arcadia",
+      "confidence": 0.9
+    },
+    {
+      "source": "Zara Klingston",
+      "relation": "WORKS_FOR",
+      "target": "Luminar Systems",
+      "confidence": 0.9
+    },
+    {
+      "source": "Nexora Technologies",
+      "relation": "ACQUIRED",
+      "target": "DataVault Inc.",
+      "confidence": 0.95
+    },
+    {
+      "source": "CyberDyne Solutions",
+      "relation": "LED_BY",
+      "target": "Marcus Reeves",
+      "confidence": 0.95
+    },
+    {
+      "source": "CyberDyne Solutions",
+      "relation": "BASED_IN",
+      "target": "Neo Angeles",
+      "confidence": 0.95
+    },
+    {
+      "source": "CyberDyne Solutions",
+      "relation": "PARTNERED_WITH",
+      "target": "Nexora Technologies",
+      "confidence": 0.9
+    },
+    {
+      "source": "Dr. Elena Vasquez",
+      "relation": "WORKS_FOR",
+      "target": "Quantum Works",
+      "confidence": 0.9
+    },
+    {
+      "source": "Dr. Elena Vasquez",
+      "relation": "WORKS_FOR",
+      "target": "Nexora Technologies",
+      "confidence": 0.9
+    },
+    {
+      "source": "Robert Chen",
+      "relation": "WORKS_FOR",
+      "target": "FinanceCore",
+      "confidence": 0.9
+    },
+    {
+      "source": "Robert Chen",
+      "relation": "WORKS_FOR",
+      "target": "Nexora Technologies",
+      "confidence": 0.9
+    },
+    {
+      "source": "Nexora Technologies",
+      "relation": "PARTNERED_WITH",
+      "target": "AeroLink Industries",
+      "confidence": 0.95
+    },
+    {
+      "source": "Dr. Yuki Tanaka",
+      "relation": "WORKS_FOR",
+      "target": "Nexora Technologies",
+      "confidence": 0.9
+    },
+    {
+      "source": "Velmont Research Center",
+      "relation": "HEADQUARTERED_IN",
+      "target": "Velmont City",
+      "confidence": 0.9
+    },
+    {
+      "source": "Jennifer Wu",
+      "relation": "WORKS_FOR",
+      "target": "TechVentures Capital",
+      "confidence": 0.9
+    }
+  ],
+  "raw_llm_response": "```json\n{\n    \"entities\": [\n        {\"name\": \"Nexora Technologies\", \"type\": \"ORG\", \"confidence\": 0.99},\n        {\"name\": \"Zara Klingston\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Velmont City\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"New Arcadia\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"quantum mesh networking\", \"type\": \"PRODUCT\", \"confidence\": 0.95},\n        {\"name\": \"Luminar Systems\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"DataVault Inc.\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"CyberDyne Solutions\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"Marcus Reeves\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Neo Angeles\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"OpenMesh protocol\", \"type\": \"PRODUCT\", \"confidence\": 0.95},\n        {\"name\": \"Dr. Elena Vasquez\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Quantum Works\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"Robert Chen\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"FinanceCore\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"Sarah Mitchell\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"AeroLink Industries\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"Dr. Yuki Tanaka\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Velmont Research Center\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"Neo Tokyo Innovation Lab\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"Crystal Bay Development Campus\", \"type\": \"LOC\", \"confidence\": 0.98},\n        {\"name\": \"Jennifer Wu\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"TechVentures Capital\", \"type\": \"ORG\", \"confidence\": 0.98},\n        {\"name\": \"Michael Sterling\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Dr. Amara Okonkwo\", \"type\": \"PERSON\", \"confidence\": 0.99},\n        {\"name\": \"Neo Exchange\", \"type\": \"ORG\", \"confidence\": 0.98}\n    ],\n    \"relationships\": [\n        {\"source\": \"Nexora Technologies\", \"relation\": \"FOUNDED_BY\", \"target\": \"Zara Klingston\", \"confidence\": 0.95},\n        {\"source\": \"Nexora Technologies\", \"relation\": \"HEADQUARTERED_IN\", \"target\": \"Velmont City\", \"confidence\": 0.95},\n        {\"source\": \"Velmont City\", \"relation\": \"LOCATED_IN\", \"target\": \"New Arcadia\", \"confidence\": 0.9},\n        {\"source\": \"Zara Klingston\", \"relation\": \"WORKS_FOR\", \"target\": \"Luminar Systems\", \"confidence\": 0.9},\n        {\"source\": \"Nexora Technologies\", \"relation\": \"ACQUIRED\", \"target\": \"DataVault Inc.\", \"confidence\": 0.95},\n        {\"source\": \"CyberDyne Solutions\", \"relation\": \"LED_BY\", \"target\": \"Marcus Reeves\", \"confidence\": 0.95},\n        {\"source\": \"CyberDyne Solutions\", \"relation\": \"BASED_IN\", \"target\": \"Neo Angeles\", \"confidence\": 0.95},\n        {\"source\": \"CyberDyne Solutions\", \"relation\": \"PARTNERED_WITH\", \"target\": \"Nexora Technologies\", \"confidence\": 0.9},\n        {\"source\": \"Dr. Elena Vasquez\", \"relation\": \"WORKS_FOR\", \"target\": \"Quantum Works\", \"confidence\": 0.9},\n        {\"source\": \"Dr. Elena Vasquez\", \"relation\": \"WORKS_FOR\", \"target\": \"Nexora Technologies\", \"confidence\": 0.9},\n        {\"source\": \"Robert Chen\", \"relation\": \"WORKS_FOR\", \"target\": \"FinanceCore\", \"confidence\": 0.9},\n        {\"source\": \"Robert Chen\", \"relation\": \"WORKS_FOR\", \"target\": \"Nexora Technologies\", \"confidence\": 0.9},\n        {\"source\": \"Nexora Technologies\", \"relation\": \"PARTNERED_WITH\", \"target\": \"AeroLink Industries\", \"confidence\": 0.95},\n        {\"source\": \"Dr. Yuki Tanaka\", \"relation\": \"WORKS_FOR\", \"target\": \"Nexora Technologies\", \"confidence\": 0.9},\n        {\"source\": \"Velmont Research Center\", \"relation\": \"HEADQUARTERED_IN\", \"target\": \"Velmont City\", \"confidence\": 0.9},\n        {\"source\": \"Jennifer Wu\", \"relation\": \"WORKS_FOR\", \"target\": \"TechVentures Capital\", \"confidence\": 0.9}\n    ]\n}\n```"
+}
