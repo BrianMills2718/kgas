@@ -15,7 +15,10 @@ import psutil
 import logging
 from dataclasses import dataclass
 
-from .data_types import DataType
+try:
+    from .data_types import DataType
+except ImportError:
+    from data_types import DataType
 
 
 # Type variables for generic tool inputs/outputs
