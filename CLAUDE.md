@@ -1,4 +1,4 @@
-# Type-Based Tool Composition - Phase 2 Production Framework
+# Type-Based Tool Composition - Phase 2: Service Integration Validation
 
 ## 1. Coding Philosophy (MANDATORY)
 
@@ -7,19 +7,15 @@
 - **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them  
 - **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
 - **TEST DRIVEN DESIGN**: Write tests first, then implementation
-- **DIRECT DATA PASSING**: Pass actual data, not references (except graphs in Neo4j)
 
 ### Evidence Requirements
 Every implementation MUST generate evidence files:
 ```
 evidence/
 ├── current/
-│   └── Evidence_PHASE2_[Component].md  # Current Phase 2 work only
+│   └── Evidence_Phase2_[Task].md    # Current Phase 2 work only
 ├── completed/
-│   ├── Evidence_POC_Registry.md        # ✅ POC Phase 1 completed
-│   ├── Evidence_POC_Tools.md           # ✅ POC Phase 1 completed
-│   ├── Evidence_POC_Integration.md     # ✅ POC Phase 1 completed
-│   └── Evidence_KGAS_Pipeline.md       # ✅ KGAS implementation
+│   └── Evidence_POC_*.md           # Phase 1 POC files (DO NOT MODIFY)
 ```
 
 Evidence files must contain:
@@ -32,633 +28,561 @@ Evidence files must contain:
 
 ## 2. Codebase Structure
 
-### Completed: KGAS Pipeline
-```
-src/
-├── tools/phase2/
-│   └── t23c_llm_extractor.py      # Real Gemini LLM extraction (no mocks)
-├── pipeline/
-│   └── kgas_pipeline.py           # Document → LLM → Neo4j → Query
-└── tests/
-    └── test_real_llm_pipeline.py  # End-to-end validation
-
-evidence/completed/
-├── pipeline_end_to_end.json       # Test results with metrics
-├── llm_extraction_nexora.json     # Raw LLM responses
-└── DOUBLECHECK_KGAS_IMPLEMENTATION.md
-```
-
-**Status**: ✅ Working with Gemini-2.0-flash-exp, Neo4j storage, query system functional
-
-### Completed: POC Foundation (Phase 1) ✅
+### Phase 1 Completed (DO NOT MODIFY)
 ```
 tool_compatability/poc/
-├── data_types.py           # 10 semantic types (FILE, TEXT, ENTITIES, etc.)
-├── base_tool.py            # Base class with metrics, fail-fast
-├── registry.py             # Tool registry with chain discovery
+├── base_tool.py              # ✅ Base class with metrics
+├── data_types.py             # ✅ 10 semantic types defined
+├── registry.py               # ✅ Tool registry with chain discovery
 ├── tools/
-│   ├── text_loader.py      # FILE → TEXT (working)
-│   ├── entity_extractor.py # TEXT → ENTITIES (Gemini API, no fallback)
-│   └── graph_builder.py    # ENTITIES → GRAPH (Neo4j, no fallback)
-└── tests/
-    ├── test_registry.py    # 11 tests passing
-    └── test_integration.py # 12 tests passing
+│   ├── text_loader.py        # ✅ FILE → TEXT (tested)
+│   ├── entity_extractor.py   # ⚠️ TEXT → ENTITIES (untested - needs Gemini)
+│   └── graph_builder.py      # ⚠️ ENTITIES → GRAPH (untested - needs Neo4j)
+├── tests/
+│   ├── test_integration.py   # ✅ 12 tests passing (TextLoader only)
+│   ├── test_memory.py        # ✅ Memory leak testing
+│   ├── test_recovery.py      # ✅ Failure recovery testing
+│   └── test_schema.py        # ✅ Schema evolution testing
+├── benchmark.py              # ✅ Performance benchmarking
+└── demo.py                   # ✅ Main demonstration (partial)
+
+evidence/completed/
+├── Evidence_POC_Registry.md     # Phase 1: Registry implementation
+├── Evidence_POC_Tools.md        # Phase 1: Tool implementations
+├── Evidence_POC_Integration.md  # Phase 1: Integration tests
+├── Evidence_POC_EdgeCases.md    # Phase 1: Edge case testing
+├── Evidence_POC_Performance.md  # Phase 1: Performance analysis
+└── Evidence_POC_Decision.md     # Phase 1: Conditional GO decision
 ```
 
-### In Progress: Production Framework (Phase 2)
-```
-src/tools/composition/       # NEW - Production implementation
-├── types/
-│   ├── type_registry.py    # TODO: Plugin-based type system
-│   ├── schema_versions.py  # TODO: Schema versioning & migration
-│   └── namespaces.py       # TODO: Entity schema namespaces
-├── execution/
-│   ├── pipeline_context.py # TODO: State management across chains
-│   ├── chain_selector.py   # TODO: Multiple chain selection strategies
-│   └── retry_policy.py     # TODO: Smart retry with checkpointing
-├── resources/
-│   ├── connection_pool.py  # TODO: Neo4j connection pooling
-│   ├── rate_limiter.py     # TODO: API rate limiting
-│   └── cache.py            # TODO: TTL cache for expensive ops
-└── composer/
-    └── tool_composer.py     # TODO: Merge/split/wrap tools
-```
+### Phase 1 Status
+- **Architecture**: ✅ Validated
+- **TextLoader**: ✅ Fully tested (FILE → TEXT)
+- **EntityExtractor**: ⚠️ Code complete, untested (needs GEMINI_API_KEY)
+- **GraphBuilder**: ⚠️ Code complete, untested (needs Neo4j)
+- **Performance**: ✅ 0.114ms overhead measured (acceptable)
 
 ---
 
-## 3. Phase 2 Mission: Production-Ready Framework
+## 3. Phase 2: Service Integration Validation
 
-### Phase 1 Achievements ✅
-- Type-based composition proven to work
-- Automatic chain discovery via NetworkX
-- Real service integration (Gemini, Neo4j)
-- Fail-fast implementation (no mocks/fallbacks)
-- Performance overhead <5% with real services
+### CRITICAL REQUIREMENT
+Phase 1 proved the concept works but **DID NOT** test with real services. Phase 2 **MUST** complete integration testing before production approval.
 
-### Phase 2 Goals
-1. **Schema Namespaces**: Handle different entity schemas (military, medical, etc.)
-2. **Pipeline Context**: Stateful execution with checkpoints
-3. **Chain Selection**: 5 strategies (shortest, fastest, cheapest, quality, LLM-guided)
-4. **Resource Management**: Connection pooling, rate limiting, caching
-5. **Error Recovery**: Smart retry for transient failures only
-6. **Migration Path**: Audit and map all 38 existing tools
+### Task 1: Environment Verification (30 minutes)
 
----
-
-## 4. Phase 2 Implementation Instructions
-
-### Task 1: Type Registry with Schema Namespaces (Day 1-2)
-
-**Problem**: Different tools produce "ENTITIES" with incompatible schemas.
-
-**Solution**: Implement schema namespaces that Neo4j can query via labels.
-
-**File**: `src/tools/composition/types/type_registry.py`
+**File**: Create `/tool_compatability/poc/verify_environment.py`
 
 ```python
-from enum import Enum
-from typing import Dict, List, Any, Optional
-from pydantic import BaseModel
-import importlib.util
+#!/usr/bin/env python3
+"""Verify all required services are available"""
 
-class TypeSpec(BaseModel):
-    """Specification for a data type with schema"""
-    type: DataType
-    schema: Optional[str] = None  # e.g., "military", "medical"
-    version: str = "1.0"
-    
-    def is_compatible_with(self, other: 'TypeSpec') -> bool:
-        """Check if this type can connect to another"""
-        if self.type != other.type:
-            return False
-        if self.schema and other.schema:
-            return self.schema == other.schema
-        return True  # Generic can connect to specific
+import os
+import sys
+from neo4j import GraphDatabase
+import litellm
 
-class TypePlugin:
-    """Base class for type plugins"""
-    def register_types(self) -> List[DataType]:
-        raise NotImplementedError
-    
-    def register_schemas(self) -> Dict[DataType, List[str]]:
-        raise NotImplementedError
-
-class TypeRegistry:
-    def __init__(self):
-        self.types = {}
-        self.schemas = {}
-        self.plugins = []
-    
-    def load_plugin(self, plugin_path: str):
-        """Load plugin from file - FAIL FAST if invalid"""
-        spec = importlib.util.spec_from_file_location("plugin", plugin_path)
-        if not spec or not spec.loader:
-            raise RuntimeError(f"Invalid plugin: {plugin_path}")
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        
-        # Find and instantiate plugin class
-        found = False
-        for item in dir(module):
-            obj = getattr(module, item)
-            if isinstance(obj, type) and issubclass(obj, TypePlugin) and obj != TypePlugin:
-                plugin = obj()
-                self.register_plugin(plugin)
-                found = True
-        
-        if not found:
-            raise RuntimeError(f"No TypePlugin found in {plugin_path}")
-    
-    def validate_connection(self, output_spec: TypeSpec, input_spec: TypeSpec) -> bool:
-        """Validate if two type specs can connect"""
-        return output_spec.is_compatible_with(input_spec)
-```
-
-**Test First**: Create `tests/test_type_registry.py`
-```python
-def test_schema_namespace_compatibility():
-    military_entities = TypeSpec(type=DataType.ENTITIES, schema="military")
-    generic_entities = TypeSpec(type=DataType.ENTITIES, schema=None)
-    medical_entities = TypeSpec(type=DataType.ENTITIES, schema="medical")
-    
-    registry = TypeRegistry()
-    assert registry.validate_connection(military_entities, military_entities)  # Same schema
-    assert registry.validate_connection(generic_entities, military_entities)   # Generic to specific
-    assert not registry.validate_connection(military_entities, medical_entities)  # Different schemas
-
-def test_neo4j_label_integration():
-    """Test that schema namespaces map to Neo4j labels"""
-    # Create entities with military schema
-    # Store in Neo4j with :Entity:Military labels
-    # Query with MATCH (n:Entity:Military)
-    # Verify only military entities returned
-```
-
-**Evidence Required**: `evidence/current/Evidence_PHASE2_TypeRegistry.md`
-- Show schema namespaces working
-- Demonstrate Neo4j label queries working with namespaces
-- Plugin loading functioning
-
-### Task 2: Pipeline Context & State Management (Day 3-4)
-
-**Problem**: Tools need shared state and configuration through chains.
-
-**File**: `src/tools/composition/execution/pipeline_context.py`
-
-```python
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Dict, Any, List, Optional
-
-@dataclass
-class Checkpoint:
-    tool_id: str
-    output: Any
-    timestamp: datetime
-    
-class PipelineContext:
-    """Context that flows through tool chain"""
-    def __init__(self):
-        self.data: Dict[str, Any] = {}
-        self.metadata: Dict[str, Any] = {}
-        self.checkpoints: List[Checkpoint] = []
-        self.config_overrides: Dict[str, Dict] = {}
-    
-    def checkpoint(self, tool_id: str, output: Any):
-        """Save checkpoint for recovery"""
-        self.checkpoints.append(
-            Checkpoint(tool_id=tool_id, output=output, timestamp=datetime.now())
+def check_neo4j():
+    """Verify Neo4j is running and accessible"""
+    try:
+        driver = GraphDatabase.driver(
+            "bolt://localhost:7687",
+            auth=("neo4j", "devpassword")
         )
+        driver.verify_connectivity()
+        driver.close()
+        return True, "Neo4j connected successfully"
+    except Exception as e:
+        return False, f"Neo4j error: {e}"
+
+def check_gemini():
+    """Verify Gemini API is accessible"""
+    if not os.getenv("GEMINI_API_KEY"):
+        return False, "GEMINI_API_KEY not set"
     
-    def get_last_checkpoint(self) -> Optional[Checkpoint]:
-        return self.checkpoints[-1] if self.checkpoints else None
-    
-    def can_resume_from(self, tool_id: str) -> bool:
-        """Check if we can resume from a specific tool"""
-        return any(cp.tool_id == tool_id for cp in self.checkpoints)
-```
-
-**Test First**: Create `tests/test_pipeline_context.py`
-```python
-def test_checkpoint_recovery():
-    context = PipelineContext()
-    context.checkpoint("TextLoader", {"content": "test"})
-    context.checkpoint("EntityExtractor", {"entities": []})
-    
-    assert context.can_resume_from("EntityExtractor")
-    last = context.get_last_checkpoint()
-    assert last.tool_id == "EntityExtractor"
-
-def test_config_override_propagation():
-    context = PipelineContext()
-    context.config_overrides["EntityExtractor"] = {"temperature": 0.5}
-    assert context.config_overrides["EntityExtractor"]["temperature"] == 0.5
-```
-
-**Evidence Required**: `evidence/current/Evidence_PHASE2_PipelineContext.md`
-- Show checkpoint/resume working
-- Demonstrate config override propagation
-- Test failure recovery mid-chain
-
-### Task 3: Smart Chain Selection (Day 5)
-
-**Problem**: Multiple valid chains exist, need selection strategies.
-
-**File**: `src/tools/composition/execution/chain_selector.py`
-
-```python
-from enum import Enum
-from typing import List, Dict, Optional
-import litellm  # REQUIRED - no fallbacks
-import time
-
-class ChainSelectionStrategy(Enum):
-    SHORTEST = "shortest"
-    FASTEST = "speed"
-    CHEAPEST = "cost"
-    HIGHEST_QUALITY = "quality"
-    LLM_GUIDED = "llm"
-
-class ChainSelector:
-    def __init__(self, registry: ToolRegistry):
-        self.registry = registry
-        self.execution_history = {}  # Track historical performance
-    
-    def select_chain(
-        self,
-        chains: List[List[str]], 
-        strategy: ChainSelectionStrategy,
-        context: Optional[Dict] = None
-    ) -> List[str]:
-        if not chains:
-            raise ValueError("No valid chains found")
-            
-        if strategy == ChainSelectionStrategy.SHORTEST:
-            return min(chains, key=len)
-        
-        elif strategy == ChainSelectionStrategy.FASTEST:
-            return self._select_by_speed(chains)
-        
-        elif strategy == ChainSelectionStrategy.LLM_GUIDED:
-            if not os.getenv("GEMINI_API_KEY"):
-                raise RuntimeError("GEMINI_API_KEY required for LLM-guided selection")
-            return self._llm_select(chains, context)
-        
-        # Other strategies...
-    
-    def _llm_select(self, chains: List[List[str]], context: Dict) -> List[str]:
-        """Use LLM to select best chain based on context - NO MOCKS"""
-        prompt = f"""Given these tool chains and context, select the best one.
-        
-        Chains:
-        {chains}
-        
-        Context:
-        {context}
-        
-        Return ONLY the index (0-based) of the best chain."""
-        
+    try:
         response = litellm.completion(
             model="gemini/gemini-2.0-flash-exp",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.1
+            messages=[{"role": "user", "content": "Say 'ok'"}],
+            max_tokens=10
         )
-        
-        index = int(response.choices[0].message.content.strip())
-        return chains[index]
+        return True, "Gemini API working"
+    except Exception as e:
+        return False, f"Gemini error: {e}"
+
+def main():
+    print("Environment Verification")
+    print("=" * 50)
+    
+    # Check Neo4j
+    neo4j_ok, neo4j_msg = check_neo4j()
+    print(f"Neo4j: {'✅' if neo4j_ok else '❌'} {neo4j_msg}")
+    
+    # Check Gemini
+    gemini_ok, gemini_msg = check_gemini()
+    print(f"Gemini: {'✅' if gemini_ok else '❌'} {gemini_msg}")
+    
+    # Overall status
+    if neo4j_ok and gemini_ok:
+        print("\n✅ All services available - proceed to Task 2")
+        return 0
+    else:
+        print("\n❌ Services missing - see setup instructions below")
+        if not neo4j_ok:
+            print("\nTo start Neo4j:")
+            print("  docker run -d --name neo4j -p 7687:7687 -p 7474:7474 \\")
+            print("    -e NEO4J_AUTH=neo4j/devpassword neo4j:latest")
+        if not gemini_ok:
+            print("\nTo get Gemini API key:")
+            print("  1. Visit https://makersuite.google.com/app/apikey")
+            print("  2. Create new API key")
+            print("  3. export GEMINI_API_KEY='your-key-here'")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
 ```
 
-**Evidence Required**: `evidence/current/Evidence_PHASE2_ChainSelector.md`
-- Test all 5 selection strategies
-- Show LLM-guided selection with real API
-- Performance comparison of strategies
+**Evidence Required**: Create `evidence/current/Evidence_Phase2_Environment.md`
+- Include full output of verify_environment.py
+- Document which services are available
+- If services missing, document setup steps taken
 
----
+### Task 2: Full Chain Execution (1 hour)
 
-### Task 4: Resource Management (Day 6)
+**PREREQUISITE**: Task 1 must show all services available
 
-**Problem**: Need connection pooling, rate limiting, caching.
-
-**File**: `src/tools/composition/resources/connection_pool.py`
+**File**: Create `/tool_compatability/poc/test_full_chain.py`
 
 ```python
-from neo4j import GraphDatabase, Session
-from threading import Lock
-from queue import Queue
+#!/usr/bin/env python3
+"""Test complete chain with real services"""
+
+import os
+import sys
 import time
+import json
+from pathlib import Path
 
-class Neo4jConnectionPool:
-    def __init__(self, uri: str, auth: tuple, max_connections: int = 10):
-        self.uri = uri
-        self.auth = auth
-        self.max_connections = max_connections
-        self.pool = Queue(maxsize=max_connections)
-        self.lock = Lock()
-        self._initialize_pool()
-    
-    def _initialize_pool(self):
-        """Create initial connections - FAIL FAST if Neo4j unavailable"""
-        for _ in range(self.max_connections):
-            driver = GraphDatabase.driver(self.uri, auth=self.auth)
-            driver.verify_connectivity()  # Fail fast
-            self.pool.put(driver)
-    
-    def acquire(self) -> Session:
-        """Get a session from pool"""
-        driver = self.pool.get()
-        return driver.session()
-    
-    def release(self, session: Session):
-        """Return session to pool"""
-        session.close()
-        self.pool.put(session._driver)
-```
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-**File**: `src/tools/composition/resources/rate_limiter.py`
+from poc.registry import ToolRegistry
+from poc.tools.text_loader import TextLoader
+from poc.tools.entity_extractor import EntityExtractor
+from poc.tools.graph_builder import GraphBuilder
+from poc.data_types import DataType, DataSchema
 
-```python
-class RateLimiter:
-    def __init__(self, calls_per_minute: int):
-        self.calls_per_minute = calls_per_minute
-        self.calls = []
+def test_full_chain():
+    """Execute FILE → TEXT → ENTITIES → GRAPH with real services"""
     
-    def check(self) -> bool:
-        """Check if we can make a call"""
-        now = time.time()
-        # Remove calls older than 1 minute
-        self.calls = [t for t in self.calls if now - t < 60]
-        
-        if len(self.calls) < self.calls_per_minute:
-            self.calls.append(now)
-            return True
+    # Create test document
+    test_content = """
+    Nexora Corporation Announces Strategic Partnership
+    
+    SAN FRANCISCO - Nexora Corporation, led by CEO Sarah Mitchell, 
+    announced a partnership with TechVentures International today.
+    The deal, worth $50 million, will accelerate quantum computing
+    development. CTO Emily Chen will lead the joint research team
+    in Palo Alto, California.
+    """
+    
+    # Save test file
+    test_file = "/tmp/phase2_test.txt"
+    with open(test_file, 'w') as f:
+        f.write(test_content)
+    
+    print("Full Chain Execution Test")
+    print("=" * 50)
+    
+    # Initialize registry and tools
+    registry = ToolRegistry()
+    
+    # Register all tools (MUST use real services)
+    text_loader = TextLoader()
+    entity_extractor = EntityExtractor()  # Requires GEMINI_API_KEY
+    graph_builder = GraphBuilder()        # Requires Neo4j
+    
+    registry.register(text_loader)
+    registry.register(entity_extractor)
+    registry.register(graph_builder)
+    
+    # Find chain
+    chains = registry.find_chains(DataType.FILE, DataType.GRAPH)
+    if not chains:
+        print("❌ No chain found")
         return False
     
-    def wait_if_needed(self):
-        """Block until rate limit allows"""
-        while not self.check():
-            time.sleep(0.1)
+    chain = chains[0]
+    print(f"Chain: {' → '.join(chain)}")
+    
+    # Execute chain
+    file_data = DataSchema.FileData(
+        path=test_file,
+        size_bytes=os.path.getsize(test_file),
+        mime_type="text/plain"
+    )
+    
+    current_data = file_data
+    timings = []
+    
+    for tool_id in chain:
+        tool = registry.tools[tool_id]
+        print(f"\nExecuting {tool_id}...")
+        
+        start = time.perf_counter()
+        result = tool.process(current_data)
+        duration = time.perf_counter() - start
+        timings.append((tool_id, duration))
+        
+        if not result.success:
+            print(f"  ❌ Failed: {result.error}")
+            return False
+        
+        print(f"  ✅ Success in {duration:.3f}s")
+        
+        # Show intermediate results
+        if hasattr(result.data, 'entities'):
+            print(f"  Entities found: {len(result.data.entities)}")
+            for e in result.data.entities[:3]:
+                print(f"    - {e.text} ({e.type})")
+        elif hasattr(result.data, 'node_count'):
+            print(f"  Graph created: {result.data.node_count} nodes, {result.data.edge_count} edges")
+        
+        current_data = result.data
+    
+    # Summary
+    print("\n" + "=" * 50)
+    print("Chain Execution Complete!")
+    print(f"Total time: {sum(d for _, d in timings):.3f}s")
+    for tool, duration in timings:
+        print(f"  {tool}: {duration:.3f}s")
+    
+    return True
+
+if __name__ == "__main__":
+    success = test_full_chain()
+    sys.exit(0 if success else 1)
 ```
 
-**Evidence Required**: `evidence/current/Evidence_PHASE2_Resources.md`
-- Connection pool handling concurrent requests
-- Rate limiter preventing API throttling
-- Cache hit/miss ratios
+**Evidence Required**: Create `evidence/current/Evidence_Phase2_FullChain.md`
+- Include complete execution log
+- Show all intermediate outputs
+- Document actual timings for each tool
+- Include any error messages if failures occur
 
----
+### Task 3: Performance Validation (1 hour)
 
-### Task 5: Error Recovery & Retries (Day 7)
+**PREREQUISITE**: Task 2 must complete successfully
 
-**File**: `src/tools/composition/execution/retry_policy.py`
+**File**: Create `/tool_compatability/poc/validate_performance.py`
 
 ```python
-from typing import List, Type
+#!/usr/bin/env python3
+"""Validate performance with real services"""
+
+import os
+import sys
 import time
-
-class RetryPolicy:
-    def __init__(
-        self,
-        max_retries: int = 3,
-        backoff_factor: float = 2.0,
-        retryable_errors: List[Type[Exception]] = None
-    ):
-        self.max_retries = max_retries
-        self.backoff_factor = backoff_factor
-        self.retryable_errors = retryable_errors or [
-            ConnectionError,
-            TimeoutError,
-            # RateLimitError - when we implement it
-        ]
-    
-    def should_retry(self, exception: Exception) -> bool:
-        return type(exception) in self.retryable_errors
-    
-    def get_wait_time(self, attempt: int) -> float:
-        return self.backoff_factor ** attempt
-
-class ChainExecutor:
-    def execute_with_recovery(
-        self,
-        chain: List[str],
-        input_data: Any,
-        context: PipelineContext
-    ):
-        # Try to resume from checkpoint if exists
-        start_index = 0
-        if context.checkpoints:
-            last_checkpoint = context.checkpoints[-1]
-            if last_checkpoint.tool_id in chain:
-                start_index = chain.index(last_checkpoint.tool_id) + 1
-                current_data = last_checkpoint.output
-                print(f"Resuming from checkpoint: {last_checkpoint.tool_id}")
-        
-        for i in range(start_index, len(chain)):
-            tool_id = chain[i]
-            tool = self.get_tool(tool_id)
-            retry_policy = tool.retry_policy
-            
-            for attempt in range(retry_policy.max_retries):
-                try:
-                    result = tool.process(current_data, context=context)
-                    context.checkpoint(tool_id, result.data)
-                    break
-                except Exception as e:
-                    if retry_policy.should_retry(e) and attempt < retry_policy.max_retries - 1:
-                        wait_time = retry_policy.get_wait_time(attempt)
-                        print(f"Retrying {tool_id} in {wait_time}s...")
-                        time.sleep(wait_time)
-                    else:
-                        raise  # Fail fast for non-retryable or max attempts
-```
-
-**Evidence Required**: `evidence/current/Evidence_PHASE2_ErrorRecovery.md`
-- Show retry working for transient errors
-- Show fail-fast for permanent errors
-- Checkpoint resume after failure
-
----
-
-### Task 6: Integration & Migration (Day 8)
-
-Create migration guide for existing 38 tools:
-
-**File**: `src/tools/composition/migration/audit_tools.py`
-
-```python
-import ast
-import inspect
+import statistics
 from pathlib import Path
-from typing import Dict, List, Any
 
-def audit_existing_tools() -> Dict[str, Any]:
-    """Audit all 38 existing tools and map to semantic types"""
-    tools_to_audit = [
-        "src/tools/phase2/t23c_llm_extractor.py",
-        "src/tools/phase3/t31_entity_builder.py",
-        "src/tools/phase3/t34_validator.py",
-        # ... all 38 tools
-    ]
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from poc.registry import ToolRegistry
+from poc.tools.text_loader import TextLoader
+from poc.tools.entity_extractor import EntityExtractor
+from poc.tools.graph_builder import GraphBuilder
+from poc.data_types import DataType, DataSchema
+
+def measure_direct_api_calls(test_content: str, iterations: int = 10):
+    """Measure performance of direct API calls without framework"""
+    import litellm
+    from neo4j import GraphDatabase
     
-    results = {}
-    for tool_path in tools_to_audit:
-        path = Path(tool_path)
-        if not path.exists():
-            results[tool_path] = {"error": "File not found"}
-            continue
-            
-        with open(path) as f:
-            tree = ast.parse(f.read())
+    times = []
+    for i in range(iterations):
+        start = time.perf_counter()
         
-        # Analyze tool
-        tool_info = {
-            "classes": [],
-            "input_types": [],
-            "output_types": [],
-            "dependencies": [],
-            "boundary_issues": [],
-            "migration_difficulty": "unknown"
-        }
+        # Direct Gemini call
+        response = litellm.completion(
+            model="gemini/gemini-2.0-flash-exp",
+            messages=[{
+                "role": "user", 
+                "content": f"Extract entities from: {test_content}"
+            }],
+            max_tokens=1000
+        )
         
-        # Extract class definitions
-        for node in ast.walk(tree):
-            if isinstance(node, ast.ClassDef):
-                tool_info["classes"].append(node.name)
-            elif isinstance(node, ast.Import):
-                for alias in node.names:
-                    tool_info["dependencies"].append(alias.name)
+        # Direct Neo4j write
+        driver = GraphDatabase.driver(
+            "bolt://localhost:7687",
+            auth=("neo4j", "devpassword")
+        )
+        with driver.session() as session:
+            session.run("CREATE (n:TestEntity {text: $text})", text="test")
+        driver.close()
         
-        # Determine migration plan
-        if "t31" in tool_path or "t34" in tool_path:
-            tool_info["boundary_issues"].append("Should be internal to t23c")
-            tool_info["migration_difficulty"] = "merge_required"
-        
-        results[tool_path] = tool_info
+        duration = time.perf_counter() - start
+        times.append(duration)
+        print(f"  Direct iteration {i+1}: {duration:.3f}s")
     
-    return results
+    return times
+
+def measure_framework_calls(test_file: str, iterations: int = 10):
+    """Measure performance through framework"""
+    registry = ToolRegistry()
+    registry.register(TextLoader())
+    registry.register(EntityExtractor())
+    registry.register(GraphBuilder())
+    
+    times = []
+    for i in range(iterations):
+        file_data = DataSchema.FileData(
+            path=test_file,
+            size_bytes=os.path.getsize(test_file),
+            mime_type="text/plain"
+        )
+        
+        chains = registry.find_chains(DataType.FILE, DataType.GRAPH)
+        chain = chains[0]
+        
+        start = time.perf_counter()
+        current_data = file_data
+        for tool_id in chain:
+            tool = registry.tools[tool_id]
+            result = tool.process(current_data)
+            if not result.success:
+                raise RuntimeError(f"Tool {tool_id} failed")
+            current_data = result.data
+        
+        duration = time.perf_counter() - start
+        times.append(duration)
+        print(f"  Framework iteration {i+1}: {duration:.3f}s")
+    
+    return times
+
+def main():
+    # Test content
+    test_content = "John Smith is the CEO of TechCorp in San Francisco."
+    test_file = "/tmp/perf_test.txt"
+    with open(test_file, 'w') as f:
+        f.write(test_content)
+    
+    print("Performance Validation")
+    print("=" * 50)
+    
+    print("\nDirect API Calls (10 iterations):")
+    direct_times = measure_direct_api_calls(test_content)
+    
+    print("\nFramework Calls (10 iterations):")
+    framework_times = measure_framework_calls(test_file)
+    
+    # Analysis
+    direct_mean = statistics.mean(direct_times)
+    framework_mean = statistics.mean(framework_times)
+    overhead = ((framework_mean - direct_mean) / direct_mean) * 100
+    
+    print("\n" + "=" * 50)
+    print("Results:")
+    print(f"Direct mean: {direct_mean:.3f}s")
+    print(f"Framework mean: {framework_mean:.3f}s")
+    print(f"Overhead: {overhead:.1f}%")
+    
+    if overhead < 20:
+        print(f"✅ PASS: Overhead {overhead:.1f}% is below 20% threshold")
+    else:
+        print(f"❌ FAIL: Overhead {overhead:.1f}% exceeds 20% threshold")
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Evidence Required**: `evidence/current/Evidence_PHASE2_Migration.md`
-- Audit results for all 38 tools
-- Type mapping decisions
-- Tools that need merging/splitting
-- Migration timeline
+**Evidence Required**: Create `evidence/current/Evidence_Phase2_Performance.md`
+- Show 10 iterations of timing data
+- Calculate mean, median, std deviation
+- Compare framework vs direct API calls
+- Determine if <20% overhead requirement is met
 
-## 5. Testing Protocol
+### Task 4: Large Document Test (30 minutes)
 
-Every component needs:
-1. Unit tests (test-first development)
-2. Integration tests with real services
-3. Performance benchmarks
-4. Failure scenario tests
+**PREREQUISITE**: Task 2 must complete successfully
 
+Create and test with progressively larger documents to find limits.
+
+**File**: Create `/tool_compatability/poc/test_large_documents.py`
+
+Test with:
+- 1KB document
+- 100KB document  
+- 1MB document
+- 10MB document
+
+**Evidence Required**: Create `evidence/current/Evidence_Phase2_LargeFiles.md`
+- Document maximum size successfully processed
+- Show memory usage for each size
+- Include any failure messages
+
+### Task 5: Final Decision (30 minutes)
+
+**File**: Create `evidence/current/Evidence_Phase2_Decision.md`
+
+Template:
+```markdown
+# Phase 2 Final Decision
+
+## Environment Status
+- Neo4j: [✅/❌] [details from Task 1]
+- Gemini API: [✅/❌] [details from Task 1]
+
+## Test Results
+| Test | Target | Actual | Pass |
+|------|--------|--------|------|
+| Full chain execution | Works | [result] | [✅/❌] |
+| Performance overhead | <20% | [value]% | [✅/❌] |
+| 10MB document | Processes | [result] | [✅/❌] |
+| No memory leaks | 0MB growth | [value]MB | [✅/❌] |
+
+## Evidence References
+- Environment: Evidence_Phase2_Environment.md
+- Full chain: Evidence_Phase2_FullChain.md
+- Performance: Evidence_Phase2_Performance.md
+- Large files: Evidence_Phase2_LargeFiles.md
+
+## Decision: [GO/NO-GO/BLOCKED]
+
+### Rationale
+[Evidence-based rationale for decision]
+
+### If BLOCKED
+[Specific steps needed to unblock]
+
+### If GO
+[Next steps for production migration]
+```
+
+---
+
+## 4. Setup Instructions
+
+### Neo4j Setup
 ```bash
-# Run all Phase 2 tests
-cd /home/brian/projects/Digimons
-python -m pytest src/tools/composition/tests/ -v
+# Check if running
+docker ps | grep neo4j
 
-# Verify no mocks
-grep -r "mock" src/tools/composition/ --include="*.py"
-# Should return nothing except comments
+# If not running, start it
+docker run -d --name neo4j \
+  -p 7687:7687 -p 7474:7474 \
+  -e NEO4J_AUTH=neo4j/devpassword \
+  neo4j:latest
+
+# Wait for startup (30 seconds)
+sleep 30
+
+# Verify connection
+docker logs neo4j | grep "Started"
 ```
 
----
-
-## 6. Daily Checklist
-
-### Day 1-2: Type Registry
-- [ ] Create type_registry.py with plugin support
-- [ ] Implement schema namespaces
-- [ ] Test Neo4j label integration
-- [ ] Generate Evidence_PHASE2_TypeRegistry.md
-
-### Day 3-4: Pipeline Context
-- [ ] Create pipeline_context.py
-- [ ] Implement checkpointing
-- [ ] Test recovery scenarios
-- [ ] Generate Evidence_PHASE2_PipelineContext.md
-
-### Day 5: Chain Selection
-- [ ] Create chain_selector.py
-- [ ] Implement all 5 strategies
-- [ ] Test with real Gemini API
-- [ ] Generate Evidence_PHASE2_ChainSelector.md
-
-### Day 6: Resource Management
-- [ ] Create connection pool
-- [ ] Implement rate limiter
-- [ ] Add caching layer
-- [ ] Generate Evidence_PHASE2_Resources.md
-
-### Day 7: Error Recovery
-- [ ] Create retry_policy.py
-- [ ] Test transient vs permanent failures
-- [ ] Implement checkpoint resume
-- [ ] Generate Evidence_PHASE2_ErrorRecovery.md
-
-### Day 8: Migration Planning
-- [ ] Audit all 38 tools
-- [ ] Map to semantic types
-- [ ] Identify merge/split candidates
-- [ ] Generate Evidence_PHASE2_Migration.md
-
----
-
-## 7. Success Criteria
-
-Phase 2 succeeds if:
-- ✓ Type registry with plugins works
-- ✓ Schema namespaces integrate with Neo4j
-- ✓ Pipeline context enables stateful execution
-- ✓ Chain selection supports all 5 strategies
-- ✓ Resource management prevents overload
-- ✓ Error recovery handles transient failures
-- ✓ Migration path clear for 38 tools
-
-## 8. Environment Requirements
-
+### Gemini API Setup
+1. Visit https://makersuite.google.com/app/apikey
+2. Click "Create API Key"
+3. Copy the key
+4. Export it:
 ```bash
-# Required environment variables
-export GEMINI_API_KEY="your-key-here"
-export NEO4J_URI="bolt://localhost:7687"
-export NEO4J_USER="neo4j"
-export NEO4J_PASSWORD="devpassword"
+export GEMINI_API_KEY='your-key-here'
+# Verify
+echo $GEMINI_API_KEY
+```
 
-# Required services
-docker ps | grep neo4j  # Must be running
-
-# Python requirements
-pip install litellm neo4j pydantic networkx pytest
+### Python Dependencies
+```bash
+pip install litellm neo4j pydantic networkx psutil
 ```
 
 ---
 
-## 9. Architecture Decisions from Phase 1 Analysis
+## 5. Success Criteria
 
-Based on Phase 1 learnings, these decisions are made:
+**Phase 2 completes successfully if**:
+- ✓ All three tools work with real services
+- ✓ Full chain executes FILE → TEXT → ENTITIES → GRAPH
+- ✓ Performance overhead <20% with real operations
+- ✓ Can process 10MB documents
+- ✓ No memory leaks over 10 iterations
 
-1. **Schema Namespaces**: Use Neo4j labels for ontology (e.g., `:Entity:Military`)
-2. **LLM Chain Selection**: Let agents handle complex selection with metadata hints
-3. **Pipeline Context**: Implement stateful execution with checkpoints
-4. **Plugin System**: Most flexible for type extensibility
-5. **Tool Granularity**: Support merge/split/wrap patterns with ToolComposer
-6. **Smart Retry**: Only for transient errors, fail-fast for permanent
+**Phase 2 fails if**:
+- ✗ Cannot connect to required services
+- ✗ Performance overhead >50% with real operations
+- ✗ Cannot process 5MB documents
+- ✗ Memory leaks detected
 
-## 10. Key Learnings from Phase 1
+---
 
-### What Works
-- Type-based composition with ~10 semantic types
-- Automatic chain discovery via NetworkX
-- Performance overhead <5% with real services
-- Fail-fast philosophy prevents hidden failures
+## 6. Timeline
 
-### Remaining Challenges
-- Schema compatibility between tools
-- State management across chains
-- Resource management at scale
-- Migration of 38 existing tools
+**Total Time Required**: ~4 hours
+
+| Task | Time | Dependencies |
+|------|------|--------------|
+| Environment setup | 30 min | Docker, API key |
+| Full chain test | 1 hour | Services ready |
+| Performance validation | 1 hour | Chain working |
+| Large document test | 30 min | Chain working |
+| Final decision | 30 min | All tests complete |
+
+---
+
+## 7. Common Issues & Solutions
+
+### Neo4j Connection Refused
+```bash
+# Check if container exists
+docker ps -a | grep neo4j
+
+# Remove old container if exists
+docker rm -f neo4j
+
+# Start fresh
+docker run -d --name neo4j \
+  -p 7687:7687 -p 7474:7474 \
+  -e NEO4J_AUTH=neo4j/devpassword \
+  neo4j:latest
+```
+
+### Gemini API Error
+```bash
+# Verify key is set
+echo $GEMINI_API_KEY
+
+# Test with curl
+curl -H "Content-Type: application/json" \
+     -H "x-goog-api-key: $GEMINI_API_KEY" \
+     -X POST \
+     -d '{"contents":[{"parts":[{"text":"Hello"}]}]}' \
+     "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+```
+
+---
+
+## 8. Next Steps After Phase 2
+
+**If Phase 2 succeeds (GO)**:
+- Phase 3: Migrate high-value tools (T23C, T31, T34)
+- Phase 4: Migrate remaining 35 tools
+- Phase 5: Deprecate old system
+
+**If Phase 2 blocked**:
+- Document specific blockers
+- Estimate time to resolve
+- Consider alternative services (OpenAI, PostgreSQL)
+
+**If Phase 2 fails**:
+- Analyze root cause
+- Consider architectural changes
+- Document lessons learned
 
 ---
 
 *Last Updated: 2025-01-25*
-*Phase 1: COMPLETED ✅*
-*Phase 2 Timeline: 8 days from start*
-*Migration to follow after Phase 2 validation*
+*Current Phase: 2 - Service Integration Validation*
+*Phase 1 Status: Complete (Architecture Validated)*
+*Phase 2 Status: Not Started - Awaiting Service Setup*
