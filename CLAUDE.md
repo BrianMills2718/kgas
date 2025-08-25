@@ -1,528 +1,398 @@
-# Type-Based Tool Composition - Phase 1 Fix & Validation
+# PhD Tool Composition System - Implementation Phase
 
 ## 1. Coding Philosophy (MANDATORY)
 
 ### Core Principles
 - **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
 - **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
-- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files  
+- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
 - **TEST DRIVEN DESIGN**: Write tests first where possible
 
 ### Evidence Requirements
 ```
 evidence/
 ├── current/
-│   └── Evidence_Phase1_Fix_[Task].md   # Current fixes only
+│   └── Evidence_Week1_[Task].md   # Current week only
 ├── completed/
-│   └── Evidence_POC_*.md              # Previous attempts (DO NOT MODIFY)
+│   └── Evidence_POC_*.md          # Previous POC phase (DO NOT MODIFY)
 ```
 
 **CRITICAL**: 
 - Raw execution logs required (copy-paste terminal output)
 - No success claims without showing actual execution
 - Mark all untested components as "NOT TESTED"
+- Test the 50MB PDF scenario to expose issues
 
 ---
 
 ## 2. Codebase Structure
 
 ### Key Entry Points
-- `/tool_compatability/poc/demo.py` - Main demonstration script
-- `/tool_compatability/poc/benchmark.py` - Performance testing
-- `/tool_compatability/poc/verify_environment.py` - Service verification (TO CREATE)
+- `/tool_compatability/poc/` - Main POC directory
+- `/tool_compatability/poc/demo.py` - Basic demonstration
+- `/tool_compatability/poc/test_full_chain.py` - Full chain test with Gemini
 
-### Module Organization
+### Core Modules
 ```
 tool_compatability/poc/
-├── base_tool.py          # Base class - metrics, fail-fast
-├── data_types.py         # 10 semantic types (FILE, TEXT, ENTITIES, etc.)
-├── registry.py           # Tool registry with NetworkX chain discovery
+├── base_tool.py          # Base class - needs multi-input support
+├── data_types.py         # 10 types - needs schema versioning
+├── registry.py           # Tool registry - works but needs semantic types
 ├── tools/
-│   ├── text_loader.py    # ✅ TESTED: FILE → TEXT
-│   ├── entity_extractor.py # ✅ NOW WORKING: TEXT → ENTITIES (Gemini API key in .env)
-│   └── graph_builder.py  # ✅ TESTED: ENTITIES → GRAPH (Neo4j working)
+│   ├── text_loader.py    # ✅ Working
+│   ├── entity_extractor.py # ✅ Working with Gemini API
+│   └── graph_builder.py  # ✅ Working with Neo4j
 └── tests/
-    ├── test_recovery.py  # ✅ FIXED: Runs successfully
-    ├── test_schema.py    # ✅ FIXED: Runs successfully
-    └── benchmark.py      # ✅ FIXED: Runs successfully
+    └── test_critical_issues.py # TO CREATE - Test 50MB PDF scenario
 ```
+
+### Planning Documents
+- `/tool_compatability/poc/CRITICAL_ISSUES_POC_PLAN.md` - Detailed fixes for 5 issues
+- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 12-week research plan
+- `/tool_compatability/METHODICAL_IMPLEMENTATION_PLAN.md` - Week-by-week breakdown
 
 ### Integration Points
-- **Gemini API**: via `litellm` in EntityExtractor
-  - **IMPORTANT**: API key available in `/home/brian/projects/Digimons/.env`
-  - EntityExtractor now auto-loads from .env file via python-dotenv
-  - No need to export GEMINI_API_KEY manually
-- **Neo4j**: via `neo4j-driver` in GraphBuilder (Docker container running)
-- **No ResourceOrchestrator** in this POC (different project component)
+- **Gemini API**: Key in `.env` file, auto-loaded via python-dotenv
+- **Neo4j**: Docker container at bolt://localhost:7687
+- **No ResourceOrchestrator** in POC (different project component)
 
 ---
 
-## 3. Related Documentation & Planning Files
+## 3. Current Status
 
-### POC Planning Documents
-- `/tool_compatability/poc/README.md` - Original POC design and rationale
-- `/tool_compatability/poc/IMPLEMENTATION_CHECKLIST.md` - Detailed implementation tasks
-- `/tool_compatability/PROOF_OF_CONCEPT_PLAN.md` - 8-day POC timeline
-- `/tool_compatability/DECISION_DOCUMENT.md` - Why type-based approach chosen
+### What Works
+- ✅ Basic chain: FILE → TEXT → ENTITIES → GRAPH
+- ✅ Type-based composition proven
+- ✅ Automatic chain discovery functional
+- ✅ All 3 tools execute successfully
 
-### Background & Analysis
-- `/tool_compatability/the_real_problem.md` - Root cause analysis of tool incompatibility
-- `/tool_compatability/tool_refactoring_overview.md` - Previous refactoring attempts
-- `/tool_compatability/ACCURATE_TOOL_INVENTORY.md` - Complete inventory of 38 tools
-- `/tool_compatability/tool_disposition_plan.md` - Migration strategy for existing tools
-
-### Previous Evidence (Completed)
-- `/evidence/completed/Evidence_POC_Registry.md` - Registry implementation
-- `/evidence/completed/Evidence_POC_Tools.md` - Tool implementations
-- `/evidence/completed/Evidence_POC_Integration.md` - Integration testing
-- `/evidence/completed/Evidence_POC_EdgeCases.md` - Edge case testing
-- `/evidence/completed/Evidence_POC_Performance.md` - Performance analysis
-- `/evidence/completed/Evidence_POC_Decision.md` - Phase 1 decision (conditional)
-
-### Related Systems
-- `/src/tools/phase2/t23c_llm_extractor.py` - Existing LLM extraction tool
-- `/src/pipeline/kgas_pipeline.py` - KGAS pipeline implementation
-- `/evidence/completed/DOUBLECHECK_KGAS_IMPLEMENTATION.md` - KGAS validation
+### Critical Issues Identified (Must Fix)
+1. **No Multi-Input Support** - Can't pass ontology to EntityExtractor
+2. **No Schema Versioning** - Changing Entity breaks everything
+3. **No Memory Management** - 50MB PDF will cause OOM
+4. **No Semantic Types** - Can't distinguish social vs chemical graphs
+5. **No State Management** - Partial failures leave Neo4j inconsistent
 
 ---
 
-## 4. Current Status: INCOMPLETE
+## 4. Week 1 Tasks: Fix Critical Issues
 
-### What Actually Works
-- ✅ TextLoader processes files
-- ✅ Registry finds chains
-- ✅ Basic framework structure
+### Day 1: Multi-Input Support (PRIORITY 1)
 
-### What's Broken
-- ❌ EntityExtractor never tested
-- ❌ GraphBuilder never tested
-- ❌ Full chain never executed
-- ❌ 3 test files have errors
-- ❌ Performance criteria failed (101% > 20%)
+#### Context
+Tools need multiple inputs (text + ontology + config), but current system only supports single input/output.
 
-### Critical Errors to Fix
-1. `test_recovery.py`: Multiple `AttributeError: property 'tool_id' of 'X' object has no setter`
-2. `test_schema.py:57-73`: `PydanticUserError: A non-annotated attribute was detected: Enum`
-3. `benchmark.py:301`: `StatisticsError: mean requires at least one data point`
+#### Implementation Tasks
 
----
-
-## 5. Task 1: Fix Code Errors (30 minutes)
-
-### Fix 1.1: tool_id Property Errors
-
-**File**: `/tool_compatability/poc/tests/test_recovery.py`
-
-**Find and remove these lines**:
+**Task 1.1: Create ToolContext** (2 hours)
 ```python
-# Line 268: Remove this
-failing_extractor.tool_id = "FailingEntityExtractor"
+# File: /tool_compatability/poc/tool_context.py
+from typing import Dict, Any
+from pydantic import BaseModel
 
-# Line 353: Remove this
-exhausted_tool.tool_id = "ResourceExhaustedTool"  
-
-# Line 408: Remove this
-tool.tool_id = "StateTracker"
-
-# Line 435: Remove this
-tool.tool_id = "StateTracker"
+class ToolContext(BaseModel):
+    """Carries primary data and auxiliary inputs through chain"""
+    primary_data: Any  # Main data flowing through
+    parameters: Dict[str, Dict[str, Any]] = {}  # Tool-specific params
+    shared_context: Dict[str, Any] = {}  # Shared across all tools
+    
+    def get_param(self, tool_id: str, param_name: str, default=None):
+        return self.parameters.get(tool_id, {}).get(param_name, default)
+    
+    def set_param(self, tool_id: str, param_name: str, value: Any):
+        if tool_id not in self.parameters:
+            self.parameters[tool_id] = {}
+        self.parameters[tool_id][param_name] = value
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_CodeErrors.md`
+**Task 1.2: Update BaseTool** (2 hours)
+- Modify `base_tool.py` to accept ToolContext
+- Keep backward compatibility
+- Update process() signature
+
+**Task 1.3: Test Multi-Input** (1 hour)
+```python
+# File: /tool_compatability/poc/tests/test_multi_input.py
+def test_entity_extraction_with_ontology():
+    """Prove we can pass custom ontology"""
+    context = ToolContext()
+    context.primary_data = TextData(content="John works at Apple")
+    context.set_param("EntityExtractor", "ontology", {
+        "PERSON": ["name", "role"],
+        "COMPANY": ["name", "industry"]
+    })
+    
+    extractor = EntityExtractorV2()
+    result = extractor.process(context)
+    
+    # Evidence: Show ontology was used
+    assert "ontology" in extractor.last_prompt  # Capture prompt for evidence
+    print(f"Entities found: {result.primary_data.entities}")
+```
+
+**Evidence Required**: `evidence/current/Evidence_Week1_MultiInput.md`
 ```bash
-# Show the test now runs
-python3 tests/test_recovery.py
-# Paste full output including any remaining errors
+# Run test and capture output
+python3 tests/test_multi_input.py
+# Show that custom ontology affected extraction
+# Include the actual prompt sent to Gemini
 ```
 
-### Fix 1.2: Pydantic Enum Error
+### Day 2: Schema Versioning
 
-**File**: `/tool_compatability/poc/tests/test_schema.py`
+#### Context
+When Entity schema changes, all tools break. Need migration system.
 
-**Replace lines 57-73** with:
+#### Implementation Tasks
+
+**Task 2.1: Create Versioned Schemas** (2 hours)
 ```python
-from enum import Enum
-
-# Define Enum outside of class
-class EntityTypeV4(str, Enum):
-    PERSON = "PERSON"
-    ORG = "ORG"
-    LOCATION = "LOCATION"
-    OTHER = "OTHER"
-
-class EntityV4(BaseModel):
-    """V4: Made type an enum, added timestamp"""
+# File: /tool_compatability/poc/schema_versions.py
+class EntityV1(BaseModel):
+    """Version 1.0.0"""
+    _version = "1.0.0"
     id: str
     text: str
-    type: EntityTypeV4  # Use the external Enum
-    score: float
-    metadata: Dict[str, Any] = Field(default_factory=dict)
-    source_doc: Optional[str] = None
-    extracted_at: datetime = Field(default_factory=datetime.now)
+    type: str
+
+class EntityV2(BaseModel):
+    """Version 2.0.0 - Added confidence"""
+    _version = "2.0.0"
+    id: str
+    text: str
+    type: str
+    confidence: float = 0.5
 ```
 
-**Also fix lines 104-112** - Replace `EntityV4.EntityType` with `EntityTypeV4`
-
-### Fix 1.3: Empty Statistics List
-
-**File**: `/tool_compatability/poc/benchmark.py`
-
-**Replace lines 299-310** with:
+**Task 2.2: Migration System** (2 hours)
 ```python
-# Benchmark compatibility checking
-times_compat = []
-
-# Try to test compatibility between different types
-if tool_ids:  # Only if we have tools
-    for _ in range(1000):  # Reduce iterations
-        start = time.perf_counter()
-        # Just test first tool with itself
-        _ = registry.can_connect(tool_ids[0], tool_ids[0])
-        times_compat.append(time.perf_counter() - start)
-
-# Only calculate if we have data
-if times_compat:
-    compat_time = statistics.mean(times_compat) * 1_000_000
-else:
-    compat_time = 0.0  # No data available
-
-results = {
-    "tool_lookup_us": statistics.mean(times_lookup) * 1_000_000 if times_lookup else 0,
-    "chain_discovery_us": statistics.mean(times_chain) * 1_000_000 if times_chain else 0,
-    "compatibility_check_us": compat_time
-}
+# File: /tool_compatability/poc/migrations.py
+class SchemaMigrator:
+    @classmethod
+    def migrate_v1_to_v2(cls, entity: EntityV1) -> EntityV2:
+        return EntityV2(..., confidence=0.5)  # Default value
 ```
+
+**Task 2.3: Test Migration Chain** (1 hour)
+- Create V1 entity
+- Migrate to V2, then V3
+- Verify data preserved
+
+**Evidence Required**: `evidence/current/Evidence_Week1_SchemaVersioning.md`
+
+### Day 3: Memory Management
+
+#### Context
+50MB PDFs cause OOM. Need streaming/references.
+
+#### Implementation Tasks
+
+**Task 3.1: Create DataReference** (2 hours)
+```python
+# File: /tool_compatability/poc/data_references.py
+class DataReference(BaseModel):
+    storage_type: str  # "filesystem", "s3"
+    location: str
+    size_bytes: int
+    
+    def stream(self, chunk_size=1024*1024):
+        """Stream data in chunks"""
+        with open(self.location, 'rb') as f:
+            while chunk := f.read(chunk_size):
+                yield chunk
+```
+
+**Task 3.2: Test 50MB PDF** (3 hours)
+```python
+# File: /tool_compatability/poc/tests/test_50mb_pdf.py
+def test_large_pdf_processing():
+    """THIS TEST MUST FAIL FIRST, THEN PASS AFTER FIX"""
+    
+    # Create 50MB test PDF
+    create_large_pdf("/tmp/test_50mb.pdf", size_mb=50)
+    
+    # Try current approach (WILL FAIL WITH OOM)
+    try:
+        loader = TextLoader()
+        result = loader.process(FileData(path="/tmp/test_50mb.pdf"))
+        print("ERROR: Should have failed with OOM!")
+    except MemoryError as e:
+        print(f"✅ Expected failure: {e}")
+    
+    # Try streaming approach (SHOULD WORK)
+    loader_v2 = StreamingTextLoader()
+    result = loader_v2.process(FileData(path="/tmp/test_50mb.pdf"))
+    assert result.reference is not None  # Using reference, not embedded
+    print("✅ 50MB PDF processed via streaming")
+```
+
+**Evidence Required**: `evidence/current/Evidence_Week1_MemoryManagement.md`
+- Show OOM error with current approach
+- Show successful processing with streaming
+- Include memory usage stats
+
+### Day 4: Semantic Compatibility
+
+#### Context
+Type matching isn't enough - social graphs ≠ chemical graphs.
+
+#### Implementation Tasks
+
+**Task 4.1: Create SemanticType** (2 hours)
+```python
+# File: /tool_compatability/poc/semantic_types.py
+class SemanticType(BaseModel):
+    base_type: DataType  # GRAPH
+    domain: str  # "social", "chemical"
+    
+    def is_compatible_with(self, other):
+        return self.base_type == other.base_type and \
+               self.domain == other.domain
+```
+
+**Task 4.2: Test Incompatibility** (1 hour)
+- Create SocialGraphExtractor (outputs social graph)
+- Create ChemicalAnalyzer (expects chemical graph)
+- Verify they're rejected as incompatible
+
+**Evidence Required**: `evidence/current/Evidence_Week1_SemanticTypes.md`
+
+### Day 5: State Management
+
+#### Context
+Failures leave partial data in Neo4j. Need transactions.
+
+#### Implementation Tasks
+
+**Task 5.1: Transactional Executor** (3 hours)
+```python
+# File: /tool_compatability/poc/transactions.py
+class TransactionalExecutor:
+    def execute_with_rollback(self, chain, context):
+        completed = []
+        try:
+            for tool in chain:
+                result = tool.process(context)
+                completed.append((tool, result))
+            return result
+        except Exception as e:
+            # Rollback in reverse order
+            for tool, result in reversed(completed):
+                tool.rollback(result)
+            raise e
+```
+
+**Task 5.2: Test Rollback** (2 hours)
+- Execute chain that fails at GraphBuilder
+- Verify Neo4j was cleaned up
+- Check no partial data remains
+
+**Evidence Required**: `evidence/current/Evidence_Week1_StateManagement.md`
 
 ---
 
-## 6. Task 2: Environment Verification (10 minutes)
+## 5. Integration Test (End of Week 1)
 
-### Create Verification Script
-
-**File**: Create `/tool_compatability/poc/verify_environment.py`
+### The Complete Scenario Test
 
 ```python
-#!/usr/bin/env python3
-"""Verify which services are available for testing"""
-
-import os
-import sys
-
-def check_neo4j():
-    """Check if Neo4j is accessible"""
-    try:
-        from neo4j import GraphDatabase
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687",
-            auth=("neo4j", "devpassword")
-        )
-        driver.verify_connectivity()
-        driver.close()
-        return True, "Connected to Neo4j"
-    except Exception as e:
-        return False, str(e)
-
-def check_gemini():
-    """Check if Gemini API is accessible"""
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        return False, "GEMINI_API_KEY not set"
-    
-    try:
-        import litellm
-        response = litellm.completion(
-            model="gemini/gemini-2.0-flash-exp",
-            messages=[{"role": "user", "content": "test"}],
-            max_tokens=5
-        )
-        return True, "Gemini API working"
-    except Exception as e:
-        return False, str(e)
-
-def main():
-    print("="*60)
-    print("ENVIRONMENT VERIFICATION")
-    print("="*60)
-    
-    neo4j_ok, neo4j_msg = check_neo4j()
-    print(f"Neo4j:  {'✅' if neo4j_ok else '❌'} {neo4j_msg}")
-    
-    gemini_ok, gemini_msg = check_gemini()
-    print(f"Gemini: {'✅' if gemini_ok else '❌'} {gemini_msg}")
-    
-    print("="*60)
-    
-    if neo4j_ok and gemini_ok:
-        print("Status: READY for full testing")
-        print("Next: Run test_full_chain.py")
-    elif neo4j_ok or gemini_ok:
-        print("Status: PARTIAL testing possible")
-        print("Next: Test available components only")
-    else:
-        print("Status: BLOCKED - No services available")
-        print("\nTo setup Neo4j:")
-        print("  docker run -d --name neo4j -p 7687:7687 \\")
-        print("    -e NEO4J_AUTH=neo4j/devpassword neo4j:latest")
-        print("\nTo setup Gemini:")
-        print("  1. Visit https://makersuite.google.com/app/apikey")
-        print("  2. export GEMINI_API_KEY='your-key'")
-    
-    return 0 if (neo4j_ok and gemini_ok) else 1
-
-if __name__ == "__main__":
-    sys.exit(main())
-```
-
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_Environment.md`
-```bash
-python3 verify_environment.py
-# Paste COMPLETE output showing which services are available
-```
-
----
-
-## 7. Task 3: Test What's Available (1-2 hours)
-
-### Path A: If BOTH Services Available
-
-**File**: Create `/tool_compatability/poc/test_full_chain.py`
-
-```python
-#!/usr/bin/env python3
-"""Test the complete chain with real services"""
-
-import os
-import sys
-import time
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from poc.registry import ToolRegistry
-from poc.tools.text_loader import TextLoader
-from poc.tools.entity_extractor import EntityExtractor
-from poc.tools.graph_builder import GraphBuilder
-from poc.data_types import DataType, DataSchema
-
-def test_chain():
-    print("="*60)
-    print("FULL CHAIN TEST")
-    print("="*60)
-    
-    # Test document
-    test_content = """
-    John Smith is the CEO of TechCorp in San Francisco.
-    The company raised $10M from Venture Partners.
+# File: /tool_compatability/poc/tests/test_complete_scenario.py
+def test_all_critical_issues_resolved():
+    """
+    The ultimate test combining all fixes:
+    1. Load 50MB PDF (memory management)
+    2. Extract with custom ontology (multi-input)
+    3. Handle schema migration (versioning)
+    4. Check semantic compatibility (semantic types)
+    5. Rollback on failure (transactions)
     """
     
-    test_file = "/tmp/test_chain.txt"
-    with open(test_file, 'w') as f:
-        f.write(test_content)
-    
-    # Setup
-    registry = ToolRegistry()
-    registry.register(TextLoader())
-    registry.register(EntityExtractor())  # Will fail without GEMINI_API_KEY
-    registry.register(GraphBuilder())     # Will fail without Neo4j
-    
-    # Find chain
-    chains = registry.find_chains(DataType.FILE, DataType.GRAPH)
-    if not chains:
-        print("❌ No chain found")
-        return False
-    
-    print(f"Chain: {' → '.join(chains[0])}")
-    
-    # Execute
-    file_data = DataSchema.FileData(
-        path=test_file,
-        size_bytes=os.path.getsize(test_file),
-        mime_type="text/plain"
-    )
-    
-    current_data = file_data
-    for tool_id in chains[0]:
-        tool = registry.tools[tool_id]
-        print(f"\nExecuting {tool_id}...")
-        
-        start = time.perf_counter()
-        result = tool.process(current_data)
-        duration = time.perf_counter() - start
-        
-        if not result.success:
-            print(f"  ❌ Failed: {result.error}")
-            return False
-        
-        print(f"  ✅ Success in {duration:.3f}s")
-        
-        # Show results
-        if hasattr(result.data, 'content'):
-            print(f"  Content: {result.data.content[:50]}...")
-        elif hasattr(result.data, 'entities'):
-            print(f"  Entities: {len(result.data.entities)}")
-            for e in result.data.entities[:3]:
-                print(f"    - {e.text} ({e.type})")
-        elif hasattr(result.data, 'node_count'):
-            print(f"  Graph: {result.data.node_count} nodes, {result.data.edge_count} edges")
-        
-        current_data = result.data
-    
-    print("\n" + "="*60)
-    print("✅ FULL CHAIN SUCCESSFUL")
-    return True
-
-if __name__ == "__main__":
-    success = test_chain()
-    sys.exit(0 if success else 1)
+    # This test MUST work after all fixes
+    # Document each step with evidence
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_FullChain.md`
+**Evidence Required**: `evidence/current/Evidence_Week1_Integration.md`
+
+---
+
+## 6. Success Criteria
+
+### Each Day Must Produce:
+1. Working code (no mocks/stubs)
+2. Test that proves it works
+3. Evidence file with execution logs
+4. Clear documentation of issues found
+
+### Week 1 Complete When:
+- [ ] 50MB PDF processes without OOM
+- [ ] Custom ontology affects extraction
+- [ ] Schema migrations work V1→V2→V3
+- [ ] Incompatible semantic types rejected
+- [ ] Failed operations roll back cleanly
+
+---
+
+## 7. Common Issues & Solutions
+
+### If Gemini API fails:
 ```bash
-python3 test_full_chain.py
-# Paste COMPLETE output including all tool executions and timings
+# Check API key loaded
+python3 -c "import os; print(os.getenv('GEMINI_API_KEY')[:10])"
+# Should show: AIzaSyDXaL...
 ```
 
-### Path B: If Only TextLoader Works
-
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_TextLoaderOnly.md`
+### If Neo4j connection fails:
 ```bash
-python3 demo.py
-# Paste output showing TextLoader works
-
-python3 benchmark.py
-# Paste performance results
+# Check Docker running
+docker ps | grep neo4j
+# Restart if needed
+docker restart neo4j
 ```
 
-### Path C: If Nothing Works
-
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_Blocked.md`
-```
-Document exact errors when trying to:
-1. Start Neo4j
-2. Set GEMINI_API_KEY
-3. Run any tests
+### If OOM occurs:
+```bash
+# Monitor memory during test
+watch -n 1 free -h
+# In another terminal, run test
 ```
 
 ---
 
-## 8. Task 4: Performance Validation (30 minutes)
+## 8. Daily Workflow
 
-**Only if Task 3 Path A succeeded**
+### Morning:
+1. Read today's tasks in CLAUDE.md
+2. Write test FIRST (TDD)
+3. Run test, see it fail
+4. Implement solution
+5. Run test, see it pass
 
-**File**: Create `/tool_compatability/poc/validate_performance.py`
+### Afternoon:
+6. Create evidence file
+7. Include raw terminal output
+8. Document any issues found
+9. Commit with descriptive message
 
-```python
-#!/usr/bin/env python3
-"""Measure real performance with actual services"""
-
-import time
-import statistics
-# ... implement as shown in previous CLAUDE.md
-
-def measure_direct():
-    """Direct API calls without framework"""
-    # Time raw Gemini + Neo4j calls
-    pass
-
-def measure_framework():
-    """Same operations through framework"""
-    # Time full chain execution
-    pass
-
-# Compare and calculate overhead percentage
-```
-
-**Evidence Required**: `evidence/current/Evidence_Phase1_Fix_Performance.md`
-- Show at least 5 iterations
-- Calculate mean times
-- Show overhead percentage
-- Mark PASS (<20%) or FAIL (>20%)
+### End of Day:
+10. Update CLAUDE.md if needed
+11. Archive completed evidence
+12. Plan tomorrow's work
 
 ---
 
-## 9. Task 5: Final Honest Assessment (30 minutes)
+## 9. Next Phase (Week 2)
 
-**File**: Create `evidence/current/Evidence_Phase1_Fix_FINAL.md`
+After Week 1 fixes complete:
+1. Expand to 20+ tools
+2. Add branching/parallel execution
+3. Build composition agent
+4. Performance optimization
+5. Begin benchmarking
 
-```markdown
-# Phase 1 Final Assessment
-
-## What Was Actually Tested
-| Component | Attempted | Result | Evidence |
-|-----------|-----------|--------|----------|
-| TextLoader | Yes | [✅/❌] | [file:line] |
-| EntityExtractor | [Yes/No] | [✅/❌/NOT TESTED] | [file:line or "No service"] |
-| GraphBuilder | [Yes/No] | [✅/❌/NOT TESTED] | [file:line or "No service"] |
-| Full Chain | [Yes/No] | [✅/❌/NOT TESTED] | [file:line or "No service"] |
-
-## Performance Results
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Overhead | <20% | [X% or "NOT TESTED"] | [✅/❌/N/A] |
-
-## Known Issues
-1. [List all unresolved problems]
-
-## Recommendation
-[One of these]:
-- GO: All tests passed, ready for production
-- CONDITIONAL GO: Core works, needs [specific requirements]
-- BLOCKED: Cannot proceed without [specific services/fixes]
-- NO GO: Fundamental issues found [list them]
-```
-
----
-
-## 10. Success Criteria
-
-### Minimum Success (Fix & Document)
-- ✅ All code errors fixed
-- ✅ Tests run without crashes
-- ✅ Honest documentation of what works/doesn't
-
-### Target Success (Validate Core)
-- ✅ At least one full chain execution
-- ✅ Real performance measured
-- ✅ Clear go/no-go decision
-
-### Full Success (Production Ready)
-- ✅ 10+ successful chain executions
-- ✅ Performance <20% overhead
-- ✅ 1MB document processed
-
----
-
-## 11. Common Issues & Solutions
-
-### Docker/Neo4j Issues
-```bash
-# If "connection refused"
-docker ps  # Check if running
-docker logs neo4j  # Check for errors
-
-# If "authentication failed"  
-docker exec -it neo4j cypher-shell
-# Default: neo4j/neo4j, then change to devpassword
-```
-
-### Gemini API Issues
-```bash
-# If "API key not valid"
-echo $GEMINI_API_KEY  # Check format
-curl -H "x-goog-api-key: $GEMINI_API_KEY" \
-  "https://generativelanguage.googleapis.com/v1beta/models"
-# Should list available models
-```
-
-### Python Import Issues
-```bash
-pip install litellm neo4j pydantic networkx psutil
-export PYTHONPATH=/home/brian/projects/Digimons/tool_compatability:$PYTHONPATH
-```
+See `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` for full timeline.
 
 ---
 
 *Last Updated: 2025-01-25*
-*Phase: 1 - Fix and Validation*
-*Status: Awaiting fixes and service verification*
-*Timeline: 2-3 hours to complete*
+*Phase: Week 1 - Critical Issues*
+*Status: Ready to implement multi-input support*
