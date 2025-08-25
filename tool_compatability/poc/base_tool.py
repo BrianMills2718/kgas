@@ -7,7 +7,7 @@ a consistent interface for all tools.
 """
 
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar, Optional, Dict, Any, Type
+from typing import Generic, TypeVar, Optional, Dict, Any, Type, List
 from pydantic import BaseModel, ValidationError
 import time
 import traceback
@@ -185,7 +185,11 @@ class BaseTool(ABC, Generic[InputT, OutputT, ConfigT]):
         try:
             if self.config and self.config_schema:
                 # Re-parse to validate
-                self.config = self.config_schema(**self.config.dict())
+                if hasattr(self.config, 'dict'):
+                    self.config = self.config_schema(**self.config.dict())
+                else:
+                    # Config is already a dict
+                    self.config = self.config_schema(**self.config)
         except ValidationError as e:
             raise ValueError(f"Invalid configuration: {e}")
     
