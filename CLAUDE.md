@@ -598,19 +598,113 @@ cat /home/brian/projects/Digimons/.env | grep GEMINI
 - [ ] Metrics collection functional
 
 ### Day 5 Success  
-- [ ] 10+ tools integrated
-- [ ] Complete chain executing with real services
-- [ ] Performance overhead < 20%
-- [ ] All evidence files created
+- [x] 3 tools integrated (SimpleTextLoader, GeminiEntityExtractor, Neo4jGraphBuilder) 
+- [x] Complete chain executing with real services (File → Text → Entities → Graph)
+- [x] Performance overhead < 0.001% (negligible)
+- [x] All evidence files created
 
-### Week 2 Target
-- [ ] 20+ tools in framework
+### Week 2 Target (Current Focus)
+- [ ] 20+ tools in framework (need 17 more)
 - [ ] Complex DAG workflows executing
 - [ ] Ready for uncertainty integration
 
 ---
 
-## 9. DO NOT
+## 9. Week 2 Implementation: Scale to 20+ Tools
+
+### Objective
+Wrap 17 more production tools from `/src/tools/` to work with the framework, enabling complex analytical pipelines.
+
+### Priority Tools to Integrate
+
+#### Cross-Modal Tools (Already Registered in Phase 1)
+```python
+# From /src/analytics/cross_modal_converter.py
+1. GraphToTable - Convert graphs to tabular format
+2. TableToGraph - Convert tables to graph structure
+3. GraphToVector - Generate embeddings from graphs
+4. VectorToGraph - Reconstruct graphs from embeddings
+5. TableToVector - Generate embeddings from tables
+```
+
+#### Text Processing Tools
+```python
+# From /src/tools/phase1/
+6. TextSummarizer - Summarize text documents
+7. TopicModeler - Extract topics from text
+8. SentimentAnalyzer - Analyze sentiment
+9. NamedEntityRecognizer - Extract named entities
+10. KeywordExtractor - Extract keywords
+```
+
+#### Graph Analysis Tools
+```python
+# From /src/tools/phase1/
+11. CommunityDetector - Detect graph communities
+12. PathFinder - Find paths in graphs
+13. CentralityCalculator - Calculate node centrality
+14. GraphSummarizer - Summarize graph structure
+15. SubgraphExtractor - Extract subgraphs
+```
+
+#### Data Processing Tools
+```python
+# From /src/tools/phase1/
+16. DataValidator - Validate data quality
+17. SchemaMapper - Map between schemas
+18. DataAggregator - Aggregate data
+19. DataTransformer - Transform data formats
+20. DataSampler - Sample datasets
+```
+
+### Implementation Steps
+
+#### Step 1: Batch Wrap Existing Tools (Day 6)
+```python
+# /src/core/batch_tool_integration.py
+def integrate_production_tools():
+    """Wrap all production tools for framework"""
+    service = CompositionService()
+    
+    # Get all tools from production registry
+    production_tools = get_all_production_tools()
+    
+    success_count = 0
+    for tool in production_tools:
+        if service.register_any_tool(tool):
+            success_count += 1
+            print(f"✅ Integrated: {tool.__class__.__name__}")
+        else:
+            print(f"❌ Failed: {tool.__class__.__name__}")
+    
+    print(f"\n🎯 Integrated {success_count}/{len(production_tools)} tools")
+    return success_count >= 20
+```
+
+#### Step 2: Test Complex Chains (Day 7)
+```python
+# /src/core/test_complex_chains.py
+def test_multi_path_dag():
+    """Test DAG with multiple paths"""
+    # Text → Entities → Graph → Community → Table → Vector
+    # Text → Sentiment → Table → Vector
+    # Both paths merge at Vector for similarity analysis
+```
+
+#### Step 3: Performance Benchmarks (Day 8)
+- Measure overhead for 20+ tools
+- Test concurrent chain execution
+- Profile memory usage under load
+- Document results for thesis
+
+### Evidence Required
+- `evidence/current/Evidence_Week2_Tools.md` - List all integrated tools
+- `evidence/current/Evidence_Week2_Chains.md` - Complex chain executions
+- `evidence/current/Evidence_Week2_Performance.md` - Performance metrics
+
+---
+
+## 10. DO NOT
 
 - ❌ Use mocks or stubs - ONLY real services
 - ❌ Claim success without evidence files
