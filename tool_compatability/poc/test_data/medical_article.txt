@@ -1,0 +1,34 @@
+Myocardial infarction (MI), commonly known as a heart attack, occurs when blood flow decreases or stops to the coronary artery of the heart, causing damage to the heart muscle. The most common symptom is chest pain or discomfort which may travel into the shoulder, arm, back, neck or jaw. Often it occurs in the center or left side of the chest and lasts for more than a few minutes. The discomfort may occasionally feel like heartburn. Other symptoms may include shortness of breath, nausea, feeling faint, a cold sweat or feeling tired. About 30% of people have atypical symptoms. Women more often present without chest pain and instead have neck pain, arm pain or feel tired. Among those over 75 years old, about 5% have had an MI with little or no history of symptoms. An MI may cause heart failure, an irregular heartbeat including ventricular fibrillation, cardiogenic shock or cardiac arrest.
+
+Most MIs occur due to coronary artery disease. Risk factors include high blood pressure, smoking, diabetes mellitus, lack of exercise, obesity, high blood cholesterol, poor diet and excessive alcohol intake. The complete blockage of a coronary artery caused by a rupture of an atherosclerotic plaque is usually the underlying mechanism of an MI. MIs are less commonly caused by coronary artery spasms, which may be due to cocaine, significant emotional stress (commonly known as Takotsubo syndrome or broken heart syndrome) and extreme cold, among others.
+
+A number of tests are useful to help with diagnosis, including electrocardiograms (ECGs), blood tests and coronary angiography. An ECG, which is a recording of the heart's electrical activity, may confirm an ST elevation MI (STEMI), if ST elevation is present. Commonly used blood tests include troponin and less often creatine kinase MB.
+
+Treatment of an MI is time-critical. Aspirin is an appropriate immediate treatment for a suspected MI. Nitroglycerin or opioids may be used to help with chest pain; however, they do not improve overall outcomes. Supplemental oxygen is recommended in those with low oxygen levels or shortness of breath. In a STEMI, treatments attempt to restore blood flow to the heart and include percutaneous coronary intervention (PCI), where the arteries are pushed open and may be stented, or thrombolysis, where the blockage is removed using medications. People who have a non-ST elevation myocardial infarction (NSTEMI) are often managed with the blood thinner heparin, with the additional use of PCI in those at high risk. In people with blockages of multiple coronary arteries and diabetes, coronary artery bypass surgery (CABG) may be recommended rather than angioplasty. After an MI, lifestyle modifications, along with long-term treatment with aspirin, beta blockers and statins, are typically recommended.
+
+Common medications used in treatment include:
+- Aspirin (antiplatelet therapy) - given immediately and continued long-term
+- Clopidogrel or ticagrelor (P2Y12 inhibitors) - dual antiplatelet therapy
+- Beta blockers such as metoprolol or atenolol - reduce heart workload
+- ACE inhibitors like enalapril or lisinopril - improve heart function
+- Statins such as atorvastatin or rosuvastatin - lower cholesterol
+- Nitroglycerin - for chest pain relief
+- Morphine - for severe pain management
+- Heparin or enoxaparin - anticoagulation during acute phase
+
+Diagnostic tests commonly performed:
+- Troponin I and Troponin T levels - most specific cardiac biomarkers
+- Creatine kinase-MB (CK-MB) - cardiac enzyme
+- Electrocardiogram (ECG/EKG) - detects ST elevation or depression
+- Echocardiography - assesses wall motion abnormalities
+- Coronary angiography - visualizes coronary artery blockages
+- Cardiac MRI - evaluates myocardial viability
+
+Complications of myocardial infarction include:
+- Cardiogenic shock - severe decrease in cardiac output
+- Ventricular fibrillation - life-threatening arrhythmia
+- Heart failure - reduced pumping capacity
+- Pericarditis - inflammation of heart lining
+- Ventricular septal rupture - hole between heart chambers
+- Papillary muscle rupture - causing mitral regurgitation
+- Left ventricular aneurysm - weakened heart wall

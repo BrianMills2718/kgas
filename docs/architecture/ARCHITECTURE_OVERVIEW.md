@@ -168,7 +168,8 @@ KGAS enables analytical approaches impossible with traditional research tools:
 │                    Data Storage Layer                        │
 │         ┌──────────────────┐    ┌──────────────┐           │
 │         │  Neo4j (v5.13+)  │    │    SQLite    │           │
-│         │(Graph & Vectors) │    │  (Relational) │           │
+│         │(Graph & Vectors) │    │(Tabular Data │           │
+│         │                  │    │& Statistics) │           │
 │         └──────────────────┘    └──────────────┘           │
 └─────────────────────────────────────────────────────────────┘
 ```

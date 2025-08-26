@@ -1,398 +1,731 @@
-# PhD Tool Composition System - Implementation Phase
+# Extensible Tool Composition Framework - Integration & Validation Phase
 
 ## 1. Coding Philosophy (MANDATORY)
 
 ### Core Principles
 - **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
 - **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
-- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
+- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files  
 - **TEST DRIVEN DESIGN**: Write tests first where possible
 
 ### Evidence Requirements
 ```
 evidence/
 ├── current/
-│   └── Evidence_Week1_[Task].md   # Current week only
+│   └── Evidence_Integration_[Task].md   # Current integration work only
 ├── completed/
-│   └── Evidence_POC_*.md          # Previous POC phase (DO NOT MODIFY)
+│   ├── Evidence_Week1_*.md             # Framework features implemented
+│   └── Evidence_POC_*.md               # Previous POC attempts
 ```
 
 **CRITICAL**: 
 - Raw execution logs required (copy-paste terminal output)
 - No success claims without showing actual execution
 - Mark all untested components as "NOT TESTED"
-- Test the 50MB PDF scenario to expose issues
+- Must test with REAL services (Gemini API, Neo4j)
 
 ---
 
-## 2. Codebase Structure
+## 2. KGAS Uncertainty System - Core Principles (PERMANENT)
 
-### Key Entry Points
-- `/tool_compatability/poc/` - Main POC directory
-- `/tool_compatability/poc/demo.py` - Basic demonstration
-- `/tool_compatability/poc/test_full_chain.py` - Full chain test with Gemini
+### Fundamental Design Decisions
 
-### Core Modules
+#### 2.1 Subjective Expert Assessment is Intentional
+- **Uncertainty scores ARE meaningful** - they represent the LLM's subjective expert assessment
+- **0.30 means what the prompt defines** - typically "moderate confidence" 
+- **Subjectivity mirrors human experts** - Social scientists routinely make subjective confidence assessments
+- **NOT a calibrated measurement** - Not claiming 0.30 means 70% accurate in objective terms
+- **Transparency over precision** - Reasoning explains the score, making subjectivity reviewable
+
+#### 2.2 Dynamic Tool Generation from Theory Schemas
+- **Tools generated at runtime** from theory papers, not pre-built
+- **Theory schemas → LLM generates Python code** → Runtime compilation
+- **Maintains fidelity** to theoretical specifications
+- **Implementation choices documented** - When LLM chooses (e.g., cosine vs Euclidean distance), it's recorded with reasoning
+
+#### 2.3 Localized Uncertainty, Not Global
+- **Missing data affects only relevant tools** - 30% missing psychology scores → high uncertainty for psychology-dependent tools
+- **Independent analyses unaffected** - Community detection works fine without psychology scores
+- **Each tool assesses based on ITS needs** - Not global data coverage
+- **Prevents cascade** of unnecessary uncertainty propagation
+
+#### 2.4 Universal Uncertainty Schema
+```python
+class UniversalUncertainty(BaseModel):
+    """Single uncertainty format for ALL operations"""
+    uncertainty: float  # 0=certain, 1=uncertain
+    reasoning: str  # Expert reasoning for assessment (CRITICAL)
+    evidence_count: Optional[int]  # For aggregations
+    data_coverage: Optional[float]  # Fraction of needed data
+```
+
+#### 2.5 Dempster-Shafer for Aggregation Only
+- **USE D-S for**: Multiple tweets → user belief, Users → community, Cross-modal synthesis (3+ evidences)
+- **DON'T USE D-S for**: Individual tool uncertainty, Sequential chains, Single evidence
+- **Computationally trivial** - Just multiplication and addition, O(n) complexity
+- **Convergent evidence reduces uncertainty** - Agreement across sources increases confidence
+
+#### 2.6 The Reasoning Field is Critical
+Every uncertainty assessment MUST include comprehensive reasoning that:
+- Explains what factors were considered
+- Justifies the uncertainty score  
+- Documents assumptions made
+- Notes what evidence would reduce uncertainty
+- Provides enough detail for review and reproducibility
+
+#### 2.7 System Identity: Expert Reasoning Trace System
+**What this IS**:
+- An expert reasoning trace system
+- Makes computational social science transparent
+- Documents all analytical decisions
+- Embeds expert judgment reproducibly
+
+**What this is NOT**:
+- A calibrated measurement instrument
+- A predictive model
+- A causal inference system
+- A claim to objective truth
+
+---
+
+## 3. Codebase Structure
+
+### Framework Entry Points
+- `/tool_compatability/poc/framework.py` - Main extensible framework
+- `/tool_compatability/poc/test_framework_extensibility.py` - Framework demo
+- `/tool_compatability/poc/proof_of_concept.py` - **TO CREATE**: Real integration test
+
+### Core Framework Components
 ```
 tool_compatability/poc/
-├── base_tool.py          # Base class - needs multi-input support
-├── data_types.py         # 10 types - needs schema versioning
-├── registry.py           # Tool registry - works but needs semantic types
-├── tools/
-│   ├── text_loader.py    # ✅ Working
-│   ├── entity_extractor.py # ✅ Working with Gemini API
-│   └── graph_builder.py  # ✅ Working with Neo4j
-└── tests/
-    └── test_critical_issues.py # TO CREATE - Test 50MB PDF scenario
+├── framework.py           # 🎯 MAIN: Extensible Tool Composition Framework
+├── base_tool.py          # Base class with metrics
+├── base_tool_v2.py       # Enhanced with ToolContext support
+├── data_types.py         # 10 semantic types
+├── tool_context.py       # ✅ Multi-input support
+├── schema_versions.py    # ✅ Schema versioning & migration
+├── semantic_types.py     # ✅ Semantic compatibility checking
+├── data_references.py    # ✅ Memory management (streaming/references)
+├── registry.py           # Original registry (being replaced by framework)
+└── tools/
+    ├── text_loader.py            # Basic file loader
+    ├── entity_extractor.py       # Uses Gemini API
+    ├── graph_builder.py          # Uses Neo4j
+    ├── entity_extractor_v2.py    # Multi-input version
+    └── streaming_text_loader.py  # Memory-efficient version
 ```
-
-### Planning Documents
-- `/tool_compatability/poc/CRITICAL_ISSUES_POC_PLAN.md` - Detailed fixes for 5 issues
-- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 12-week research plan
-- `/tool_compatability/METHODICAL_IMPLEMENTATION_PLAN.md` - Week-by-week breakdown
 
 ### Integration Points
-- **Gemini API**: Key in `.env` file, auto-loaded via python-dotenv
-- **Neo4j**: Docker container at bolt://localhost:7687
-- **No ResourceOrchestrator** in POC (different project component)
+- **Gemini API**: via `litellm` in EntityExtractor
+  - API key in `/home/brian/projects/Digimons/.env` (auto-loads via python-dotenv)
+- **Neo4j**: via `neo4j-driver` in GraphBuilder
+  - Docker container: `bolt://localhost:7687` (neo4j/devpassword)
+
+### Related Documentation
+- `/tool_compatability/poc/README.md` - Original POC design
+- `/tool_compatability/poc/CRITICAL_ISSUES_POC_PLAN.md` - 5 critical issues identified
+- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 4-week PhD plan
+- `/tool_compatability/the_real_problem.md` - Root cause analysis
+- `/tool_compatability/tool_disposition_plan.md` - Migration strategy for 38 tools
 
 ---
 
-## 3. Current Status
+## 3. Current Status: FRAMEWORK EXISTS BUT NOT INTEGRATED
 
-### What Works
-- ✅ Basic chain: FILE → TEXT → ENTITIES → GRAPH
-- ✅ Type-based composition proven
-- ✅ Automatic chain discovery functional
-- ✅ All 3 tools execute successfully
+### ✅ Completed (Week 1)
+1. **Multi-input support**: ToolContext passes ontologies/parameters
+2. **Schema versioning**: Auto-migration between versions
+3. **Memory management**: Streaming for 50MB+ files  
+4. **Semantic types**: Domain-aware compatibility checking
+5. **Framework design**: Extensible framework created
 
-### Critical Issues Identified (Must Fix)
-1. **No Multi-Input Support** - Can't pass ontology to EntityExtractor
-2. **No Schema Versioning** - Changing Entity breaks everything
-3. **No Memory Management** - 50MB PDF will cause OOM
-4. **No Semantic Types** - Can't distinguish social vs chemical graphs
-5. **No State Management** - Partial failures leave Neo4j inconsistent
+### ❌ Critical Gap
+**The framework and features exist but aren't integrated with real tools/services**
+
+### What Actually Works
+- Framework can register mock tools
+- Can discover chains based on types
+- Individual features work in isolation
+
+### What Doesn't Work
+- Real tools (TextLoader, EntityExtractor, GraphBuilder) not integrated
+- No proof of Gemini API working
+- No proof of Neo4j writes
+- Features don't work together in real chain
 
 ---
 
-## 4. Week 1 Tasks: Fix Critical Issues
+## 4. Task: Integration Proof of Concept
 
-### Day 1: Multi-Input Support (PRIORITY 1)
+### Objective
+Prove the framework works with real tools and real services, not just in theory.
 
-#### Context
-Tools need multiple inputs (text + ontology + config), but current system only supports single input/output.
+### Success Criteria
+1. Execute ONE complete chain: File → Entities → Graph
+2. Use REAL Gemini API (no mocks)
+3. Write to REAL Neo4j (verifiable)
+4. At least 2 framework features working (e.g., semantic types + streaming)
 
-#### Implementation Tasks
+### Implementation Steps
 
-**Task 1.1: Create ToolContext** (2 hours)
-```python
-# File: /tool_compatability/poc/tool_context.py
-from typing import Dict, Any
-from pydantic import BaseModel
+#### Step 1: Create Real Test Data (15 minutes)
 
-class ToolContext(BaseModel):
-    """Carries primary data and auxiliary inputs through chain"""
-    primary_data: Any  # Main data flowing through
-    parameters: Dict[str, Dict[str, Any]] = {}  # Tool-specific params
-    shared_context: Dict[str, Any] = {}  # Shared across all tools
-    
-    def get_param(self, tool_id: str, param_name: str, default=None):
-        return self.parameters.get(tool_id, {}).get(param_name, default)
-    
-    def set_param(self, tool_id: str, param_name: str, value: Any):
-        if tool_id not in self.parameters:
-            self.parameters[tool_id] = {}
-        self.parameters[tool_id][param_name] = value
-```
+**File**: Create `/tool_compatability/poc/test_data/medical_article.txt`
 
-**Task 1.2: Update BaseTool** (2 hours)
-- Modify `base_tool.py` to accept ToolContext
-- Keep backward compatibility
-- Update process() signature
-
-**Task 1.3: Test Multi-Input** (1 hour)
-```python
-# File: /tool_compatability/poc/tests/test_multi_input.py
-def test_entity_extraction_with_ontology():
-    """Prove we can pass custom ontology"""
-    context = ToolContext()
-    context.primary_data = TextData(content="John works at Apple")
-    context.set_param("EntityExtractor", "ontology", {
-        "PERSON": ["name", "role"],
-        "COMPANY": ["name", "industry"]
-    })
-    
-    extractor = EntityExtractorV2()
-    result = extractor.process(context)
-    
-    # Evidence: Show ontology was used
-    assert "ontology" in extractor.last_prompt  # Capture prompt for evidence
-    print(f"Entities found: {result.primary_data.entities}")
-```
-
-**Evidence Required**: `evidence/current/Evidence_Week1_MultiInput.md`
 ```bash
-# Run test and capture output
-python3 tests/test_multi_input.py
-# Show that custom ontology affected extraction
-# Include the actual prompt sent to Gemini
+# Download real medical content
+curl -s "https://en.wikipedia.org/wiki/Myocardial_infarction" | \
+  python3 -c "import sys, html2text; print(html2text.html2text(sys.stdin.read()))" | \
+  head -500 > test_data/medical_article.txt
+
+# Verify it has medical content
+grep -i "cardiac\|heart\|myocardial" test_data/medical_article.txt
 ```
 
-### Day 2: Schema Versioning
+**Evidence Required**: `evidence/current/Evidence_Integration_TestData.md`
+- Show file created with actual medical content
+- Confirm size and content sample
 
-#### Context
-When Entity schema changes, all tools break. Need migration system.
+#### Step 2: Verify Services (30 minutes)
 
-#### Implementation Tasks
+**File**: Create `/tool_compatability/poc/verify_services.py`
 
-**Task 2.1: Create Versioned Schemas** (2 hours)
 ```python
-# File: /tool_compatability/poc/schema_versions.py
-class EntityV1(BaseModel):
-    """Version 1.0.0"""
-    _version = "1.0.0"
-    id: str
-    text: str
-    type: str
+#!/usr/bin/env python3
+"""Verify Gemini and Neo4j are accessible with real operations"""
 
-class EntityV2(BaseModel):
-    """Version 2.0.0 - Added confidence"""
-    _version = "2.0.0"
-    id: str
-    text: str
-    type: str
-    confidence: float = 0.5
-```
+import os
+import sys
+from pathlib import Path
+from dotenv import load_dotenv
 
-**Task 2.2: Migration System** (2 hours)
-```python
-# File: /tool_compatability/poc/migrations.py
-class SchemaMigrator:
-    @classmethod
-    def migrate_v1_to_v2(cls, entity: EntityV1) -> EntityV2:
-        return EntityV2(..., confidence=0.5)  # Default value
-```
+# Load environment
+load_dotenv('/home/brian/projects/Digimons/.env')
 
-**Task 2.3: Test Migration Chain** (1 hour)
-- Create V1 entity
-- Migrate to V2, then V3
-- Verify data preserved
-
-**Evidence Required**: `evidence/current/Evidence_Week1_SchemaVersioning.md`
-
-### Day 3: Memory Management
-
-#### Context
-50MB PDFs cause OOM. Need streaming/references.
-
-#### Implementation Tasks
-
-**Task 3.1: Create DataReference** (2 hours)
-```python
-# File: /tool_compatability/poc/data_references.py
-class DataReference(BaseModel):
-    storage_type: str  # "filesystem", "s3"
-    location: str
-    size_bytes: int
+def test_gemini():
+    """Test Gemini API with real extraction"""
+    import litellm
     
-    def stream(self, chunk_size=1024*1024):
-        """Stream data in chunks"""
-        with open(self.location, 'rb') as f:
-            while chunk := f.read(chunk_size):
-                yield chunk
-```
-
-**Task 3.2: Test 50MB PDF** (3 hours)
-```python
-# File: /tool_compatability/poc/tests/test_50mb_pdf.py
-def test_large_pdf_processing():
-    """THIS TEST MUST FAIL FIRST, THEN PASS AFTER FIX"""
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        return False, "No GEMINI_API_KEY"
     
-    # Create 50MB test PDF
-    create_large_pdf("/tmp/test_50mb.pdf", size_mb=50)
-    
-    # Try current approach (WILL FAIL WITH OOM)
     try:
-        loader = TextLoader()
-        result = loader.process(FileData(path="/tmp/test_50mb.pdf"))
-        print("ERROR: Should have failed with OOM!")
-    except MemoryError as e:
-        print(f"✅ Expected failure: {e}")
+        response = litellm.completion(
+            model="gemini/gemini-2.0-flash-exp",
+            messages=[{
+                "role": "user", 
+                "content": "Extract medical entities from: 'Patient diagnosed with acute myocardial infarction, prescribed aspirin and metoprolol'"
+            }],
+            max_tokens=200
+        )
+        
+        content = response.choices[0].message.content
+        
+        # Check if real entities found
+        has_disease = "myocardial" in content.lower() or "infarction" in content.lower()
+        has_medication = "aspirin" in content.lower() or "metoprolol" in content.lower()
+        
+        if has_disease and has_medication:
+            return True, f"Extracted entities: {content[:100]}..."
+        else:
+            return False, f"No medical entities found in: {content}"
+            
+    except Exception as e:
+        return False, f"API call failed: {str(e)}"
+
+def test_neo4j():
+    """Test Neo4j with real write and read"""
+    from neo4j import GraphDatabase
     
-    # Try streaming approach (SHOULD WORK)
-    loader_v2 = StreamingTextLoader()
-    result = loader_v2.process(FileData(path="/tmp/test_50mb.pdf"))
-    assert result.reference is not None  # Using reference, not embedded
-    print("✅ 50MB PDF processed via streaming")
+    try:
+        driver = GraphDatabase.driver(
+            "bolt://localhost:7687",
+            auth=("neo4j", "devpassword")
+        )
+        
+        # Clear test data
+        with driver.session() as session:
+            session.run("MATCH (n:TestEntity) DELETE n")
+        
+        # Write test nodes
+        with driver.session() as session:
+            result = session.run("""
+                CREATE (d:TestEntity:Disease {name: 'Myocardial Infarction'})
+                CREATE (m1:TestEntity:Medication {name: 'Aspirin'})  
+                CREATE (m2:TestEntity:Medication {name: 'Metoprolol'})
+                CREATE (m1)-[:TREATS]->(d)
+                CREATE (m2)-[:TREATS]->(d)
+                RETURN count(*) as nodes_created
+            """)
+            count = result.single()["nodes_created"]
+        
+        # Verify write
+        with driver.session() as session:
+            result = session.run("MATCH (n:TestEntity) RETURN count(n) as count")
+            actual_count = result.single()["count"]
+        
+        driver.close()
+        
+        if actual_count == 3:
+            return True, f"Created and verified {actual_count} nodes in Neo4j"
+        else:
+            return False, f"Expected 3 nodes, found {actual_count}"
+            
+    except Exception as e:
+        return False, f"Neo4j error: {str(e)}"
+
+if __name__ == "__main__":
+    print("="*60)
+    print("SERVICE VERIFICATION")
+    print("="*60)
+    
+    # Test Gemini
+    gemini_ok, gemini_msg = test_gemini()
+    print(f"\nGemini API: {'✅' if gemini_ok else '❌'}")
+    print(f"  {gemini_msg}")
+    
+    # Test Neo4j
+    neo4j_ok, neo4j_msg = test_neo4j()
+    print(f"\nNeo4j: {'✅' if neo4j_ok else '❌'}")
+    print(f"  {neo4j_msg}")
+    
+    # Summary
+    print("\n" + "="*60)
+    if gemini_ok and neo4j_ok:
+        print("✅ READY: Both services working")
+        sys.exit(0)
+    else:
+        print("❌ BLOCKED: Fix services before proceeding")
+        sys.exit(1)
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Week1_MemoryManagement.md`
-- Show OOM error with current approach
-- Show successful processing with streaming
-- Include memory usage stats
+**Evidence Required**: `evidence/current/Evidence_Integration_Services.md`
+- Full output of verify_services.py
+- Must show actual Gemini response with entities
+- Must show Neo4j node creation confirmed
 
-### Day 4: Semantic Compatibility
+#### Step 3: Integrate Real Tools (1 hour)
 
-#### Context
-Type matching isn't enough - social graphs ≠ chemical graphs.
+**File**: Create `/tool_compatability/poc/framework_integration.py`
 
-#### Implementation Tasks
-
-**Task 4.1: Create SemanticType** (2 hours)
 ```python
-# File: /tool_compatability/poc/semantic_types.py
-class SemanticType(BaseModel):
-    base_type: DataType  # GRAPH
-    domain: str  # "social", "chemical"
+#!/usr/bin/env python3
+"""Integrate existing tools with the framework"""
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+
+from framework import ExtensibleTool, ToolCapabilities, ToolResult
+from data_types import DataType, DataSchema
+from semantic_types import MEDICAL_RECORDS, MEDICAL_ENTITIES, MEDICAL_KNOWLEDGE_GRAPH
+from data_references import ProcessingStrategy
+
+# Import existing tools
+from tools.text_loader import TextLoader
+from tools.entity_extractor import EntityExtractor  
+from tools.graph_builder import GraphBuilder
+
+class TextLoaderAdapter(ExtensibleTool):
+    """Adapter to make TextLoader work with framework"""
     
-    def is_compatible_with(self, other):
-        return self.base_type == other.base_type and \
-               self.domain == other.domain
-```
-
-**Task 4.2: Test Incompatibility** (1 hour)
-- Create SocialGraphExtractor (outputs social graph)
-- Create ChemicalAnalyzer (expects chemical graph)
-- Verify they're rejected as incompatible
-
-**Evidence Required**: `evidence/current/Evidence_Week1_SemanticTypes.md`
-
-### Day 5: State Management
-
-#### Context
-Failures leave partial data in Neo4j. Need transactions.
-
-#### Implementation Tasks
-
-**Task 5.1: Transactional Executor** (3 hours)
-```python
-# File: /tool_compatability/poc/transactions.py
-class TransactionalExecutor:
-    def execute_with_rollback(self, chain, context):
-        completed = []
+    def __init__(self):
+        self.tool = TextLoader()
+    
+    def get_capabilities(self) -> ToolCapabilities:
+        return ToolCapabilities(
+            tool_id="TextLoader",
+            name="Text File Loader",
+            description="Load text files into memory",
+            input_type=DataType.FILE,
+            output_type=DataType.TEXT,
+            semantic_output=MEDICAL_RECORDS,  # For medical pipeline
+            max_input_size=10 * 1024 * 1024,  # 10MB
+            processing_strategy=ProcessingStrategy.FULL_LOAD
+        )
+    
+    def process(self, input_data, context=None):
         try:
-            for tool in chain:
-                result = tool.process(context)
-                completed.append((tool, result))
-            return result
+            # Use existing TextLoader
+            result = self.tool.process(input_data)
+            
+            if result.success:
+                return ToolResult(success=True, data=result.data)
+            else:
+                return ToolResult(success=False, error=result.error)
         except Exception as e:
-            # Rollback in reverse order
-            for tool, result in reversed(completed):
-                tool.rollback(result)
-            raise e
+            return ToolResult(success=False, error=str(e))
+
+class EntityExtractorAdapter(ExtensibleTool):
+    """Adapter for EntityExtractor with Gemini"""
+    
+    def __init__(self):
+        self.tool = EntityExtractor()
+    
+    def get_capabilities(self) -> ToolCapabilities:
+        return ToolCapabilities(
+            tool_id="EntityExtractor",
+            name="Medical Entity Extractor",
+            description="Extract medical entities using Gemini",
+            input_type=DataType.TEXT,
+            output_type=DataType.ENTITIES,
+            semantic_input=MEDICAL_RECORDS,
+            semantic_output=MEDICAL_ENTITIES,
+            processing_strategy=ProcessingStrategy.FULL_LOAD
+        )
+    
+    def process(self, input_data, context=None):
+        # MUST USE REAL GEMINI API - NO MOCKS
+        # EntityExtractor should already load API key from .env
+        try:
+            result = self.tool.process(input_data)
+            
+            if result.success:
+                return ToolResult(success=True, data=result.data)
+            else:
+                return ToolResult(success=False, error=result.error)
+        except Exception as e:
+            return ToolResult(success=False, error=str(e))
+
+class GraphBuilderAdapter(ExtensibleTool):
+    """Adapter for GraphBuilder with Neo4j"""
+    
+    def __init__(self):
+        self.tool = GraphBuilder()
+    
+    def get_capabilities(self) -> ToolCapabilities:
+        return ToolCapabilities(
+            tool_id="GraphBuilder",
+            name="Medical Knowledge Graph Builder",
+            description="Build knowledge graph in Neo4j",
+            input_type=DataType.ENTITIES,
+            output_type=DataType.GRAPH,
+            semantic_input=MEDICAL_ENTITIES,
+            semantic_output=MEDICAL_KNOWLEDGE_GRAPH,
+            processing_strategy=ProcessingStrategy.FULL_LOAD
+        )
+    
+    def process(self, input_data, context=None):
+        # MUST WRITE TO REAL NEO4J - NO MOCKS
+        try:
+            result = self.tool.process(input_data)
+            
+            if result.success:
+                return ToolResult(success=True, data=result.data)
+            else:
+                return ToolResult(success=False, error=result.error)
+        except Exception as e:
+            return ToolResult(success=False, error=str(e))
+
+def register_real_tools(framework):
+    """Register all real tools with framework"""
+    
+    print("\n📦 Registering Real Tools:")
+    print("-" * 40)
+    
+    framework.register_tool(TextLoaderAdapter())
+    framework.register_tool(EntityExtractorAdapter())
+    framework.register_tool(GraphBuilderAdapter())
+    
+    return framework
 ```
 
-**Task 5.2: Test Rollback** (2 hours)
-- Execute chain that fails at GraphBuilder
-- Verify Neo4j was cleaned up
-- Check no partial data remains
+**Evidence Required**: `evidence/current/Evidence_Integration_Adapters.md`
+- Show each adapter created
+- Confirm they wrap real tools not mocks
+- Show successful registration in framework
 
-**Evidence Required**: `evidence/current/Evidence_Week1_StateManagement.md`
+#### Step 4: Execute Real Chain (1 hour)
+
+**File**: Create `/tool_compatability/poc/proof_of_concept.py`
+
+```python
+#!/usr/bin/env python3
+"""
+PROOF OF CONCEPT: Framework with Real Tools and Services
+This must work with NO MOCKS - only real services
+"""
+
+import sys
+import os
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+
+from framework import ToolFramework
+from framework_integration import register_real_tools
+from data_types import DataSchema, Domain
+from semantic_types import Domain
+import time
+import psutil
+
+def verify_neo4j_results():
+    """Check if data actually in Neo4j"""
+    from neo4j import GraphDatabase
+    
+    driver = GraphDatabase.driver(
+        "bolt://localhost:7687",
+        auth=("neo4j", "devpassword")
+    )
+    
+    with driver.session() as session:
+        # Count nodes created in this session
+        result = session.run("""
+            MATCH (n) 
+            WHERE n.created_by = 'framework_poc'
+            RETURN count(n) as node_count
+        """)
+        count = result.single()["node_count"]
+    
+    driver.close()
+    return count
+
+def main():
+    print("="*60)
+    print("PROOF OF CONCEPT: Real Tools, Real Services")
+    print("="*60)
+    
+    # 1. Create framework and register real tools
+    framework = ToolFramework()
+    register_real_tools(framework)
+    
+    # 2. Load real medical text
+    test_file = Path("test_data/medical_article.txt")
+    if not test_file.exists():
+        print("❌ No test data found. Run Step 1 first.")
+        return False
+    
+    file_data = DataSchema.FileData(
+        path=str(test_file),
+        size_bytes=test_file.stat().st_size,
+        mime_type="text/plain"
+    )
+    
+    print(f"\n📄 Test file: {test_file.name}")
+    print(f"   Size: {file_data.size_bytes / 1024:.1f}KB")
+    
+    # 3. Find medical processing chain
+    print("\n🔍 Finding chain for medical text processing:")
+    chains = framework.find_chains(
+        DataType.FILE,
+        DataType.GRAPH,
+        domain=Domain.MEDICAL
+    )
+    
+    if not chains:
+        print("❌ No chains found!")
+        
+        # Debug: Show what tools are registered
+        print("\nRegistered tools:")
+        for tid, caps in framework.capabilities.items():
+            print(f"  - {tid}: {caps.input_type} → {caps.output_type}")
+        return False
+    
+    chain = chains[0]
+    print(f"   Chain found: {' → '.join(chain)}")
+    
+    # 4. Execute chain with monitoring
+    print("\n⚡ Executing chain:")
+    print("-" * 40)
+    
+    # Monitor memory
+    process = psutil.Process()
+    mem_before = process.memory_info().rss / (1024 * 1024)  # MB
+    
+    start_time = time.time()
+    result = framework.execute_chain(chain, file_data)
+    duration = time.time() - start_time
+    
+    mem_after = process.memory_info().rss / (1024 * 1024)  # MB
+    mem_used = mem_after - mem_before
+    
+    print(f"\n📊 Execution Metrics:")
+    print(f"   Duration: {duration:.2f}s")
+    print(f"   Memory used: {mem_used:.1f}MB")
+    
+    # 5. Verify results
+    print("\n🔍 Verification:")
+    print("-" * 40)
+    
+    if not result.success:
+        print(f"❌ Chain failed: {result.error}")
+        return False
+    
+    print("✅ Chain executed successfully")
+    
+    # Check if entities were extracted
+    if hasattr(result.data, 'entities'):
+        entity_count = len(result.data.entities)
+        print(f"✅ Entities extracted: {entity_count}")
+        
+        # Show first 3 entities as proof
+        for entity in result.data.entities[:3]:
+            print(f"   - {entity.text} ({entity.type})")
+    
+    # Check Neo4j
+    neo4j_count = verify_neo4j_results()
+    if neo4j_count > 0:
+        print(f"✅ Neo4j nodes created: {neo4j_count}")
+    else:
+        print("❌ No nodes found in Neo4j")
+    
+    # 6. Test semantic blocking
+    print("\n🚫 Testing Semantic Type Enforcement:")
+    print("-" * 40)
+    
+    # Try to find social network chain with medical data
+    social_chains = framework.find_chains(
+        DataType.FILE,
+        DataType.GRAPH,
+        domain=Domain.SOCIAL
+    )
+    
+    if not social_chains:
+        print("✅ Correctly blocked: No social chains for medical tools")
+    else:
+        print("❌ ERROR: Found social chains with medical tools!")
+    
+    # 7. Summary
+    print("\n" + "="*60)
+    print("PROOF OF CONCEPT RESULTS:")
+    print("="*60)
+    
+    success_criteria = [
+        ("Real file processed", file_data.size_bytes > 0),
+        ("Chain discovered", len(chains) > 0),
+        ("Chain executed", result.success),
+        ("Entities extracted", entity_count > 0 if 'entity_count' in locals() else False),
+        ("Neo4j populated", neo4j_count > 0),
+        ("Semantic types enforced", len(social_chains) == 0 if 'social_chains' in locals() else False),
+        ("Memory efficient", mem_used < 100)  # Should be <100MB for small file
+    ]
+    
+    for criterion, passed in success_criteria:
+        status = "✅" if passed else "❌"
+        print(f"{status} {criterion}")
+    
+    all_passed = all(passed for _, passed in success_criteria)
+    
+    if all_passed:
+        print("\n🎉 PROOF OF CONCEPT SUCCESSFUL!")
+        print("The framework works with real tools and services.")
+    else:
+        print("\n⚠️ PROOF OF CONCEPT INCOMPLETE")
+        print("Some criteria not met. Debug required.")
+    
+    return all_passed
+
+if __name__ == "__main__":
+    success = main()
+    sys.exit(0 if success else 1)
+```
+
+**Evidence Required**: `evidence/current/Evidence_Integration_POC.md`
+```
+Must include:
+1. Full execution log (no truncation)
+2. Proof of Gemini API call (show extracted entities)
+3. Proof of Neo4j writes (query results)
+4. Memory usage stats
+5. Semantic type blocking confirmation
+```
 
 ---
 
-## 5. Integration Test (End of Week 1)
+## 5. Troubleshooting Guide
 
-### The Complete Scenario Test
+### If Gemini API Fails
+```bash
+# Check API key
+echo $GEMINI_API_KEY
 
-```python
-# File: /tool_compatability/poc/tests/test_complete_scenario.py
-def test_all_critical_issues_resolved():
-    """
-    The ultimate test combining all fixes:
-    1. Load 50MB PDF (memory management)
-    2. Extract with custom ontology (multi-input)
-    3. Handle schema migration (versioning)
-    4. Check semantic compatibility (semantic types)
-    5. Rollback on failure (transactions)
-    """
-    
-    # This test MUST work after all fixes
-    # Document each step with evidence
+# Test directly
+python3 -c "
+import os
+from dotenv import load_dotenv
+load_dotenv('/home/brian/projects/Digimons/.env')
+print('Key loaded:', bool(os.getenv('GEMINI_API_KEY')))
+"
+
+# If key missing, check .env file
+cat /home/brian/projects/Digimons/.env | grep GEMINI
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Week1_Integration.md`
+### If Neo4j Connection Fails
+```bash
+# Check if running
+docker ps | grep neo4j
+
+# If not running, start it
+docker run -d --name neo4j \
+  -p 7687:7687 -p 7474:7474 \
+  -e NEO4J_AUTH=neo4j/devpassword \
+  neo4j:latest
+
+# Test connection
+python3 -c "
+from neo4j import GraphDatabase
+driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'devpassword'))
+driver.verify_connectivity()
+print('✅ Neo4j connected')
+"
+```
+
+### If Chain Discovery Fails
+```python
+# Debug what tools are registered
+for tool_id, caps in framework.capabilities.items():
+    print(f"{tool_id}:")
+    print(f"  Input: {caps.input_type}")
+    print(f"  Output: {caps.output_type}")
+    print(f"  Semantic: {caps.semantic_input} → {caps.semantic_output}")
+```
 
 ---
 
 ## 6. Success Criteria
 
-### Each Day Must Produce:
-1. Working code (no mocks/stubs)
-2. Test that proves it works
-3. Evidence file with execution logs
-4. Clear documentation of issues found
+### Minimum Success
+- ✅ One complete chain executes (File → Entities → Graph)
+- ✅ Real Gemini API returns entities (no mocks)
+- ✅ Real Neo4j has nodes written (verifiable)
 
-### Week 1 Complete When:
-- [ ] 50MB PDF processes without OOM
-- [ ] Custom ontology affects extraction
-- [ ] Schema migrations work V1→V2→V3
-- [ ] Incompatible semantic types rejected
-- [ ] Failed operations roll back cleanly
+### Target Success  
+- ✅ All above plus...
+- ✅ Semantic types prevent invalid chains
+- ✅ Memory usage stays reasonable (<100MB)
+- ✅ At least 5 entities extracted
 
----
-
-## 7. Common Issues & Solutions
-
-### If Gemini API fails:
-```bash
-# Check API key loaded
-python3 -c "import os; print(os.getenv('GEMINI_API_KEY')[:10])"
-# Should show: AIzaSyDXaL...
-```
-
-### If Neo4j connection fails:
-```bash
-# Check Docker running
-docker ps | grep neo4j
-# Restart if needed
-docker restart neo4j
-```
-
-### If OOM occurs:
-```bash
-# Monitor memory during test
-watch -n 1 free -h
-# In another terminal, run test
-```
+### Full Success
+- ✅ All above plus...
+- ✅ Process 10MB file with streaming
+- ✅ Schema migration works if needed
+- ✅ Context parameters used
 
 ---
 
-## 8. Daily Workflow
+## 7. Next Phase (After POC Success)
 
-### Morning:
-1. Read today's tasks in CLAUDE.md
-2. Write test FIRST (TDD)
-3. Run test, see it fail
-4. Implement solution
-5. Run test, see it pass
+Once the proof of concept works:
 
-### Afternoon:
-6. Create evidence file
-7. Include raw terminal output
-8. Document any issues found
-9. Commit with descriptive message
+1. **Add Remaining Tools** (Week 2)
+   - StreamingTextLoader for large files
+   - EntityExtractorV2 with ontologies
+   - 20+ domain-specific tools
 
-### End of Day:
-10. Update CLAUDE.md if needed
-11. Archive completed evidence
-12. Plan tomorrow's work
+2. **Build Composition Agent** (Week 3)
+   - Agent that uses framework.find_chains()
+   - Learns from successful chains
+   - Suggests optimal pipelines
 
----
-
-## 9. Next Phase (Week 2)
-
-After Week 1 fixes complete:
-1. Expand to 20+ tools
-2. Add branching/parallel execution
-3. Build composition agent
-4. Performance optimization
-5. Begin benchmarking
-
-See `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` for full timeline.
+3. **Run Benchmarks** (Week 4)
+   - Compare to hardcoded pipelines
+   - Measure overhead
+   - Document for PhD thesis
 
 ---
 
 *Last Updated: 2025-01-25*
-*Phase: Week 1 - Critical Issues*
-*Status: Ready to implement multi-input support*
+*Phase: Integration & Validation*
+*Status: Framework exists, needs real tool integration*
+*Next: Execute proof_of_concept.py with evidence*

@@ -11,13 +11,13 @@ This glossary defines key terms used throughout the KGAS architecture documentat
 ## Core Architectural Terms
 
 ### **Cross-Modal Analysis**
-The ability to analyze and convert between three primary data representations (graph, table, vector) while preserving semantic meaning and maintaining source traceability. Unlike traditional approaches that reduce information during conversion, KGAS enriches data as it moves between modalities.
+The ability to fluidly move between three primary data representations (graph, table, vector) to perform analyses that are only possible or optimal in specific formats. For example, community detection requires graph format, regression analysis requires tabular format, and semantic similarity requires vector format. The innovation is not in aggregating evidence across modalities, but in using the right analytical format for each specific analysis type while maintaining data integrity during conversions.
 
 ### **Theory-Aware Processing**
 System components that understand and utilize theoretical frameworks from academic disciplines during analysis. This includes extracting concepts based on domain-specific theories, validating findings against theoretical predictions, and organizing results using established academic frameworks.
 
 ### **Bi-Store Architecture**
-A data storage architecture using exactly two database systems with complementary strengths. In KGAS, this refers to Neo4j (for graph and vector data) and SQLite (for metadata and workflow state), chosen to balance complexity with functionality.
+A data storage architecture using exactly two database systems with complementary strengths. In KGAS, this refers to Neo4j (for graph structures and vector embeddings) and SQLite (for tabular analytical data, statistical results, and operational metadata), chosen to enable cross-modal analysis where different analytical methods require different data formats.
 
 ### **Contract-First Design**
 An architectural pattern where standardized interfaces (contracts) are defined before implementation. All tools in KGAS implement the same contract, enabling consistent integration, testing, and orchestration.

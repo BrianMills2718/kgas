@@ -28,11 +28,30 @@ The `docs/architecture/` directory contains the authoritative architectural docu
 - **Reproducibility**: Full provenance tracking and audit trails
 
 ### 2. Cross-Modal Analysis Architecture
-The system enables fluid movement between three data representations:
-- **Graph Analysis**: Relationships, centrality, communities, paths
-- **Table Analysis**: Statistical analysis, aggregations, correlations
-- **Vector Analysis**: Similarity search, clustering, embeddings
-- **Cross-Modal Integration**: Seamless conversion with source traceability
+The system enables fluid movement between three data representations, recognizing that **certain analyses can only be performed in specific formats**:
+
+- **Graph Analysis**: Network-specific operations
+  - Community detection algorithms (Louvain, Girvan-Newman)
+  - Centrality measures (betweenness, eigenvector, PageRank)
+  - Path analysis and network topology metrics
+  - Relationship traversal and subgraph extraction
+
+- **Table Analysis**: Statistical operations requiring tabular format
+  - Structural Equation Modeling (SEM)
+  - Multiple regression and ANOVA
+  - Descriptive statistics and distributions
+  - Correlation matrices and factor analysis
+
+- **Vector Analysis**: Similarity and semantic operations
+  - Cosine similarity search
+  - Clustering in high-dimensional space
+  - Semantic embeddings and transformations
+  - Nearest neighbor queries
+
+- **Cross-Modal Value**: The innovation is **using the optimal format for each analysis type**, not aggregating evidence across modalities. For example:
+  - Calculate centrality in graph format → Export to table → Run regression analysis
+  - Compute correlations in table format → Convert to graph → Detect communities
+  - Generate embeddings in vector format → Create similarity graph → Analyze network structure
 
 ### 3. Bi-Store Data Architecture
 ```
@@ -43,10 +62,11 @@ The system enables fluid movement between three data representations:
     ┌────────────┴────────────┐
     │                         │
     ▼                         ▼
-┌──────────────────┐    ┌──────────┐
-│  Neo4j (v5.13+)  │    │  SQLite  │
-│(Graph & Vectors) │    │(Metadata)│
-└──────────────────┘    └──────────┘
+┌──────────────────┐    ┌────────────────┐
+│  Neo4j (v5.13+)  │    │     SQLite      │
+│(Graph & Vectors) │    │(Tabular Analysis│
+└──────────────────┘    │   & Metadata)   │
+                        └────────────────┘
 ```
 
 ### 4. Service-Oriented Architecture with Structured Output
@@ -243,6 +263,45 @@ FOR (e:Entity) ON (e.embedding)
 
 #### **SQLite Store**
 ```sql
+-- Analytical data tables for cross-modal analysis
+CREATE TABLE entity_metrics (
+    entity_id TEXT PRIMARY KEY,
+    entity_name TEXT,
+    centrality_score REAL,
+    betweenness_centrality REAL,
+    eigenvector_centrality REAL,
+    clustering_coefficient REAL,
+    degree INTEGER,
+    in_degree INTEGER,
+    out_degree INTEGER,
+    community_id INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE correlation_matrix (
+    var1 TEXT,
+    var2 TEXT,
+    correlation REAL,
+    p_value REAL,
+    n_observations INTEGER,
+    method TEXT DEFAULT 'pearson',
+    PRIMARY KEY (var1, var2)
+);
+
+CREATE TABLE descriptive_statistics (
+    variable_name TEXT PRIMARY KEY,
+    mean REAL,
+    median REAL,
+    std_dev REAL,
+    variance REAL,
+    min_value REAL,
+    max_value REAL,
+    q1 REAL,
+    q3 REAL,
+    n_observations INTEGER,
+    missing_count INTEGER
+);
+
 -- Operational metadata
 CREATE TABLE workflow_states (
     workflow_id TEXT PRIMARY KEY,
@@ -261,10 +320,12 @@ CREATE TABLE provenance (
     created_at TIMESTAMP
 );
 
--- Basic data storage
+-- Research data storage
 CREATE TABLE research_data (
     data_id TEXT PRIMARY KEY,
     content_data TEXT NOT NULL,
+    data_type TEXT,
+    source_format TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
