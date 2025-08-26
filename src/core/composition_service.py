@@ -16,6 +16,7 @@ from framework import ToolFramework, ExtensibleTool
 from src.core.tool_contract import get_tool_registry
 from src.core.service_manager import ServiceManager
 from src.analytics.cross_modal_orchestrator import CrossModalOrchestrator
+from src.core.adapter_factory import UniversalAdapterFactory
 
 
 class CompositionService:
@@ -27,7 +28,7 @@ class CompositionService:
         self.framework = ToolFramework()
         self.production_registry = get_tool_registry()
         self.orchestrator = CrossModalOrchestrator(service_manager)
-        self.adapter_factory = None  # Will create in Task 1.2
+        self.adapter_factory = UniversalAdapterFactory()  # Initialize adapter factory
         
         # Metrics for thesis evidence
         self.composition_metrics = {

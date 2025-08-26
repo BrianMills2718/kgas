@@ -28,11 +28,19 @@ class UniversalAdapter(ExtensibleTool):
     def _detect_execute_method(self) -> Callable:
         """Find the main execution method"""
         # Try common method names
-        for method_name in ['execute', 'run', 'process', '__call__']:
+        for method_name in ['execute', 'run', 'process', 'convert', 'transform', 'analyze', '__call__']:
             if hasattr(self.tool, method_name):
                 method = getattr(self.tool, method_name)
                 if callable(method):
                     return method
+        
+        # If no standard method found, look for any public method that takes input
+        for attr_name in dir(self.tool):
+            if not attr_name.startswith('_'):  # Skip private methods
+                attr = getattr(self.tool, attr_name)
+                if callable(attr) and attr_name not in ['get', 'set', 'validate', 'cleanup', 'initialize']:
+                    # Found a potential execution method
+                    return attr
         
         raise ValueError(f"No execution method found in {self.tool}")
         
