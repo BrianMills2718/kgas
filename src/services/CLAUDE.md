@@ -19,28 +19,27 @@ All services prioritize performance and safety:
 
 ## Individual Service Patterns
 
-### AnalyticsService (`analytics_service.py`)
-**Purpose**: Graph analytics with performance and safety gates
+### AnalyticsService (ARCHIVED)
+**Status**: Archived to `/archived/enterprise_features_20250826/`
+**Reason**: Replaced by sophisticated analytics infrastructure in `/src/analytics/`
+**Replacement**: Use CrossModalOrchestrator, CrossModalConverter, and other advanced analytics tools
 
-**Key Patterns**:
-- **Safety Gates**: Prevent resource exhaustion on large graphs
-- **Performance Optimization**: Use approximate methods for large graphs
-- **Memory Management**: Monitor available memory and project usage
-- **Graph Analysis**: Analyze graph properties for optimization decisions
+The basic AnalyticsService has been archived as part of the architecture simplification. 
+For analytics capabilities, use the sophisticated infrastructure in `/src/analytics/`:
+- CrossModalOrchestrator - Orchestrates cross-modal analysis
+- CrossModalConverter - Converts between graph/table/vector formats
+- GraphTableExporter - Exports graph data to tables
+- MultiFormatExporter - Exports to multiple formats
 
-**Usage**:
+**Migration Example**:
 ```python
-from src.services.analytics_service import AnalyticsService
+# Old way (archived)
+# from src.services.analytics_service import AnalyticsService
+# analytics = AnalyticsService()
 
-analytics = AnalyticsService()
-
-# Check if PageRank should be gated
-should_gate = analytics.should_gate_pagerank(graph, available_memory_gb=8.0)
-
-# Run PageRank with automatic strategy selection
-result = analytics.run_pagerank(graph)
-print(f"Method: {result['method']}")
-print(f"Nodes processed: {result['nodes_processed']}")
+# New way
+from src.analytics.cross_modal_orchestrator import CrossModalOrchestrator
+orchestrator = CrossModalOrchestrator()
 ```
 
 **Core Components**:
