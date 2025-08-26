@@ -1,0 +1,14 @@
+{
+  "chain": [
+    "TextLoaderWithUncertainty",
+    "KnowledgeGraphExtractor",
+    "GraphPersisterDeterministic"
+  ],
+  "uncertainties": [
+    0.02,
+    0.1,
+    0.0
+  ],
+  "total_uncertainty": 0.118,
+  "success": true
+}

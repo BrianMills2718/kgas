@@ -1,0 +1,33 @@
+{
+  "stages": [
+    {
+      "stage": "TextLoader",
+      "uncertainty": 0.02,
+      "reasoning": "Plain text extraction with minimal uncertainty",
+      "success": true
+    },
+    {
+      "stage": "KnowledgeGraphExtractor",
+      "uncertainty": 0.1,
+      "reasoning": "The uncertainty score is relatively low due to the clear and concise nature of the press release. However, a small degree of uncertainty remains because the future projections (e.g., earnings accretion, cost synergies) are inherently speculative.  The fact that only one name is provided for the former Microsoft executive adds a degree of ambiguity. The text does not specify the exact role of David, and this omission contributes to the uncertainty score.",
+      "entities_count": 30,
+      "relationships_count": 16,
+      "success": true
+    },
+    {
+      "stage": "GraphPersister",
+      "uncertainty": 0.0,
+      "reasoning": "All 46 items persisted successfully (deterministic operation)",
+      "success": true
+    }
+  ],
+  "physics_model": 0.118,
+  "simple_average": 0.04,
+  "maximum": 0.1,
+  "individual_uncertainties": [
+    0.02,
+    0.1,
+    0.0
+  ],
+  "pipeline_success": true
+}

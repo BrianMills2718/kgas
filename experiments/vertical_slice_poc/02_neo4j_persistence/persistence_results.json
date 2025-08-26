@@ -1,0 +1,61 @@
+{
+  "stats": {
+    "entities_processed": 27,
+    "entities_created": 27,
+    "relationships_processed": 22,
+    "relationships_created": 22,
+    "errors": []
+  },
+  "verification": {
+    "entity_count": 27,
+    "entity_types": [
+      "organization",
+      "person",
+      "concept",
+      "location",
+      "event"
+    ],
+    "relationship_count": 22,
+    "relationship_types": [
+      "EMPLOYS",
+      "ACQUIRED",
+      "OWNS",
+      "WILL_OWN",
+      "ADVISED",
+      "WILL_ADD_TO_BOARD",
+      "LOCATED_IN",
+      "HAS_OFFICE_IN",
+      "PARTICIPATED_IN"
+    ],
+    "sample_entities": [
+      {
+        "name": "TechCorp Corporation",
+        "type": "organization"
+      },
+      {
+        "name": "DataFlow Systems Inc.",
+        "type": "organization"
+      },
+      {
+        "name": "Sarah Johnson",
+        "type": "person"
+      },
+      {
+        "name": "Michael Chen",
+        "type": "person"
+      },
+      {
+        "name": "Lisa Wang",
+        "type": "person"
+      }
+    ],
+    "sample_relationships": [
+      "TechCorp Corporation --[EMPLOYS]--> Sarah Johnson",
+      "TechCorp Corporation --[EMPLOYS]--> Michael Chen",
+      "DataFlow Systems Inc. --[EMPLOYS]--> Michael Chen",
+      "DataFlow Systems Inc. --[EMPLOYS]--> Lisa Wang",
+      "TechCorp Corporation --[EMPLOYS]--> Amanda Roberts"
+    ]
+  },
+  "success": true
+}

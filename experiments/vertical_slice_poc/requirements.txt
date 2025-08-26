@@ -1,0 +1,20 @@
+# Minimal dependencies for vertical slice POC experiments
+# Install with: pip install -r requirements.txt
+
+# LLM providers (install only what you need)
+openai==1.6.0          # For GPT-4
+anthropic==0.8.0       # For Claude  
+google-generativeai==0.3.0  # For Gemini
+
+# Database drivers
+neo4j==5.14.0          # Neo4j driver for graph persistence
+sqlite3                # Built-in, no install needed
+
+# Utilities
+python-dotenv==1.0.0   # For loading API keys from .env
+pandas==2.1.0          # For data manipulation and SQL operations
+numpy==1.24.0          # For numerical operations
+
+# Optional for testing
+pytest==7.4.0          # If we want to write proper tests
+ipython==8.17.0        # For interactive experimentation

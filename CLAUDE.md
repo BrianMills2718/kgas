@@ -88,7 +88,23 @@ Every uncertainty assessment MUST include comprehensive reasoning that:
 
 ---
 
-## 3. Codebase Structure
+## 3. Active Work Tracking
+
+**CRITICAL**: See `/CLAUDE_CURRENT.md` for all active work streams and current status.
+
+### Current Focus (2025-08-26)
+1. **KGAS Integration** - Phase 1 of SIMPLIFIED_INTEGRATION_PLAN (1/6 tools working)
+2. **Uncertainty System** - Design complete, POC successful
+3. **Vertical Slice** - POC complete in `/experiments/vertical_slice_poc/`
+4. **Framework Integration** - Needs connection to real tools
+
+## 4. Codebase Structure
+
+### Active Work Locations
+- **Integration Plan**: `/docs/architecture/architecture_review_20250808/SIMPLIFIED_INTEGRATION_PLAN.md`
+- **Current Status**: `/CLAUDE_CURRENT.md` (tracks all work streams)
+- **Vertical Slice POC**: `/experiments/vertical_slice_poc/` (COMPLETE)
+- **Evidence**: `/evidence/current/` (active work)
 
 ### Framework Entry Points
 - `/tool_compatability/poc/framework.py` - Main extensible framework
@@ -130,7 +146,7 @@ tool_compatability/poc/
 
 ---
 
-## 3. Current Status: FRAMEWORK EXISTS BUT NOT INTEGRATED
+## 3. Current Status: EXPERIMENTAL PHASE - PROVING CONCEPTS
 
 ### ✅ Completed (Week 1)
 1. **Multi-input support**: ToolContext passes ontologies/parameters
@@ -139,19 +155,21 @@ tool_compatability/poc/
 4. **Semantic types**: Domain-aware compatibility checking
 5. **Framework design**: Extensible framework created
 
-### ❌ Critical Gap
-**The framework and features exist but aren't integrated with real tools/services**
+### ✅ Experimental POC Success (2025-01-26)
+**Location**: `/experiments/vertical_slice_poc/`
+1. **KG Extraction Works**: Successfully extracted 27 entities, 22 relationships with 0.25 uncertainty using Gemini API
+2. **Neo4j Persistence Works**: 100% success rate persisting to Neo4j with actual Entity nodes (fixed bug)
+3. **No Mocks**: Used real Gemini API and real Neo4j database
+4. **Evidence**: Full logs in `evidence/current/Evidence_Integration_POC_Success.md`
+
+### 🚧 In Progress
+- **Experiment 03**: Testing uncertainty propagation through pipeline
+- **Experiment 04**: Framework integration (after Exp 03 succeeds)
 
 ### What Actually Works
-- Framework can register mock tools
-- Can discover chains based on types
-- Individual features work in isolation
-
-### What Doesn't Work
-- Real tools (TextLoader, EntityExtractor, GraphBuilder) not integrated
-- No proof of Gemini API working
-- No proof of Neo4j writes
-- Features don't work together in real chain
+- Direct KG extraction with uncertainty from LLM (proven)
+- Neo4j persistence with Entity nodes (proven)
+- Framework can register tools and discover chains (not yet integrated with proven approach)
 
 ---
 
@@ -725,7 +743,7 @@ Once the proof of concept works:
 
 ---
 
-*Last Updated: 2025-01-25*
-*Phase: Integration & Validation*
-*Status: Framework exists, needs real tool integration*
-*Next: Execute proof_of_concept.py with evidence*
+*Last Updated: 2025-01-26*
+*Phase: Experimental POC*
+*Status: Experiments 1-2 successful, testing uncertainty propagation next*
+*Next: Experiment 03 - uncertainty propagation, then framework integration*

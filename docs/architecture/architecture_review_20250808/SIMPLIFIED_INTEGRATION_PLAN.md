@@ -1,8 +1,10 @@
 # KGAS Simplified Integration Plan
 
 **Date**: 2025-08-12  
+**Last Updated**: 2025-08-26  
 **Decision**: Embrace simplicity, archive enterprise features, focus on connecting existing capabilities  
-**Philosophy**: Research system, not enterprise software
+**Philosophy**: Research system, not enterprise software  
+**Status**: Phase 1 Partially Complete
 
 ## 🎯 Executive Summary
 
@@ -10,29 +12,36 @@ KGAS has sophisticated analytical capabilities hidden behind enterprise over-eng
 
 ## 📋 Implementation Phases
 
-### **Phase 1: Immediate Capability Unlock (Day 1-2)**
+### **Phase 1: Immediate Capability Unlock (Day 1-2)** ✅ PARTIALLY COMPLETE
 
-#### **1.1 Register Cross-Modal Tools** ⭐ HIGHEST PRIORITY
+#### **1.1 Register Cross-Modal Tools** ⭐ HIGHEST PRIORITY - ✅ DONE (1 of 6 tools working)
 **Impact**: Transforms KGAS from basic to sophisticated capabilities instantly
 
-**Files to modify**:
-- `/src/core/tool_registry_loader.py` - Add cross-modal tool patterns
-- `/src/core/tool_id_mapper.py` - Add LLM name mappings
+**Status**: 
+- ✅ Registration script updated (`/src/agents/register_tools_for_workflow.py`)
+- ✅ AsyncTextEmbedder successfully registered and working
+- ❌ 3 tools blocked by missing pandas dependency
+- ❌ 1 tool blocked by Neo4j authentication issue
+- ❌ 1 tool not found at expected path
 
-**Tools to register**:
-1. CrossModalConverter (`/src/analytics/cross_modal_converter.py`)
-2. GraphTableExporterUnified (`/src/tools/cross_modal/graph_table_exporter_unified.py`)
-3. CrossModalWorkflows (`/src/workflows/cross_modal_workflows.py`)
-4. CrossModalTool (`/src/tools/phase_c/cross_modal_tool.py`)
-5. VectorEmbedder (`/src/tools/phase1/t15b_vector_embedder_kgas.py`)
+**Tools registration status**:
+1. ❌ CrossModalConverter (`/src/analytics/cross_modal_converter.py`) - Requires pandas
+2. ❌ GraphTableExporter (`/src/tools/cross_modal/graph_table_exporter.py`) - Requires pandas
+3. ❌ MultiFormatExporter (`/src/tools/cross_modal/multi_format_exporter.py`) - Requires pandas
+4. ❌ CrossModalTool (`/src/tools/phase_c/cross_modal_tool.py`) - Neo4j auth issue
+5. ✅ AsyncTextEmbedder (`/src/tools/phase1/t41_async_text_embedder.py`) - WORKING!
+6. ❌ VectorEmbedderKGAS - File not found at expected path
 
-**Verification**:
-```python
-from src.core.tool_registry_loader import initialize_tool_registry
-registry = initialize_tool_registry()
-print(f"Registered tools: {list(registry.keys())}")
-# Should show cross-modal tools
+**Blockers to resolve**:
+```bash
+# Install pandas to unlock 3 tools
+pip install pandas
+
+# Fix Neo4j authentication in connection strings
+# Update password from 'password' to 'devpassword' 
 ```
+
+**Evidence**: `/evidence/current/Evidence_CrossModal_Registration.md`
 
 ---
 
@@ -139,9 +148,10 @@ cryptography>=41.0.0
 ## 📊 Success Metrics
 
 ### **Phase 1 Success**:
-- [ ] Cross-modal tools appear in tool registry
-- [ ] LLM can discover cross-modal capabilities
-- [ ] Can execute graph→table→vector workflows
+- [x] Cross-modal tools appear in tool registry (1 of 6 working)
+- [x] AsyncTextEmbedder discoverable and functional
+- [ ] All 6 cross-modal tools registered (blocked by dependencies)
+- [ ] Can execute graph→table→vector workflows (needs pandas)
 
 ### **Phase 2 Success**:
 - [ ] Enterprise features archived with documentation
@@ -211,13 +221,16 @@ cryptography>=41.0.0
 
 ---
 
-## 🎯 Priority Order
+## 🎯 Priority Order (Updated 2025-08-26)
 
-1. **CRITICAL**: Register cross-modal tools (massive capability unlock)
-2. **HIGH**: Archive enterprise features (reduce confusion)
-3. **HIGH**: Connect analytics infrastructure (enable sophisticated analysis)
-4. **MEDIUM**: Add API key management (quality of life)
-5. **LOW**: Fix PiiService (only if needed)
+1. **✅ PARTIALLY COMPLETE**: Register cross-modal tools (1/6 working, need pandas + Neo4j fix)
+2. **NEXT**: Install dependencies to unlock remaining tools
+   - `pip install pandas` - Unlocks 3 tools
+   - Fix Neo4j auth - Unlocks CrossModalTool
+3. **HIGH**: Archive enterprise features (reduce confusion)
+4. **HIGH**: Connect analytics infrastructure (enable sophisticated analysis)
+5. **MEDIUM**: Add API key management (quality of life)
+6. **LOW**: Fix PiiService (only if needed)
 
 ---
 

@@ -1,0 +1,349 @@
+{
+  "entities": [
+    {
+      "id": "techcorp",
+      "name": "TechCorp Corporation",
+      "type": "organization",
+      "properties": {
+        "headquarters": "San Francisco, California",
+        "industry": "enterprise software",
+        "stock_symbol": "NASDAQ: TECH"
+      }
+    },
+    {
+      "id": "dataflow_systems",
+      "name": "DataFlow Systems Inc.",
+      "type": "organization",
+      "properties": {
+        "headquarters": "Seattle",
+        "industry": "real-time data processing",
+        "founding_year": "2018"
+      }
+    },
+    {
+      "id": "sarah_johnson",
+      "name": "Sarah Johnson",
+      "type": "person",
+      "properties": {
+        "title": "Chief Executive Officer",
+        "organization": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "michael_chen",
+      "name": "Michael Chen",
+      "type": "person",
+      "properties": {
+        "title": "Founder and CEO",
+        "organization": "DataFlow Systems Inc.",
+        "new_title": "Executive Vice President of Data Technologies",
+        "new_organization": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "lisa_wang",
+      "name": "Lisa Wang",
+      "type": "person",
+      "properties": {
+        "title": "Chief Technology Officer",
+        "organization": "DataFlow Systems Inc."
+      }
+    },
+    {
+      "id": "amanda_roberts",
+      "name": "Amanda Roberts",
+      "type": "person",
+      "properties": {
+        "title": "Chief Product Officer",
+        "organization": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "jennifer_park",
+      "name": "Jennifer Park",
+      "type": "person",
+      "properties": {
+        "title": "Industry Analyst",
+        "organization": "Gartner Research"
+      }
+    },
+    {
+      "id": "robert_martinez",
+      "name": "Robert Martinez",
+      "type": "person",
+      "properties": {
+        "title": "CEO",
+        "organization": "CloudScale Inc."
+      }
+    },
+    {
+      "id": "cloudscale_inc",
+      "name": "CloudScale Inc.",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "streamcore_technologies",
+      "name": "StreamCore Technologies",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "oracle_corporation",
+      "name": "Oracle Corporation",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "microsoft_azure",
+      "name": "Microsoft Azure",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "amazon_web_services",
+      "name": "Amazon Web Services",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "streamengine",
+      "name": "StreamEngine",
+      "type": "concept",
+      "properties": {
+        "description": "DataFlow's flagship product"
+      }
+    },
+    {
+      "id": "cloudbase",
+      "name": "CloudBase",
+      "type": "concept",
+      "properties": {
+        "description": "TechCorp's infrastructure"
+      }
+    },
+    {
+      "id": "techflow_enterprise_platform",
+      "name": "TechFlow Enterprise Platform",
+      "type": "concept",
+      "properties": {}
+    },
+    {
+      "id": "morgan_stanley",
+      "name": "Morgan Stanley & Co.",
+      "type": "organization",
+      "properties": {
+        "role": "financial advisor to TechCorp"
+      }
+    },
+    {
+      "id": "kirkland_ellis",
+      "name": "Kirkland & Ellis LLP",
+      "type": "organization",
+      "properties": {
+        "role": "legal counsel to TechCorp"
+      }
+    },
+    {
+      "id": "goldman_sachs",
+      "name": "Goldman Sachs & Co.",
+      "type": "organization",
+      "properties": {
+        "role": "financial advisor to DataFlow Systems"
+      }
+    },
+    {
+      "id": "wilson_sonsini",
+      "name": "Wilson Sonsini Goodrich & Rosati",
+      "type": "organization",
+      "properties": {
+        "role": "legal counsel to DataFlow Systems"
+      }
+    },
+    {
+      "id": "patricia_kim",
+      "name": "Patricia Kim",
+      "type": "person",
+      "properties": {
+        "organization": "Sequoia Capital"
+      }
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "type": "person",
+      "properties": {
+        "previous_organization": "Microsoft"
+      }
+    },
+    {
+      "id": "san_francisco",
+      "name": "San Francisco, CA",
+      "type": "location",
+      "properties": {}
+    },
+    {
+      "id": "seattle",
+      "name": "Seattle",
+      "type": "location",
+      "properties": {}
+    },
+    {
+      "id": "austin",
+      "name": "Austin",
+      "type": "location",
+      "properties": {}
+    },
+    {
+      "id": "bangalore",
+      "name": "Bangalore",
+      "type": "location",
+      "properties": {}
+    },
+    {
+      "id": "acquisition_event",
+      "name": "TechCorp's Acquisition of DataFlow Systems",
+      "type": "event",
+      "properties": {
+        "date": "January 26, 2025",
+        "price": "$2.3 billion"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "techcorp",
+      "target": "sarah_johnson",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems",
+      "target": "michael_chen",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems",
+      "target": "lisa_wang",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "amanda_roberts",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "michael_chen",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "acquisition_event",
+      "type": "PARTICIPATED_IN",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems",
+      "target": "acquisition_event",
+      "type": "PARTICIPATED_IN",
+      "properties": {}
+    },
+    {
+      "source": "acquisition_event",
+      "target": "morgan_stanley",
+      "type": "ADVISED",
+      "properties": {}
+    },
+    {
+      "source": "acquisition_event",
+      "target": "kirkland_ellis",
+      "type": "ADVISED",
+      "properties": {}
+    },
+    {
+      "source": "acquisition_event",
+      "target": "goldman_sachs",
+      "type": "ADVISED",
+      "properties": {}
+    },
+    {
+      "source": "acquisition_event",
+      "target": "wilson_sonsini",
+      "type": "ADVISED",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "cloudbase",
+      "type": "OWNS",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems",
+      "target": "streamengine",
+      "type": "OWNS",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "techflow_enterprise_platform",
+      "type": "WILL_OWN",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems",
+      "target": "seattle",
+      "type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "san_francisco",
+      "type": "LOCATED_IN",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "austin",
+      "type": "HAS_OFFICE_IN",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "bangalore",
+      "type": "HAS_OFFICE_IN",
+      "properties": {}
+    },
+    {
+      "source": "cloudscale_inc",
+      "target": "robert_martinez",
+      "type": "EMPLOYS",
+      "properties": {}
+    },
+    {
+      "source": "cloudscale_inc",
+      "target": "streamcore_technologies",
+      "type": "ACQUIRED",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "patricia_kim",
+      "type": "WILL_ADD_TO_BOARD",
+      "properties": {}
+    },
+    {
+      "source": "techcorp",
+      "target": "david",
+      "type": "WILL_ADD_TO_BOARD",
+      "properties": {}
+    }
+  ],
+  "uncertainty": 0.25,
+  "reasoning": "I assessed uncertainty of 0.25 because some details, particularly around future integration plans and the exact composition of the future TechCorp board, are projections and subject to change.  The financial figures are also projections, and actual results may vary."
+}

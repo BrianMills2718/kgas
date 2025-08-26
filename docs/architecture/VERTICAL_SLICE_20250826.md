@@ -6,7 +6,9 @@
 
 ## Executive Summary
 
-Build a clean vertical slice that demonstrates the extensible tool composition framework with proper uncertainty propagation, using real databases and services. This avoids the existing technical debt while proving the core architectural concepts work end-to-end.
+Build a clean vertical slice using **standard knowledge graph extraction** that demonstrates the extensible tool composition framework with proper uncertainty propagation, using real databases. This avoids the existing technical debt while proving the core architectural concepts work end-to-end.
+
+**Key Simplification**: Use standard KG extraction that gets entities AND relationships in one LLM call, rather than separate entity extraction and relationship inference steps.
 
 ## Core Design Principles
 
@@ -16,20 +18,26 @@ Build a clean vertical slice that demonstrates the extensible tool composition f
 4. **Truly Modular**: Each tool is independent, framework discovers chains based on semantic types
 5. **Fail Fast**: No mocks, no graceful fallbacks - surface errors immediately
 
+### Uncertainty Principle Clarification
+**Not all deterministic operations are equal**:
+- **Lossy operations** (TextLoader): Have uncertainty even when successful because information can be lost
+- **Lossless operations** (GraphPersister): Have zero uncertainty when successful because they preserve data exactly
+- The key question: "Can this operation degrade the data even when it succeeds?"
+
 ## Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    3 Clean Tools                             │
-│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐       │
-│  │ TextLoader   │ │EntityExtractor│ │ GraphBuilder │       │
-│  │              │ │              │ │              │       │
-│  │ file_path →  │ │ text →       │ │ entities →   │       │
-│  │ character_seq│ │ semantic_units│ │ graph_struct │       │
-│  └──────────────┘ └──────────────┘ └──────────────┘       │
-│         ↓                ↓                ↓                 │
-│    uncertainty      uncertainty      uncertainty            │
-│      0.15              0.25              0.20               │
+│  ┌──────────────┐ ┌──────────────────┐ ┌──────────────┐   │
+│  │ TextLoader   │ │KnowledgeGraph    │ │GraphPersister│   │
+│  │              │ │Extractor         │ │              │   │
+│  │ file_path →  │ │ text →           │ │ kg_data →    │   │
+│  │ document_text│ │ knowledge_graph  │ │ neo4j_graph  │   │
+│  └──────────────┘ └──────────────────┘ └──────────────┘   │
+│         ↓                ↓                    ↓             │
+│    uncertainty      uncertainty          uncertainty        │
+│      0.15              0.25                 0.10            │
 └─────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────┐
@@ -48,18 +56,19 @@ Build a clean vertical slice that demonstrates the extensible tool composition f
 │  │IdentityService│ │ProvenanceService│ │CrossModalService│ │
 │  │              │ │              │ │              │       │
 │  │ Entity       │ │ Track ops    │ │ Graph↔Table │       │
-│  │ resolution   │ │ + uncertainty│ │ conversions │       │
+│  │ deduplication│ │ + uncertainty│ │ conversions │       │
 │  └──────────────┘ └──────────────┘ └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────┐
-│                    3 Databases                               │
-│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐       │
-│  │Neo4j Graph   │ │Neo4j Vectors │ │SQLite Tables │       │
-│  │              │ │              │ │              │       │
-│  │Entities,     │ │Embeddings,   │ │Metrics,      │       │
-│  │Relationships │ │Similarity    │ │Statistics    │       │
-│  └──────────────┘ └──────────────┘ └──────────────┘       │
+│                    2 Databases                               │
+│  ┌────────────────────────┐    ┌────────────────────────┐  │
+│  │     Neo4j              │    │     SQLite             │  │
+│  │                        │    │                        │  │
+│  │ • Nodes & Properties   │    │ • Entity Metrics       │  │
+│  │ • Edges & Properties   │    │ • Statistical Tables   │  │
+│  │ • Vector Embeddings    │    │ • Correlation Matrices │  │
+│  └────────────────────────┘    └────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -67,33 +76,42 @@ Build a clean vertical slice that demonstrates the extensible tool composition f
 
 ### Phase 1: Clean Service Layer (Day 1)
 
-#### 1.1 IdentityService
+#### 1.1 IdentityService (Simplified)
 ```python
 # /tool_compatability/poc/services/identity_service.py
 class IdentityService:
+    """
+    Simplified for MVP - just handles entity deduplication across extractions
+    The bug fix (creating Entity nodes) is handled in GraphPersister
+    """
     def __init__(self, neo4j_driver):
         self.driver = neo4j_driver
     
-    def create_entity(self, text: str, entity_type: str, uncertainty: float) -> str:
+    def find_similar_entities(self, name: str, threshold: float = 0.8) -> List[Dict]:
         """
-        ACTUALLY creates Entity nodes in Neo4j (fixing the current bug!)
-        Includes uncertainty score in the node properties
+        Find entities with similar names (for deduplication)
+        MVP: Simple string matching, can add embeddings later
         """
-        # Creates both Entity and Mention nodes
-        # Links them properly
-        # Returns entity_id
+        query = """
+        MATCH (e:Entity)
+        WHERE toLower(e.canonical_name) CONTAINS toLower($name)
+        RETURN e.entity_id as id, e.canonical_name as name
+        LIMIT 10
+        """
+        # Returns list of similar entities
     
-    def resolve_entity(self, mention_text: str) -> Tuple[str, float]:
+    def merge_entities(self, entity_id1: str, entity_id2: str) -> str:
         """
-        Resolve mention to existing entity or create new one
-        Returns (entity_id, resolution_uncertainty)
+        Merge two entities that refer to the same real-world entity
+        Not critical for MVP - can be manual process initially
         """
+        # Merges relationships, keeps one canonical entity
 ```
 
-**🔴 UNCERTAINTY**: 
-- Should entity resolution uncertainty be separate from extraction uncertainty?
-- How do we handle cases where multiple entities could match?
-- Should we use embeddings for similarity or just string matching initially?
+**✅ SIMPLIFIED**: 
+- No complex resolution needed for MVP
+- Bug fix moved to GraphPersister where entities are created
+- Can enhance with embeddings and better matching later
 
 #### 1.2 ProvenanceService Enhancement
 ```python
@@ -124,39 +142,103 @@ class ProvenanceService:
 ```python
 # /tool_compatability/poc/services/crossmodal_service.py
 class CrossModalService:
+    """
+    Handles graph↔table conversions using hypergraph approach
+    Treats edges as n-ary relations with properties as columns
+    """
     def __init__(self, neo4j_driver, sqlite_conn):
         self.neo4j = neo4j_driver
         self.sqlite = sqlite_conn
     
     def graph_to_table(self, entity_ids: List[str]) -> pd.DataFrame:
         """
-        Export graph metrics to SQLite table for statistical analysis
-        Calculate centrality, degree, clustering coefficient
-        Store in entity_metrics table
+        Export graph to relational tables for statistical analysis
+        
+        Creates two tables:
+        1. entity_metrics: node properties and graph metrics
+        2. relationships: edges as rows with properties as columns
         """
+        # Get entities and calculate metrics
+        entity_query = """
+        MATCH (e:Entity)
+        WHERE e.entity_id IN $entity_ids
+        OPTIONAL MATCH (e)-[r]-()
+        RETURN e.entity_id as id,
+               e.canonical_name as name,
+               e.entity_type as type,
+               count(DISTINCT r) as degree,
+               properties(e) as properties
+        """
+        
+        # Get relationships (hypergraph as table)
+        relationship_query = """
+        MATCH (s:Entity)-[r]->(t:Entity)
+        WHERE s.entity_id IN $entity_ids
+        RETURN s.entity_id as source,
+               t.entity_id as target,
+               type(r) as relationship_type,
+               properties(r) as properties
+        """
+        
+        # Write to SQLite tables
+        # This is the straightforward mapping you described
     
-    def table_to_graph(self, correlation_matrix: pd.DataFrame) -> None:
+    def table_to_graph(self, relationships_df: pd.DataFrame) -> Dict:
         """
-        Convert correlation matrix to graph structure
-        Create edges for correlations above threshold
+        Convert relational table to graph
+        Each row becomes an edge with properties
         """
-    
-    def assess_conversion_uncertainty(self, 
-                                     source_format: str,
-                                     target_format: str,
-                                     data_characteristics: Dict) -> float:
-        """
-        Assess uncertainty of format conversion
-        E.g., losing graph structure when converting to table
-        """
+        created_edges = 0
+        for _, row in relationships_df.iterrows():
+            # Create edge in Neo4j
+            query = """
+            MATCH (s:Entity {entity_id: $source})
+            MATCH (t:Entity {entity_id: $target})
+            CREATE (s)-[r:$rel_type]->(t)
+            SET r += $properties
+            """
+            # Execute query
+            created_edges += 1
+        
+        return {"edges_created": created_edges}
 ```
 
-**🔴 UNCERTAINTIES**:
-- What's the minimum correlation threshold for creating edges?
-- Should conversion uncertainty be tracked separately from analytical uncertainty?
-- Do we need vector↔graph conversions in the MVP?
+**✅ SIMPLIFIED**:
+- Hypergraph approach: edges as rows, properties as columns
+- Straightforward bidirectional mapping
+- No complex threshold decisions needed
 
 ### Phase 2: Tool Implementation with Uncertainty (Day 2)
+
+#### 2.0 Uncertainty Constants Configuration
+```python
+# /tool_compatability/poc/config/uncertainty_constants.py
+"""
+Configurable uncertainty constants for deterministic operations
+These are clearly labeled and easily adjustable, not buried in code
+"""
+
+# TextLoader uncertainties by file type
+TEXT_LOADER_UNCERTAINTY = {
+    "pdf": 0.15,      # OCR challenges, formatting loss
+    "txt": 0.02,      # Nearly perfect extraction
+    "docx": 0.08,     # Some formatting complexity
+    "html": 0.12,     # Tag stripping, structure loss
+    "md": 0.03,       # Clean markdown extraction
+    "rtf": 0.10,      # Format conversion challenges
+    "default": 0.10   # Unknown file types
+}
+
+# Reasoning templates
+TEXT_LOADER_REASONING = {
+    "pdf": "PDF extraction may have OCR errors or formatting loss",
+    "txt": "Plain text extraction with minimal uncertainty",
+    "docx": "Word document with potential formatting complexity",
+    "html": "HTML parsing may lose semantic structure",
+    "md": "Markdown extraction preserves structure well",
+    "default": "Standard uncertainty for file format extraction"
+}
+```
 
 #### 2.1 TextLoaderV3
 ```python
@@ -202,129 +284,234 @@ class TextLoaderV3(ExtensibleTool):
     
     def _assess_uncertainty(self, input_file: FileData, output_text: str) -> UncertaintyAssessment:
         """
-        Assess how well we extracted character sequence from file
+        Use configurable constants for file type uncertainty
         """
-        # Factors to consider:
-        # - File type (PDF vs TXT)
-        # - OCR needed?
-        # - Encoding issues?
-        # - Formatting preserved?
+        from config.uncertainty_constants import TEXT_LOADER_UNCERTAINTY, TEXT_LOADER_REASONING
+        
+        file_extension = input_file.path.split('.')[-1].lower()
+        uncertainty = TEXT_LOADER_UNCERTAINTY.get(file_extension, TEXT_LOADER_UNCERTAINTY["default"])
+        reasoning = TEXT_LOADER_REASONING.get(file_extension, TEXT_LOADER_REASONING["default"])
+        
+        return UncertaintyAssessment(
+            score=uncertainty,
+            reasoning=reasoning
+        )
 ```
 
-**🔴 UNCERTAINTIES**:
-- Should we use LLM for uncertainty assessment or rule-based initially?
-- How detailed should the reasoning field be?
-- Should we batch uncertainty assessments for performance?
+**✅ CLARIFIED**:
+- Using configurable constants from uncertainty_constants.py
+- Clear reasoning templates for each file type
+- No LLM needed for deterministic file operations
 
-#### 2.2 EntityExtractorV3
+#### 2.2 KnowledgeGraphExtractor
 ```python
-# /tool_compatability/poc/tools/entity_extractor_v3.py
-class EntityExtractorV3(ExtensibleTool):
-    def __init__(self, llm_client, identity_service):
+# /tool_compatability/poc/tools/knowledge_graph_extractor.py
+class KnowledgeGraphExtractor(ExtensibleTool):
+    def __init__(self, llm_client, chunk_size=4000, overlap=200, schema_mode="open"):
         self.llm = llm_client
-        self.identity = identity_service
+        self.chunk_size = chunk_size
+        self.overlap = overlap
+        self.schema_mode = schema_mode  # open/closed/hybrid
     
     def get_capabilities(self) -> ToolCapabilities:
         return ToolCapabilities(
-            tool_id="EntityExtractorV3",
+            tool_id="KnowledgeGraphExtractor",
             input_type=DataType.TEXT,
-            output_type=DataType.ENTITIES,
-            input_construct="character_sequence",
-            output_construct="semantic_units",
-            transformation_type="entity_extraction",
+            output_type=DataType.KNOWLEDGE_GRAPH,
+            input_construct="document_text",
+            output_construct="knowledge_graph",
+            transformation_type="knowledge_graph_extraction",
             semantic_input=SemanticType.DOCUMENT_TEXT,
-            semantic_output=SemanticType.NAMED_ENTITIES
+            semantic_output=SemanticType.KNOWLEDGE_GRAPH
         )
     
     def process(self, input_data: str, context: ToolContext) -> ToolResult:
-        # Extract entities using LLM
-        extraction_result = self.llm.extract_entities(input_data)
+        # Handle chunking if text is too long
+        if len(input_data) > self.chunk_size:
+            chunks = self._create_chunks(input_data)
+            kg_chunks = []
+            
+            for chunk in chunks:
+                kg_data = self._extract_knowledge_graph(chunk)
+                kg_chunks.append(kg_data)
+            
+            # Merge all chunks into single graph
+            final_kg = self._merge_knowledge_graphs(kg_chunks)
+        else:
+            # Single extraction for short text
+            final_kg = self._extract_knowledge_graph(input_data)
         
-        # Resolve entities using IdentityService
-        resolved_entities = []
-        for entity in extraction_result.entities:
-            entity_id, resolution_uncertainty = self.identity.resolve_entity(
-                entity.text, 
-                entity.type
-            )
-            resolved_entities.append({
-                'id': entity_id,
-                'text': entity.text,
-                'type': entity.type,
-                'resolution_uncertainty': resolution_uncertainty
-            })
-        
-        # Single unified uncertainty assessment
-        uncertainty = self._assess_transformation_uncertainty(
-            input_text=input_data,
-            extracted_entities=resolved_entities
+        # Single unified uncertainty assessment for entire extraction
+        uncertainty = self._assess_extraction_uncertainty(
+            text_length=len(input_data),
+            entity_count=len(final_kg['entities']),
+            relationship_count=len(final_kg['relationships']),
+            chunk_count=len(chunks) if len(input_data) > self.chunk_size else 1
         )
         
         return ToolResult(
             success=True,
-            data=resolved_entities,
+            data=final_kg,
             uncertainty=uncertainty.score,
             reasoning=uncertainty.reasoning
         )
+    
+    def _extract_knowledge_graph(self, text: str) -> Dict:
+        """
+        Standard knowledge graph extraction - entities AND relationships in one call
+        """
+        prompt = """
+        Extract a knowledge graph from the following text.
+        
+        Return JSON with:
+        {
+          "entities": [
+            {
+              "id": "unique_identifier",
+              "name": "entity name",
+              "type": "person|organization|location|event|concept",
+              "attributes": {"key": "value"}
+            }
+          ],
+          "relationships": [
+            {
+              "source": "source_entity_id",
+              "target": "target_entity_id",
+              "type": "relationship_type",
+              "attributes": {"key": "value"}
+            }
+          ]
+        }
+        
+        Text: {text}
+        """
+        
+        # Get structured output based on schema mode
+        if self.schema_mode == "open":
+            # Accept any properties
+            kg_data = self.llm.extract_structured(prompt, response_format="json")
+        elif self.schema_mode == "closed":
+            # Enforce specific schema
+            kg_data = self.llm.extract_structured(prompt, response_format=KGSchema)
+        else:  # hybrid
+            # Required fields + additional allowed
+            kg_data = self.llm.extract_structured(prompt, response_format=HybridKGSchema)
+        
+        return kg_data
 ```
 
-**🔴 UNCERTAINTIES**:
-- Should entity resolution be part of extraction or separate tool?
-- How do we handle entity coreference (pronouns, aliases)?
-- What LLM model/temperature for extraction?
-- Should we chunk large texts?
+**✅ CLARIFICATIONS**:
+- Chunking handled same as everything else (4000 chars with overlap)
+- Schema mode supports open/closed/hybrid as requested
+- Standard extraction gets entities AND relationships together
+- Entity deduplication not a concern for MVP (per your feedback)
 
-#### 2.3 GraphBuilderV3
+#### 2.3 GraphPersister
 ```python
-# /tool_compatability/poc/tools/graph_builder_v3.py
-class GraphBuilderV3(ExtensibleTool):
-    def __init__(self, neo4j_driver, crossmodal_service):
+# /tool_compatability/poc/tools/graph_persister.py
+class GraphPersister(ExtensibleTool):
+    def __init__(self, neo4j_driver, identity_service, crossmodal_service):
         self.neo4j = neo4j_driver
+        self.identity = identity_service
         self.crossmodal = crossmodal_service
     
     def get_capabilities(self) -> ToolCapabilities:
         return ToolCapabilities(
-            tool_id="GraphBuilderV3",
-            input_type=DataType.ENTITIES,
-            output_type=DataType.GRAPH,
-            input_construct="semantic_units",
-            output_construct="relationship_network",
-            transformation_type="graph_construction",
-            semantic_input=SemanticType.NAMED_ENTITIES,
-            semantic_output=SemanticType.KNOWLEDGE_GRAPH
+            tool_id="GraphPersister",
+            input_type=DataType.KNOWLEDGE_GRAPH,
+            output_type=DataType.NEO4J_GRAPH,
+            input_construct="knowledge_graph",
+            output_construct="persisted_graph",
+            transformation_type="graph_persistence",
+            semantic_input=SemanticType.KNOWLEDGE_GRAPH,
+            semantic_output=SemanticType.NEO4J_GRAPH
         )
     
-    def process(self, input_data: List[Dict], context: ToolContext) -> ToolResult:
-        # Build relationships between entities
-        relationships = self._infer_relationships(input_data)
+    def process(self, input_data: Dict, context: ToolContext) -> ToolResult:
+        """
+        Persist knowledge graph to Neo4j
+        Input format: {"entities": [...], "relationships": [...]}
+        """
+        entities = input_data['entities']
+        relationships = input_data['relationships']
         
-        # Write to Neo4j
+        # Create entities in Neo4j (fixing the IdentityService bug here!)
+        entity_map = {}  # Map from extraction IDs to Neo4j IDs
+        for entity in entities:
+            neo4j_id = self._create_or_merge_entity(entity)
+            entity_map[entity['id']] = neo4j_id
+        
+        # Create relationships in Neo4j
+        relationship_count = 0
         for rel in relationships:
-            self._create_relationship(rel)
+            source_id = entity_map.get(rel['source'])
+            target_id = entity_map.get(rel['target'])
+            
+            if source_id and target_id:
+                self._create_relationship(source_id, target_id, rel)
+                relationship_count += 1
         
-        # Export initial metrics to SQLite for analysis
-        entity_ids = [e['id'] for e in input_data]
-        metrics_df = self.crossmodal.graph_to_table(entity_ids)
+        # Export graph metrics to SQLite for cross-modal analysis
+        if self.crossmodal:
+            self.crossmodal.graph_to_table(list(entity_map.values()))
         
-        # Assess construction uncertainty
-        uncertainty = self._assess_graph_construction_uncertainty(
-            entities=input_data,
-            relationships=relationships
-        )
+        # Assess persistence uncertainty
+        # IMPORTANT: GraphPersister has zero uncertainty on success because it's a pure
+        # storage operation - no transformation or interpretation occurs.
+        # This is different from TextLoader which can lose information even when "successful"
+        if len(entity_map) == len(entities) and relationship_count == len(relationships):
+            # All operations succeeded - data is in Neo4j EXACTLY as provided
+            uncertainty = 0.0
+            reasoning = "All entities and relationships successfully persisted to Neo4j with perfect fidelity"
+        else:
+            # Some operations failed
+            failed_entities = len(entities) - len(entity_map)
+            failed_rels = len(relationships) - relationship_count
+            uncertainty = (failed_entities + failed_rels) / (len(entities) + len(relationships))
+            reasoning = f"Failed to persist {failed_entities} entities and {failed_rels} relationships"
         
         return ToolResult(
             success=True,
-            data={'entities': len(input_data), 'relationships': len(relationships)},
+            data={
+                'entities_created': len(entity_map),
+                'relationships_created': relationship_count,
+                'neo4j_ids': entity_map
+            },
             uncertainty=uncertainty.score,
             reasoning=uncertainty.reasoning
         )
+    
+    def _create_or_merge_entity(self, entity: Dict) -> str:
+        """
+        Create or merge entity in Neo4j (FIXES THE BUG!)
+        Actually creates Entity nodes, not just Mentions
+        """
+        query = """
+        MERGE (e:Entity {canonical_name: $name})
+        ON CREATE SET
+            e.entity_id = $entity_id,
+            e.entity_type = $entity_type,
+            e.created_at = datetime()
+        SET e += $attributes
+        RETURN e.entity_id as entity_id
+        """
+        
+        with self.neo4j.session() as session:
+            result = session.run(
+                query,
+                name=entity['name'],
+                entity_id=f"entity_{uuid.uuid4().hex[:12]}",
+                entity_type=entity['type'],
+                attributes=entity.get('attributes', {})
+            )
+            return result.single()['entity_id']
 ```
 
-**🔴 UNCERTAINTIES**:
-- How do we infer relationships between entities?
-- Should relationship inference use LLM or proximity-based rules?
-- What relationship types should we support initially?
-- Should we calculate graph metrics immediately or on-demand?
+**✅ CLARIFICATIONS**:
+- No relationship inference needed - they come from KnowledgeGraphExtractor
+- GraphPersister just writes what it receives to Neo4j
+- Fixes IdentityService bug by actually creating Entity nodes
+- Exports metrics to SQLite for cross-modal analysis
 
 ### Phase 3: Framework Integration (Day 3)
 
@@ -439,45 +626,29 @@ def test_complete_pipeline():
 
 ## Critical Questions Needing Clarification
 
-### 1. Uncertainty Assessment Implementation
-**Question**: Should uncertainty assessment use LLM calls or rule-based heuristics initially?
+### 1. Uncertainty Assessment Implementation ✅ RESOLVED
 
-**Options**:
-- **Option A**: Every tool makes LLM call for uncertainty assessment (accurate but expensive)
-- **Option B**: Rule-based for deterministic operations, LLM for complex assessments
-- **Option C**: Hybrid - batch multiple assessments into single LLM call
+**Decision**: Mixed approach based on tool type
 
-**Trade-offs**: Cost vs accuracy vs latency
+**Implementation**:
+- **KnowledgeGraphExtractor**: Option A - Single LLM call returns graph + uncertainty + reasoning
+- **GraphPersister**: 0.0 uncertainty if successful (see distinction below)
+- **TextLoader**: Configurable constants in `uncertainty_constants.py` (not buried in code)
 
-### 2. Entity Resolution Strategy
-**Question**: How sophisticated should entity resolution be in the MVP?
+**Critical Distinction - Not All Deterministic Operations Are Equal**:
+- **TextLoader** is deterministic BUT can do its job badly (e.g., PDF→text loses formatting, OCR errors)
+  - Even when "successful", uncertainty exists about extraction quality
+  - Hence configurable uncertainty values (PDF=0.15, TXT=0.02)
+- **GraphPersister** is different - if it succeeds, the job is done perfectly
+  - Success means nodes/edges are in Neo4j exactly as specified
+  - No quality degradation possible - either written or not
+  - Hence uncertainty = 0.0 on success
 
-**Options**:
-- **Option A**: Simple string matching (fast but limited)
-- **Option B**: Embedding-based similarity (more accurate but requires vectors)
-- **Option C**: LLM-based resolution (most accurate but expensive)
+**Key Principle**: Uncertainty measures "how well did we preserve/transform meaning?"
+- TextLoader: Can lose meaning even when "successful" (formatting, special chars, etc.)
+- GraphPersister: Preserves exactly what it receives - no transformation uncertainty
 
-**Current IdentityService bug**: Creates Mentions but not Entities - we need to fix this
-
-### 3. Relationship Inference
-**Question**: How do we infer relationships between entities for graph construction?
-
-**Options**:
-- **Option A**: Co-occurrence in same sentence/paragraph (simple but noisy)
-- **Option B**: LLM-based relationship extraction (accurate but slow)
-- **Option C**: Dependency parsing + rules (middle ground)
-
-**Uncertainty impact**: Relationship quality directly affects graph analysis uncertainty
-
-### 4. Cross-Modal Conversion Triggers
-**Question**: When should we automatically trigger format conversions?
-
-**Examples**:
-- After building graph, auto-export metrics to SQLite?
-- After computing correlations, auto-create correlation graph?
-- Should conversions be explicit tools or automatic?
-
-### 5. Service Initialization
+### 2. Service Initialization
 **Question**: How do we handle service dependencies cleanly?
 
 **Current mess**: ServiceManager has complex initialization with multiple patterns
@@ -488,7 +659,7 @@ def test_complete_pipeline():
 - Service lifecycle
 - Testing without real databases
 
-### 6. Performance vs Accuracy Trade-offs
+### 3. Performance vs Accuracy Trade-offs
 **Question**: What's our position on performance for the MVP?
 
 **Options**:
@@ -496,31 +667,21 @@ def test_complete_pipeline():
 - **Performance first**: Cached assessments, batching (fast but approximate)
 - **Configurable**: Let user choose accuracy/performance level
 
-### 7. Aggregation Tool Identification
-**Question**: How do tools self-identify as aggregators for uncertainty reduction?
+### 4. Testing Strategy
+**Question**: How do we test the vertical slice end-to-end?
 
-**Proposed approach**:
-```python
-def process(self, input_data: List[Any], context):
-    if len(input_data) > 1 and len(output) == 1:
-        # This is aggregation - uncertainty likely reduces
-        uncertainty = self._assess_aggregation_uncertainty()
-```
+**Specific needs**:
+- Test data (what document to use?)
+- Expected outputs (how many entities/relationships expected?)
+- Database verification (how to check Neo4j and SQLite correctly populated?)
 
-**Concerns**: Not all many-to-one operations are aggregations
-
-### 8. Testing Strategy
-**Question**: How do we test uncertainty propagation correctness?
-
-**Challenges**:
-- Uncertainty is subjective by design
-- No ground truth for validation
-- LLM assessments vary between runs
-
-**Options**:
-- Test that uncertainties are within reasonable ranges
-- Test that aggregation reduces uncertainty
-- Test that known-bad inputs produce high uncertainty
+**Resolved Questions** (based on your feedback):
+- ✅ Entity Resolution: Simple string matching is fine for MVP
+- ✅ Relationship Inference: Not needed - KnowledgeGraphExtractor handles it
+- ✅ Cross-Modal Triggers: Explicit tools, not automatic
+- ✅ Aggregation Identification: Not relevant for this 3-tool chain
+- ✅ Schema Enforcement: Start with open schema
+- ✅ Chunking: Same as everything else (4000 chars with overlap)
 
 ## Success Criteria
 

@@ -1,0 +1,328 @@
+{
+  "entities": [
+    {
+      "id": "techcorp_corporation",
+      "name": "TechCorp Corporation",
+      "type": "organization",
+      "properties": {
+        "headquarters": "San Francisco, California",
+        "industry": "enterprise software",
+        "stock_symbol": "NASDAQ: TECH"
+      }
+    },
+    {
+      "id": "dataflow_systems_inc",
+      "name": "DataFlow Systems Inc.",
+      "type": "organization",
+      "properties": {
+        "headquarters": "Seattle",
+        "industry": "real-time data processing",
+        "founded": "2018",
+        "employees": "500+"
+      }
+    },
+    {
+      "id": "sarah_johnson",
+      "name": "Sarah Johnson",
+      "type": "person",
+      "properties": {
+        "title": "Chief Executive Officer of TechCorp"
+      }
+    },
+    {
+      "id": "michael_chen",
+      "name": "Michael Chen",
+      "type": "person",
+      "properties": {
+        "title": "Founder and CEO of DataFlow Systems",
+        "new_title": "Executive Vice President of Data Technologies at TechCorp"
+      }
+    },
+    {
+      "id": "lisa_wang",
+      "name": "Lisa Wang",
+      "type": "person",
+      "properties": {
+        "title": "Chief Technology Officer of DataFlow Systems"
+      }
+    },
+    {
+      "id": "amanda_roberts",
+      "name": "Amanda Roberts",
+      "type": "person",
+      "properties": {
+        "title": "Chief Product Officer of TechCorp"
+      }
+    },
+    {
+      "id": "jennifer_park",
+      "name": "Jennifer Park",
+      "type": "person",
+      "properties": {
+        "affiliation": "Gartner Research",
+        "title": "Industry Analyst"
+      }
+    },
+    {
+      "id": "robert_martinez",
+      "name": "Robert Martinez",
+      "type": "person",
+      "properties": {
+        "title": "CEO of CloudScale Inc."
+      }
+    },
+    {
+      "id": "cloudscale_inc",
+      "name": "CloudScale Inc.",
+      "type": "organization",
+      "properties": {
+        "competitor_of": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "streamcore_technologies",
+      "name": "StreamCore Technologies",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "oracle_corporation",
+      "name": "Oracle Corporation",
+      "type": "organization",
+      "properties": {
+        "competitor_of": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "microsoft_azure",
+      "name": "Microsoft Azure",
+      "type": "organization",
+      "properties": {
+        "competitor_of": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "amazon_web_services",
+      "name": "Amazon Web Services",
+      "type": "organization",
+      "properties": {
+        "competitor_of": "TechCorp Corporation"
+      }
+    },
+    {
+      "id": "streamengine",
+      "name": "StreamEngine",
+      "type": "concept",
+      "properties": {
+        "description": "DataFlow's flagship product"
+      }
+    },
+    {
+      "id": "cloudbase",
+      "name": "CloudBase",
+      "type": "concept",
+      "properties": {
+        "description": "TechCorp's infrastructure"
+      }
+    },
+    {
+      "id": "techflow_enterprise_platform",
+      "name": "TechFlow Enterprise Platform",
+      "type": "concept",
+      "properties": {}
+    },
+    {
+      "id": "goldman_sachs",
+      "name": "Goldman Sachs",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "toyota_motor_corporation",
+      "name": "Toyota Motor Corporation",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "johnson_and_johnson",
+      "name": "Johnson & Johnson",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "morgan_stanley_co",
+      "name": "Morgan Stanley & Co.",
+      "type": "organization",
+      "properties": {
+        "role": "financial advisor to TechCorp"
+      }
+    },
+    {
+      "id": "kirkland_ellis_llp",
+      "name": "Kirkland & Ellis LLP",
+      "type": "organization",
+      "properties": {
+        "role": "legal counsel to TechCorp"
+      }
+    },
+    {
+      "id": "goldman_sachs_co",
+      "name": "Goldman Sachs & Co.",
+      "type": "organization",
+      "properties": {
+        "role": "financial advisor to DataFlow Systems"
+      }
+    },
+    {
+      "id": "wilson_sonsini_goodrich_rosati",
+      "name": "Wilson Sonsini Goodrich & Rosati",
+      "type": "organization",
+      "properties": {
+        "role": "legal counsel to DataFlow Systems"
+      }
+    },
+    {
+      "id": "sequoia_capital",
+      "name": "Sequoia Capital",
+      "type": "organization",
+      "properties": {}
+    },
+    {
+      "id": "patricia_kim",
+      "name": "Patricia Kim",
+      "type": "person",
+      "properties": {
+        "affiliation": "Sequoia Capital"
+      }
+    },
+    {
+      "id": "david",
+      "name": "David",
+      "type": "person",
+      "properties": {
+        "previous_affiliation": "Microsoft"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "techcorp_corporation",
+      "target": "dataflow_systems_inc",
+      "type": "ACQUIRES",
+      "properties": {
+        "price": "$2.3 billion",
+        "date": "Q2 2025 (expected)"
+      }
+    },
+    {
+      "source": "sarah_johnson",
+      "target": "techcorp_corporation",
+      "type": "WORKS_FOR",
+      "properties": {}
+    },
+    {
+      "source": "michael_chen",
+      "target": "dataflow_systems_inc",
+      "type": "FOUNDED",
+      "properties": {}
+    },
+    {
+      "source": "michael_chen",
+      "target": "techcorp_corporation",
+      "type": "WORKS_FOR",
+      "properties": {
+        "title": "Executive Vice President of Data Technologies"
+      }
+    },
+    {
+      "source": "michael_chen",
+      "target": "sarah_johnson",
+      "type": "REPORTS_TO",
+      "properties": {}
+    },
+    {
+      "source": "lisa_wang",
+      "target": "dataflow_systems_inc",
+      "type": "WORKS_FOR",
+      "properties": {}
+    },
+    {
+      "source": "amanda_roberts",
+      "target": "techcorp_corporation",
+      "type": "WORKS_FOR",
+      "properties": {}
+    },
+    {
+      "source": "dataflow_systems_inc",
+      "target": "streamengine",
+      "type": "DEVELOPS",
+      "properties": {}
+    },
+    {
+      "source": "techcorp_corporation",
+      "target": "cloudbase",
+      "type": "DEVELOPS",
+      "properties": {}
+    },
+    {
+      "source": "cloudscale_inc",
+      "target": "streamcore_technologies",
+      "type": "ACQUIRES",
+      "properties": {
+        "price": "$1.8 billion"
+      }
+    },
+    {
+      "source": "robert_martinez",
+      "target": "cloudscale_inc",
+      "type": "WORKS_FOR",
+      "properties": {}
+    },
+    {
+      "source": "techcorp_corporation",
+      "target": "techflow_enterprise_platform",
+      "type": "DEVELOPS",
+      "properties": {}
+    },
+    {
+      "source": "morgan_stanley_co",
+      "target": "techcorp_corporation",
+      "type": "PROVIDES_SERVICE",
+      "properties": {
+        "service": "financial advisory"
+      }
+    },
+    {
+      "source": "kirkland_ellis_llp",
+      "target": "techcorp_corporation",
+      "type": "PROVIDES_SERVICE",
+      "properties": {
+        "service": "legal counsel"
+      }
+    },
+    {
+      "source": "goldman_sachs_co",
+      "target": "dataflow_systems_inc",
+      "type": "PROVIDES_SERVICE",
+      "properties": {
+        "service": "financial advisory"
+      }
+    },
+    {
+      "source": "wilson_sonsini_goodrich_rosati",
+      "target": "dataflow_systems_inc",
+      "type": "PROVIDES_SERVICE",
+      "properties": {
+        "service": "legal counsel"
+      }
+    },
+    {
+      "source": "patricia_kim",
+      "target": "sequoia_capital",
+      "type": "WORKS_FOR",
+      "properties": {}
+    }
+  ],
+  "uncertainty": 0.25,
+  "reasoning": "I assessed uncertainty of 0.25 because the text contains forward-looking statements (e.g., expected closing date, projected revenue, anticipated synergies) which might not materialize as predicted.  Also, some details (like the exact identity of the former Microsoft executive joining the board) are not fully specified."
+}

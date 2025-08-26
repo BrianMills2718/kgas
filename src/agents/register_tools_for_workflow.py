@@ -106,31 +106,70 @@ def register_phase2_tools(service_manager: ServiceManager):
 
 def register_cross_modal_tools(service_manager: ServiceManager):
     """Register cross-modal conversion tools."""
-    from src.tools.cross_modal.graph_table_exporter import GraphTableExporter
-    # TableVectorEmbedder doesn't exist yet - use T15b_vector_embedder from phase1
-    from src.tools.phase1.t15b_vector_embedder import VectorEmbedder
     from src.core.tool_adapter import LegacyToolAdapter
     
     registry = get_tool_registry()
+    tool_definitions = []
     
-    # Tool definitions with IDs and names
-    tool_definitions = [
-        (GraphTableExporter(), "T91_GRAPH_TABLE_EXPORTER", "Graph to Table Exporter"),
-        (VectorEmbedder(service_manager), "T15B_VECTOR_EMBEDDER", "Vector Embedder")
-    ]
+    # Register GraphTableExporter (graph → table conversion)
+    try:
+        from src.tools.cross_modal.graph_table_exporter import GraphTableExporter
+        tool_definitions.append((GraphTableExporter(), "GRAPH_TABLE_EXPORTER", "Graph to Table Exporter"))
+    except ImportError as e:
+        logger.warning(f"Could not import GraphTableExporter: {e}")
+    
+    # Register MultiFormatExporter (multi-format conversion)
+    try:
+        from src.tools.cross_modal.multi_format_exporter import MultiFormatExporter
+        tool_definitions.append((MultiFormatExporter(), "MULTI_FORMAT_EXPORTER", "Multi-Format Exporter"))
+    except ImportError as e:
+        logger.warning(f"Could not import MultiFormatExporter: {e}")
+    
+    # Register CrossModalTool from phase_c (cross-modal analysis)
+    try:
+        from src.tools.phase_c.cross_modal_tool import CrossModalTool
+        tool_definitions.append((CrossModalTool(), "CROSS_MODAL_ANALYZER", "Cross-Modal Analyzer"))
+    except ImportError as e:
+        logger.warning(f"Could not import CrossModalTool: {e}")
+    
+    # Register T15B VectorEmbedderKGAS (text → vector conversion)
+    try:
+        from src.tools.phase1.t15b_vector_embedder_kgas import T15BVectorEmbedderKGAS
+        tool_definitions.append((T15BVectorEmbedderKGAS(), "VECTOR_EMBEDDER", "Vector Embedder KGAS"))
+    except ImportError as e:
+        logger.warning(f"Could not import T15BVectorEmbedderKGAS: {e}")
+    
+    # Register T41 AsyncTextEmbedder (async text → vector with 15-20% performance improvement)
+    try:
+        from src.tools.phase1.t41_async_text_embedder import AsyncTextEmbedder
+        tool_definitions.append((AsyncTextEmbedder(), "ASYNC_TEXT_EMBEDDER", "Async Text Embedder"))
+    except ImportError as e:
+        logger.warning(f"Could not import AsyncTextEmbedder: {e}")
+    
+    # Register CrossModalConverter from analytics (comprehensive conversion matrix)
+    try:
+        from src.analytics.cross_modal_converter import CrossModalConverter
+        tool_definitions.append((CrossModalConverter(), "CROSS_MODAL_CONVERTER", "Cross-Modal Converter"))
+    except ImportError as e:
+        logger.warning(f"Could not import CrossModalConverter: {e}")
     
     # Register each tool
     registered_count = 0
     for tool_instance, tool_id, tool_name in tool_definitions:
         try:
+            # Ensure cross-modal tools have correct category
+            if not hasattr(tool_instance, 'category'):
+                tool_instance.category = 'cross_modal'
+            
             # Create adapter for legacy tool
             adapter = LegacyToolAdapter(tool_instance, tool_id, tool_name)
             registry.register_tool(adapter)
-            logger.info(f"Registered {tool_id} via LegacyToolAdapter")
+            logger.info(f"Registered {tool_id} via LegacyToolAdapter (category: {adapter.category})")
             registered_count += 1
         except Exception as e:
             logger.error(f"Failed to register {tool_id}: {e}")
     
+    logger.info(f"Successfully registered {registered_count} cross-modal tools")
     return registered_count
 
 
