@@ -1,4 +1,4 @@
-# Tool Composition Framework Integration - Implementation Guide
+# Uncertainty Propagation for Tool Composition Framework
 
 ## 1. Coding Philosophy (MANDATORY)
 
@@ -12,323 +12,152 @@
 ```
 evidence/
 ├── current/
-│   └── Evidence_Framework_[Task].md    # Current framework integration work only
+│   └── Evidence_Uncertainty_[Task].md    # Current uncertainty work only
 ├── completed/
-│   └── Evidence_Phase[1-3]_*.md        # Previous phase work (DO NOT MODIFY)
+│   ├── Evidence_Framework_*.md          # Framework Days 1-7 ✅
+│   └── Evidence_Week2_*.md              # Tool integration ✅
 ```
 
 **CRITICAL**: 
 - Raw execution logs required (copy-paste terminal output)
 - No success claims without showing actual execution
 - Mark all untested components as "NOT TESTED"
-- Must test with REAL services (Gemini API, Neo4j)
 
 ---
 
-## 2. Codebase Structure
+## 2. Current Goal: Add Uncertainty to Framework
+
+### What We Have ✅
+- 20 tools integrated with framework
+- Complex DAG chains working
+- Real services (Gemini, Neo4j) connected
+
+### What We Need ❌
+- Uncertainty propagation through chains
+- Reasoning traces for explainability
+- Critical services integration
+- One complete demo with uncertainty
+
+---
+
+## 3. Codebase Structure
 
 ### Planning Documents
-- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 12-week PhD thesis plan
-- `/tool_compatability/poc/CRITICAL_ISSUES_POC_PLAN.md` - 5 critical issues to solve
-- `/docs/architecture/architecture_review_20250808/SIMPLIFIED_INTEGRATION_PLAN.md` - Phases 1-3 ✅ COMPLETE
+- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 12-week plan
+- `/docs/architecture/architecture_review_20250808/SIMPLIFIED_INTEGRATION_PLAN.md` - Integration phases
 
-### Framework Components (POC - Needs Integration)
+### Key Entry Points
+- `/src/core/composition_service.py` - Main framework bridge
+- `/src/core/adapter_factory.py` - Tool adaptation layer
+- `/src/core/service_manager.py` - Service coordination
+- `/src/core/batch_tool_integration.py` - Tool registration
+
+### Framework Components (POC)
 ```
 /tool_compatability/poc/
-├── framework.py              # 🎯 MAIN: Extensible Tool Composition Framework
-├── base_tool.py             # Base class with metrics
-├── base_tool_v2.py          # Enhanced with ToolContext support
-├── data_types.py            # 10 semantic types
-├── tool_context.py          # ✅ Multi-input support (Week 1 feature)
-├── schema_versions.py       # ✅ Schema versioning (Week 1 feature)
-├── semantic_types.py        # ✅ Semantic compatibility (Week 1 feature)
-├── data_references.py       # ✅ Memory management (Week 1 feature)
-└── tools/                   # Example tools (mostly mocks - REPLACE WITH REAL)
+├── framework.py          # Core framework
+├── data_types.py        # Type definitions (MODIFY THIS)
+└── base_tool.py         # Tool base class
 ```
 
-### Production System (Working)
+### Critical Services (Need Integration)
 ```
-/src/
-├── core/
-│   ├── service_manager.py        # ServiceManager for dependency injection
-│   ├── tool_contract.py         # Production tool registry
-│   ├── analytics_access.py      # ✅ NEW: Simple analytics access
-│   └── neo4j_manager.py         # Neo4j connection management
-├── tools/                        # 37+ production tools
-│   ├── cross_modal/             # 5 registered cross-modal tools
-│   └── phase1/                  # Various analytical tools
-├── analytics/                    # Sophisticated analytics (8 components)
-│   ├── cross_modal_orchestrator.py  # Orchestrates workflows
-│   └── cross_modal_converter.py     # Format conversions
-└── agents/
-    └── register_tools_for_workflow.py  # Tool registration script
-```
-
-### Integration Points
-- **ServiceManager**: Central service coordination (`/src/core/service_manager.py`)
-- **Tool Registry**: Production registry (`/src/core/tool_contract.py`)
-- **Framework Registry**: POC registry (needs bridging)
-- **Neo4j**: `bolt://localhost:7687` (neo4j/devpassword)
-- **Gemini API**: via litellm, key in `.env`
-
----
-
-## 3. Current Status
-
-### ✅ Completed (Phases 1-3)
-1. **5 cross-modal tools** registered and working
-2. **62KB enterprise code** archived
-3. **8 analytics components** connected
-4. **Framework POC** exists with 4 features implemented
-
-### ❌ Integration Gap
-**The framework and production tools don't work together**
-
-### Problem Statement
-```python
-# Framework expects:          # Production has:
-ExtensibleTool               → Various base classes
-get_capabilities()           → Different method names  
-process(context)             → execute(), run(), process()
-ToolContext                  → Direct parameters
-Framework registry           → tool_contract registry
+/src/core/
+├── identity_service.py      # Entity management
+├── provenance_service.py    # Operation tracking
+├── quality_service.py       # Confidence assessment
+└── workflow_state_service.py # Checkpoint management
 ```
 
 ---
 
-## 4. Task: Tool Composition Framework Integration
+## 4. Task: Add Uncertainty to ToolResult
 
 ### Objective
-Create a **bridge** that allows the framework and production tools to work together, enabling dynamic tool composition for arbitrary analytical pipelines.
+Modify the framework to propagate uncertainty scores and reasoning through tool chains.
 
-### Success Criteria
-1. One complete chain works: File → Entities → Graph
-2. Both registries accessible (federated, not replaced)
-3. Real services used (Gemini, Neo4j)
-4. Performance overhead < 20%
-5. 10+ tools integrated by end of Week 1
+### Implementation Instructions
 
----
+#### Step 1: Extend ToolResult with Uncertainty (1 hour)
 
-## 5. Implementation Instructions
+**File**: Modify `/tool_compatability/poc/data_types.py`
 
-### Day 1: Create the Composition Service (8 hours)
-
-#### Task 1.1: Create CompositionService (2 hours)
-
-**File**: Create `/src/core/composition_service.py`
-
+Add these fields to ToolResult class:
 ```python
-#!/usr/bin/env python3
-"""
-Composition Service - Bridge between framework and production tools
-CRITICAL: This is the convergence point for all tool systems
-"""
+from dataclasses import dataclass
+from typing import Any, Optional, Dict
 
-import sys
-import time
-from pathlib import Path
-from typing import Dict, List, Any, Optional, Union
+@dataclass
+class ToolResult:
+    success: bool
+    data: Any
+    error: Optional[str] = None
+    uncertainty: float = 0.0  # ADD THIS: 0=certain, 1=uncertain
+    reasoning: str = ""       # ADD THIS: Why this uncertainty
+    provenance: Dict = None   # ADD THIS: Execution trace
+```
 
-# Add framework to path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "tool_compatability" / "poc"))
+**Evidence Required**: `evidence/current/Evidence_Uncertainty_Core.md`
+- Show the modified ToolResult class
+- Confirm it imports without errors
+- Show that existing tools still work
 
-from framework import ToolFramework, ExtensibleTool
-from src.core.tool_contract import get_tool_registry
-from src.core.service_manager import ServiceManager
-from src.analytics.cross_modal_orchestrator import CrossModalOrchestrator
+#### Step 2: Update UniversalAdapter to Add Uncertainty (1 hour)
 
+**File**: Modify `/src/core/adapter_factory.py`
 
-class CompositionService:
-    """Single source of truth for tool composition"""
-    
-    def __init__(self, service_manager: ServiceManager = None):
-        """Initialize with both framework and production systems"""
-        self.service_manager = service_manager or ServiceManager()
-        self.framework = ToolFramework()
-        self.production_registry = get_tool_registry()
-        self.orchestrator = CrossModalOrchestrator(service_manager)
-        self.adapter_factory = None  # Will create in Task 1.2
+Update the process method to ensure uncertainty is always present:
+```python
+def process(self, input_data: Any, context=None) -> ToolResult:
+    """Execute tool and ensure uncertainty is added"""
+    try:
+        # Get input uncertainty if it exists
+        input_uncertainty = 0.0
+        if hasattr(input_data, 'uncertainty'):
+            input_uncertainty = input_data.uncertainty
         
-        # Metrics for thesis evidence
-        self.composition_metrics = {
-            'chains_discovered': 0,
-            'tools_adapted': 0,
-            'execution_time': [],
-            'overhead_percentage': []
-        }
+        # Call the tool
+        result = self.execute_method(input_data)
         
-    def register_any_tool(self, tool: Any) -> bool:
-        """
-        Register ANY tool regardless of interface
-        Returns True if successful
-        """
-        try:
-            # Will implement with adapter factory
-            if not self.adapter_factory:
-                raise NotImplementedError("Adapter factory not yet created")
-                
-            adapted = self.adapter_factory.wrap(tool)
-            self.framework.register_tool(adapted)
-            
-            self.composition_metrics['tools_adapted'] += 1
-            return True
-            
-        except Exception as e:
-            print(f"❌ Failed to register {tool}: {e}")
-            return False
-            
-    def discover_chains(self, input_type: str, output_type: str) -> List[List[str]]:
-        """
-        Discover all possible chains from both systems
-        """
-        # Get chains from framework
-        framework_chains = self.framework.find_chains(input_type, output_type)
+        # Ensure result has uncertainty
+        if not isinstance(result, ToolResult):
+            result = ToolResult(success=True, data=result)
         
-        # TODO: Also query production registry
+        if not hasattr(result, 'uncertainty') or result.uncertainty == 0.0:
+            # Add default uncertainty
+            result.uncertainty = 0.1  # Default: slightly uncertain
+            result.reasoning = "Default uncertainty - tool provided no assessment"
         
-        self.composition_metrics['chains_discovered'] += len(framework_chains)
-        return framework_chains
-        
-    def execute_chain(self, chain: List[str], input_data: Any) -> Any:
-        """
-        Execute a discovered chain with performance tracking
-        """
-        start_time = time.time()
-        
-        # Will implement execution logic
-        result = None  # Placeholder
-        
-        execution_time = time.time() - start_time
-        self.composition_metrics['execution_time'].append(execution_time)
+        # Simple propagation: increase uncertainty slightly at each step
+        if input_uncertainty > 0:
+            result.uncertainty = min(1.0, result.uncertainty + (input_uncertainty * 0.1))
+            result.reasoning += f" (propagated from input: {input_uncertainty:.2f})"
         
         return result
         
-    def get_metrics(self) -> Dict[str, Any]:
-        """Get composition metrics for thesis evidence"""
-        return self.composition_metrics
-```
-
-**Evidence Required**: `evidence/current/Evidence_Framework_CompositionService.md`
-- Show file created
-- Show it imports successfully
-- Show ServiceManager integration
-
-#### Task 1.2: Create Universal Adapter Factory (2 hours)
-
-**File**: Create `/src/core/adapter_factory.py`
-
-```python
-#!/usr/bin/env python3
-"""
-Universal Adapter Factory - Wraps any tool for framework compatibility
-"""
-
-import inspect
-from typing import Any, Dict, Callable
-from pathlib import Path
-import sys
-
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "tool_compatability" / "poc"))
-
-from framework import ExtensibleTool, ToolCapabilities, ToolResult
-from data_types import DataType
-
-
-class UniversalAdapter(ExtensibleTool):
-    """Adapts any production tool to framework interface"""
-    
-    def __init__(self, production_tool: Any):
-        self.tool = production_tool
-        self.tool_id = getattr(production_tool, 'tool_id', 
-                               production_tool.__class__.__name__)
-        
-        # Detect the execution method
-        self.execute_method = self._detect_execute_method()
-        
-    def _detect_execute_method(self) -> Callable:
-        """Find the main execution method"""
-        # Try common method names
-        for method_name in ['execute', 'run', 'process', '__call__']:
-            if hasattr(self.tool, method_name):
-                method = getattr(self.tool, method_name)
-                if callable(method):
-                    return method
-        
-        raise ValueError(f"No execution method found in {self.tool}")
-        
-    def get_capabilities(self) -> ToolCapabilities:
-        """Generate capabilities from tool inspection"""
-        return ToolCapabilities(
-            tool_id=self.tool_id,
-            name=getattr(self.tool, 'name', self.tool_id),
-            description=getattr(self.tool, '__doc__', 'Adapted tool'),
-            input_type=self._detect_input_type(),
-            output_type=self._detect_output_type(),
+    except Exception as e:
+        return ToolResult(
+            success=False, 
+            data=None,
+            error=str(e),
+            uncertainty=1.0,  # Failures are maximally uncertain
+            reasoning="Error occurred - maximum uncertainty"
         )
-        
-    def _detect_input_type(self) -> DataType:
-        """Detect input type from tool signature or attributes"""
-        # Simple detection - enhance as needed
-        if hasattr(self.tool, 'input_type'):
-            return self.tool.input_type
-        return DataType.ANY  # Fallback
-        
-    def _detect_output_type(self) -> DataType:
-        """Detect output type from tool"""
-        if hasattr(self.tool, 'output_type'):
-            return self.tool.output_type
-        return DataType.ANY  # Fallback
-        
-    def process(self, input_data: Any, context=None) -> ToolResult:
-        """Execute the tool with framework interface"""
-        try:
-            # Call the detected method
-            result = self.execute_method(input_data)
-            
-            # Wrap result in ToolResult
-            if isinstance(result, ToolResult):
-                return result
-            else:
-                return ToolResult(success=True, data=result)
-                
-        except Exception as e:
-            return ToolResult(success=False, error=str(e))
-
-
-class UniversalAdapterFactory:
-    """Factory for creating adapters"""
-    
-    def wrap(self, tool: Any) -> ExtensibleTool:
-        """
-        Wrap any tool with appropriate adapter
-        Returns framework-compatible tool
-        """
-        # If already framework compatible, return as-is
-        if isinstance(tool, ExtensibleTool):
-            return tool
-            
-        # Otherwise wrap with universal adapter
-        return UniversalAdapter(tool)
-        
-    def bulk_wrap(self, tools: List[Any]) -> List[ExtensibleTool]:
-        """Wrap multiple tools"""
-        return [self.wrap(tool) for tool in tools]
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Framework_AdapterFactory.md`
-- Show factory can wrap a simple tool
-- Show it detects execution method
-- Show it returns framework-compatible interface
+**Evidence Required**: `evidence/current/Evidence_Uncertainty_Adapter.md`
+- Show the modified adapter code
+- Test with a simple tool
+- Confirm uncertainty propagates
 
-#### Task 1.3: Integrate First Real Tool (2 hours)
+#### Step 3: Test Uncertainty Propagation (2 hours)
 
-**File**: Create `/src/core/test_integration.py`
+**File**: Create `/src/core/test_uncertainty_propagation.py`
 
 ```python
 #!/usr/bin/env python3
 """
-Test integration of first real tool through CompositionService
+Test uncertainty propagation through tool chains
 """
 
 import sys
@@ -336,386 +165,263 @@ from pathlib import Path
 sys.path.append('/home/brian/projects/Digimons')
 
 from src.core.composition_service import CompositionService
-from src.core.adapter_factory import UniversalAdapterFactory
-from src.tools.text_loader import TextLoader  # Real production tool
+from src.core.batch_tool_integration import create_simple_tools_for_testing
 
-def test_first_integration():
-    """Test TextLoader through composition service"""
-    
+def test_linear_propagation():
+    """Test uncertainty increases through chain"""
+    print("\n" + "="*60)
+    print("TEST: Linear Uncertainty Propagation")
     print("="*60)
-    print("FIRST TOOL INTEGRATION TEST")
-    print("="*60)
     
-    # 1. Create composition service
     service = CompositionService()
-    service.adapter_factory = UniversalAdapterFactory()
     
-    # 2. Get a real production tool
-    text_loader = TextLoader()
+    # Create and register tools
+    tools = create_simple_tools_for_testing()
+    for tool in tools[:3]:  # Use first 3 tools
+        service.register_any_tool(tool)
     
-    # 3. Register it
-    print("\n1. Registering TextLoader...")
-    success = service.register_any_tool(text_loader)
+    # Start with certain data
+    initial_data = "Test data for uncertainty"
     
-    if success:
-        print("   ✅ TextLoader registered successfully")
+    # Execute chain and track uncertainty
+    print("\nStep | Tool | Uncertainty | Reasoning")
+    print("-" * 60)
+    
+    current_data = initial_data
+    current_uncertainty = 0.0
+    
+    for i, tool in enumerate(tools[:3], 1):
+        result = tool.execute(current_data)
+        
+        # Check if result has uncertainty
+        uncertainty = getattr(result, 'uncertainty', 0.1)
+        reasoning = getattr(result, 'reasoning', 'No reasoning provided')
+        
+        print(f"{i} | {tool.name} | {uncertainty:.2f} | {reasoning[:40]}...")
+        
+        current_data = result
+        current_uncertainty = uncertainty
+    
+    print(f"\nFinal uncertainty: {current_uncertainty:.2f}")
+    
+    # Verify uncertainty increased
+    if current_uncertainty > 0.0:
+        print("✅ Uncertainty propagated through chain")
+        return True
     else:
-        print("   ❌ Registration failed")
+        print("❌ Uncertainty did not propagate")
         return False
+
+def test_branching_uncertainty():
+    """Test uncertainty in branching DAG"""
+    print("\n" + "="*60)
+    print("TEST: Branching Uncertainty")
+    print("="*60)
     
-    # 4. Check if discoverable
-    print("\n2. Testing discovery...")
-    chains = service.discover_chains("FILE", "TEXT")
+    # Test two branches with different uncertainties
+    branch1_uncertainty = 0.3
+    branch2_uncertainty = 0.5
     
-    if chains:
-        print(f"   ✅ Found {len(chains)} chains")
-        for chain in chains:
-            print(f"      {' → '.join(chain)}")
+    # Simple average for merge
+    merged_uncertainty = (branch1_uncertainty + branch2_uncertainty) / 2
+    
+    print(f"Branch 1 uncertainty: {branch1_uncertainty:.2f}")
+    print(f"Branch 2 uncertainty: {branch2_uncertainty:.2f}") 
+    print(f"Merged uncertainty: {merged_uncertainty:.2f}")
+    
+    if merged_uncertainty == 0.4:
+        print("✅ Branching uncertainty correctly merged")
+        return True
     else:
-        print("   ❌ No chains discovered")
+        print("❌ Incorrect merge calculation")
+        return False
+
+def main():
+    """Run uncertainty tests"""
+    print("="*60)
+    print("UNCERTAINTY PROPAGATION TESTS")
+    print("="*60)
     
-    # 5. Test execution (if we have a test file)
-    test_file = Path("test_data/sample.txt")
-    if test_file.exists():
-        print("\n3. Testing execution...")
-        # This will need implementation in execute_chain
-        print("   ⚠️  Execution not yet implemented")
+    tests = [
+        test_linear_propagation,
+        test_branching_uncertainty
+    ]
     
-    # 6. Show metrics
-    print("\n4. Composition Metrics:")
-    metrics = service.get_metrics()
-    for key, value in metrics.items():
-        print(f"   {key}: {value}")
+    passed = 0
+    for test in tests:
+        if test():
+            passed += 1
     
-    return True
+    print("\n" + "="*60)
+    print(f"Results: {passed}/{len(tests)} tests passed")
+    
+    if passed == len(tests):
+        print("✅ Uncertainty propagation working!")
+        return True
+    else:
+        print("❌ Some tests failed")
+        return False
 
 if __name__ == "__main__":
-    success = test_first_integration()
+    success = main()
     sys.exit(0 if success else 1)
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Framework_FirstTool.md`
-- Full execution log
-- Show TextLoader registered
-- Show discovery working
-- Show metrics collected
-
-#### Task 1.4: Create Evidence Documentation (1 hour)
-
-Create comprehensive evidence showing Day 1 success.
+**Evidence Required**: `evidence/current/Evidence_Uncertainty_Propagation.md`
+- Full test output showing uncertainty values
+- Confirmation that uncertainty increases through chain
+- Evidence of reasoning strings
 
 ---
 
-### Day 2: Bridge Both Registries (8 hours)
+## 5. Next Task: Connect ProvenanceService
 
-#### Task 2.1: Create Registry Federation (3 hours)
+### Objective
+Integrate ProvenanceService to track tool execution paths automatically.
 
-**File**: Create `/src/core/registry_federation.py`
+### Implementation Instructions
+
+#### Step 1: Create Service Bridge (1 hour)
+
+**File**: Create `/src/core/service_bridge.py`
 
 ```python
 #!/usr/bin/env python3
 """
-Registry Federation - Query both framework and production registries
+Bridge to connect critical services to framework
 """
 
-from typing import List, Dict, Any, Optional
-import sys
-from pathlib import Path
+from typing import Dict, Any, Optional
+from src.core.provenance_service import ProvenanceService
+from src.core.service_manager import ServiceManager
 
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "tool_compatability" / "poc"))
-
-from framework import ToolFramework
-from src.core.tool_contract import get_tool_registry
-
-
-class FederatedRegistry:
-    """
-    Federated registry that queries both systems
-    Does NOT replace either registry - queries both
-    """
+class ServiceBridge:
+    """Connects framework to critical services"""
     
-    def __init__(self, framework: ToolFramework = None):
-        self.framework = framework or ToolFramework()
-        self.production = get_tool_registry()
+    def __init__(self, service_manager: ServiceManager = None):
+        self.service_manager = service_manager or ServiceManager()
+        self._services = {}
         
-    def discover_all_chains(self, input_type: str, output_type: str) -> Dict[str, List]:
-        """
-        Discover chains from both registries
-        Returns dict with 'framework', 'production', and 'mixed' chains
-        """
-        results = {
-            'framework': [],
-            'production': [],
-            'mixed': []
-        }
+    def get_provenance_service(self) -> ProvenanceService:
+        """Get or create provenance service"""
+        if 'provenance' not in self._services:
+            self._services['provenance'] = ProvenanceService()
+        return self._services['provenance']
+    
+    def track_execution(self, tool_id: str, input_data: Any, output_data: Any):
+        """Track tool execution in provenance"""
+        provenance = self.get_provenance_service()
         
-        # Get framework chains
-        try:
-            framework_chains = self.framework.find_chains(input_type, output_type)
-            results['framework'] = framework_chains
-        except Exception as e:
-            print(f"Framework discovery error: {e}")
+        # Record the execution
+        provenance.track_operation(
+            operation_type="tool_execution",
+            tool_id=tool_id,
+            input_hash=str(hash(str(input_data)))[:8],
+            output_hash=str(hash(str(output_data)))[:8],
+            timestamp=time.time()
+        )
         
-        # Get production chains (needs implementation based on production registry API)
-        # TODO: Implement production chain discovery
-        
-        # Find mixed chains (framework + production tools)
-        # TODO: Implement mixed chain discovery
-        
-        return results
-        
-    def get_tool(self, tool_id: str) -> Optional[Any]:
-        """Get tool from either registry"""
-        # Try framework first
-        if tool_id in self.framework.tools:
-            return self.framework.tools[tool_id]
-        
-        # Try production
-        try:
-            return self.production.get_tool(tool_id)
-        except:
-            return None
-            
-    def list_all_tools(self) -> Dict[str, List[str]]:
-        """List tools from both registries"""
-        return {
-            'framework': list(self.framework.tools.keys()),
-            'production': self.production.list_tools()
-        }
+        return provenance.get_current_trace()
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Framework_Federation.md`
-- Show both registries queryable
-- Show tool counts from each
-- Show no interference between registries
+#### Step 2: Inject Service into Adapter (1 hour)
 
-#### Task 2.2: Test Cross-Registry Discovery (2 hours)
+**File**: Modify `/src/core/adapter_factory.py`
 
-Write tests showing tools from both registries can be discovered.
-
-#### Task 2.3: Performance Baseline (3 hours)
-
-Measure overhead of adapter layer vs direct execution.
-
----
-
-### Day 3-5: Complete Integration Pipeline
-
-#### Task 3.1: Entity Extractor Integration (Day 3)
-
-Integrate EntityExtractor with REAL Gemini API:
-- No mocks allowed
-- Must extract real entities
-- Must show Gemini API response
-
-#### Task 3.2: Graph Builder Integration (Day 4)
-
-Integrate GraphBuilder with REAL Neo4j:
-- Must create real nodes
-- Must verify with Cypher query
-- Show node count before/after
-
-#### Task 3.3: End-to-End Chain (Day 5)
-
-Execute complete chain:
-```
-TextLoader → EntityExtractor → GraphBuilder
-```
-
-Success criteria:
-- Real file processed
-- Real entities extracted via Gemini
-- Real nodes created in Neo4j
-- Performance metrics collected
-
----
-
-## 6. Validation Requirements
-
-### Required Evidence Files
-
-Each day MUST produce evidence:
-
-**Day 1**: `Evidence_Framework_Day1_Complete.md`
-- CompositionService created ✓
-- AdapterFactory working ✓  
-- First tool integrated ✓
-- Metrics collected ✓
-
-**Day 2**: `Evidence_Framework_Day2_Federation.md`
-- Registry federation working ✓
-- Both registries accessible ✓
-- No interference proven ✓
-
-**Day 3-5**: `Evidence_Framework_Pipeline_Complete.md`
-- Full chain execution log ✓
-- Gemini API response shown ✓
-- Neo4j nodes verified ✓
-- Performance < 20% overhead ✓
-
-### Performance Requirements
-
+Add service injection to UniversalAdapter:
 ```python
-# Measure overhead
-direct_time = measure_direct_execution()
-framework_time = measure_framework_execution()
-overhead = (framework_time - direct_time) / direct_time * 100
+def __init__(self, production_tool: Any, service_bridge=None):
+    self.tool = production_tool
+    self.tool_id = getattr(production_tool, 'tool_id', 
+                           production_tool.__class__.__name__)
+    self.service_bridge = service_bridge  # ADD THIS
+    self.execute_method = self._detect_execute_method()
 
-assert overhead < 20, f"Overhead {overhead}% exceeds 20% limit"
+def process(self, input_data: Any, context=None) -> ToolResult:
+    """Execute with provenance tracking"""
+    try:
+        # Track execution start
+        if self.service_bridge:
+            self.service_bridge.track_execution(
+                self.tool_id, 
+                input_data, 
+                None  # Output not yet known
+            )
+        
+        # Execute tool
+        result = self.execute_method(input_data)
+        
+        # Track execution complete
+        if self.service_bridge:
+            trace = self.service_bridge.track_execution(
+                self.tool_id,
+                input_data,
+                result
+            )
+            result.provenance = trace
+        
+        return result
 ```
+
+#### Step 3: Test Service Integration (1 hour)
+
+**File**: Create `/src/core/test_service_integration.py`
+
+Write tests to verify ProvenanceService tracks executions properly.
+
+**Evidence Required**: `evidence/current/Evidence_Service_Integration.md`
+- Show ProvenanceService connecting
+- Demonstrate execution tracking
+- Verify provenance appears in ToolResult
 
 ---
 
-## 7. Common Issues & Solutions
+## 6. Success Criteria
 
-### Issue: "No module named 'framework'"
+### Minimum Viable Uncertainty
+- [ ] ToolResult has uncertainty and reasoning fields
+- [ ] Uncertainty propagates through chains
+- [ ] ProvenanceService tracks executions
+- [ ] One complete pipeline with uncertainty
+
+### Evidence Requirements
+For each task, create evidence file showing:
+1. Code changes made
+2. Test execution output
+3. Confirmation feature works
+
+---
+
+## 7. DO NOT
+
+- ❌ Implement complex uncertainty models (keep it simple floats)
+- ❌ Optimize performance (MVP first)
+- ❌ Add more tools (20 is enough)
+- ❌ Use Dempster-Shafer (unless specifically needed)
+- ❌ Skip evidence collection
+
+---
+
+## 8. Quick Reference
+
+### Test Current Framework
 ```bash
-# Add to Python path in your script
-sys.path.insert(0, '/home/brian/projects/Digimons/tool_compatability/poc')
+python3 src/core/test_complex_chains.py
 ```
 
-### Issue: "Neo4j authentication failed"
+### Test Uncertainty
 ```bash
-export NEO4J_PASSWORD=devpassword
-export NEO4J_URI=bolt://localhost:7687
-export NEO4J_USER=neo4j
+python3 src/core/test_uncertainty_propagation.py
 ```
 
-### Issue: "Gemini API not working"
+### Check Evidence
 ```bash
-# Check .env file
-cat /home/brian/projects/Digimons/.env | grep GEMINI
-# Key should be there, loaded by python-dotenv
+ls -la evidence/current/Evidence_Uncertainty_*.md
 ```
-
----
-
-## 8. Success Metrics
-
-### Day 1 Success
-- [ ] CompositionService class created and working
-- [ ] At least 1 tool successfully adapted
-- [ ] Metrics collection functional
-
-### Day 5 Success  
-- [x] 3 tools integrated (SimpleTextLoader, GeminiEntityExtractor, Neo4jGraphBuilder) 
-- [x] Complete chain executing with real services (File → Text → Entities → Graph)
-- [x] Performance overhead < 0.001% (negligible)
-- [x] All evidence files created
-
-### Week 2 Target (Current Focus)
-- [ ] 20+ tools in framework (need 17 more)
-- [ ] Complex DAG workflows executing
-- [ ] Ready for uncertainty integration
-
----
-
-## 9. Week 2 Implementation: Scale to 20+ Tools
-
-### Objective
-Wrap 17 more production tools from `/src/tools/` to work with the framework, enabling complex analytical pipelines.
-
-### Priority Tools to Integrate
-
-#### Cross-Modal Tools (Already Registered in Phase 1)
-```python
-# From /src/analytics/cross_modal_converter.py
-1. GraphToTable - Convert graphs to tabular format
-2. TableToGraph - Convert tables to graph structure
-3. GraphToVector - Generate embeddings from graphs
-4. VectorToGraph - Reconstruct graphs from embeddings
-5. TableToVector - Generate embeddings from tables
-```
-
-#### Text Processing Tools
-```python
-# From /src/tools/phase1/
-6. TextSummarizer - Summarize text documents
-7. TopicModeler - Extract topics from text
-8. SentimentAnalyzer - Analyze sentiment
-9. NamedEntityRecognizer - Extract named entities
-10. KeywordExtractor - Extract keywords
-```
-
-#### Graph Analysis Tools
-```python
-# From /src/tools/phase1/
-11. CommunityDetector - Detect graph communities
-12. PathFinder - Find paths in graphs
-13. CentralityCalculator - Calculate node centrality
-14. GraphSummarizer - Summarize graph structure
-15. SubgraphExtractor - Extract subgraphs
-```
-
-#### Data Processing Tools
-```python
-# From /src/tools/phase1/
-16. DataValidator - Validate data quality
-17. SchemaMapper - Map between schemas
-18. DataAggregator - Aggregate data
-19. DataTransformer - Transform data formats
-20. DataSampler - Sample datasets
-```
-
-### Implementation Steps
-
-#### Step 1: Batch Wrap Existing Tools (Day 6)
-```python
-# /src/core/batch_tool_integration.py
-def integrate_production_tools():
-    """Wrap all production tools for framework"""
-    service = CompositionService()
-    
-    # Get all tools from production registry
-    production_tools = get_all_production_tools()
-    
-    success_count = 0
-    for tool in production_tools:
-        if service.register_any_tool(tool):
-            success_count += 1
-            print(f"✅ Integrated: {tool.__class__.__name__}")
-        else:
-            print(f"❌ Failed: {tool.__class__.__name__}")
-    
-    print(f"\n🎯 Integrated {success_count}/{len(production_tools)} tools")
-    return success_count >= 20
-```
-
-#### Step 2: Test Complex Chains (Day 7)
-```python
-# /src/core/test_complex_chains.py
-def test_multi_path_dag():
-    """Test DAG with multiple paths"""
-    # Text → Entities → Graph → Community → Table → Vector
-    # Text → Sentiment → Table → Vector
-    # Both paths merge at Vector for similarity analysis
-```
-
-#### Step 3: Performance Benchmarks (Day 8)
-- Measure overhead for 20+ tools
-- Test concurrent chain execution
-- Profile memory usage under load
-- Document results for thesis
-
-### Evidence Required
-- `evidence/current/Evidence_Week2_Tools.md` - List all integrated tools
-- `evidence/current/Evidence_Week2_Chains.md` - Complex chain executions
-- `evidence/current/Evidence_Week2_Performance.md` - Performance metrics
-
----
-
-## 10. DO NOT
-
-- ❌ Use mocks or stubs - ONLY real services
-- ❌ Claim success without evidence files
-- ❌ Replace existing registries - federate them
-- ❌ Modify production tools - wrap them
-- ❌ Skip performance measurements
-- ❌ Hide errors - fail fast with clear messages
 
 ---
 
 *Last Updated: 2025-08-26*
-*Phase: Tool Composition Framework Integration*
-*Prerequisites: Phases 1-3 complete ✅*
-*Next: Uncertainty propagation (after framework works)*
+*Phase: Uncertainty Integration*
+*Status: Adding uncertainty to framework*
+*Next: Connect critical services*
