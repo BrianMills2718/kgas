@@ -1,4 +1,4 @@
-# Uncertainty Propagation for Tool Composition Framework
+# Week 3: Critical Services Integration & Real Pipeline
 
 ## 1. Coding Philosophy (MANDATORY)
 
@@ -12,416 +12,281 @@
 ```
 evidence/
 ├── current/
-│   └── Evidence_Uncertainty_[Task].md    # Current uncertainty work only
+│   └── Evidence_Services_[Task].md      # Current service integration work
 ├── completed/
-│   ├── Evidence_Framework_*.md          # Framework Days 1-7 ✅
-│   └── Evidence_Week2_*.md              # Tool integration ✅
+│   ├── Evidence_Uncertainty_*.md        # MVP uncertainty work ✅
+│   └── Evidence_Framework_*.md          # Framework integration ✅
 ```
-
-**CRITICAL**: 
-- Raw execution logs required (copy-paste terminal output)
-- No success claims without showing actual execution
-- Mark all untested components as "NOT TESTED"
 
 ---
 
-## 2. Current Goal: Add Uncertainty to Framework
+## 2. Project Status & Goals
 
-### What We Have ✅
-- 20 tools integrated with framework
-- Complex DAG chains working
-- Real services (Gemini, Neo4j) connected
+### Strategic Context
+**PhD Thesis Goal**: Demonstrate dynamic tool composition with uncertainty propagation enables new computational social science analyses.
 
-### What We Need ❌
-- Uncertainty propagation through chains
-- Reasoning traces for explainability
-- Critical services integration
-- One complete demo with uncertainty
+**12-Week Timeline Position**: Week 3 of 12
+
+### What's Complete ✅
+1. **Tool Composition Framework** - 20 tools integrated, DAG chains working
+2. **Uncertainty Propagation** - Float-based (0-1), simple formula
+3. **ProvenanceService** - Tracking all operations
+4. **MVP Pipeline** - File → Text → Entities → Graph
+
+### What's Needed (Week 3) 🔄
+1. **3 Critical Services** - Identity, Quality, WorkflowState
+2. **Real Pipeline** - Actual analytical workflow with real data
+3. **Refined Uncertainty** - Better propagation model
+4. **Thesis Evidence** - Performance metrics, flexibility analysis
 
 ---
 
 ## 3. Codebase Structure
 
-### Planning Documents
-- `/tool_compatability/poc/PHD_IMPLEMENTATION_PLAN.md` - 12-week plan
-- `/docs/architecture/architecture_review_20250808/SIMPLIFIED_INTEGRATION_PLAN.md` - Integration phases
-
-### Key Entry Points
-- `/src/core/composition_service.py` - Main framework bridge
-- `/src/core/adapter_factory.py` - Tool adaptation layer
-- `/src/core/service_manager.py` - Service coordination
-- `/src/core/batch_tool_integration.py` - Tool registration
-
-### Framework Components (POC)
-```
-/tool_compatability/poc/
-├── framework.py          # Core framework
-├── data_types.py        # Type definitions (MODIFY THIS)
-└── base_tool.py         # Tool base class
-```
-
-### Critical Services (Need Integration)
+### Core Systems
 ```
 /src/core/
-├── identity_service.py      # Entity management
-├── provenance_service.py    # Operation tracking
-├── quality_service.py       # Confidence assessment
-└── workflow_state_service.py # Checkpoint management
+├── composition_service.py      # Framework bridge ✅
+├── adapter_factory.py          # Tool adaptation with uncertainty ✅
+├── service_bridge.py           # Service connection point ✅
+├── identity_service.py         # Entity tracking (TO INTEGRATE)
+├── quality_service.py          # Confidence assessment (TO INTEGRATE)
+├── workflow_state_service.py   # Checkpoint management (TO INTEGRATE)
+└── test_*.py                   # Test suites
+```
+
+### Framework
+```
+/tool_compatability/poc/
+├── framework.py               # Core with ToolResult + uncertainty ✅
+└── data_types.py             # Type definitions
+```
+
+### Tools
+```
+/src/tools/
+├── simple_text_loader.py      # ✅ Working
+├── gemini_entity_extractor.py # ✅ Working
+├── neo4j_graph_builder.py     # ✅ Working
+└── [17 other integrated tools]
 ```
 
 ---
 
-## 4. Task: Add Uncertainty to ToolResult
+## 4. Priority Task: Integrate IdentityService
 
-### Objective
-Modify the framework to propagate uncertainty scores and reasoning through tool chains.
+### Why IdentityService First
+- Most relevant for social science (entity tracking across analyses)
+- Similar integration pattern to ProvenanceService (proven approach)
+- Enables entity-based uncertainty (different confidence per entity)
 
 ### Implementation Instructions
 
-#### Step 1: Extend ToolResult with Uncertainty (1 hour)
+#### Step 1: Extend ServiceBridge (1 hour)
 
-**File**: Modify `/tool_compatability/poc/data_types.py`
+**File**: Modify `/src/core/service_bridge.py`
 
-Add these fields to ToolResult class:
+Add IdentityService support:
 ```python
-from dataclasses import dataclass
-from typing import Any, Optional, Dict
+def get_identity_service(self) -> IdentityService:
+    """Get or create identity service"""
+    if 'identity' not in self._services:
+        self._services['identity'] = IdentityService()
+    return self._services['identity']
 
-@dataclass
-class ToolResult:
-    success: bool
-    data: Any
-    error: Optional[str] = None
-    uncertainty: float = 0.0  # ADD THIS: 0=certain, 1=uncertain
-    reasoning: str = ""       # ADD THIS: Why this uncertainty
-    provenance: Dict = None   # ADD THIS: Execution trace
+def track_entity(self, surface_form: str, entity_type: str, 
+                confidence: float, source_tool: str) -> str:
+    """Track entity mention and return entity_id"""
+    identity = self.get_identity_service()
+    
+    # Create mention
+    mention_id = identity.create_mention(
+        surface_form=surface_form,
+        start_pos=0,  # Simplified for now
+        end_pos=len(surface_form),
+        source_ref=source_tool,
+        entity_type=entity_type,
+        confidence=confidence
+    )
+    
+    # Get or create entity
+    entity_id = identity.get_entity_by_mention(mention_id)
+    
+    return entity_id
 ```
 
-**Evidence Required**: `evidence/current/Evidence_Uncertainty_Core.md`
-- Show the modified ToolResult class
-- Confirm it imports without errors
-- Show that existing tools still work
-
-#### Step 2: Update UniversalAdapter to Add Uncertainty (1 hour)
+#### Step 2: Update Adapter for Entity Tracking (1 hour)
 
 **File**: Modify `/src/core/adapter_factory.py`
 
-Update the process method to ensure uncertainty is always present:
+Track entities found during tool execution:
 ```python
-def process(self, input_data: Any, context=None) -> ToolResult:
-    """Execute tool and ensure uncertainty is added"""
-    try:
-        # Get input uncertainty if it exists
-        input_uncertainty = 0.0
-        if hasattr(input_data, 'uncertainty'):
-            input_uncertainty = input_data.uncertainty
-        
-        # Call the tool
-        result = self.execute_method(input_data)
-        
-        # Ensure result has uncertainty
-        if not isinstance(result, ToolResult):
-            result = ToolResult(success=True, data=result)
-        
-        if not hasattr(result, 'uncertainty') or result.uncertainty == 0.0:
-            # Add default uncertainty
-            result.uncertainty = 0.1  # Default: slightly uncertain
-            result.reasoning = "Default uncertainty - tool provided no assessment"
-        
-        # Simple propagation: increase uncertainty slightly at each step
-        if input_uncertainty > 0:
-            result.uncertainty = min(1.0, result.uncertainty + (input_uncertainty * 0.1))
-            result.reasoning += f" (propagated from input: {input_uncertainty:.2f})"
-        
-        return result
-        
-    except Exception as e:
-        return ToolResult(
-            success=False, 
-            data=None,
-            error=str(e),
-            uncertainty=1.0,  # Failures are maximally uncertain
-            reasoning="Error occurred - maximum uncertainty"
-        )
-```
-
-**Evidence Required**: `evidence/current/Evidence_Uncertainty_Adapter.md`
-- Show the modified adapter code
-- Test with a simple tool
-- Confirm uncertainty propagates
-
-#### Step 3: Test Uncertainty Propagation (2 hours)
-
-**File**: Create `/src/core/test_uncertainty_propagation.py`
-
-```python
-#!/usr/bin/env python3
-"""
-Test uncertainty propagation through tool chains
-"""
-
-import sys
-from pathlib import Path
-sys.path.append('/home/brian/projects/Digimons')
-
-from src.core.composition_service import CompositionService
-from src.core.batch_tool_integration import create_simple_tools_for_testing
-
-def test_linear_propagation():
-    """Test uncertainty increases through chain"""
-    print("\n" + "="*60)
-    print("TEST: Linear Uncertainty Propagation")
-    print("="*60)
-    
-    service = CompositionService()
-    
-    # Create and register tools
-    tools = create_simple_tools_for_testing()
-    for tool in tools[:3]:  # Use first 3 tools
-        service.register_any_tool(tool)
-    
-    # Start with certain data
-    initial_data = "Test data for uncertainty"
-    
-    # Execute chain and track uncertainty
-    print("\nStep | Tool | Uncertainty | Reasoning")
-    print("-" * 60)
-    
-    current_data = initial_data
-    current_uncertainty = 0.0
-    
-    for i, tool in enumerate(tools[:3], 1):
-        result = tool.execute(current_data)
-        
-        # Check if result has uncertainty
-        uncertainty = getattr(result, 'uncertainty', 0.1)
-        reasoning = getattr(result, 'reasoning', 'No reasoning provided')
-        
-        print(f"{i} | {tool.name} | {uncertainty:.2f} | {reasoning[:40]}...")
-        
-        current_data = result
-        current_uncertainty = uncertainty
-    
-    print(f"\nFinal uncertainty: {current_uncertainty:.2f}")
-    
-    # Verify uncertainty increased
-    if current_uncertainty > 0.0:
-        print("✅ Uncertainty propagated through chain")
-        return True
-    else:
-        print("❌ Uncertainty did not propagate")
-        return False
-
-def test_branching_uncertainty():
-    """Test uncertainty in branching DAG"""
-    print("\n" + "="*60)
-    print("TEST: Branching Uncertainty")
-    print("="*60)
-    
-    # Test two branches with different uncertainties
-    branch1_uncertainty = 0.3
-    branch2_uncertainty = 0.5
-    
-    # Simple average for merge
-    merged_uncertainty = (branch1_uncertainty + branch2_uncertainty) / 2
-    
-    print(f"Branch 1 uncertainty: {branch1_uncertainty:.2f}")
-    print(f"Branch 2 uncertainty: {branch2_uncertainty:.2f}") 
-    print(f"Merged uncertainty: {merged_uncertainty:.2f}")
-    
-    if merged_uncertainty == 0.4:
-        print("✅ Branching uncertainty correctly merged")
-        return True
-    else:
-        print("❌ Incorrect merge calculation")
-        return False
-
-def main():
-    """Run uncertainty tests"""
-    print("="*60)
-    print("UNCERTAINTY PROPAGATION TESTS")
-    print("="*60)
-    
-    tests = [
-        test_linear_propagation,
-        test_branching_uncertainty
-    ]
-    
-    passed = 0
-    for test in tests:
-        if test():
-            passed += 1
-    
-    print("\n" + "="*60)
-    print(f"Results: {passed}/{len(tests)} tests passed")
-    
-    if passed == len(tests):
-        print("✅ Uncertainty propagation working!")
-        return True
-    else:
-        print("❌ Some tests failed")
-        return False
-
-if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
-```
-
-**Evidence Required**: `evidence/current/Evidence_Uncertainty_Propagation.md`
-- Full test output showing uncertainty values
-- Confirmation that uncertainty increases through chain
-- Evidence of reasoning strings
-
----
-
-## 5. Next Task: Connect ProvenanceService
-
-### Objective
-Integrate ProvenanceService to track tool execution paths automatically.
-
-### Implementation Instructions
-
-#### Step 1: Create Service Bridge (1 hour)
-
-**File**: Create `/src/core/service_bridge.py`
-
-```python
-#!/usr/bin/env python3
-"""
-Bridge to connect critical services to framework
-"""
-
-from typing import Dict, Any, Optional
-from src.core.provenance_service import ProvenanceService
-from src.core.service_manager import ServiceManager
-
-class ServiceBridge:
-    """Connects framework to critical services"""
-    
-    def __init__(self, service_manager: ServiceManager = None):
-        self.service_manager = service_manager or ServiceManager()
-        self._services = {}
-        
-    def get_provenance_service(self) -> ProvenanceService:
-        """Get or create provenance service"""
-        if 'provenance' not in self._services:
-            self._services['provenance'] = ProvenanceService()
-        return self._services['provenance']
-    
-    def track_execution(self, tool_id: str, input_data: Any, output_data: Any):
-        """Track tool execution in provenance"""
-        provenance = self.get_provenance_service()
-        
-        # Record the execution
-        provenance.track_operation(
-            operation_type="tool_execution",
-            tool_id=tool_id,
-            input_hash=str(hash(str(input_data)))[:8],
-            output_hash=str(hash(str(output_data)))[:8],
-            timestamp=time.time()
-        )
-        
-        return provenance.get_current_trace()
-```
-
-#### Step 2: Inject Service into Adapter (1 hour)
-
-**File**: Modify `/src/core/adapter_factory.py`
-
-Add service injection to UniversalAdapter:
-```python
-def __init__(self, production_tool: Any, service_bridge=None):
-    self.tool = production_tool
-    self.tool_id = getattr(production_tool, 'tool_id', 
-                           production_tool.__class__.__name__)
-    self.service_bridge = service_bridge  # ADD THIS
-    self.execute_method = self._detect_execute_method()
-
-def process(self, input_data: Any, context=None) -> ToolResult:
-    """Execute with provenance tracking"""
-    try:
-        # Track execution start
-        if self.service_bridge:
-            self.service_bridge.track_execution(
-                self.tool_id, 
-                input_data, 
-                None  # Output not yet known
+# In process() method, after tool execution:
+if self.service_bridge and isinstance(result.data, dict):
+    # Check if tool produced entities
+    if 'entities' in result.data:
+        for entity in result.data['entities']:
+            entity_id = self.service_bridge.track_entity(
+                surface_form=entity.get('text', ''),
+                entity_type=entity.get('type', 'UNKNOWN'),
+                confidence=entity.get('confidence', 0.5),
+                source_tool=self.tool_id
             )
-        
-        # Execute tool
-        result = self.execute_method(input_data)
-        
-        # Track execution complete
-        if self.service_bridge:
-            trace = self.service_bridge.track_execution(
-                self.tool_id,
-                input_data,
-                result
-            )
-            result.provenance = trace
-        
-        return result
+            entity['entity_id'] = entity_id
 ```
 
-#### Step 3: Test Service Integration (1 hour)
+#### Step 3: Test Entity Tracking (1 hour)
 
-**File**: Create `/src/core/test_service_integration.py`
+**File**: Create `/src/core/test_identity_integration.py`
 
-Write tests to verify ProvenanceService tracks executions properly.
+Test that entities are tracked across tools and uncertainty is entity-specific.
 
-**Evidence Required**: `evidence/current/Evidence_Service_Integration.md`
-- Show ProvenanceService connecting
-- Demonstrate execution tracking
-- Verify provenance appears in ToolResult
-
----
-
-## 6. Success Criteria
-
-### Minimum Viable Uncertainty
-- [ ] ToolResult has uncertainty and reasoning fields
-- [ ] Uncertainty propagates through chains
-- [ ] ProvenanceService tracks executions
-- [ ] One complete pipeline with uncertainty
-
-### Evidence Requirements
-For each task, create evidence file showing:
-1. Code changes made
-2. Test execution output
-3. Confirmation feature works
+**Evidence Required**: `evidence/current/Evidence_Services_Identity.md`
+- Show entities being tracked
+- Demonstrate entity resolution
+- Verify entity-specific confidence
 
 ---
 
-## 7. DO NOT
+## 5. Next Task: Build Real Analytical Pipeline
 
-- ❌ Implement complex uncertainty models (keep it simple floats)
-- ❌ Optimize performance (MVP first)
-- ❌ Add more tools (20 is enough)
-- ❌ Use Dempster-Shafer (unless specifically needed)
-- ❌ Skip evidence collection
+### Target: News Article Analysis Pipeline
 
----
-
-## 8. Quick Reference
-
-### Test Current Framework
-```bash
-python3 src/core/test_complex_chains.py
+**Data Flow**:
+```
+News Articles (RSS/Web) →
+  TextLoader →
+  TextCleaner →
+  EntityExtractor (Gemini) →
+  SentimentAnalyzer →
+  GraphBuilder (Neo4j) →
+  CommunityDetector →
+  UncertaintyAggregator →
+  ReportGenerator
 ```
 
-### Test Uncertainty
+### Implementation Steps
+
+1. **Create Pipeline Orchestrator** (`/src/pipelines/news_analysis.py`)
+2. **Add Real Data Source** (RSS feed or web scraping)
+3. **Implement Missing Tools** (SentimentAnalyzer, CommunityDetector)
+4. **Track Uncertainty End-to-End**
+5. **Generate Analysis Report**
+
+**Evidence Required**: `evidence/current/Evidence_Real_Pipeline.md`
+- Complete execution log
+- Uncertainty progression through pipeline
+- Actual insights generated
+- Performance metrics
+
+---
+
+## 6. Service Integration Schedule
+
+### Day 1-2: IdentityService ⏳
+- Entity mention tracking
+- Cross-tool entity resolution
+- Entity-specific uncertainty
+
+### Day 3: QualityService
+- Replace simple float uncertainty
+- Confidence intervals
+- Quality metrics per operation
+
+### Day 4: WorkflowStateService  
+- Save/resume pipelines
+- Checkpoint management
+- Error recovery
+
+### Day 5: Real Pipeline & Evidence
+- Complete news analysis pipeline
+- Collect performance metrics
+- Document thesis evidence
+
+---
+
+## 7. Success Criteria for Week 3
+
+### Minimum Success
+- [ ] IdentityService integrated and tracking entities
+- [ ] One real pipeline processing actual data
+- [ ] Uncertainty helping identify issues
+
+### Target Success
+- [ ] All 3 services integrated
+- [ ] Pipeline generating insights
+- [ ] Performance metrics collected
+- [ ] Refined uncertainty model
+
+### Stretch Goals
+- [ ] Multiple pipeline variants compared
+- [ ] Uncertainty visualization
+- [ ] Automated pipeline discovery
+
+---
+
+## 8. Thesis Evidence Collection
+
+### Metrics to Track
+```python
+# In every pipeline execution:
+metrics = {
+    'pipeline_length': len(tools),
+    'execution_time': total_seconds,
+    'memory_usage': max_memory_mb,
+    'uncertainty_progression': [0.1, 0.15, 0.23, ...],
+    'entities_tracked': entity_count,
+    'insights_generated': insight_count,
+    'errors_caught_by_uncertainty': error_count
+}
+```
+
+### Comparison Baselines
+- Hardcoded pipeline (no flexibility)
+- Pipeline without uncertainty (no confidence tracking)
+- Manual analysis (human baseline)
+
+---
+
+## 9. DO NOT
+
+- ❌ Skip service integration to work on new features
+- ❌ Use mock data when real data is available
+- ❌ Ignore uncertainty in favor of just getting results
+- ❌ Forget to collect metrics for thesis
+- ❌ Over-engineer when simple solutions work
+
+---
+
+## 10. Quick Reference
+
+### Run Tests
 ```bash
+# Uncertainty tests (should pass)
 python3 src/core/test_uncertainty_propagation.py
+
+# Service integration tests
+python3 src/core/test_service_integration.py
+
+# Complete MVP test
+python3 src/core/test_complete_mvp.py
+
+# Identity integration (after implementation)
+python3 src/core/test_identity_integration.py
 ```
 
-### Check Evidence
+### Check Status
 ```bash
-ls -la evidence/current/Evidence_Uncertainty_*.md
+# See what services are connected
+grep "def get_.*_service" src/core/service_bridge.py
+
+# Count integrated tools
+python3 -c "from src.core.composition_service import CompositionService; s=CompositionService(); print(f'Tools: {s.composition_metrics[\"tools_adapted\"]}')"
 ```
 
 ---
 
 *Last Updated: 2025-08-26*
-*Phase: Uncertainty Integration*
-*Status: Adding uncertainty to framework*
-*Next: Connect critical services*
+*Phase: Week 3 - Critical Services Integration*
+*Priority: IdentityService → Real Pipeline → Evidence Collection*
+*Deadline: End of Week 3 (5 days)*
