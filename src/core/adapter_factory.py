@@ -17,10 +17,11 @@ from data_types import DataType
 class UniversalAdapter(ExtensibleTool):
     """Adapts any production tool to framework interface"""
     
-    def __init__(self, production_tool: Any):
+    def __init__(self, production_tool: Any, service_bridge=None):
         self.tool = production_tool
         self.tool_id = getattr(production_tool, 'tool_id', 
                                production_tool.__class__.__name__)
+        self.service_bridge = service_bridge  # Add service bridge
         
         # Detect the execution method
         self.execute_method = self._detect_execute_method()
@@ -80,23 +81,68 @@ class UniversalAdapter(ExtensibleTool):
         return DataType.TEXT  # Safe fallback
         
     def process(self, input_data: Any, context=None) -> ToolResult:
-        """Execute the tool with framework interface"""
+        """Execute tool and ensure uncertainty is added"""
         try:
-            # Call the detected method
+            # Track execution start with provenance
+            if self.service_bridge:
+                self.service_bridge.track_execution(
+                    self.tool_id, 
+                    input_data, 
+                    None  # Output not yet known
+                )
+            
+            # Get input uncertainty if it exists
+            input_uncertainty = 0.0
+            if hasattr(input_data, 'uncertainty'):
+                input_uncertainty = input_data.uncertainty
+            elif isinstance(input_data, dict) and 'uncertainty' in input_data:
+                input_uncertainty = input_data['uncertainty']
+            
+            # Call the tool
             result = self.execute_method(input_data)
             
-            # Wrap result in ToolResult
-            if isinstance(result, ToolResult):
-                return result
-            else:
-                return ToolResult(success=True, data=result)
-                
+            # Ensure result is a ToolResult
+            if not isinstance(result, ToolResult):
+                result = ToolResult(success=True, data=result)
+            
+            # Ensure uncertainty is present
+            if not hasattr(result, 'uncertainty') or result.uncertainty == 0.0:
+                # Add default uncertainty
+                result.uncertainty = 0.1  # Default: slightly uncertain
+                result.reasoning = "Default uncertainty - tool provided no assessment"
+            
+            # Simple propagation: increase uncertainty slightly at each step
+            if input_uncertainty > 0:
+                result.uncertainty = min(1.0, result.uncertainty + (input_uncertainty * 0.1))
+                result.reasoning += f" (propagated from input: {input_uncertainty:.2f})"
+            
+            # Track execution complete with provenance
+            if self.service_bridge:
+                trace = self.service_bridge.track_execution(
+                    self.tool_id,
+                    input_data,
+                    result
+                )
+                result.provenance = trace
+            
+            return result
+            
         except Exception as e:
-            return ToolResult(success=False, error=str(e))
+            return ToolResult(
+                success=False, 
+                data=None,
+                error=str(e),
+                uncertainty=1.0,  # Failures are maximally uncertain
+                reasoning="Error occurred - maximum uncertainty"
+            )
 
 
 class UniversalAdapterFactory:
     """Factory for creating adapters"""
+    
+    def __init__(self, service_bridge=None):
+        """Initialize factory with optional service bridge"""
+        self.service_bridge = service_bridge
     
     def wrap(self, tool: Any) -> ExtensibleTool:
         """
@@ -107,8 +153,8 @@ class UniversalAdapterFactory:
         if isinstance(tool, ExtensibleTool):
             return tool
             
-        # Otherwise wrap with universal adapter
-        return UniversalAdapter(tool)
+        # Otherwise wrap with universal adapter, passing service bridge
+        return UniversalAdapter(tool, self.service_bridge)
         
     def bulk_wrap(self, tools: List[Any]) -> List[ExtensibleTool]:
         """Wrap multiple tools"""

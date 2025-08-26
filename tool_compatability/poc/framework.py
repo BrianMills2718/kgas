@@ -27,10 +27,13 @@ BaseTool = base_tool.BaseTool
 T = TypeVar('T')
 
 class ToolResult(BaseModel, Generic[T]):
-    """Simple tool result for the framework"""
+    """Simple tool result for the framework with uncertainty"""
     success: bool
     data: Optional[T] = None
     error: Optional[str] = None
+    uncertainty: float = 0.0  # 0=certain, 1=uncertain
+    reasoning: str = ""       # Why this uncertainty level
+    provenance: Optional[Dict[str, Any]] = None  # Execution trace
 
 
 @dataclass
