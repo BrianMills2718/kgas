@@ -1,4 +1,4 @@
-# Extensible Tool Composition Framework - Service Hardening Phase
+# Clean Vertical Slice Implementation - KGAS Uncertainty System
 
 ## 1. Coding Philosophy (MANDATORY)
 
@@ -12,710 +12,607 @@
 ```
 evidence/
 ├── current/
-│   └── Evidence_ServiceHardening_[Task].md   # Current work only
+│   └── Evidence_VerticalSlice_[Task].md   # Current work only
 ├── completed/
-│   └── Evidence_*.md                         # Archived completed work
+│   └── Evidence_*.md                      # Archived completed work
 ```
 
 **CRITICAL**: 
 - Raw execution logs required (copy-paste terminal output)
 - No success claims without showing actual execution
+- Test with REAL services (Gemini API, Neo4j, SQLite)
 - Mark all untested components as "NOT TESTED"
-- Must test with REAL services (Gemini API, Neo4j)
 
 ---
 
 ## 2. Codebase Structure
 
-### Framework Core
+### Clean Vertical Slice Location
 ```
-tool_compatability/poc/
-├── framework.py              # ✅ Main extensible framework
-├── base_tool.py             # Base tool with metrics
-├── data_types.py            # 10 semantic types
-├── tool_context.py          # Multi-input support
-├── schema_versions.py       # Schema versioning
-├── semantic_types.py        # Semantic compatibility
-├── data_references.py       # Memory management
-└── tools/                   # Real and test tools
+tool_compatability/poc/vertical_slice/
+├── services/
+│   ├── identity_service_v3.py      # Simplified entity dedup
+│   ├── crossmodal_service.py       # Graph↔table converter  
+│   └── provenance_enhanced.py      # Extends existing with uncertainty
+├── tools/
+│   ├── text_loader_v3.py           # With uncertainty assessment
+│   ├── knowledge_graph_extractor.py # Single LLM call
+│   └── graph_persister.py          # Neo4j writer
+├── config/
+│   └── uncertainty_constants.py     # Configurable constants
+├── framework/
+│   └── clean_framework.py          # Physics-style propagation
+└── tests/
+    └── test_vertical_slice.py      # End-to-end validation
 ```
 
-### Service Integration Layer
-```
-src/core/
-├── composition_service.py    # ✅ Bridge between framework and production
-├── adapter_factory.py        # ✅ Universal tool wrapper
-├── service_bridge.py         # ✅ Connects critical services
-├── identity_service.py       # ✅ Entity tracking (INTEGRATED)
-├── provenance_service.py     # ✅ Operation tracking (INTEGRATED)
-├── quality_service.py        # ⚠️ Confidence assessment (NOT INTEGRATED)
-├── workflow_state_service.py # ⚠️ Checkpoints (NOT INTEGRATED)
-└── pii_service.py           # ⚠️ PII protection (VALIDATION REMOVED)
-```
+### Key Architecture Documents
+- **`/docs/architecture/VERTICAL_SLICE_20250826.md`** - Complete design & rationale
+- **`/docs/architecture/UNCERTAINTY_20250825.md`** - Uncertainty model explanation
+- **`/CLAUDE.md`** - This file (implementation instructions)
 
 ### Integration Points
-- **Gemini API**: via `litellm` in EntityExtractor
-- **Neo4j**: via `neo4j-driver` in GraphBuilder
-- **Config**: `.env` file with GEMINI_API_KEY
+- **Gemini API**: via `litellm` for knowledge graph extraction
+- **Neo4j**: Graph storage at `bolt://localhost:7687`
+- **SQLite**: Metrics storage at `vertical_slice.db`
+- **Config**: `.env` file with `GEMINI_API_KEY`
 
 ---
 
 ## 3. Current Status
 
-### ✅ Completed (Phases 1-2)
-1. **IdentityService Integration**: Entities tracked through pipelines
-2. **Framework Chain Discovery**: Tools connect automatically based on types  
-3. **Universal Adapter**: All tools wrapped with service bridge
-4. **Fail-Fast Implementation**: All failures now loud with detailed errors
-5. **Real Service Testing**: Gemini API and Neo4j proven working
-6. **Type Detection Fixed**: Adapter correctly detects tool input/output types
-7. **Complete Pipeline**: FILE → TEXT → ENTITIES → GRAPH chain working
+### ✅ Completed (Service Hardening)
+1. **Fail-Fast Implementation**: All errors propagate loudly
+2. **Real Service Integration**: Gemini API and Neo4j proven working
+3. **Configuration Support**: YAML + environment overrides
+4. **Chain Discovery**: Framework finds FILE→TEXT→ENTITIES→GRAPH
 
-### ✅ Fixed Issues
-1. ~~**Silent Failures**~~: Now using strict_mode with detailed error propagation
-2. ~~**Mock-Only Testing**~~: Tested with real Gemini API and Neo4j database
-3. ~~**Validation Removed**~~: PII service validates all inputs
-4. ~~**Type Detection**~~: Adapter properly reads property-based types
-
-### ⚠️ Remaining Issues  
-1. **No Persistence**: IdentityService loses data on restart
-2. **Rigid Structure**: Only tracks entities in specific format
-3. **QualityService Not Connected**: Confidence assessment not integrated
-4. **WorkflowStateService Not Connected**: No checkpointing capability
+### 🚧 Ready to Implement (Clean Vertical Slice)
+The system needs a clean demonstration of uncertainty propagation through a minimal pipeline.
 
 ---
 
-## 4. ~~PHASE 1: Fix Silent Failures~~ ✅ COMPLETED
+## 4. PHASE 1: Foundation & Services (Day 1)
 
 ### Objective
-Ensure all failures are loud and visible, never silent.
+Create clean services isolated from technical debt, verify database connections work.
 
-### Task 1.1: Fix Entity Tracking Failures
+### Task 1.0: Verify Infrastructure
 
-**File**: `/src/core/adapter_factory.py`
-
-**Current Problem**:
-```python
-# Line 138-147: Silent failure!
-if isinstance(result.data, dict) and 'entities' in result.data:
-    for entity in result.data['entities']:
-        if isinstance(entity, dict):
-            entity_id = self.service_bridge.track_entity(...)  # Can fail!
-            entity['entity_id'] = entity_id  # Continues even on failure
-```
-
-**Implementation Instructions**:
-
-1. **Add strict_mode parameter to UniversalAdapter**:
-```python
-def __init__(self, production_tool: Any, service_bridge=None, strict_mode=True):
-    """
-    Args:
-        strict_mode: If True, fail entire operation on tracking failure
-    """
-    self.strict_mode = strict_mode  # Default to strict!
-```
-
-2. **Modify process method to handle failures**:
-```python
-# Replace lines 138-147 with:
-if isinstance(result.data, dict) and 'entities' in result.data:
-    tracking_failures = []
-    
-    for i, entity in enumerate(result.data['entities']):
-        if isinstance(entity, dict):
-            try:
-                entity_id = self.service_bridge.track_entity(
-                    surface_form=entity.get('text', entity.get('name', '')),
-                    entity_type=entity.get('type', 'UNKNOWN'),
-                    confidence=entity.get('confidence', 0.5),
-                    source_tool=self.tool_id
-                )
-                entity['entity_id'] = entity_id
-            except Exception as e:
-                # Capture failure details
-                tracking_failures.append({
-                    'index': i,
-                    'entity': entity.get('text', 'unknown'),
-                    'error': str(e)
-                })
-    
-    # Handle failures based on mode
-    if tracking_failures:
-        import logging
-        logger = logging.getLogger(__name__)
-        logger.warning(f"Failed to track {len(tracking_failures)} entities: {tracking_failures}")
-        
-        if self.strict_mode:
-            # FAIL LOUDLY
-            return ToolResult(
-                success=False,
-                data=None,
-                error=f"Entity tracking failed for {len(tracking_failures)} entities: {tracking_failures}",
-                uncertainty=1.0,
-                reasoning="Entity tracking failure - maximum uncertainty"
-            )
-        else:
-            # Add warning but continue
-            result.reasoning += f" (WARNING: {len(tracking_failures)} entities not tracked)"
-            result.uncertainty = min(1.0, result.uncertainty + 0.2)
-```
-
-3. **Create test to verify**:
-
-**File**: Create `/src/core/test_failure_handling.py`
-```python
-#!/usr/bin/env python3
-"""Test that failures are loud, not silent"""
-
-import sys
-from pathlib import Path
-from unittest.mock import Mock, MagicMock
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
-def test_entity_tracking_failure_strict_mode():
-    """Verify entity tracking failures cause tool failure in strict mode"""
-    from src.core.adapter_factory import UniversalAdapter
-    
-    # Create mock tool that returns entities
-    mock_tool = MagicMock()
-    mock_tool.tool_id = 'TestTool'
-    mock_tool.get_capabilities.return_value = MagicMock(
-        input_type='text', 
-        output_type='entities'
-    )
-    mock_tool.process.return_value = MagicMock(
-        success=True,
-        data={'entities': [{'text': 'Test Entity', 'type': 'TEST'}]},
-        uncertainty=0.1,
-        reasoning='test'
-    )
-    
-    # Create service bridge that fails
-    mock_bridge = MagicMock()
-    mock_bridge.track_entity.side_effect = Exception('Database connection lost!')
-    
-    # Test strict mode (default)
-    adapter = UniversalAdapter(mock_tool, mock_bridge, strict_mode=True)
-    result = adapter.process('test input')
-    
-    assert result.success == False, "Should fail in strict mode"
-    assert 'Entity tracking failed' in result.error
-    assert result.uncertainty == 1.0
-    print("✅ Strict mode: Failures are loud")
-    
-    # Test lenient mode
-    adapter_lenient = UniversalAdapter(mock_tool, mock_bridge, strict_mode=False)
-    result_lenient = adapter_lenient.process('test input')
-    
-    assert result_lenient.success == True, "Should continue in lenient mode"
-    assert 'WARNING' in result_lenient.reasoning
-    assert result_lenient.uncertainty > 0.1
-    print("✅ Lenient mode: Warnings added but continues")
-
-if __name__ == "__main__":
-    test_entity_tracking_failure_strict_mode()
-    print("\n🎉 Failure handling tests passed!")
-```
-
-**Evidence Required**: `evidence/current/Evidence_ServiceHardening_FailureHandling.md`
-- Show test output proving failures are caught
-- Show both strict and lenient mode behavior
-- Include logging output showing warnings
-
-### Task 1.2: Add PII Service Validation
-
-**File**: `/src/core/pii_service.py`
-
-**Replace icontract with explicit validation** (lines 31-35):
-
-```python
-def encrypt(self, plaintext: str) -> dict:
-    """
-    Encrypts the plaintext PII.
-    
-    Raises:
-        TypeError: If plaintext is not a string
-        ValueError: If plaintext is empty
-    """
-    # Manual validation (replaces @icontract decorators)
-    if not isinstance(plaintext, str):
-        raise TypeError(f"plaintext must be str, got {type(plaintext).__name__}")
-    if len(plaintext) == 0:
-        raise ValueError("plaintext cannot be empty")
-    
-    # Existing encryption code continues...
-    aesgcm = AESGCM(self._key)
-    # ...
-```
-
-**Similarly for decrypt** (lines 56-60):
-```python
-def decrypt(self, ciphertext_b64: str, nonce_b64: str) -> str:
-    """
-    Decrypts the ciphertext to retrieve the original PII.
-    
-    Raises:
-        ValueError: If inputs are empty or invalid
-    """
-    # Validation
-    if not ciphertext_b64 or not isinstance(ciphertext_b64, str):
-        raise ValueError("ciphertext_b64 must be non-empty string")
-    if not nonce_b64 or not isinstance(nonce_b64, str):
-        raise ValueError("nonce_b64 must be non-empty string")
-    
-    # Existing decryption code...
-```
-
----
-
-## 5. ~~PHASE 2: Test with Real Services~~ ✅ COMPLETED
-
-### Objective
-Prove the system works with actual Gemini API and Neo4j, not just mocks.
-
-### Task 2.1: Create Real Service Test Suite
-
-**File**: Create `/src/core/test_real_services.py`
+**File**: Create `/tool_compatability/poc/vertical_slice/test_connections.py`
 
 ```python
 #!/usr/bin/env python3
-"""
-Test with REAL services - NO MOCKS
-This is critical for thesis evidence
-"""
+"""Test database connections before building services"""
 
-import os
-import sys
-import time
-from pathlib import Path
-from dotenv import load_dotenv
-
-# Setup paths
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / "tool_compatability" / "poc"))
-
-# Load environment
-load_dotenv(project_root / '.env')
-
-def test_real_gemini_api():
-    """Test EntityExtractor with actual Gemini API"""
-    print("\n" + "="*60)
-    print("TEST: Real Gemini API Entity Extraction")
-    print("="*60)
-    
-    # Import real tool
-    from tool_compatability.poc.tools.entity_extractor import EntityExtractor
-    from src.core.composition_service import CompositionService
-    
-    # Check API key
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        print("❌ GEMINI_API_KEY not found in .env")
-        return False
-    
-    print(f"✅ API Key loaded: {api_key[:10]}...")
-    
-    # Create service and register real tool
-    service = CompositionService()
-    extractor = EntityExtractor()
-    service.register_any_tool(extractor)
-    
-    # Test text with known entities
-    test_text = """
-    Apple CEO Tim Cook announced new AI features at WWDC 2024.
-    Google's Sundar Pichai responded with Gemini updates.
-    Microsoft CEO Satya Nadella discussed Copilot integration.
-    """
-    
-    # Process through real API
-    start = time.time()
-    result = extractor.process({"text": test_text})
-    duration = time.time() - start
-    
-    if not result.success:
-        print(f"❌ Extraction failed: {result.error}")
-        return False
-    
-    # Verify entities found
-    entities = result.data.get('entities', [])
-    print(f"\n📊 Results:")
-    print(f"  - API call duration: {duration:.2f}s")
-    print(f"  - Entities found: {len(entities)}")
-    
-    # Check if tracked
-    entities_with_ids = [e for e in entities if 'entity_id' in e]
-    print(f"  - Entities with IDs: {len(entities_with_ids)}")
-    
-    # Show some entities
-    print(f"\n  Extracted entities:")
-    for entity in entities[:5]:
-        id_str = entity.get('entity_id', 'NO ID')
-        print(f"    - {entity.get('text')} ({entity.get('type')}) → {id_str}")
-    
-    return len(entities) > 0
-
-def test_real_neo4j():
-    """Test GraphBuilder with actual Neo4j"""
-    print("\n" + "="*60)
-    print("TEST: Real Neo4j Graph Building")
-    print("="*60)
-    
-    from tool_compatability.poc.tools.graph_builder import GraphBuilder
+def test_neo4j_connection():
     from neo4j import GraphDatabase
+    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "devpassword"))
+    driver.verify_connectivity()
+    print("✅ Neo4j connected")
     
-    # Test Neo4j connection
-    try:
-        driver = GraphDatabase.driver(
-            "bolt://localhost:7687",
-            auth=("neo4j", "devpassword")
-        )
-        driver.verify_connectivity()
-        print("✅ Neo4j connected")
-    except Exception as e:
-        print(f"❌ Neo4j connection failed: {e}")
-        print("  Try: docker run -d -p 7687:7687 -p 7474:7474 -e NEO4J_AUTH=neo4j/devpassword neo4j")
-        return False
-    
-    # Create test entities
-    test_entities = [
-        {"text": "Apple", "type": "ORGANIZATION", "confidence": 0.95},
-        {"text": "Tim Cook", "type": "PERSON", "confidence": 0.90},
-        {"text": "Microsoft", "type": "ORGANIZATION", "confidence": 0.93},
-    ]
-    
-    # Build graph
-    builder = GraphBuilder()
-    result = builder.process({"entities": test_entities})
-    
-    if not result.success:
-        print(f"❌ Graph building failed: {result.error}")
-        return False
-    
-    # Verify nodes in Neo4j
+    # Test VS namespace
     with driver.session() as session:
-        count_result = session.run("MATCH (n) RETURN count(n) as count")
-        node_count = count_result.single()["count"]
-    
+        session.run("CREATE (n:VSEntity {test: true})")
+        result = session.run("MATCH (n:VSEntity) RETURN count(n) as count")
+        print(f"✅ VS namespace working: {result.single()['count']} nodes")
+        session.run("MATCH (n:VSEntity {test: true}) DELETE n")  # Cleanup
     driver.close()
-    
-    print(f"\n📊 Results:")
-    print(f"  - Nodes in database: {node_count}")
-    print(f"  - Graph result: {result.data}")
-    
-    return node_count > 0
 
-def test_real_pipeline():
-    """Test complete pipeline with real services"""
-    print("\n" + "="*60)
-    print("TEST: Real End-to-End Pipeline")
-    print("="*60)
-    
-    from src.core.composition_service import CompositionService
-    from tool_compatability.poc.tools.text_loader import TextLoader
-    from tool_compatability.poc.tools.entity_extractor import EntityExtractor
-    from tool_compatability.poc.tools.graph_builder import GraphBuilder
-    from data_types import DataType
-    
-    # Create test file
-    test_file = Path("test_data/real_test.txt")
-    test_file.parent.mkdir(exist_ok=True)
-    test_file.write_text("""
-    In 2024, major tech companies are investing heavily in AI.
-    Apple's Tim Cook unveiled Apple Intelligence at WWDC.
-    Google CEO Sundar Pichai announced Gemini 2.0.
-    Microsoft's Satya Nadella integrated AI into Office 365.
-    """)
-    
-    # Setup composition service
-    service = CompositionService()
-    
-    # Register REAL tools
-    service.register_any_tool(TextLoader())
-    service.register_any_tool(EntityExtractor())
-    service.register_any_tool(GraphBuilder())
-    
-    # Find chain
-    chains = service.find_chains(DataType.FILE, DataType.GRAPH)
-    if not chains:
-        print("❌ No chains found")
-        return False
-    
-    chain = chains[0]
-    print(f"  Chain: {' → '.join(chain)}")
-    
-    # Execute with timing
-    start = time.time()
-    result = service.execute_chain(chain, str(test_file))
-    duration = time.time() - start
-    
-    if not result.success:
-        print(f"❌ Pipeline failed: {result.error}")
-        return False
-    
-    print(f"\n📊 Pipeline Metrics:")
-    print(f"  - Total duration: {duration:.2f}s")
-    print(f"  - Final uncertainty: {result.uncertainty:.3f}")
-    print(f"  - Reasoning: {result.reasoning}")
-    
-    # Check for thesis evidence
-    metrics = service.get_metrics()
-    print(f"\n📈 Thesis Evidence:")
-    print(f"  - Tools adapted: {metrics['tools_adapted']}")
-    print(f"  - Chains discovered: {metrics['chains_discovered']}")
-    print(f"  - Execution times: {metrics['execution_time']}")
-    
-    return True
-
-def main():
-    """Run all real service tests"""
-    print("="*60)
-    print("REAL SERVICE INTEGRATION TESTS")
-    print("NO MOCKS - ACTUAL APIS")
-    print("="*60)
-    
-    tests = [
-        ("Gemini API", test_real_gemini_api),
-        ("Neo4j Database", test_real_neo4j),
-        ("Full Pipeline", test_real_pipeline),
-    ]
-    
-    results = []
-    for test_name, test_func in tests:
-        try:
-            passed = test_func()
-            results.append((test_name, passed))
-        except Exception as e:
-            print(f"\n❌ {test_name} crashed: {e}")
-            results.append((test_name, False))
-    
-    # Summary
-    print("\n" + "="*60)
-    print("REAL SERVICE TEST SUMMARY")
-    print("="*60)
-    
-    passed = sum(1 for _, p in results if p)
-    total = len(results)
-    
-    for test_name, success in results:
-        status = "✅" if success else "❌"
-        print(f"{status} {test_name}")
-    
-    print(f"\nTotal: {passed}/{total} tests passed")
-    
-    if passed == total:
-        print("\n🎉 All real service tests passed!")
-        print("THESIS EVIDENCE: System works with actual services")
-    else:
-        print(f"\n⚠️ {total - passed} tests failed")
-        print("Cannot claim real-world viability without these passing")
-    
-    return passed == total
+def test_sqlite_connection():
+    import sqlite3
+    conn = sqlite3.connect("vertical_slice.db")
+    conn.execute("CREATE TABLE IF NOT EXISTS vs_metrics (id TEXT PRIMARY KEY)")
+    print("✅ SQLite connected")
+    conn.close()
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    test_neo4j_connection()
+    test_sqlite_connection()
+    print("✅ All connections verified")
 ```
 
-**Evidence Required**: `evidence/current/Evidence_ServiceHardening_RealServices.md`
-- Full execution log from test run
-- Actual Gemini API response times
-- Neo4j node counts
-- End-to-end pipeline timing
-- NO MOCKS - must show real API calls
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_Connections.md`
+- Show both database connections working
+- Confirm VS namespace doesn't conflict
 
----
+### Task 1.1: CrossModalService
 
-## 6. PHASE 3: Service Configuration (45 minutes)
-
-### Task 3.1: Add Configuration Support
-
-**File**: Update `/src/core/service_bridge.py`
-
-Add configuration support to ServiceBridge:
+**File**: Create `/tool_compatability/poc/vertical_slice/services/crossmodal_service.py`
 
 ```python
-def __init__(self, service_manager: ServiceManager = None, config: Dict = None):
-    """
-    Initialize with optional configuration
-    
-    Args:
-        config: Dictionary with service configurations
-            Example: {
-                'identity': {'persistence': True, 'db_path': 'identity.db'},
-                'provenance': {'backend': 'sqlite'}
-            }
-    """
-    self.service_manager = service_manager or ServiceManager()
-    self._services = {}
-    self.config = config or {}
+#!/usr/bin/env python3
+"""
+CrossModal Service - Handles graph↔table conversions
+Hypergraph approach: edges as rows, properties as columns
+"""
 
-def get_identity_service(self) -> IdentityService:
-    """Get or create configured identity service"""
-    if 'identity' not in self._services:
-        identity_config = self.config.get('identity', {})
+import pandas as pd
+from neo4j import GraphDatabase
+import sqlite3
+from typing import List, Dict, Any
+
+class CrossModalService:
+    """Convert between graph and tabular representations"""
+    
+    def __init__(self, neo4j_driver, sqlite_path: str):
+        self.neo4j = neo4j_driver
+        self.sqlite_path = sqlite_path
+    
+    def graph_to_table(self, entity_ids: List[str]) -> pd.DataFrame:
+        """
+        Export graph to relational tables for statistical analysis
         
-        # Configure based on settings
-        if identity_config.get('persistence', False):
-            db_path = identity_config.get('db_path', 'data/identity.db')
-            # Ensure directory exists
-            Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+        Creates:
+        1. vs_entity_metrics: node properties and graph metrics  
+        2. vs_relationships: edges as rows with properties
+        """
+        with self.neo4j.session() as session:
+            # Get entities with metrics
+            entity_query = """
+            MATCH (e:VSEntity)
+            WHERE e.entity_id IN $entity_ids
+            OPTIONAL MATCH (e)-[r]-()
+            RETURN e.entity_id as id,
+                   e.canonical_name as name,
+                   e.entity_type as type,
+                   count(DISTINCT r) as degree,
+                   properties(e) as properties
+            """
+            entities = session.run(entity_query, entity_ids=entity_ids).data()
             
-            self._services['identity'] = IdentityService(
-                enable_persistence=True,
-                db_path=db_path
+            # Get relationships (hypergraph as table)
+            relationship_query = """
+            MATCH (s:VSEntity)-[r]->(t:VSEntity)
+            WHERE s.entity_id IN $entity_ids
+            RETURN s.entity_id as source,
+                   t.entity_id as target,
+                   type(r) as relationship_type,
+                   properties(r) as properties
+            """
+            relationships = session.run(relationship_query, entity_ids=entity_ids).data()
+        
+        # Write to SQLite
+        conn = sqlite3.connect(self.sqlite_path)
+        
+        # Entity metrics table
+        entity_df = pd.DataFrame(entities)
+        entity_df.to_sql('vs_entity_metrics', conn, if_exists='replace', index=False)
+        
+        # Relationships table
+        rel_df = pd.DataFrame(relationships)
+        rel_df.to_sql('vs_relationships', conn, if_exists='replace', index=False)
+        
+        conn.close()
+        
+        print(f"✅ Exported {len(entities)} entities and {len(relationships)} relationships")
+        return entity_df
+    
+    def table_to_graph(self, relationships_df: pd.DataFrame) -> Dict:
+        """
+        Convert relational table to graph
+        Each row becomes an edge with properties
+        """
+        created_edges = 0
+        
+        with self.neo4j.session() as session:
+            for _, row in relationships_df.iterrows():
+                query = """
+                MATCH (s:VSEntity {entity_id: $source})
+                MATCH (t:VSEntity {entity_id: $target})
+                CREATE (s)-[r:VS_RELATION {type: $rel_type}]->(t)
+                SET r += $properties
+                """
+                session.run(
+                    query,
+                    source=row['source'],
+                    target=row['target'],
+                    rel_type=row.get('relationship_type', 'RELATED'),
+                    properties=row.get('properties', {})
+                )
+                created_edges += 1
+        
+        return {"edges_created": created_edges}
+```
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_CrossModal.md`
+- Show graph→table export working
+- Show table→graph import working
+- Verify data in SQLite tables
+
+### Task 1.2: Simplified IdentityService
+
+**File**: Create `/tool_compatability/poc/vertical_slice/services/identity_service_v3.py`
+
+```python
+#!/usr/bin/env python3
+"""
+Simplified IdentityService for MVP
+Just handles basic entity deduplication
+"""
+
+from typing import List, Dict
+from neo4j import GraphDatabase
+
+class IdentityServiceV3:
+    """
+    Simplified for MVP - just handles entity deduplication
+    The bug fix (creating Entity nodes) is handled in GraphPersister
+    """
+    
+    def __init__(self, neo4j_driver):
+        self.driver = neo4j_driver
+    
+    def find_similar_entities(self, name: str, threshold: float = 0.8) -> List[Dict]:
+        """
+        Find entities with similar names (for deduplication)
+        MVP: Simple string matching, can add embeddings later
+        """
+        with self.driver.session() as session:
+            query = """
+            MATCH (e:VSEntity)
+            WHERE toLower(e.canonical_name) CONTAINS toLower($name)
+            RETURN e.entity_id as id, e.canonical_name as name
+            LIMIT 10
+            """
+            result = session.run(query, name=name)
+            return [dict(record) for record in result]
+    
+    def merge_entities(self, entity_id1: str, entity_id2: str) -> str:
+        """
+        Merge two entities that refer to the same real-world entity
+        Not critical for MVP - can be manual process initially
+        """
+        with self.driver.session() as session:
+            # Move all relationships to entity1
+            merge_query = """
+            MATCH (e1:VSEntity {entity_id: $id1})
+            MATCH (e2:VSEntity {entity_id: $id2})
+            OPTIONAL MATCH (e2)-[r]->(target)
+            CREATE (e1)-[r2:VS_MERGED]->(target)
+            SET r2 = properties(r)
+            DELETE r
+            DELETE e2
+            RETURN e1.entity_id as merged_id
+            """
+            result = session.run(merge_query, id1=entity_id1, id2=entity_id2)
+            return result.single()['merged_id']
+```
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_Identity.md`
+- Show entity search working
+- Test with similar entity names
+- Verify VSEntity namespace
+
+### Task 1.3: Enhanced ProvenanceService
+
+**File**: Create `/tool_compatability/poc/vertical_slice/services/provenance_enhanced.py`
+
+```python
+#!/usr/bin/env python3
+"""
+Enhanced ProvenanceService with uncertainty tracking
+Builds on existing ProvenanceService
+"""
+
+import sqlite3
+import json
+import time
+from typing import Dict, Any
+from datetime import datetime
+
+class ProvenanceEnhanced:
+    """Track operations with uncertainty and construct mapping"""
+    
+    def __init__(self, sqlite_path: str):
+        self.sqlite_path = sqlite_path
+        self._setup_database()
+    
+    def _setup_database(self):
+        """Create provenance tables with uncertainty fields"""
+        conn = sqlite3.connect(self.sqlite_path)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS vs_provenance (
+                operation_id TEXT PRIMARY KEY,
+                tool_id TEXT NOT NULL,
+                operation TEXT NOT NULL,
+                inputs TEXT,
+                outputs TEXT,
+                uncertainty REAL,
+                reasoning TEXT,
+                construct_mapping TEXT,
+                execution_time REAL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
-            print(f"✅ IdentityService with persistence: {db_path}")
-        else:
-            self._services['identity'] = IdentityService()
-            print("⚠️ IdentityService without persistence (in-memory only)")
+        """)
+        conn.commit()
+        conn.close()
     
-    return self._services['identity']
+    def track_operation(self, 
+                       tool_id: str,
+                       operation: str,
+                       inputs: Dict,
+                       outputs: Dict,
+                       uncertainty: float,
+                       reasoning: str,
+                       construct_mapping: str) -> str:
+        """
+        Track operation with uncertainty and construct mapping
+        """
+        import uuid
+        operation_id = f"op_{uuid.uuid4().hex[:12]}"
+        
+        conn = sqlite3.connect(self.sqlite_path)
+        conn.execute("""
+            INSERT INTO vs_provenance 
+            (operation_id, tool_id, operation, inputs, outputs, 
+             uncertainty, reasoning, construct_mapping, execution_time)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            operation_id,
+            tool_id,
+            operation,
+            json.dumps(inputs),
+            json.dumps(outputs),
+            uncertainty,
+            reasoning,
+            construct_mapping,
+            time.time()
+        ))
+        conn.commit()
+        conn.close()
+        
+        return operation_id
+    
+    def get_operation_chain(self, final_operation_id: str) -> List[Dict]:
+        """Get all operations leading to a result"""
+        conn = sqlite3.connect(self.sqlite_path)
+        cursor = conn.execute("""
+            SELECT * FROM vs_provenance 
+            WHERE created_at <= (
+                SELECT created_at FROM vs_provenance 
+                WHERE operation_id = ?
+            )
+            ORDER BY created_at
+        """, (final_operation_id,))
+        
+        operations = []
+        for row in cursor:
+            operations.append({
+                'operation_id': row[0],
+                'tool_id': row[1],
+                'operation': row[2],
+                'uncertainty': row[5],
+                'reasoning': row[6],
+                'construct_mapping': row[7]
+            })
+        
+        conn.close()
+        return operations
 ```
 
-**File**: Create `/config/services.yaml`
-```yaml
-# Service configuration
-services:
-  identity:
-    persistence: true
-    db_path: "data/identity.db"
-    embeddings: false  # Requires OpenAI API key
-    
-  provenance:
-    backend: "sqlite"
-    db_path: "data/provenance.db"
-    
-  quality:
-    thresholds:
-      high_confidence: 0.8
-      medium_confidence: 0.5
-      low_confidence: 0.2
-      
-  workflow:
-    checkpoint_dir: "data/checkpoints"
-    auto_save: true
-    save_interval: 300  # seconds
-```
-
-**File**: Create `/src/core/config_loader.py`
-```python
-"""Load service configuration"""
-import yaml
-from pathlib import Path
-
-def load_service_config(config_path: str = "config/services.yaml") -> dict:
-    """Load service configuration from YAML"""
-    config_file = Path(config_path)
-    
-    if not config_file.exists():
-        print(f"⚠️ No config file at {config_path}, using defaults")
-        return {}
-    
-    with open(config_file) as f:
-        config = yaml.safe_load(f)
-    
-    return config.get('services', {})
-```
-
-**Update CompositionService** to use configuration:
-```python
-def __init__(self, service_manager: ServiceManager = None, config_path: str = None):
-    """Initialize with configuration"""
-    from src.core.config_loader import load_service_config
-    
-    self.service_manager = service_manager or ServiceManager()
-    
-    # Load configuration
-    config = load_service_config(config_path) if config_path else {}
-    
-    # Create service bridge with config
-    self.service_bridge = ServiceBridge(self.service_manager, config)
-    
-    # ... rest of initialization
-```
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_Provenance.md`
+- Show operation tracking with uncertainty
+- Retrieve operation chain
+- Verify all fields stored correctly
 
 ---
 
-## 7. Success Criteria
+## 5. PHASE 2: Tools with Uncertainty (Day 2)
 
-Each phase must produce evidence files showing:
+### Task 2.0: Uncertainty Constants
 
-### Phase 1: Failure Handling
-- [ ] Test showing strict mode fails loudly
-- [ ] Test showing lenient mode adds warnings
-- [ ] PII validation rejecting empty strings
+**File**: Create `/tool_compatability/poc/vertical_slice/config/uncertainty_constants.py`
 
-### Phase 2: Real Services  
-- [ ] Gemini API actually called (show response times)
-- [ ] Neo4j nodes actually created (show counts)
-- [ ] End-to-end pipeline with real services
+```python
+#!/usr/bin/env python3
+"""
+Configurable uncertainty constants for deterministic operations
+These are clearly labeled and easily adjustable
+"""
 
-### Phase 3: Configuration
-- [ ] Config loaded from YAML
-- [ ] Persistence working (survives restart)
-- [ ] Different configs produce different behavior
+# TextLoader uncertainties by file type
+TEXT_LOADER_UNCERTAINTY = {
+    "pdf": 0.15,      # OCR challenges, formatting loss
+    "txt": 0.02,      # Nearly perfect extraction
+    "docx": 0.08,     # Some formatting complexity
+    "html": 0.12,     # Tag stripping, structure loss
+    "md": 0.03,       # Clean markdown extraction
+    "rtf": 0.10,      # Format conversion challenges
+    "default": 0.10   # Unknown file types
+}
+
+# Reasoning templates
+TEXT_LOADER_REASONING = {
+    "pdf": "PDF extraction may have OCR errors or formatting loss",
+    "txt": "Plain text extraction with minimal uncertainty",
+    "docx": "Word document with potential formatting complexity",
+    "html": "HTML parsing may lose semantic structure",
+    "md": "Markdown extraction preserves structure well",
+    "default": "Standard uncertainty for file format extraction"
+}
+```
+
+### Task 2.1: TextLoaderV3
+
+**File**: Create `/tool_compatability/poc/vertical_slice/tools/text_loader_v3.py`
+
+**Implementation**: See VERTICAL_SLICE_20250826.md lines 244-299 for complete implementation
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_TextLoader.md`
+- Test with PDF, TXT, and DOCX files
+- Show uncertainty assessments for each
+- Verify construct mapping recorded
+
+### Task 2.2: KnowledgeGraphExtractor
+
+**File**: Create `/tool_compatability/poc/vertical_slice/tools/knowledge_graph_extractor.py`
+
+**Implementation**: See VERTICAL_SLICE_20250826.md lines 308-401 for complete implementation
+
+**Key Points**:
+- Single LLM call for entities AND relationships
+- Handles chunking for long documents (4000 chars with overlap)
+- Returns unified uncertainty for entire extraction
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_KGExtractor.md`
+- Show actual Gemini API call and response
+- Test with real document text
+- Verify entities AND relationships extracted together
+
+### Task 2.3: GraphPersister
+
+**File**: Create `/tool_compatability/poc/vertical_slice/tools/graph_persister.py`
+
+**Implementation**: See VERTICAL_SLICE_20250826.md lines 410-508 for complete implementation
+
+**Critical**: 
+- Creates VSEntity nodes (fixes IdentityService bug)
+- Has 0.0 uncertainty on success (pure storage operation)
+- Exports metrics to SQLite via CrossModalService
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_GraphPersister.md`
+- Show entities created in Neo4j
+- Verify relationships created
+- Confirm 0.0 uncertainty on success
 
 ---
 
-## 8. Testing Commands
+## 6. PHASE 3: Framework Integration (Day 3)
+
+### Task 3.1: Clean Framework
+
+**File**: Create `/tool_compatability/poc/vertical_slice/framework/clean_framework.py`
+
+**Implementation**: See VERTICAL_SLICE_20250826.md lines 519-578 for complete implementation
+
+**Physics-Style Propagation**:
+```python
+def _combine_sequential_uncertainties(self, uncertainties: List[float]) -> float:
+    """
+    Physics-style error propagation for sequential tools
+    confidence = ∏(1 - uᵢ)
+    total_uncertainty = 1 - confidence
+    """
+    confidence = 1.0
+    for u in uncertainties:
+        confidence *= (1 - u)
+    return 1 - confidence
+```
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_Framework.md`
+- Show chain discovery working
+- Demonstrate uncertainty propagation
+- Verify math is correct
+
+---
+
+## 7. PHASE 4: Testing & Validation (Day 4)
+
+### Task 4.1: End-to-End Test
+
+**File**: Create `/tool_compatability/poc/vertical_slice/tests/test_vertical_slice.py`
+
+**Implementation**: See VERTICAL_SLICE_20250826.md lines 586-620 for test structure
+
+**Test Document**: Create a real PDF with known content for testing
+
+**Evidence Required**: `evidence/current/Evidence_VerticalSlice_EndToEnd.md`
+- Complete pipeline execution log
+- Neo4j query showing VSEntity nodes
+- SQLite query showing metrics
+- Provenance with uncertainty values
+- Total uncertainty calculation
+
+---
+
+## 8. Success Criteria
+
+### Minimum Viable Success ✅
+- [ ] One complete chain executes (File → KnowledgeGraph → Neo4j)
+- [ ] Uncertainty propagates through chain
+- [ ] Real Neo4j has VSEntity nodes and relationships
+- [ ] Real SQLite has vs_entity_metrics table
+- [ ] ProvenanceEnhanced tracks all operations with uncertainty
+
+### Target Success 🎯
+- [ ] All above plus...
+- [ ] CrossModal conversion works (graph → table)
+- [ ] At least 10 entities extracted and linked
+- [ ] Uncertainty assessments include detailed reasoning
+- [ ] Combined uncertainty ~0.35 (0.15 × 0.25 × 0.0)
+
+### Evidence Collection
+Each task MUST produce evidence showing:
+1. Raw terminal output of execution
+2. Database queries verifying data stored
+3. Uncertainty values and reasoning
+4. No mocks - actual API calls and database writes
+
+---
+
+## 9. Testing Commands
 
 ```bash
-# Phase 1: Test failure handling
-python3 src/core/test_failure_handling.py
+# Phase 1: Test infrastructure
+python3 tool_compatability/poc/vertical_slice/test_connections.py
 
-# Phase 2: Test real services (requires .env with GEMINI_API_KEY)
-python3 src/core/test_real_services.py
+# Phase 2: Test individual tools
+python3 -c "from tool_compatability.poc.vertical_slice.tools.text_loader_v3 import TextLoaderV3; t = TextLoaderV3(); print(t.process('test.pdf'))"
 
-# Phase 3: Test configuration
-python3 -c "
-from src.core.composition_service import CompositionService
-cs = CompositionService(config_path='config/services.yaml')
-print('Config loaded:', cs.service_bridge.config)
-"
+# Phase 3: Test framework
+python3 -c "from tool_compatability.poc.vertical_slice.framework.clean_framework import CleanToolFramework; f = CleanToolFramework('bolt://localhost:7687', 'vertical_slice.db'); print('Framework initialized')"
 
-# Run all integration tests
-python3 src/core/test_identity_integration.py
+# Phase 4: Run end-to-end test
+python3 tool_compatability/poc/vertical_slice/tests/test_vertical_slice.py
 ```
 
 ---
 
-## 9. Troubleshooting
+## 10. Troubleshooting
+
+### If Neo4j connection fails
+```bash
+# Start Neo4j
+docker run -d --name neo4j \
+  -p 7687:7687 -p 7474:7474 \
+  -e NEO4J_AUTH=neo4j/devpassword \
+  neo4j:latest
+
+# Verify
+python3 -c "from neo4j import GraphDatabase; d = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'devpassword')); d.verify_connectivity(); print('Connected')"
+```
 
 ### If Gemini API fails
 ```bash
 # Check API key
 cat .env | grep GEMINI
 
-# Test directly with curl
-curl -X POST \
-  https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent \
-  -H "Content-Type: application/json" \
-  -H "x-goog-api-key: YOUR_KEY" \
-  -d '{"contents":[{"parts":[{"text":"Extract entities from: Apple CEO Tim Cook"}]}]}'
+# Test directly
+python3 -c "import os; print(f'Key exists: {bool(os.getenv(\"GEMINI_API_KEY\"))}')"
 ```
 
-### If Neo4j fails
+### If imports fail
 ```bash
-# Start Neo4j container
-docker run -d --name neo4j \
-  -p 7687:7687 -p 7474:7474 \
-  -e NEO4J_AUTH=neo4j/devpassword \
-  neo4j:latest
+# Ensure in correct directory
+cd tool_compatability/poc/vertical_slice
 
-# Test connection
-python3 -c "
-from neo4j import GraphDatabase
-driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'devpassword'))
-driver.verify_connectivity()
-print('✅ Connected')
-"
+# Add to path if needed
+export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 ```
 
 ---
 
+## 11. Important Notes
+
+1. **VS Prefix**: All Neo4j labels/types use VS prefix to avoid conflicts
+2. **No ServiceManager**: Direct instantiation to avoid complexity
+3. **Real Databases**: No mocks, Neo4j and SQLite must be running
+4. **Uncertainty is Subjective**: It's expert assessment, not calibration
+5. **GraphPersister Zero Uncertainty**: Storage operations have 0.0 on success
+
+---
+
 *Last Updated: 2025-08-26*
-*Phase: Service Hardening*
-*Priority: Fix silent failures, test with real services*
-*Next: QualityService and WorkflowStateService integration*
+*Phase: Clean Vertical Slice*
+*Priority: Demonstrate uncertainty propagation with minimal pipeline*
