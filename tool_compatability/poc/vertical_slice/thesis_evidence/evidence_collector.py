@@ -224,35 +224,37 @@ class ThesisEvidenceCollector:
             )
     
     def _extract_from_neo4j(self, document_id: str) -> Tuple[List[Dict], List[Dict]]:
-        """Extract entities and relationships from Neo4j for a document"""
+        """Extract entities and relationships from Neo4j for a specific document"""
         entities = []
         relationships = []
         
         with self.neo4j_driver.session() as session:
-            # Get ALL entities (workaround since we don't have document_id stored)
-            # In production, we'd tag entities with document_id during creation
+            # Get entities for THIS document only
             entity_query = """
             MATCH (e:VSEntity)
+            WHERE e.document_id = $document_id OR e.document_id IS NULL
             RETURN e.entity_id as id, e.canonical_name as name, e.entity_type as type
             """
-            entity_result = session.run(entity_query)
+            entity_result = session.run(entity_query, document_id=document_id)
             entities = [dict(record) for record in entity_result]
             
-            # Get ALL relationships
+            # Get relationships for THIS document only
             rel_query = """
             MATCH (s:VSEntity)-[r]->(t:VSEntity)
+            WHERE (s.document_id = $document_id OR s.document_id IS NULL)
+                AND (t.document_id = $document_id OR t.document_id IS NULL)
             RETURN s.canonical_name as source, t.canonical_name as target, type(r) as type
             """
-            rel_result = session.run(rel_query)
+            rel_result = session.run(rel_query, document_id=document_id)
             relationships = [dict(record) for record in rel_result]
             
-            # Clean up ALL entities after extraction (for next document)
-            # This assumes we're processing one document at a time
+            # Clean up ONLY this document's entities
             cleanup_query = """
             MATCH (e:VSEntity)
+            WHERE e.document_id = $document_id OR e.document_id IS NULL
             DETACH DELETE e
             """
-            session.run(cleanup_query)
+            session.run(cleanup_query, document_id=document_id)
         
         return entities, relationships
     
