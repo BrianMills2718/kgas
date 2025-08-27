@@ -4,7 +4,7 @@
 import json
 import os
 import time
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Tuple
 import litellm
 from dotenv import load_dotenv
 
@@ -223,38 +223,52 @@ JSON Output:"""
     
     def _assess_extraction_uncertainty(self, text_length: int, entity_count: int, 
                                       relationship_count: int, chunk_count: int,
-                                      chunk_uncertainties: List[float]) -> tuple:
-        """Unified uncertainty assessment for entire extraction"""
+                                      chunk_uncertainties: List[float]) -> Tuple[float, str]:
+        """
+        Assess extraction uncertainty based on ACTUAL extraction challenges
+        """
+        # Start with base LLM uncertainty
+        base_uncertainty = 0.25
+        adjustments = []
         
-        # Average chunk uncertainties if multiple chunks
-        if chunk_uncertainties:
-            avg_uncertainty = sum(chunk_uncertainties) / len(chunk_uncertainties)
-        else:
-            avg_uncertainty = 0.25  # Base LLM uncertainty
-        
-        # Adjust based on overall results
+        # 1. Entity Extraction Quality
         if entity_count == 0:
-            uncertainty = 0.95
-            reasoning = "No entities extracted - text may not contain structured information"
+            base_uncertainty = 0.95
+            adjustments.append("no entities extracted")
         elif entity_count < 3:
-            uncertainty = avg_uncertainty + 0.15
-            reasoning = f"Only {entity_count} entities found - extraction may be incomplete"
-        elif relationship_count == 0:
-            uncertainty = avg_uncertainty + 0.1
-            reasoning = f"Found {entity_count} entities but no relationships - may have missed connections"
-        else:
-            uncertainty = avg_uncertainty
-            reasoning = f"Extracted {entity_count} entities and {relationship_count} relationships"
+            base_uncertainty += 0.15
+            adjustments.append(f"sparse extraction ({entity_count} entities)")
+        elif text_length > 0:
+            # Check for suspiciously high entity density
+            entity_density = entity_count / (text_length / 1000)  # entities per 1000 chars
+            if entity_density > 20:
+                base_uncertainty += 0.10
+                adjustments.append(f"possible over-extraction (density: {entity_density:.1f}/1k chars)")
         
-        # Add chunk information to reasoning
+        # 2. Relationship Quality
+        if entity_count > 0:
+            relationship_ratio = relationship_count / entity_count
+            if relationship_ratio < 0.5:  # Very few relationships
+                base_uncertainty += 0.10
+                adjustments.append(f"sparse relationships ({relationship_ratio:.1f} per entity)")
+            elif relationship_ratio > 3:  # Too many relationships
+                base_uncertainty += 0.05
+                adjustments.append(f"dense relationships ({relationship_ratio:.1f} per entity)")
+        
+        # 3. Chunking Impact
         if chunk_count > 1:
-            reasoning += f" across {chunk_count} chunks"
-            uncertainty += 0.05  # Small increase for chunking
+            base_uncertainty += 0.05 * (chunk_count - 1)  # Each chunk adds uncertainty
+            adjustments.append(f"{chunk_count} chunks processed")
         
-        # Ensure uncertainty is in valid range
-        uncertainty = min(max(uncertainty, 0.0), 1.0)
+        # Build reasoning
+        reasoning = f"Extracted {entity_count} entities and {relationship_count} relationships"
+        if adjustments:
+            reasoning += f" | Adjustments: {'; '.join(adjustments)}"
         
-        return uncertainty, reasoning
+        # Ensure valid range
+        final_uncertainty = min(max(base_uncertainty, 0.0), 0.95)
+        
+        return final_uncertainty, reasoning
 
 # Test the extractor
 if __name__ == "__main__":

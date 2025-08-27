@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-08-27T14:32:56.200929",
+  "timestamp": "2025-08-27T15:16:26.466273",
   "hypothesis_validation": {
     "statement": "Higher uncertainty correlates with higher error rates",
-    "correlation_coefficient": -0.14325814986093988,
+    "correlation_coefficient": 0.5535069835354454,
     "validated": 
