@@ -9,6 +9,7 @@ Every CLAUDE.md must include:
 - **Use Test Driven Design where possible.
 ### 2. Codebase Structure Section (Mandatory)  
 Concisely document:
+- API keys are loaded from .env. gemini-2.5-flash with litellm is the LLM model that needs to be used
 - All relevant planning and documentation files
 - Key entry points and main orchestration files
 - Module organization and responsibilities
