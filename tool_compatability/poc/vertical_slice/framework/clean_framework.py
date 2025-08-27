@@ -189,14 +189,15 @@ class CleanToolFramework:
                     current_data = result
                     
             except Exception as e:
-                return ChainResult(
-                    success=False,
-                    data=None,
-                    total_uncertainty=1.0,
-                    step_uncertainties=uncertainties,
-                    step_reasonings=reasonings,
-                    error=f"{tool_id} raised exception: {str(e)}"
-                )
+                # FAIL-FAST: Don't hide errors
+                print(f"\n❌ PIPELINE FAILED at {tool_id}")
+                print(f"   Exception: {e.__class__.__name__}: {str(e)}")
+                print(f"   Steps completed: {uncertainties}")
+                raise RuntimeError(
+                    f"Pipeline execution failed at tool {tool_id}\n"
+                    f"Steps completed before failure: {len(uncertainties)}\n"
+                    f"Error: {str(e)}"
+                ) from e
         
         # Combine uncertainties using physics model
         total_uncertainty = self._combine_sequential_uncertainties(uncertainties)

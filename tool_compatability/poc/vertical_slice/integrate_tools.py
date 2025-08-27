@@ -87,7 +87,6 @@ def integrate_ready_tools(framework: CleanToolFramework):
             uncertainty_config={
                 'base': 0.0,
                 'success_uncertainty': 0.0,
-                'failure_uncertainty': 1.0,
                 'reasoning': 'Graph persistence with zero uncertainty on success'
             }
         )

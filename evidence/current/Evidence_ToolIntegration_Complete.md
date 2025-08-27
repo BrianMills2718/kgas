@@ -59,7 +59,7 @@ knowledge_graph → table: neo4j_graph_builder → t49_multihop_query
    - Auto-detects tool methods (process, run, execute)
    - Configurable uncertainty assessment
    - Handles diverse data formats
-   - Graceful error handling
+   - FAIL-FAST error handling (no graceful degradation)
 
 2. **Virtual Environment Usage** ✅
    - Successfully using `/home/brian/projects/Digimons/.venv`

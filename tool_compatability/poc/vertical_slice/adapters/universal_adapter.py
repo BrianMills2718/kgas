@@ -97,7 +97,6 @@ class UniversalAdapter:
             return {
                 'base': 0.0,
                 'success_uncertainty': 0.0,
-                'failure_uncertainty': 1.0,
                 'reasoning': 'Storage operation - zero uncertainty on success'
             }
         elif 'query' in tool_name or 'search' in tool_name:
@@ -116,7 +115,8 @@ class UniversalAdapter:
         Assess uncertainty based on operation characteristics
         """
         if not success:
-            return self.uncertainty_config.get('failure_uncertainty', 1.0)
+            # FAIL-FAST: Don't assess uncertainty for failures, just fail
+            raise RuntimeError(f"Tool {self.tool_id} operation failed - cannot assess uncertainty")
         
         if 'success_uncertainty' in self.uncertainty_config:
             return self.uncertainty_config['success_uncertainty']
@@ -274,20 +274,15 @@ class UniversalAdapter:
             return response
             
         except Exception as e:
-            # Handle errors gracefully
-            return {
-                'success': False,
-                'data': None,
-                'uncertainty': 1.0,
-                'reasoning': f'Error in {self.tool_id}: {str(e)}',
-                'construct_mapping': 'error',
-                'metadata': {
-                    'tool_id': self.tool_id,
-                    'method': self.method_name,
-                    'execution_time': time.time() - start_time,
-                    'error': str(e)
-                }
-            }
+            # FAIL-FAST: Surface errors immediately
+            print(f"❌ ERROR in {self.tool_id}.{self.method_name}: {str(e)}")
+            print(f"   Input type: {type(input_data)}")
+            print(f"   Input data (first 200 chars): {str(input_data)[:200]}")
+            raise RuntimeError(
+                f"Tool {self.tool_id} failed with {e.__class__.__name__}: {str(e)}\n"
+                f"Method: {self.method_name}\n"
+                f"Input type: {type(input_data)}"
+            ) from e
     
     def __repr__(self):
         return f"UniversalAdapter({self.tool_id}, method={self.method_name})"

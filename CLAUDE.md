@@ -35,6 +35,10 @@ api_key = os.getenv('GEMINI_API_KEY')
 ### Core Principles
 - **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
 - **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
+  - No graceful error handling that returns success=False
+  - No returning 1.0 uncertainty on failure
+  - Raise exceptions immediately when tools fail
+  - Print clear error messages before raising
 - **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files  
 - **TEST DRIVEN DESIGN**: Write tests first where possible
 
