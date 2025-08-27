@@ -259,9 +259,9 @@ class ThesisEvidenceCollector:
     def calculate_metrics(self, result: PipelineResult, ground_truth: Dict) -> EvidenceMetrics:
         """Calculate precision, recall, and F1 for a document"""
         
-        # Entity metrics
-        expected_entities = set((e['name'], e['type']) for e in ground_truth['expected_entities'])
-        found_entities = set((e['name'], e['type']) for e in result.entities_found)
+        # Entity metrics - normalize for case-insensitive matching
+        expected_entities = set((e['name'].lower(), e['type'].lower()) for e in ground_truth['expected_entities'])
+        found_entities = set((e['name'].lower(), e['type'].lower()) for e in result.entities_found)
         
         entity_tp = len(expected_entities & found_entities)
         entity_fp = len(found_entities - expected_entities)
@@ -270,9 +270,9 @@ class ThesisEvidenceCollector:
         entity_precision = entity_tp / (entity_tp + entity_fp) if (entity_tp + entity_fp) > 0 else 0
         entity_recall = entity_tp / (entity_tp + entity_fn) if (entity_tp + entity_fn) > 0 else 0
         
-        # Relationship metrics
-        expected_rels = set((r['source'], r['target'], r['type']) for r in ground_truth['expected_relationships'])
-        found_rels = set((r['source'], r['target'], r['type']) for r in result.relationships_found)
+        # Relationship metrics - normalize for case-insensitive matching
+        expected_rels = set((r['source'].lower(), r['target'].lower(), r['type'].lower()) for r in ground_truth['expected_relationships'])
+        found_rels = set((r['source'].lower(), r['target'].lower(), r['type'].lower()) for r in result.relationships_found)
         
         rel_tp = len(expected_rels & found_rels)
         rel_fp = len(found_rels - expected_rels)

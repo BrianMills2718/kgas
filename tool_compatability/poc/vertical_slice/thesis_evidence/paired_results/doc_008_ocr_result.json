@@ -1,0 +1,12 @@
+{
+  "document_id": "doc_008_ocr",
+  "base_id": "doc_C",
+  "noise_type": "ocr",
+  "f1_score": 0,
+  "precision": 0.0,
+  "recall": 0.0,
+  "uncertainty": 0.971,
+  "expected_uncertainty": 0.45,
+  "entity_count": 0,
+  "relationship_count": 0
+}

@@ -1,0 +1,12 @@
+{
+  "document_id": "doc_006_heavy",
+  "base_id": "doc_B",
+  "noise_type": "ocr+truncation",
+  "f1_score": 0.11111111111111112,
+  "precision": 0.1,
+  "recall": 0.125,
+  "uncertainty": 0.64,
+  "expected_uncertainty": 0.75,
+  "entity_count": 5,
+  "relationship_count": 4
+}

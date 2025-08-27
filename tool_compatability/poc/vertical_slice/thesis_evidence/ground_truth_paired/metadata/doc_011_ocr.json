@@ -1,0 +1,60 @@
+{
+  "document_id": "doc_011_ocr",
+  "base_id": "doc_D",
+  "complexity_level": "ocr_noise",
+  "text_content": "The quantum computing research involves c0mplex mathem@tic@l frameworks.\nProfessor Zhang dev3loped novel error correct1on algorithms at MIT.\nThe approach uses topological quantum codes for fault toler@nc3.\nGoogle @nd IBM are competing to @chieve quantum supremacy.",
+  "expected_entities": [
+    {
+      "name": "Professor Zhang",
+      "type": "PERSON"
+    },
+    {
+      "name": "MIT",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "Google",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "IBM",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "quantum computing",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "error correction algorithms",
+      "type": "CONCEPT"
+    },
+    {
+      "name": "topological quantum codes",
+      "type": "CONCEPT"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Professor Zhang",
+      "target": "MIT",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "Professor Zhang",
+      "target": "error correction algorithms",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "Google",
+      "target": "quantum computing",
+      "type": "RESEARCHES"
+    },
+    {
+      "source": "IBM",
+      "target": "quantum computing",
+      "type": "RESEARCHES"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "noise_type": "ocr"
+}

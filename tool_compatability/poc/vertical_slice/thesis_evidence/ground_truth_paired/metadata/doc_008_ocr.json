@@ -1,0 +1,56 @@
+{
+  "document_id": "doc_008_ocr",
+  "base_id": "doc_C",
+  "complexity_level": "ocr_noise",
+  "text_content": "DataCorp acquired TechStartup f0r $50 million 1n a strategic merger.\nThe CEO John Williams announced the int3gration of their AI pl@tf0rm.\nThe new system w1ll process cust0mer data using machine learning algorithms.\nEmily Davis leads the technic@l integr@tion te@m from headquarters in Sydney.",
+  "expected_entities": [
+    {
+      "name": "DataCorp",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "TechStartup",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "John Williams",
+      "type": "PERSON"
+    },
+    {
+      "name": "AI platform",
+      "type": "SYSTEM"
+    },
+    {
+      "name": "Emily Davis",
+      "type": "PERSON"
+    },
+    {
+      "name": "Sydney",
+      "type": "LOCATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "DataCorp",
+      "target": "TechStartup",
+      "type": "ACQUIRED"
+    },
+    {
+      "source": "John Williams",
+      "target": "DataCorp",
+      "type": "CEO_OF"
+    },
+    {
+      "source": "Emily Davis",
+      "target": "DataCorp",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "DataCorp",
+      "target": "Sydney",
+      "type": "LOCATED_IN"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "noise_type": "ocr"
+}

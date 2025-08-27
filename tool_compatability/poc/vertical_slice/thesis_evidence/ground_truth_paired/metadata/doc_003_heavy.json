@@ -1,0 +1,70 @@
+{
+  "document_id": "doc_003_heavy",
+  "base_id": "doc_A",
+  "complexity_level": "heavy_noise",
+  "text_content": "Brian Chhun is a PhD stud3nt a... [TRUNCATED]\nH3 d3vel0ped the KGAS system f0r knowledg3 gr@ph analys15.\nTh3 5y5t3m us35 Neo4j for graph stor@ge and Python f0r proc3ss1ng.\nH1s superv1sor i5 Pr0fess...",
+  "expected_entities": [
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON"
+    },
+    {
+      "name": "University of Melbourne",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "KGAS",
+      "type": "SYSTEM"
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Jane Smith",
+      "type": "PERSON"
+    },
+    {
+      "name": "Computer Science department",
+      "type": "ORGANIZATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "University of Melbourne",
+      "type": "STUDIES_AT"
+    },
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "USES"
+    },
+    {
+      "source": "KGAS",
+      "target": "Python",
+      "type": "USES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Brian Chhun",
+      "type": "SUPERVISES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Computer Science department",
+      "type": "MEMBER_OF"
+    }
+  ],
+  "expected_uncertainty": 0.75,
+  "noise_type": "ocr+truncation"
+}

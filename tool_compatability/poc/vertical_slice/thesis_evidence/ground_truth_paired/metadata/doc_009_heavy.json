@@ -1,0 +1,56 @@
+{
+  "document_id": "doc_009_heavy",
+  "base_id": "doc_C",
+  "complexity_level": "heavy_noise",
+  "text_content": "D@t@C0rp @cqu1red Tech5t@rtup f0r ... [TRUNCATED]\nThe CEO John William5 announced th3 1ntegr@tion of th3ir AI platform.\nTh3 new syst3m w1ll proc3ss customer data us1ng machin3 l3arning algorithms.\n3mily Dav1s leads the tec...",
+  "expected_entities": [
+    {
+      "name": "DataCorp",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "TechStartup",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "John Williams",
+      "type": "PERSON"
+    },
+    {
+      "name": "AI platform",
+      "type": "SYSTEM"
+    },
+    {
+      "name": "Emily Davis",
+      "type": "PERSON"
+    },
+    {
+      "name": "Sydney",
+      "type": "LOCATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "DataCorp",
+      "target": "TechStartup",
+      "type": "ACQUIRED"
+    },
+    {
+      "source": "John Williams",
+      "target": "DataCorp",
+      "type": "CEO_OF"
+    },
+    {
+      "source": "Emily Davis",
+      "target": "DataCorp",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "DataCorp",
+      "target": "Sydney",
+      "type": "LOCATED_IN"
+    }
+  ],
+  "expected_uncertainty": 0.75,
+  "noise_type": "ocr+truncation"
+}

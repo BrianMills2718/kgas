@@ -1,0 +1,868 @@
+{
+  "total_documents": 15,
+  "base_documents": 5,
+  "noise_levels": [
+    "clean",
+    "ocr_noise",
+    "heavy_noise"
+  ],
+  "documents": [
+    "doc_001_clean",
+    "doc_002_ocr",
+    "doc_003_heavy",
+    "doc_004_clean",
+    "doc_005_ocr",
+    "doc_006_heavy",
+    "doc_007_clean",
+    "doc_008_ocr",
+    "doc_009_heavy",
+    "doc_010_clean",
+    "doc_011_ocr",
+    "doc_012_heavy",
+    "doc_013_clean",
+    "doc_014_ocr",
+    "doc_015_heavy"
+  ],
+  "metadata": {
+    "doc_001_clean": {
+      "document_id": "doc_001_clean",
+      "base_id": "doc_A",
+      "complexity_level": "clean",
+      "text_content": "Brian Chhun is a PhD student at the University of Melbourne. \nHe developed the KGAS system for knowledge graph analysis.\nThe system uses Neo4j for graph storage and Python for processing.\nHis supervisor is Professor Jane Smith from the Computer Science department.",
+      "expected_entities": [
+        {
+          "name": "Brian Chhun",
+          "type": "PERSON"
+        },
+        {
+          "name": "University of Melbourne",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "KGAS",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Neo4j",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Python",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Jane Smith",
+          "type": "PERSON"
+        },
+        {
+          "name": "Computer Science department",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Brian Chhun",
+          "target": "University of Melbourne",
+          "type": "STUDIES_AT"
+        },
+        {
+          "source": "Brian Chhun",
+          "target": "KGAS",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "KGAS",
+          "target": "Neo4j",
+          "type": "USES"
+        },
+        {
+          "source": "KGAS",
+          "target": "Python",
+          "type": "USES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Brian Chhun",
+          "type": "SUPERVISES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Computer Science department",
+          "type": "MEMBER_OF"
+        }
+      ],
+      "expected_uncertainty": 0.15,
+      "noise_type": "none"
+    },
+    "doc_002_ocr": {
+      "document_id": "doc_002_ocr",
+      "base_id": "doc_A",
+      "complexity_level": "ocr_noise",
+      "text_content": "Brian Chhun is a PhD stud3nt at th3 University 0f Melbourn3. \nHe developed th3 KGAS syst3m for knowledge gr@ph analysis.\nTh3 syst3m uses Neo4j for graph 5torage and Python for proce5sing.\nHis supervisor is Professor Jane Sm1th from the Computer Sc13nc3 department.",
+      "expected_entities": [
+        {
+          "name": "Brian Chhun",
+          "type": "PERSON"
+        },
+        {
+          "name": "University of Melbourne",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "KGAS",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Neo4j",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Python",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Jane Smith",
+          "type": "PERSON"
+        },
+        {
+          "name": "Computer Science department",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Brian Chhun",
+          "target": "University of Melbourne",
+          "type": "STUDIES_AT"
+        },
+        {
+          "source": "Brian Chhun",
+          "target": "KGAS",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "KGAS",
+          "target": "Neo4j",
+          "type": "USES"
+        },
+        {
+          "source": "KGAS",
+          "target": "Python",
+          "type": "USES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Brian Chhun",
+          "type": "SUPERVISES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Computer Science department",
+          "type": "MEMBER_OF"
+        }
+      ],
+      "expected_uncertainty": 0.45,
+      "noise_type": "ocr"
+    },
+    "doc_003_heavy": {
+      "document_id": "doc_003_heavy",
+      "base_id": "doc_A",
+      "complexity_level": "heavy_noise",
+      "text_content": "Brian Chhun is a PhD stud3nt a... [TRUNCATED]\nH3 d3vel0ped the KGAS system f0r knowledg3 gr@ph analys15.\nTh3 5y5t3m us35 Neo4j for graph stor@ge and Python f0r proc3ss1ng.\nH1s superv1sor i5 Pr0fess...",
+      "expected_entities": [
+        {
+          "name": "Brian Chhun",
+          "type": "PERSON"
+        },
+        {
+          "name": "University of Melbourne",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "KGAS",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Neo4j",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Python",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "Jane Smith",
+          "type": "PERSON"
+        },
+        {
+          "name": "Computer Science department",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Brian Chhun",
+          "target": "University of Melbourne",
+          "type": "STUDIES_AT"
+        },
+        {
+          "source": "Brian Chhun",
+          "target": "KGAS",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "KGAS",
+          "target": "Neo4j",
+          "type": "USES"
+        },
+        {
+          "source": "KGAS",
+          "target": "Python",
+          "type": "USES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Brian Chhun",
+          "type": "SUPERVISES"
+        },
+        {
+          "source": "Jane Smith",
+          "target": "Computer Science department",
+          "type": "MEMBER_OF"
+        }
+      ],
+      "expected_uncertainty": 0.75,
+      "noise_type": "ocr+truncation"
+    },
+    "doc_004_clean": {
+      "document_id": "doc_004_clean",
+      "base_id": "doc_B",
+      "complexity_level": "clean",
+      "text_content": "The research team includes Dr. Michael Chen and Dr. Sarah Johnson.\nThey collaborate on uncertainty quantification methods for knowledge graphs.\nThe project received funding from the Australian Research Council in 2024.\nInitial results were published in the Journal of Knowledge Graphs.",
+      "expected_entities": [
+        {
+          "name": "Michael Chen",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sarah Johnson",
+          "type": "PERSON"
+        },
+        {
+          "name": "Australian Research Council",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Journal of Knowledge Graphs",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Michael Chen",
+          "target": "Sarah Johnson",
+          "type": "COLLABORATES_WITH"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Michael Chen",
+          "type": "FUNDS"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Sarah Johnson",
+          "type": "FUNDS"
+        }
+      ],
+      "expected_uncertainty": 0.15,
+      "noise_type": "none"
+    },
+    "doc_005_ocr": {
+      "document_id": "doc_005_ocr",
+      "base_id": "doc_B",
+      "complexity_level": "ocr_noise",
+      "text_content": "The research t3am includes Dr. Michael Ch3n and Dr. Sarah Johnson.\nThey collaborate on uncertainty quantification methods for knowledge graphs.\nThe project received fund1ng from the Australian Res3arch C0uncil 1n 2024.\nIn1tial r3sults were published in the Journal of Knowledge Graphs.",
+      "expected_entities": [
+        {
+          "name": "Michael Chen",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sarah Johnson",
+          "type": "PERSON"
+        },
+        {
+          "name": "Australian Research Council",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Journal of Knowledge Graphs",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Michael Chen",
+          "target": "Sarah Johnson",
+          "type": "COLLABORATES_WITH"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Michael Chen",
+          "type": "FUNDS"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Sarah Johnson",
+          "type": "FUNDS"
+        }
+      ],
+      "expected_uncertainty": 0.45,
+      "noise_type": "ocr"
+    },
+    "doc_006_heavy": {
+      "document_id": "doc_006_heavy",
+      "base_id": "doc_B",
+      "complexity_level": "heavy_noise",
+      "text_content": "The re5earch team include5 Dr. Mi... [TRUNCATED]\nTh3y collaborate 0n uncert@1nty quantification m3th0d5 for knowl3dge graphs.\nThe    project    r3ceiv3d    funding    from    th3    @ustralian    Rese@rch    Council    in    2024.\nInitial re5ults were p...",
+      "expected_entities": [
+        {
+          "name": "Michael Chen",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sarah Johnson",
+          "type": "PERSON"
+        },
+        {
+          "name": "Australian Research Council",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Journal of Knowledge Graphs",
+          "type": "ORGANIZATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Michael Chen",
+          "target": "Sarah Johnson",
+          "type": "COLLABORATES_WITH"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Michael Chen",
+          "type": "FUNDS"
+        },
+        {
+          "source": "Australian Research Council",
+          "target": "Sarah Johnson",
+          "type": "FUNDS"
+        }
+      ],
+      "expected_uncertainty": 0.75,
+      "noise_type": "ocr+truncation"
+    },
+    "doc_007_clean": {
+      "document_id": "doc_007_clean",
+      "base_id": "doc_C",
+      "complexity_level": "clean",
+      "text_content": "DataCorp acquired TechStartup for $50 million in a strategic merger.\nThe CEO John Williams announced the integration of their AI platform.\nThe new system will process customer data using machine learning algorithms.\nEmily Davis leads the technical integration team from headquarters in Sydney.",
+      "expected_entities": [
+        {
+          "name": "DataCorp",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "TechStartup",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "John Williams",
+          "type": "PERSON"
+        },
+        {
+          "name": "AI platform",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Emily Davis",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sydney",
+          "type": "LOCATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "DataCorp",
+          "target": "TechStartup",
+          "type": "ACQUIRED"
+        },
+        {
+          "source": "John Williams",
+          "target": "DataCorp",
+          "type": "CEO_OF"
+        },
+        {
+          "source": "Emily Davis",
+          "target": "DataCorp",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "DataCorp",
+          "target": "Sydney",
+          "type": "LOCATED_IN"
+        }
+      ],
+      "expected_uncertainty": 0.15,
+      "noise_type": "none"
+    },
+    "doc_008_ocr": {
+      "document_id": "doc_008_ocr",
+      "base_id": "doc_C",
+      "complexity_level": "ocr_noise",
+      "text_content": "DataCorp acquired TechStartup f0r $50 million 1n a strategic merger.\nThe CEO John Williams announced the int3gration of their AI pl@tf0rm.\nThe new system w1ll process cust0mer data using machine learning algorithms.\nEmily Davis leads the technic@l integr@tion te@m from headquarters in Sydney.",
+      "expected_entities": [
+        {
+          "name": "DataCorp",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "TechStartup",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "John Williams",
+          "type": "PERSON"
+        },
+        {
+          "name": "AI platform",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Emily Davis",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sydney",
+          "type": "LOCATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "DataCorp",
+          "target": "TechStartup",
+          "type": "ACQUIRED"
+        },
+        {
+          "source": "John Williams",
+          "target": "DataCorp",
+          "type": "CEO_OF"
+        },
+        {
+          "source": "Emily Davis",
+          "target": "DataCorp",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "DataCorp",
+          "target": "Sydney",
+          "type": "LOCATED_IN"
+        }
+      ],
+      "expected_uncertainty": 0.45,
+      "noise_type": "ocr"
+    },
+    "doc_009_heavy": {
+      "document_id": "doc_009_heavy",
+      "base_id": "doc_C",
+      "complexity_level": "heavy_noise",
+      "text_content": "D@t@C0rp @cqu1red Tech5t@rtup f0r ... [TRUNCATED]\nThe CEO John William5 announced th3 1ntegr@tion of th3ir AI platform.\nTh3 new syst3m w1ll proc3ss customer data us1ng machin3 l3arning algorithms.\n3mily Dav1s leads the tec...",
+      "expected_entities": [
+        {
+          "name": "DataCorp",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "TechStartup",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "John Williams",
+          "type": "PERSON"
+        },
+        {
+          "name": "AI platform",
+          "type": "SYSTEM"
+        },
+        {
+          "name": "Emily Davis",
+          "type": "PERSON"
+        },
+        {
+          "name": "Sydney",
+          "type": "LOCATION"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "DataCorp",
+          "target": "TechStartup",
+          "type": "ACQUIRED"
+        },
+        {
+          "source": "John Williams",
+          "target": "DataCorp",
+          "type": "CEO_OF"
+        },
+        {
+          "source": "Emily Davis",
+          "target": "DataCorp",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "DataCorp",
+          "target": "Sydney",
+          "type": "LOCATED_IN"
+        }
+      ],
+      "expected_uncertainty": 0.75,
+      "noise_type": "ocr+truncation"
+    },
+    "doc_010_clean": {
+      "document_id": "doc_010_clean",
+      "base_id": "doc_D",
+      "complexity_level": "clean",
+      "text_content": "The quantum computing research involves complex mathematical frameworks.\nProfessor Zhang developed novel error correction algorithms at MIT.\nThe approach uses topological quantum codes for fault tolerance.\nGoogle and IBM are competing to achieve quantum supremacy.",
+      "expected_entities": [
+        {
+          "name": "Professor Zhang",
+          "type": "PERSON"
+        },
+        {
+          "name": "MIT",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Google",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "IBM",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "quantum computing",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "error correction algorithms",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "topological quantum codes",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Professor Zhang",
+          "target": "MIT",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "Professor Zhang",
+          "target": "error correction algorithms",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "Google",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        },
+        {
+          "source": "IBM",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        }
+      ],
+      "expected_uncertainty": 0.15,
+      "noise_type": "none"
+    },
+    "doc_011_ocr": {
+      "document_id": "doc_011_ocr",
+      "base_id": "doc_D",
+      "complexity_level": "ocr_noise",
+      "text_content": "The quantum computing research involves c0mplex mathem@tic@l frameworks.\nProfessor Zhang dev3loped novel error correct1on algorithms at MIT.\nThe approach uses topological quantum codes for fault toler@nc3.\nGoogle @nd IBM are competing to @chieve quantum supremacy.",
+      "expected_entities": [
+        {
+          "name": "Professor Zhang",
+          "type": "PERSON"
+        },
+        {
+          "name": "MIT",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Google",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "IBM",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "quantum computing",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "error correction algorithms",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "topological quantum codes",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Professor Zhang",
+          "target": "MIT",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "Professor Zhang",
+          "target": "error correction algorithms",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "Google",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        },
+        {
+          "source": "IBM",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        }
+      ],
+      "expected_uncertainty": 0.45,
+      "noise_type": "ocr"
+    },
+    "doc_012_heavy": {
+      "document_id": "doc_012_heavy",
+      "base_id": "doc_D",
+      "complexity_level": "heavy_noise",
+      "text_content": "Th3 quantum computing research 1nvol... [TRUNCATED]\nPr0fessor Zhang developed novel error correcti0n @lgorithm5 at MIT.\nThe    appr0ach    use5    top0log1cal    qu@ntum    cod3s    for    fault    t0lerance.\nGoogle and IBM are ...",
+      "expected_entities": [
+        {
+          "name": "Professor Zhang",
+          "type": "PERSON"
+        },
+        {
+          "name": "MIT",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Google",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "IBM",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "quantum computing",
+          "type": "TECHNOLOGY"
+        },
+        {
+          "name": "error correction algorithms",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "topological quantum codes",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Professor Zhang",
+          "target": "MIT",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "Professor Zhang",
+          "target": "error correction algorithms",
+          "type": "DEVELOPED"
+        },
+        {
+          "source": "Google",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        },
+        {
+          "source": "IBM",
+          "target": "quantum computing",
+          "type": "RESEARCHES"
+        }
+      ],
+      "expected_uncertainty": 0.75,
+      "noise_type": "ocr+truncation"
+    },
+    "doc_013_clean": {
+      "document_id": "doc_013_clean",
+      "base_id": "doc_E",
+      "complexity_level": "clean",
+      "text_content": "Climate change affects global food security and water resources.\nThe United Nations released a report on sustainable development goals.\nDr. Martinez coordinates international efforts from Geneva offices.\nRising temperatures threaten agricultural yields in developing nations.",
+      "expected_entities": [
+        {
+          "name": "United Nations",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Dr. Martinez",
+          "type": "PERSON"
+        },
+        {
+          "name": "Geneva",
+          "type": "LOCATION"
+        },
+        {
+          "name": "climate change",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "food security",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "sustainable development goals",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Dr. Martinez",
+          "target": "United Nations",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "United Nations",
+          "target": "Geneva",
+          "type": "LOCATED_IN"
+        },
+        {
+          "source": "United Nations",
+          "target": "sustainable development goals",
+          "type": "PUBLISHED"
+        }
+      ],
+      "expected_uncertainty": 0.15,
+      "noise_type": "none"
+    },
+    "doc_014_ocr": {
+      "document_id": "doc_014_ocr",
+      "base_id": "doc_E",
+      "complexity_level": "ocr_noise",
+      "text_content": "Clim@te change @ffects global food secur1ty and water r3sources.\nThe United Nations relea5ed a r3port on sustainable development goals.\nDr. Martin3z coordinates international efforts from Geneva offices.\nRising temperatures threaten agricultural yields 1n dev3lop1ng n@tions.",
+      "expected_entities": [
+        {
+          "name": "United Nations",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Dr. Martinez",
+          "type": "PERSON"
+        },
+        {
+          "name": "Geneva",
+          "type": "LOCATION"
+        },
+        {
+          "name": "climate change",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "food security",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "sustainable development goals",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Dr. Martinez",
+          "target": "United Nations",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "United Nations",
+          "target": "Geneva",
+          "type": "LOCATED_IN"
+        },
+        {
+          "source": "United Nations",
+          "target": "sustainable development goals",
+          "type": "PUBLISHED"
+        }
+      ],
+      "expected_uncertainty": 0.45,
+      "noise_type": "ocr"
+    },
+    "doc_015_heavy": {
+      "document_id": "doc_015_heavy",
+      "base_id": "doc_E",
+      "complexity_level": "heavy_noise",
+      "text_content": "Climate change affects global fo... [TRUNCATED]\nTh3    Un1ted    Nati0ns    r3le@5ed    @    r3port    on    sustain@ble    dev3l0pment    g0@ls.\nDr. M@rtin3z coordin@te5 international 3ffort5 from Genev@ offices.\nRising t3mper@ture5 thr...",
+      "expected_entities": [
+        {
+          "name": "United Nations",
+          "type": "ORGANIZATION"
+        },
+        {
+          "name": "Dr. Martinez",
+          "type": "PERSON"
+        },
+        {
+          "name": "Geneva",
+          "type": "LOCATION"
+        },
+        {
+          "name": "climate change",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "food security",
+          "type": "CONCEPT"
+        },
+        {
+          "name": "sustainable development goals",
+          "type": "CONCEPT"
+        }
+      ],
+      "expected_relationships": [
+        {
+          "source": "Dr. Martinez",
+          "target": "United Nations",
+          "type": "WORKS_AT"
+        },
+        {
+          "source": "United Nations",
+          "target": "Geneva",
+          "type": "LOCATED_IN"
+        },
+        {
+          "source": "United Nations",
+          "target": "sustainable development goals",
+          "type": "PUBLISHED"
+        }
+      ],
+      "expected_uncertainty": 0.75,
+      "noise_type": "ocr+truncation"
+    }
+  }
+}

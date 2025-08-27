@@ -1,0 +1,70 @@
+{
+  "document_id": "doc_001_clean",
+  "base_id": "doc_A",
+  "complexity_level": "clean",
+  "text_content": "Brian Chhun is a PhD student at the University of Melbourne. \nHe developed the KGAS system for knowledge graph analysis.\nThe system uses Neo4j for graph storage and Python for processing.\nHis supervisor is Professor Jane Smith from the Computer Science department.",
+  "expected_entities": [
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON"
+    },
+    {
+      "name": "University of Melbourne",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "KGAS",
+      "type": "SYSTEM"
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Jane Smith",
+      "type": "PERSON"
+    },
+    {
+      "name": "Computer Science department",
+      "type": "ORGANIZATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "University of Melbourne",
+      "type": "STUDIES_AT"
+    },
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "USES"
+    },
+    {
+      "source": "KGAS",
+      "target": "Python",
+      "type": "USES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Brian Chhun",
+      "type": "SUPERVISES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Computer Science department",
+      "type": "MEMBER_OF"
+    }
+  ],
+  "expected_uncertainty": 0.15,
+  "noise_type": "none"
+}

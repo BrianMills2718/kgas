@@ -1,0 +1,12 @@
+{
+  "document_id": "doc_007_clean",
+  "base_id": "doc_C",
+  "noise_type": "none",
+  "f1_score": 0.4,
+  "precision": 0.3333333333333333,
+  "recall": 0.5,
+  "uncertainty": 0.6627647058823529,
+  "expected_uncertainty": 0.15,
+  "entity_count": 9,
+  "relationship_count": 0
+}

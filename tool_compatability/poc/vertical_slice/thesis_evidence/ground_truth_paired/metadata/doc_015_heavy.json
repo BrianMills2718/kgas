@@ -1,0 +1,51 @@
+{
+  "document_id": "doc_015_heavy",
+  "base_id": "doc_E",
+  "complexity_level": "heavy_noise",
+  "text_content": "Climate change affects global fo... [TRUNCATED]\nTh3    Un1ted    Nati0ns    r3le@5ed    @    r3port    on    sustain@ble    dev3l0pment    g0@ls.\nDr. M@rtin3z coordin@te5 international 3ffort5 from Genev@ offices.\nRising t3mper@ture5 thr...",
+  "expected_entities": [
+    {
+      "name": "United Nations",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "Dr. Martinez",
+      "type": "PERSON"
+    },
+    {
+      "name": "Geneva",
+      "type": "LOCATION"
+    },
+    {
+      "name": "climate change",
+      "type": "CONCEPT"
+    },
+    {
+      "name": "food security",
+      "type": "CONCEPT"
+    },
+    {
+      "name": "sustainable development goals",
+      "type": "CONCEPT"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Dr. Martinez",
+      "target": "United Nations",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "United Nations",
+      "target": "Geneva",
+      "type": "LOCATED_IN"
+    },
+    {
+      "source": "United Nations",
+      "target": "sustainable development goals",
+      "type": "PUBLISHED"
+    }
+  ],
+  "expected_uncertainty": 0.75,
+  "noise_type": "ocr+truncation"
+}

@@ -1,47 +1,47 @@
 {
-  "timestamp": "2025-08-27T15:16:25.088662",
+  "timestamp": "2025-08-27T15:29:37.794067",
   "total_documents": 10,
   "overall_metrics": {
-    "mean_f1": 0.03333333333333333,
-    "mean_precision": 0.03333333333333333,
-    "mean_recall": 0.03333333333333333,
-    "mean_uncertainty_error": 0.35960000000000003
+    "mean_f1": 0.2938380089021634,
+    "mean_precision": 0.2586524586524586,
+    "mean_recall": 0.35041666666666665,
+    "mean_uncertainty_error": 0.2637198151629072
   },
   "by_complexity": {
     "simple": {
       "count": 3,
-      "mean_f1": 0.027777777777777776,
-      "mean_precision": 0.027777777777777776,
-      "mean_recall": 0.027777777777777776,
-      "mean_uncertainty_error": 0.19033333333333333
+      "mean_f1": 0.2349206349206349,
+      "mean_precision": 0.21011904761904762,
+      "mean_recall": 0.27499999999999997,
+      "mean_uncertainty_error": 0.414578947368421
     },
     "technical": {
       "count": 2,
-      "mean_f1": 0.0,
-      "mean_precision": 0.0,
-      "mean_recall": 0.0,
-      "mean_uncertainty_error": 0.6859999999999999
+      "mean_f1": 0.20799640610961367,
+      "mean_precision": 0.1603708791208791,
+      "mean_recall": 0.30833333333333335,
+      "mean_uncertainty_error": 0.09799999999999998
     },
     "ambiguous": {
       "count": 2,
-      "mean_f1": 0.0,
-      "mean_precision": 0.0,
-      "mean_recall": 0.0,
-      "mean_uncertainty_error": 0.586
+      "mean_f1": 0.33670226290363586,
+      "mean_precision": 0.30833333333333335,
+      "mean_recall": 0.375,
+      "mean_uncertainty_error": 0.05099999999999999
     },
     "noisy": {
       "count": 2,
-      "mean_f1": 0.125,
-      "mean_precision": 0.125,
-      "mean_recall": 0.125,
-      "mean_uncertainty_error": 0.08899999999999994
+      "mean_f1": 0.4142156862745098,
+      "mean_precision": 0.373015873015873,
+      "mean_recall": 0.46875,
+      "mean_uncertainty_error": 0.30646874999999996
     },
     "mixed": {
       "count": 1,
-      "mean_f1": 0.0,
-      "mean_precision": 0.0,
-      "mean_recall": 0.0,
-      "mean_uncertainty_error": 0.303
+      "mean_f1": 0.3157894736842105,
+      "mean_precision": 0.2727272727272727,
+      "mean_recall": 0.375,
+      "mean_uncertainty_error": 0.4825238095238095
     }
   }
 }

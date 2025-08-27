@@ -1,0 +1,70 @@
+{
+  "document_id": "doc_002_ocr",
+  "base_id": "doc_A",
+  "complexity_level": "ocr_noise",
+  "text_content": "Brian Chhun is a PhD stud3nt at th3 University 0f Melbourn3. \nHe developed th3 KGAS syst3m for knowledge gr@ph analysis.\nTh3 syst3m uses Neo4j for graph 5torage and Python for proce5sing.\nHis supervisor is Professor Jane Sm1th from the Computer Sc13nc3 department.",
+  "expected_entities": [
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON"
+    },
+    {
+      "name": "University of Melbourne",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "KGAS",
+      "type": "SYSTEM"
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY"
+    },
+    {
+      "name": "Jane Smith",
+      "type": "PERSON"
+    },
+    {
+      "name": "Computer Science department",
+      "type": "ORGANIZATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "University of Melbourne",
+      "type": "STUDIES_AT"
+    },
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "USES"
+    },
+    {
+      "source": "KGAS",
+      "target": "Python",
+      "type": "USES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Brian Chhun",
+      "type": "SUPERVISES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Computer Science department",
+      "type": "MEMBER_OF"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "noise_type": "ocr"
+}

@@ -1,0 +1,51 @@
+{
+  "document_id": "doc_014_ocr",
+  "base_id": "doc_E",
+  "complexity_level": "ocr_noise",
+  "text_content": "Clim@te change @ffects global food secur1ty and water r3sources.\nThe United Nations relea5ed a r3port on sustainable development goals.\nDr. Martin3z coordinates international efforts from Geneva offices.\nRising temperatures threaten agricultural yields 1n dev3lop1ng n@tions.",
+  "expected_entities": [
+    {
+      "name": "United Nations",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "Dr. Martinez",
+      "type": "PERSON"
+    },
+    {
+      "name": "Geneva",
+      "type": "LOCATION"
+    },
+    {
+      "name": "climate change",
+      "type": "CONCEPT"
+    },
+    {
+      "name": "food security",
+      "type": "CONCEPT"
+    },
+    {
+      "name": "sustainable development goals",
+      "type": "CONCEPT"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Dr. Martinez",
+      "target": "United Nations",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "United Nations",
+      "target": "Geneva",
+      "type": "LOCATED_IN"
+    },
+    {
+      "source": "United Nations",
+      "target": "sustainable development goals",
+      "type": "PUBLISHED"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "noise_type": "ocr"
+}

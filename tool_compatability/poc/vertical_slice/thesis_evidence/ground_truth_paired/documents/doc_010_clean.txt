@@ -1,0 +1,4 @@
+The quantum computing research involves complex mathematical frameworks.
+Professor Zhang developed novel error correction algorithms at MIT.
+The approach uses topological quantum codes for fault tolerance.
+Google and IBM are competing to achieve quantum supremacy.

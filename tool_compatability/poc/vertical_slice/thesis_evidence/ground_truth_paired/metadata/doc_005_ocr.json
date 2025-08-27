@@ -1,0 +1,43 @@
+{
+  "document_id": "doc_005_ocr",
+  "base_id": "doc_B",
+  "complexity_level": "ocr_noise",
+  "text_content": "The research t3am includes Dr. Michael Ch3n and Dr. Sarah Johnson.\nThey collaborate on uncertainty quantification methods for knowledge graphs.\nThe project received fund1ng from the Australian Res3arch C0uncil 1n 2024.\nIn1tial r3sults were published in the Journal of Knowledge Graphs.",
+  "expected_entities": [
+    {
+      "name": "Michael Chen",
+      "type": "PERSON"
+    },
+    {
+      "name": "Sarah Johnson",
+      "type": "PERSON"
+    },
+    {
+      "name": "Australian Research Council",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "Journal of Knowledge Graphs",
+      "type": "ORGANIZATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Michael Chen",
+      "target": "Sarah Johnson",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "Michael Chen",
+      "type": "FUNDS"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "Sarah Johnson",
+      "type": "FUNDS"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "noise_type": "ocr"
+}

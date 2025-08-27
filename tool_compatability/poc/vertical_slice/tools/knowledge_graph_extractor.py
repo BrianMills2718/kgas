@@ -124,21 +124,36 @@ class KnowledgeGraphExtractor:
 
 Return a JSON object with entities and relationships. Be comprehensive but accurate.
 
+IMPORTANT Entity Types (use these exact types):
+- PERSON: For people (e.g., Brian Chhun, Jane Smith)
+- ORGANIZATION: For institutions, companies, departments (e.g., University of Melbourne)  
+- SYSTEM: For software systems or frameworks (e.g., KGAS)
+- TECHNOLOGY: For programming languages, databases, tools (e.g., Python, Neo4j)
+- LOCATION: For places
+- CONCEPT: For abstract ideas or processes
+
+Common Relationship Types:
+- STUDIES_AT, WORKS_AT, MEMBER_OF (person → organization)
+- DEVELOPED, CREATED, BUILT (person → system/technology)
+- USES, IMPLEMENTS (system → technology)
+- SUPERVISES, MANAGES (person → person)
+- LOCATED_IN (anything → location)
+
 Format:
 {{
   "entities": [
     {{
       "id": "unique_id",
       "name": "entity name", 
-      "type": "person|organization|location|event|concept",
+      "type": "PERSON|ORGANIZATION|SYSTEM|TECHNOLOGY|LOCATION|CONCEPT",
       "attributes": {{}}
     }}
   ],
   "relationships": [
     {{
-      "source": "source_entity_id",
-      "target": "target_entity_id", 
-      "type": "relationship_type",
+      "source": "source_entity_name",
+      "target": "target_entity_name", 
+      "type": "RELATIONSHIP_TYPE",
       "attributes": {{}}
     }}
   ]
@@ -150,8 +165,8 @@ Text:
 JSON Output:"""
         
         # Retry logic for overloaded API
-        max_retries = 3
-        retry_delay = 2  # seconds
+        max_retries = 5  # Increased from 3
+        retry_delay = 3  # seconds, increased from 2
         
         for attempt in range(max_retries):
             try:

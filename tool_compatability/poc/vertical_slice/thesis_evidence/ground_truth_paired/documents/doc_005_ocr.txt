@@ -1,0 +1,4 @@
+The research t3am includes Dr. Michael Ch3n and Dr. Sarah Johnson.
+They collaborate on uncertainty quantification methods for knowledge graphs.
+The project received fund1ng from the Australian Res3arch C0uncil 1n 2024.
+In1tial r3sults were published in the Journal of Knowledge Graphs.

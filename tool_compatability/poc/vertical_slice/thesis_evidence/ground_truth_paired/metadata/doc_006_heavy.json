@@ -1,0 +1,43 @@
+{
+  "document_id": "doc_006_heavy",
+  "base_id": "doc_B",
+  "complexity_level": "heavy_noise",
+  "text_content": "The re5earch team include5 Dr. Mi... [TRUNCATED]\nTh3y collaborate 0n uncert@1nty quantification m3th0d5 for knowl3dge graphs.\nThe    project    r3ceiv3d    funding    from    th3    @ustralian    Rese@rch    Council    in    2024.\nInitial re5ults were p...",
+  "expected_entities": [
+    {
+      "name": "Michael Chen",
+      "type": "PERSON"
+    },
+    {
+      "name": "Sarah Johnson",
+      "type": "PERSON"
+    },
+    {
+      "name": "Australian Research Council",
+      "type": "ORGANIZATION"
+    },
+    {
+      "name": "Journal of Knowledge Graphs",
+      "type": "ORGANIZATION"
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Michael Chen",
+      "target": "Sarah Johnson",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "Michael Chen",
+      "type": "FUNDS"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "Sarah Johnson",
+      "type": "FUNDS"
+    }
+  ],
+  "expected_uncertainty": 0.75,
+  "noise_type": "ocr+truncation"
+}

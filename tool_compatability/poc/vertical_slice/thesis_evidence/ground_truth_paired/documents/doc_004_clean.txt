@@ -1,0 +1,4 @@
+The research team includes Dr. Michael Chen and Dr. Sarah Johnson.
+They collaborate on uncertainty quantification methods for knowledge graphs.
+The project received funding from the Australian Research Council in 2024.
+Initial results were published in the Journal of Knowledge Graphs.

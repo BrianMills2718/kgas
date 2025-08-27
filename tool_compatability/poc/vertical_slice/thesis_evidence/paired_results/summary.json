@@ -1,0 +1,22 @@
+{
+  "total_documents": 0,
+  "base_documents": 5,
+  "by_noise_type": {
+    "none": {
+      "count": 0,
+      "avg_f1": 0,
+      "avg_uncertainty": 0
+    },
+    "ocr": {
+      "count": 0,
+      "avg_f1": 0,
+      "avg_uncertainty": 0
+    },
+    "ocr+truncation": {
+      "count": 0,
+      "avg_f1": 0,
+      "avg_uncertainty": 0
+    }
+  },
+  "correlation": null
+}
