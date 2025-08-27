@@ -6,6 +6,7 @@ Bridge to connect critical services to framework
 import time
 from typing import Dict, Any, Optional
 from src.core.provenance_service import ProvenanceService
+from src.core.identity_service import IdentityService
 from src.core.service_manager import ServiceManager
 
 class ServiceBridge:
@@ -80,3 +81,38 @@ class ServiceBridge:
         provenance = self.get_provenance_service()
         impact = provenance.analyze_impact(entity_id)
         return impact
+    
+    def get_identity_service(self) -> IdentityService:
+        """Get or create identity service"""
+        if 'identity' not in self._services:
+            self._services['identity'] = IdentityService()
+        return self._services['identity']
+    
+    def track_entity(self, surface_form: str, entity_type: str,
+                     confidence: float, source_tool: str) -> str:
+        """Track entity mention and return entity_id"""
+        identity = self.get_identity_service()
+        
+        # Create mention
+        mention_result = identity.create_mention(
+            surface_form=surface_form,
+            start_pos=0,  # Simplified for now
+            end_pos=len(surface_form),
+            source_ref=source_tool,
+            entity_type=entity_type,
+            confidence=confidence
+        )
+        
+        # Extract mention_id from result
+        mention_id = mention_result.get('mention_id') if isinstance(mention_result, dict) else mention_result
+        
+        # Get or create entity
+        entity_result = identity.get_entity_by_mention(mention_id)
+        
+        # Extract entity_id from result
+        if isinstance(entity_result, dict):
+            entity_id = entity_result.get('entity_id', str(mention_id))
+        else:
+            entity_id = str(entity_result) if entity_result else str(mention_id)
+        
+        return entity_id

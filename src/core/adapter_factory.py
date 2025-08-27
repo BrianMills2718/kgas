@@ -47,6 +47,11 @@ class UniversalAdapter(ExtensibleTool):
         
     def get_capabilities(self) -> ToolCapabilities:
         """Generate capabilities from tool inspection"""
+        # If tool has its own get_capabilities, use it
+        if hasattr(self.tool, 'get_capabilities'):
+            return self.tool.get_capabilities()
+        
+        # Otherwise generate capabilities
         return ToolCapabilities(
             tool_id=self.tool_id,
             name=getattr(self.tool, 'name', self.tool_id),
@@ -99,7 +104,11 @@ class UniversalAdapter(ExtensibleTool):
                 input_uncertainty = input_data['uncertainty']
             
             # Call the tool
-            result = self.execute_method(input_data)
+            # For ExtensibleTool, call process with context
+            if hasattr(self.tool, 'process') and hasattr(self.tool, 'get_capabilities'):
+                result = self.tool.process(input_data, context)
+            else:
+                result = self.execute_method(input_data)
             
             # Ensure result is a ToolResult
             if not isinstance(result, ToolResult):
@@ -124,6 +133,18 @@ class UniversalAdapter(ExtensibleTool):
                     result
                 )
                 result.provenance = trace
+                
+                # Track entities if found
+                if isinstance(result.data, dict) and 'entities' in result.data:
+                    for entity in result.data['entities']:
+                        if isinstance(entity, dict):
+                            entity_id = self.service_bridge.track_entity(
+                                surface_form=entity.get('text', entity.get('name', '')),
+                                entity_type=entity.get('type', 'UNKNOWN'),
+                                confidence=entity.get('confidence', 0.5),
+                                source_tool=self.tool_id
+                            )
+                            entity['entity_id'] = entity_id
             
             return result
             
@@ -147,13 +168,10 @@ class UniversalAdapterFactory:
     def wrap(self, tool: Any) -> ExtensibleTool:
         """
         Wrap any tool with appropriate adapter
-        Returns framework-compatible tool
+        Returns framework-compatible tool with service bridge
         """
-        # If already framework compatible, return as-is
-        if isinstance(tool, ExtensibleTool):
-            return tool
-            
-        # Otherwise wrap with universal adapter, passing service bridge
+        # Always wrap with universal adapter to add service bridge
+        # Even if tool already implements ExtensibleTool
         return UniversalAdapter(tool, self.service_bridge)
         
     def bulk_wrap(self, tools: List[Any]) -> List[ExtensibleTool]:

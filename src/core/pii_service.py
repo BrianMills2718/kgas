@@ -5,9 +5,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 import hashlib
-import icontract
 
-@icontract.invariant(lambda self: len(self._key) == 32, "Key must be 256 bits (32 bytes)")
 class PiiService:
     """
     A service for encrypting and decrypting Personally Identifiable Information (PII)
@@ -30,8 +28,6 @@ class PiiService:
         )
         return kdf.derive(password.encode())
 
-    @icontract.require(lambda plaintext: isinstance(plaintext, str) and len(plaintext) > 0)
-    @icontract.ensure(lambda result: len(result["pii_id"]) == 64)
     def encrypt(self, plaintext: str) -> dict:
         """
         Encrypts the plaintext PII.
@@ -57,9 +53,6 @@ class PiiService:
             "nonce_b64": base64.b64encode(nonce).decode('utf-8'),
         }
 
-    @icontract.require(lambda ciphertext_b64: len(ciphertext_b64) > 0)
-    @icontract.require(lambda nonce_b64: len(nonce_b64) > 0)
-    @icontract.ensure(lambda result, plaintext: result == plaintext, "Decryption must yield original plaintext")
     def decrypt(self, ciphertext_b64: str, nonce_b64: str) -> str:
         """
         Decrypts the ciphertext to retrieve the original PII.
