@@ -1,0 +1,70 @@
+{
+  "document_id": "doc_009_noisy",
+  "complexity_level": "noisy",
+  "text_content": "The KGAS sys... [TRUNCATED] ...developed by Brian Ch\nhun at the\nUniversity    of     Melbourne.     It   uses\nNeo4j for graph\nstor\nage and Python for data proc...\n[ERROR: Page 2 missing]\nThe system implements uncertain... propaga... using physics-sty... \nformula: conf = \u220f(1 - u",
+  "expected_entities": [
+    {
+      "name": "KGAS",
+      "type": "SYSTEM",
+      "confidence": 0.6
+    },
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON",
+      "confidence": 0.45
+    },
+    {
+      "name": "University of Melbourne",
+      "type": "ORGANIZATION",
+      "confidence": 0.65
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY",
+      "confidence": 0.7
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY",
+      "confidence": 0.65
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "Brian Chhun",
+      "target": "University of Melbourne",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "USES"
+    },
+    {
+      "source": "KGAS",
+      "target": "Python",
+      "type": "USES"
+    }
+  ],
+  "expected_uncertainty": 0.48,
+  "complexity_factors": {
+    "clarity": "very low",
+    "entity_density": 0.625,
+    "ambiguity": "high",
+    "technical_terms": [
+      "uncertainty propagation"
+    ],
+    "noise_level": 0.5,
+    "formatting_issues": [
+      "truncation",
+      "line breaks",
+      "missing pages",
+      "spacing errors"
+    ]
+  }
+}

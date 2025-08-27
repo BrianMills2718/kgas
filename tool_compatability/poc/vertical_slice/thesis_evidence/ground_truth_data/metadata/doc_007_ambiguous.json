@@ -1,0 +1,70 @@
+{
+  "document_id": "doc_007_ambiguous",
+  "complexity_level": "ambiguous",
+  "text_content": "Smith published the paper on graph analysis. The Smith algorithm improves performance.\nProfessor Smith supervises the project, while Dr. Smith from Sydney collaborates remotely.\nThe analysis shows Smith's method outperforms traditional approaches by Smith et al.",
+  "expected_entities": [
+    {
+      "name": "Smith",
+      "type": "PERSON",
+      "confidence": 0.6
+    },
+    {
+      "name": "Smith algorithm",
+      "type": "ALGORITHM",
+      "confidence": 0.7
+    },
+    {
+      "name": "Professor Smith",
+      "type": "PERSON",
+      "confidence": 0.75
+    },
+    {
+      "name": "Dr. Smith",
+      "type": "PERSON",
+      "confidence": 0.75
+    },
+    {
+      "name": "Sydney",
+      "type": "LOCATION",
+      "confidence": 0.85
+    },
+    {
+      "name": "Smith's method",
+      "type": "METHOD",
+      "confidence": 0.65
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Smith",
+      "target": "paper",
+      "type": "PUBLISHED"
+    },
+    {
+      "source": "Professor Smith",
+      "target": "project",
+      "type": "SUPERVISES"
+    },
+    {
+      "source": "Dr. Smith",
+      "target": "Sydney",
+      "type": "LOCATED_AT"
+    },
+    {
+      "source": "Smith's method",
+      "target": "traditional approaches",
+      "type": "OUTPERFORMS"
+    }
+  ],
+  "expected_uncertainty": 0.38,
+  "complexity_factors": {
+    "clarity": "low",
+    "entity_density": 2.0,
+    "ambiguity": "very high",
+    "technical_terms": [
+      "graph analysis"
+    ],
+    "noise_level": 0.0,
+    "name_confusion": "multiple entities named Smith"
+  }
+}

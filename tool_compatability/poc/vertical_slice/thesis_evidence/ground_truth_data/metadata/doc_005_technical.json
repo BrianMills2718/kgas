@@ -1,0 +1,82 @@
+{
+  "document_id": "doc_005_technical",
+  "complexity_level": "technical",
+  "text_content": "The bi-store architecture uses Neo4j 5.13+ with native vector indices for similarity search.\nSQLite handles tabular analytics with entity_metrics and correlation_matrix tables.\nThe ServiceManager implements dependency injection using Python's __init__ pattern.\nPydantic schemas enforce structured output from LLM operations with litellm integration.",
+  "expected_entities": [
+    {
+      "name": "bi-store architecture",
+      "type": "ARCHITECTURE",
+      "confidence": 0.8
+    },
+    {
+      "name": "Neo4j 5.13+",
+      "type": "TECHNOLOGY",
+      "confidence": 0.9
+    },
+    {
+      "name": "SQLite",
+      "type": "TECHNOLOGY",
+      "confidence": 0.9
+    },
+    {
+      "name": "ServiceManager",
+      "type": "COMPONENT",
+      "confidence": 0.85
+    },
+    {
+      "name": "Pydantic",
+      "type": "TECHNOLOGY",
+      "confidence": 0.85
+    },
+    {
+      "name": "litellm",
+      "type": "TECHNOLOGY",
+      "confidence": 0.85
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "bi-store architecture",
+      "target": "Neo4j 5.13+",
+      "type": "USES"
+    },
+    {
+      "source": "bi-store architecture",
+      "target": "SQLite",
+      "type": "USES"
+    },
+    {
+      "source": "SQLite",
+      "target": "entity_metrics",
+      "type": "HAS_TABLE"
+    },
+    {
+      "source": "SQLite",
+      "target": "correlation_matrix",
+      "type": "HAS_TABLE"
+    },
+    {
+      "source": "ServiceManager",
+      "target": "dependency injection",
+      "type": "IMPLEMENTS"
+    },
+    {
+      "source": "Pydantic schemas",
+      "target": "LLM operations",
+      "type": "ENFORCES"
+    }
+  ],
+  "expected_uncertainty": 0.28,
+  "complexity_factors": {
+    "clarity": "medium",
+    "entity_density": 1.5,
+    "ambiguity": "low",
+    "technical_terms": [
+      "vector indices",
+      "dependency injection",
+      "schemas",
+      "LLM"
+    ],
+    "noise_level": 0.0
+  }
+}

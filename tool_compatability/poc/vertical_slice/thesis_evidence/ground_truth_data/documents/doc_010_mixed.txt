@@ -1,0 +1,5 @@
+Brian Chhun's KGAS system at Melbourne University uses advanced techniques.
+The syst3m impl3ments physics-style uncerta!nty pr0pagation with confidence = ∏(1 - uᵢ).
+It integrates with Neo4j, Python, and the team's custom framework.
+Smith and Chen collaborate on this, but Smith from Sydney works on different aspects than Smith the professor.
+Results show it outperforms baseline methods by 42% in F1 score.

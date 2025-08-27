@@ -1,0 +1,83 @@
+{
+  "generated_at": "2025-08-27T14:04:29.062957",
+  "total_documents": 10,
+  "complexity_distribution": {
+    "simple": 3,
+    "technical": 2,
+    "ambiguous": 2,
+    "noisy": 2,
+    "mixed": 1
+  },
+  "documents": [
+    {
+      "id": "doc_001_simple",
+      "complexity": "simple",
+      "expected_uncertainty": 0.15,
+      "entity_count": 7,
+      "relationship_count": 6
+    },
+    {
+      "id": "doc_002_simple",
+      "complexity": "simple",
+      "expected_uncertainty": 0.15,
+      "entity_count": 5,
+      "relationship_count": 5
+    },
+    {
+      "id": "doc_003_simple",
+      "complexity": "simple",
+      "expected_uncertainty": 0.12,
+      "entity_count": 4,
+      "relationship_count": 6
+    },
+    {
+      "id": "doc_004_technical",
+      "complexity": "technical",
+      "expected_uncertainty": 0.25,
+      "entity_count": 5,
+      "relationship_count": 5
+    },
+    {
+      "id": "doc_005_technical",
+      "complexity": "technical",
+      "expected_uncertainty": 0.28,
+      "entity_count": 6,
+      "relationship_count": 6
+    },
+    {
+      "id": "doc_006_ambiguous",
+      "complexity": "ambiguous",
+      "expected_uncertainty": 0.35,
+      "entity_count": 6,
+      "relationship_count": 4
+    },
+    {
+      "id": "doc_007_ambiguous",
+      "complexity": "ambiguous",
+      "expected_uncertainty": 0.38,
+      "entity_count": 6,
+      "relationship_count": 4
+    },
+    {
+      "id": "doc_008_noisy",
+      "complexity": "noisy",
+      "expected_uncertainty": 0.45,
+      "entity_count": 8,
+      "relationship_count": 5
+    },
+    {
+      "id": "doc_009_noisy",
+      "complexity": "noisy",
+      "expected_uncertainty": 0.48,
+      "entity_count": 5,
+      "relationship_count": 4
+    },
+    {
+      "id": "doc_010_mixed",
+      "complexity": "mixed",
+      "expected_uncertainty": 0.32,
+      "entity_count": 8,
+      "relationship_count": 6
+    }
+  ]
+}

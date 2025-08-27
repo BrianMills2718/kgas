@@ -1,0 +1,73 @@
+{
+  "document_id": "doc_004_technical",
+  "complexity_level": "technical",
+  "text_content": "The system implements physics-style uncertainty propagation using the formula: confidence = \u220f(1 - u\u1d62).\nGraph embeddings are generated using TransE with 384-dimensional vectors.\nThe Louvain algorithm detects communities with modularity optimization.\nStructural Equation Modeling requires conversion to tabular format via the CrossModalService.",
+  "expected_entities": [
+    {
+      "name": "uncertainty propagation",
+      "type": "METHOD",
+      "confidence": 0.85
+    },
+    {
+      "name": "TransE",
+      "type": "ALGORITHM",
+      "confidence": 0.85
+    },
+    {
+      "name": "Louvain algorithm",
+      "type": "ALGORITHM",
+      "confidence": 0.85
+    },
+    {
+      "name": "Structural Equation Modeling",
+      "type": "METHOD",
+      "confidence": 0.8
+    },
+    {
+      "name": "CrossModalService",
+      "type": "COMPONENT",
+      "confidence": 0.9
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "system",
+      "target": "uncertainty propagation",
+      "type": "IMPLEMENTS"
+    },
+    {
+      "source": "Graph embeddings",
+      "target": "TransE",
+      "type": "GENERATED_BY"
+    },
+    {
+      "source": "Louvain algorithm",
+      "target": "communities",
+      "type": "DETECTS"
+    },
+    {
+      "source": "Structural Equation Modeling",
+      "target": "tabular format",
+      "type": "REQUIRES"
+    },
+    {
+      "source": "CrossModalService",
+      "target": "conversion",
+      "type": "PERFORMS"
+    }
+  ],
+  "expected_uncertainty": 0.25,
+  "complexity_factors": {
+    "clarity": "medium",
+    "entity_density": 1.25,
+    "ambiguity": "low",
+    "technical_terms": [
+      "TransE",
+      "Louvain",
+      "modularity",
+      "SEM",
+      "embeddings"
+    ],
+    "noise_level": 0.0
+  }
+}

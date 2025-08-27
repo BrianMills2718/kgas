@@ -1,0 +1,3 @@
+The system was developed by the team at Melbourne. It uses their framework for analysis.
+They integrated it with the existing infrastructure. The service handles this efficiently.
+It processes the data and sends it to them for review. They approve it after validation.

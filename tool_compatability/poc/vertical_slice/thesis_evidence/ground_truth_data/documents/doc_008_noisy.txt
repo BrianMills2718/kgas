@@ -1,0 +1,4 @@
+Br1an Chhun developcd the KGA5 svstem at the Un1versity of Me1bourne.
+The 5ystem uses Ne04j for gr@ph storage and Pyth0n for pr0cessing.
+Prof3ssor J@ne Sm!th supervises the pr0ject in the C0mputer Sc1ence dep@rtment.
+The Austral!an Research C0uncil pr0vided fund1ng in 2O24.

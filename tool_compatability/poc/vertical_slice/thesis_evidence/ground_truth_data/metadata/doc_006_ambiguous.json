@@ -1,0 +1,74 @@
+{
+  "document_id": "doc_006_ambiguous",
+  "complexity_level": "ambiguous",
+  "text_content": "The system was developed by the team at Melbourne. It uses their framework for analysis.\nThey integrated it with the existing infrastructure. The service handles this efficiently.\nIt processes the data and sends it to them for review. They approve it after validation.",
+  "expected_entities": [
+    {
+      "name": "system",
+      "type": "SYSTEM",
+      "confidence": 0.7
+    },
+    {
+      "name": "team",
+      "type": "GROUP",
+      "confidence": 0.65
+    },
+    {
+      "name": "Melbourne",
+      "type": "LOCATION",
+      "confidence": 0.75
+    },
+    {
+      "name": "framework",
+      "type": "SYSTEM",
+      "confidence": 0.6
+    },
+    {
+      "name": "service",
+      "type": "COMPONENT",
+      "confidence": 0.6
+    },
+    {
+      "name": "infrastructure",
+      "type": "SYSTEM",
+      "confidence": 0.65
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "team",
+      "target": "system",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "system",
+      "target": "framework",
+      "type": "USES"
+    },
+    {
+      "source": "service",
+      "target": "data",
+      "type": "PROCESSES"
+    },
+    {
+      "source": "team",
+      "target": "Melbourne",
+      "type": "LOCATED_AT"
+    }
+  ],
+  "expected_uncertainty": 0.35,
+  "complexity_factors": {
+    "clarity": "low",
+    "entity_density": 1.5,
+    "ambiguity": "high",
+    "technical_terms": [],
+    "noise_level": 0.0,
+    "pronoun_references": [
+      "it",
+      "their",
+      "they",
+      "them",
+      "this"
+    ]
+  }
+}

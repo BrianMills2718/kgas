@@ -1,0 +1,4 @@
+The system implements physics-style uncertainty propagation using the formula: confidence = ∏(1 - uᵢ).
+Graph embeddings are generated using TransE with 384-dimensional vectors.
+The Louvain algorithm detects communities with modularity optimization.
+Structural Equation Modeling requires conversion to tabular format via the CrossModalService.

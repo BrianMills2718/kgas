@@ -1,0 +1,4 @@
+The bi-store architecture uses Neo4j 5.13+ with native vector indices for similarity search.
+SQLite handles tabular analytics with entity_metrics and correlation_matrix tables.
+The ServiceManager implements dependency injection using Python's __init__ pattern.
+Pydantic schemas enforce structured output from LLM operations with litellm integration.

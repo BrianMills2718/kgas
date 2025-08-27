@@ -1,0 +1,4 @@
+KGAS consists of three main components: the IdentityService, the ProvenanceService, and the QualityService.
+The IdentityService handles entity resolution and deduplication.
+The ProvenanceService tracks all operations and transformations.
+The QualityService assesses confidence scores for extracted entities.

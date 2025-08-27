@@ -1,0 +1,93 @@
+{
+  "document_id": "doc_008_noisy",
+  "complexity_level": "noisy",
+  "text_content": "Br1an Chhun developcd the KGA5 svstem at the Un1versity of Me1bourne.\nThe 5ystem uses Ne04j for gr@ph storage and Pyth0n for pr0cessing.\nProf3ssor J@ne Sm!th supervises the pr0ject in the C0mputer Sc1ence dep@rtment.\nThe Austral!an Research C0uncil pr0vided fund1ng in 2O24.",
+  "expected_entities": [
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON",
+      "confidence": 0.55
+    },
+    {
+      "name": "KGAS",
+      "type": "SYSTEM",
+      "confidence": 0.5
+    },
+    {
+      "name": "University of Melbourne",
+      "type": "ORGANIZATION",
+      "confidence": 0.6
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY",
+      "confidence": 0.55
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY",
+      "confidence": 0.6
+    },
+    {
+      "name": "Jane Smith",
+      "type": "PERSON",
+      "confidence": 0.5
+    },
+    {
+      "name": "Computer Science",
+      "type": "ORGANIZATION",
+      "confidence": 0.55
+    },
+    {
+      "name": "Australian Research Council",
+      "type": "ORGANIZATION",
+      "confidence": 0.55
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "DEVELOPED"
+    },
+    {
+      "source": "Brian Chhun",
+      "target": "University of Melbourne",
+      "type": "WORKS_AT"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "USES"
+    },
+    {
+      "source": "Jane Smith",
+      "target": "Brian Chhun",
+      "type": "SUPERVISES"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "project",
+      "type": "FUNDS"
+    }
+  ],
+  "expected_uncertainty": 0.45,
+  "complexity_factors": {
+    "clarity": "very low",
+    "entity_density": 2.0,
+    "ambiguity": "medium",
+    "technical_terms": [],
+    "noise_level": 0.4,
+    "ocr_errors": [
+      "Br1an",
+      "KGA5",
+      "svstem",
+      "Un1versity",
+      "Me1bourne",
+      "Ne04j",
+      "gr@ph",
+      "Pyth0n",
+      "pr0cessing"
+    ]
+  }
+}

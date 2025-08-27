@@ -1,0 +1,71 @@
+{
+  "document_id": "doc_003_simple",
+  "complexity_level": "simple",
+  "text_content": "KGAS consists of three main components: the IdentityService, the ProvenanceService, and the QualityService.\nThe IdentityService handles entity resolution and deduplication.\nThe ProvenanceService tracks all operations and transformations.\nThe QualityService assesses confidence scores for extracted entities.",
+  "expected_entities": [
+    {
+      "name": "KGAS",
+      "type": "SYSTEM",
+      "confidence": 0.95
+    },
+    {
+      "name": "IdentityService",
+      "type": "COMPONENT",
+      "confidence": 0.95
+    },
+    {
+      "name": "ProvenanceService",
+      "type": "COMPONENT",
+      "confidence": 0.95
+    },
+    {
+      "name": "QualityService",
+      "type": "COMPONENT",
+      "confidence": 0.95
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "KGAS",
+      "target": "IdentityService",
+      "type": "HAS_COMPONENT"
+    },
+    {
+      "source": "KGAS",
+      "target": "ProvenanceService",
+      "type": "HAS_COMPONENT"
+    },
+    {
+      "source": "KGAS",
+      "target": "QualityService",
+      "type": "HAS_COMPONENT"
+    },
+    {
+      "source": "IdentityService",
+      "target": "entity resolution",
+      "type": "PERFORMS"
+    },
+    {
+      "source": "ProvenanceService",
+      "target": "operations",
+      "type": "TRACKS"
+    },
+    {
+      "source": "QualityService",
+      "target": "confidence scores",
+      "type": "ASSESSES"
+    }
+  ],
+  "expected_uncertainty": 0.12,
+  "complexity_factors": {
+    "clarity": "high",
+    "entity_density": 1.0,
+    "ambiguity": "none",
+    "technical_terms": [
+      "entity resolution",
+      "deduplication",
+      "confidence scores"
+    ],
+    "noise_level": 0.0
+  }
+}

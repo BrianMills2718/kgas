@@ -1,0 +1,95 @@
+{
+  "document_id": "doc_010_mixed",
+  "complexity_level": "mixed",
+  "text_content": "Brian Chhun's KGAS system at Melbourne University uses advanced techniques.\nThe syst3m impl3ments physics-style uncerta!nty pr0pagation with confidence = \u220f(1 - u\u1d62).\nIt integrates with Neo4j, Python, and the team's custom framework.\nSmith and Chen collaborate on this, but Smith from Sydney works on different aspects than Smith the professor.\nResults show it outperforms baseline methods by 42% in F1 score.",
+  "expected_entities": [
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON",
+      "confidence": 0.85
+    },
+    {
+      "name": "KGAS",
+      "type": "SYSTEM",
+      "confidence": 0.8
+    },
+    {
+      "name": "Melbourne University",
+      "type": "ORGANIZATION",
+      "confidence": 0.85
+    },
+    {
+      "name": "Neo4j",
+      "type": "TECHNOLOGY",
+      "confidence": 0.85
+    },
+    {
+      "name": "Python",
+      "type": "TECHNOLOGY",
+      "confidence": 0.85
+    },
+    {
+      "name": "Smith",
+      "type": "PERSON",
+      "confidence": 0.5
+    },
+    {
+      "name": "Chen",
+      "type": "PERSON",
+      "confidence": 0.75
+    },
+    {
+      "name": "Sydney",
+      "type": "LOCATION",
+      "confidence": 0.8
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Brian Chhun",
+      "target": "KGAS",
+      "type": "OWNS"
+    },
+    {
+      "source": "KGAS",
+      "target": "Melbourne University",
+      "type": "LOCATED_AT"
+    },
+    {
+      "source": "KGAS",
+      "target": "Neo4j",
+      "type": "INTEGRATES_WITH"
+    },
+    {
+      "source": "Smith",
+      "target": "Chen",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Smith",
+      "target": "Sydney",
+      "type": "FROM"
+    },
+    {
+      "source": "KGAS",
+      "target": "baseline methods",
+      "type": "OUTPERFORMS"
+    }
+  ],
+  "expected_uncertainty": 0.32,
+  "complexity_factors": {
+    "clarity": "medium",
+    "entity_density": 1.6,
+    "ambiguity": "medium",
+    "technical_terms": [
+      "uncertainty propagation",
+      "F1 score"
+    ],
+    "noise_level": 0.15,
+    "mixed_issues": [
+      "OCR errors",
+      "ambiguous references",
+      "technical content"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "document_id": "doc_002_simple",
+  "complexity_level": "simple",
+  "text_content": "The research team includes Dr. Michael Chen and Dr. Sarah Johnson.\nThey collaborate with Brian Chhun on uncertainty quantification methods.\nThe project received funding from the Australian Research Council in 2024.\nInitial results were published in the Journal of Knowledge Graphs.",
+  "expected_entities": [
+    {
+      "name": "Michael Chen",
+      "type": "PERSON",
+      "confidence": 0.95
+    },
+    {
+      "name": "Sarah Johnson",
+      "type": "PERSON",
+      "confidence": 0.95
+    },
+    {
+      "name": "Brian Chhun",
+      "type": "PERSON",
+      "confidence": 0.95
+    },
+    {
+      "name": "Australian Research Council",
+      "type": "ORGANIZATION",
+      "confidence": 0.95
+    },
+    {
+      "name": "Journal of Knowledge Graphs",
+      "type": "PUBLICATION",
+      "confidence": 0.9
+    }
+  ],
+  "expected_relationships": [
+    {
+      "source": "Michael Chen",
+      "target": "Brian Chhun",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Sarah Johnson",
+      "target": "Brian Chhun",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Michael Chen",
+      "target": "Sarah Johnson",
+      "type": "COLLABORATES_WITH"
+    },
+    {
+      "source": "Australian Research Council",
+      "target": "project",
+      "type": "FUNDS"
+    },
+    {
+      "source": "results",
+      "target": "Journal of Knowledge Graphs",
+      "type": "PUBLISHED_IN"
+    }
+  ],
+  "expected_uncertainty": 0.15,
+  "complexity_factors": {
+    "clarity": "high",
+    "entity_density": 1.25,
+    "ambiguity": "none",
+    "technical_terms": [
+      "uncertainty quantification"
+    ],
+    "noise_level": 0.0
+  }
+}
