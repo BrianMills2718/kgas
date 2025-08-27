@@ -1,0 +1,27 @@
+
+    KGAS Research Paper - Full Document
+    
+    Section 1: Introduction
+    The Knowledge Graph Augmentation System (KGAS) was developed by Brian Chhun
+    at the University of Melbourne. This groundbreaking system introduces
+    uncertainty propagation in knowledge management pipelines.
+    
+    Section 2: Methodology  
+    Dr. Sarah Chen contributed to the mathematical foundations. The system
+    uses physics-style error propagation where confidence = ∏(1 - uᵢ).
+    Each tool in the pipeline tracks its own uncertainty assessment.
+    
+    Section 3: Implementation
+    The framework integrates with Neo4j for graph storage and SQLite for
+    metrics storage. The CrossModalService enables seamless conversion
+    between different data representations.
+    
+    Section 4: Results
+    Initial experiments show combined uncertainties ranging from 0.25 to 0.45
+    for typical pipelines. The system successfully integrated multiple tools.
+    
+    Section 5: Conclusion
+    KGAS demonstrates that uncertainty can be effectively tracked through
+    complex knowledge processing pipelines. Future work will expand the
+    tool ecosystem and refine the uncertainty model.
+    
