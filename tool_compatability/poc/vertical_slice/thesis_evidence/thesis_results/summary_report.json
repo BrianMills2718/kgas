@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-08-27T14:14:09.017071",
+  "total_documents": 10,
+  "overall_metrics": {
+    "mean_f1": 0.0,
+    "mean_precision": 0.0,
+    "mean_recall": 0.0,
+    "mean_uncertainty_error": 1.0
+  },
+  "by_complexity": {
+    "simple": {
+      "count": 3,
+      "mean_f1": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_uncertainty_error": 1.0
+    },
+    "technical": {
+      "count": 2,
+      "mean_f1": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_uncertainty_error": 1.0
+    },
+    "ambiguous": {
+      "count": 2,
+      "mean_f1": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_uncertainty_error": 1.0
+    },
+    "noisy": {
+      "count": 2,
+      "mean_f1": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_uncertainty_error": 1.0
+    },
+    "mixed": {
+      "count": 1,
+      "mean_f1": 0.0,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_uncertainty_error": 1.0
+    }
+  }
+}
