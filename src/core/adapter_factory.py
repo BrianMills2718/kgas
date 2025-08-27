@@ -17,11 +17,18 @@ from data_types import DataType
 class UniversalAdapter(ExtensibleTool):
     """Adapts any production tool to framework interface"""
     
-    def __init__(self, production_tool: Any, service_bridge=None):
+    def __init__(self, production_tool: Any, service_bridge=None, strict_mode=True):
+        """
+        Args:
+            production_tool: The tool to adapt
+            service_bridge: Optional bridge for service integration
+            strict_mode: If True, fail entire operation on tracking failure
+        """
         self.tool = production_tool
         self.tool_id = getattr(production_tool, 'tool_id', 
                                production_tool.__class__.__name__)
         self.service_bridge = service_bridge  # Add service bridge
+        self.strict_mode = strict_mode  # Default to strict!
         
         # Detect the execution method
         self.execute_method = self._detect_execute_method()
@@ -64,25 +71,69 @@ class UniversalAdapter(ExtensibleTool):
         """Detect input type from tool signature or attributes"""
         # Simple detection - enhance as needed
         if hasattr(self.tool, 'input_type'):
-            # If it's already a DataType, use it
-            if isinstance(self.tool.input_type, DataType):
-                return self.tool.input_type
-            # Try to map string to DataType
             try:
-                return DataType(self.tool.input_type.lower())
-            except:
-                pass
+                # Get the actual value (works for both attributes and properties)
+                input_type_value = getattr(self.tool, 'input_type')
+                
+                # Properties appear as their values when accessed via getattr
+                # If it's still a method, call it
+                if callable(input_type_value):
+                    input_type_value = input_type_value()
+                
+                # If it's already a DataType, use it
+                if isinstance(input_type_value, DataType):
+                    return input_type_value
+                    
+                # Try to map string to DataType
+                # Handle both "FILE" and "DataType.FILE" formats
+                type_str = str(input_type_value)
+                if 'DataType.' in type_str:
+                    type_str = type_str.split('.')[-1]
+                return DataType(type_str.lower())
+            except Exception as e:
+                pass  # Silent fallback
+                
+        # Check for type hints in the execute method
+        try:
+            sig = inspect.signature(self.execute_method)
+            params = list(sig.parameters.values())
+            if params and params[0].annotation != inspect.Parameter.empty:
+                # Try to infer from type hints
+                annotation = params[0].annotation
+                if 'File' in str(annotation):
+                    return DataType.FILE
+                elif 'Entities' in str(annotation):
+                    return DataType.ENTITIES
+        except:
+            pass
+            
         return DataType.TEXT  # Safe fallback
         
     def _detect_output_type(self) -> DataType:
         """Detect output type from tool"""
         if hasattr(self.tool, 'output_type'):
-            if isinstance(self.tool.output_type, DataType):
-                return self.tool.output_type
             try:
-                return DataType(self.tool.output_type.lower())
-            except:
-                pass
+                # Get the actual value (works for both attributes and properties)
+                output_type_value = getattr(self.tool, 'output_type')
+                
+                # Properties appear as their values when accessed via getattr
+                # If it's still a method, call it
+                if callable(output_type_value):
+                    output_type_value = output_type_value()
+                
+                # If it's already a DataType, use it
+                if isinstance(output_type_value, DataType):
+                    return output_type_value
+                    
+                # Try to map string to DataType
+                # Handle both "ENTITIES" and "DataType.ENTITIES" formats
+                type_str = str(output_type_value)
+                if 'DataType.' in type_str:
+                    type_str = type_str.split('.')[-1]
+                return DataType(type_str.lower())
+            except Exception as e:
+                pass  # Silent fallback
+        
         return DataType.TEXT  # Safe fallback
         
     def process(self, input_data: Any, context=None) -> ToolResult:
@@ -136,15 +187,45 @@ class UniversalAdapter(ExtensibleTool):
                 
                 # Track entities if found
                 if isinstance(result.data, dict) and 'entities' in result.data:
-                    for entity in result.data['entities']:
+                    tracking_failures = []
+                    
+                    for i, entity in enumerate(result.data['entities']):
                         if isinstance(entity, dict):
-                            entity_id = self.service_bridge.track_entity(
-                                surface_form=entity.get('text', entity.get('name', '')),
-                                entity_type=entity.get('type', 'UNKNOWN'),
-                                confidence=entity.get('confidence', 0.5),
-                                source_tool=self.tool_id
+                            try:
+                                entity_id = self.service_bridge.track_entity(
+                                    surface_form=entity.get('text', entity.get('name', '')),
+                                    entity_type=entity.get('type', 'UNKNOWN'),
+                                    confidence=entity.get('confidence', 0.5),
+                                    source_tool=self.tool_id
+                                )
+                                entity['entity_id'] = entity_id
+                            except Exception as e:
+                                # Capture failure details
+                                tracking_failures.append({
+                                    'index': i,
+                                    'entity': entity.get('text', 'unknown'),
+                                    'error': str(e)
+                                })
+                    
+                    # Handle failures based on mode
+                    if tracking_failures:
+                        import logging
+                        logger = logging.getLogger(__name__)
+                        logger.warning(f"Failed to track {len(tracking_failures)} entities: {tracking_failures}")
+                        
+                        if self.strict_mode:
+                            # FAIL LOUDLY
+                            return ToolResult(
+                                success=False,
+                                data=None,
+                                error=f"Entity tracking failed for {len(tracking_failures)} entities: {tracking_failures}",
+                                uncertainty=1.0,
+                                reasoning="Entity tracking failure - maximum uncertainty"
                             )
-                            entity['entity_id'] = entity_id
+                        else:
+                            # Add warning but continue
+                            result.reasoning += f" (WARNING: {len(tracking_failures)} entities not tracked)"
+                            result.uncertainty = min(1.0, result.uncertainty + 0.2)
             
             return result
             
@@ -161,18 +242,32 @@ class UniversalAdapter(ExtensibleTool):
 class UniversalAdapterFactory:
     """Factory for creating adapters"""
     
-    def __init__(self, service_bridge=None):
-        """Initialize factory with optional service bridge"""
+    def __init__(self, service_bridge=None, strict_mode=True):
+        """
+        Initialize factory with optional service bridge
+        
+        Args:
+            service_bridge: Optional bridge for service integration
+            strict_mode: Default strict mode for adapters
+        """
         self.service_bridge = service_bridge
+        self.strict_mode = strict_mode
     
-    def wrap(self, tool: Any) -> ExtensibleTool:
+    def wrap(self, tool: Any, strict_mode=None) -> ExtensibleTool:
         """
         Wrap any tool with appropriate adapter
         Returns framework-compatible tool with service bridge
+        
+        Args:
+            tool: Tool to wrap
+            strict_mode: Override factory's default strict mode
         """
+        # Use provided strict_mode or factory default
+        mode = strict_mode if strict_mode is not None else self.strict_mode
+        
         # Always wrap with universal adapter to add service bridge
         # Even if tool already implements ExtensibleTool
-        return UniversalAdapter(tool, self.service_bridge)
+        return UniversalAdapter(tool, self.service_bridge, strict_mode=mode)
         
     def bulk_wrap(self, tools: List[Any]) -> List[ExtensibleTool]:
         """Wrap multiple tools"""

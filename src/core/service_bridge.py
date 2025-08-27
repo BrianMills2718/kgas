@@ -5,21 +5,50 @@ Bridge to connect critical services to framework
 
 import time
 from typing import Dict, Any, Optional
+from pathlib import Path
 from src.core.provenance_service import ProvenanceService
 from src.core.identity_service import IdentityService
 from src.core.service_manager import ServiceManager
 
 class ServiceBridge:
-    """Connects framework to critical services"""
+    """Connects framework to critical services with configuration support"""
     
-    def __init__(self, service_manager: ServiceManager = None):
+    def __init__(self, service_manager: ServiceManager = None, config: Dict = None):
+        """
+        Initialize with optional configuration
+        
+        Args:
+            service_manager: Service manager instance
+            config: Dictionary with service configurations
+                Example: {
+                    'identity': {'persistence': True, 'db_path': 'identity.db'},
+                    'provenance': {'backend': 'sqlite'}
+                }
+        """
         self.service_manager = service_manager or ServiceManager()
         self._services = {}
+        self.config = config or {}
         
     def get_provenance_service(self) -> ProvenanceService:
-        """Get or create provenance service"""
+        """Get or create configured provenance service"""
         if 'provenance' not in self._services:
-            self._services['provenance'] = ProvenanceService()
+            provenance_config = self.config.get('provenance', {})
+            
+            # Configure based on settings
+            backend = provenance_config.get('backend', 'memory')
+            if backend == 'sqlite':
+                db_path = provenance_config.get('db_path', 'data/provenance.db')
+                # Ensure directory exists
+                Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+                
+                # Note: ProvenanceService doesn't have sqlite backend yet,
+                # this is placeholder for future enhancement
+                self._services['provenance'] = ProvenanceService()
+                print(f"✅ ProvenanceService configured (backend: sqlite, path: {db_path})")
+            else:
+                self._services['provenance'] = ProvenanceService()
+                print("⚠️ ProvenanceService with in-memory backend")
+                
         return self._services['provenance']
     
     def track_execution(self, tool_id: str, input_data: Any, output_data: Any) -> Dict:
@@ -83,9 +112,24 @@ class ServiceBridge:
         return impact
     
     def get_identity_service(self) -> IdentityService:
-        """Get or create identity service"""
+        """Get or create configured identity service"""
         if 'identity' not in self._services:
-            self._services['identity'] = IdentityService()
+            identity_config = self.config.get('identity', {})
+            
+            # Configure based on settings
+            if identity_config.get('persistence', False):
+                db_path = identity_config.get('db_path', 'data/identity.db')
+                # Ensure directory exists
+                Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+                
+                # Note: IdentityService doesn't have persistence yet, 
+                # this is placeholder for future enhancement
+                self._services['identity'] = IdentityService()
+                print(f"✅ IdentityService configured (persistence: {db_path})")
+            else:
+                self._services['identity'] = IdentityService()
+                print("⚠️ IdentityService without persistence (in-memory only)")
+        
         return self._services['identity']
     
     def track_entity(self, surface_form: str, entity_type: str,

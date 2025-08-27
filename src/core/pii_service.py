@@ -31,6 +31,10 @@ class PiiService:
     def encrypt(self, plaintext: str) -> dict:
         """
         Encrypts the plaintext PII.
+        
+        Raises:
+            TypeError: If plaintext is not a string
+            ValueError: If plaintext is empty
 
         Returns:
             A dictionary containing:
@@ -38,6 +42,12 @@ class PiiService:
             - ciphertext: The encrypted data.
             - nonce: The unique nonce used for encryption.
         """
+        # Manual validation (replaces @icontract decorators)
+        if not isinstance(plaintext, str):
+            raise TypeError(f"plaintext must be str, got {type(plaintext).__name__}")
+        if len(plaintext) == 0:
+            raise ValueError("plaintext cannot be empty")
+        
         aesgcm = AESGCM(self._key)
         nonce = os.urandom(12)  # AES-GCM standard nonce size
         plaintext_bytes = plaintext.encode()
@@ -56,7 +66,16 @@ class PiiService:
     def decrypt(self, ciphertext_b64: str, nonce_b64: str) -> str:
         """
         Decrypts the ciphertext to retrieve the original PII.
+        
+        Raises:
+            ValueError: If inputs are empty or invalid
         """
+        # Validation
+        if not ciphertext_b64 or not isinstance(ciphertext_b64, str):
+            raise ValueError("ciphertext_b64 must be non-empty string")
+        if not nonce_b64 or not isinstance(nonce_b64, str):
+            raise ValueError("nonce_b64 must be non-empty string")
+        
         aesgcm = AESGCM(self._key)
         
         try:

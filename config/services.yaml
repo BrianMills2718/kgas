@@ -1,0 +1,46 @@
+# Service configuration for KGAS tool composition framework
+services:
+  identity:
+    persistence: true
+    db_path: "data/identity.db"
+    embeddings: false  # Requires OpenAI API key
+    max_entities: 10000
+    cache_ttl: 3600  # seconds
+    
+  provenance:
+    backend: "sqlite"
+    db_path: "data/provenance.db"
+    track_inputs: true
+    track_outputs: true
+    track_timing: true
+    
+  quality:
+    thresholds:
+      high_confidence: 0.8
+      medium_confidence: 0.5
+      low_confidence: 0.2
+    propagation_factor: 0.1  # How much uncertainty increases per step
+    
+  workflow:
+    checkpoint_dir: "data/checkpoints"
+    auto_save: true
+    save_interval: 300  # seconds
+    max_checkpoints: 10
+    
+  pii:
+    enabled: true
+    encryption_key_source: "environment"  # or "file"
+    key_rotation_interval: 86400  # 24 hours in seconds
+    
+# Framework configuration
+framework:
+  strict_mode: true  # Fail fast on errors
+  enable_metrics: true
+  metrics_file: "data/metrics.json"
+  log_level: "INFO"
+  
+# Tool defaults
+tools:
+  default_timeout: 60  # seconds
+  retry_count: 2
+  retry_delay: 1  # seconds

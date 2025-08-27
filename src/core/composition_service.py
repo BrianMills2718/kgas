@@ -24,15 +24,26 @@ from src.core.service_bridge import ServiceBridge
 class CompositionService:
     """Single source of truth for tool composition"""
     
-    def __init__(self, service_manager: ServiceManager = None):
-        """Initialize with both framework and production systems"""
+    def __init__(self, service_manager: ServiceManager = None, config_path: str = None):
+        """
+        Initialize with both framework and production systems
+        
+        Args:
+            service_manager: Service manager instance
+            config_path: Path to configuration file
+        """
+        from src.core.config_loader import load_service_config
+        
         self.service_manager = service_manager or ServiceManager()
         self.framework = ToolFramework()
         self.production_registry = get_tool_registry()
         self.orchestrator = CrossModalOrchestrator(service_manager)
         
-        # Create service bridge for critical service integration
-        self.service_bridge = ServiceBridge(self.service_manager)
+        # Load configuration
+        config = load_service_config(config_path) if config_path else {}
+        
+        # Create service bridge with configuration
+        self.service_bridge = ServiceBridge(self.service_manager, config)
         
         # Create adapter factory with service bridge
         self.adapter_factory = UniversalAdapterFactory(self.service_bridge)
