@@ -16,6 +16,23 @@ class CrossModalService:
         self.neo4j = neo4j_driver
         self.sqlite_path = sqlite_path
     
+    def _serialize_neo4j_value(self, value):
+        """Convert Neo4j types to JSON-serializable formats"""
+        from datetime import datetime
+        
+        if value is None:
+            return None
+        elif hasattr(value, 'iso_format'):  # Neo4j DateTime
+            return value.iso_format()
+        elif isinstance(value, datetime):
+            return value.isoformat()
+        elif isinstance(value, dict):
+            return {k: self._serialize_neo4j_value(v) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [self._serialize_neo4j_value(v) for v in value]
+        else:
+            return value
+    
     def graph_to_table(self, entity_ids: List[str]) -> pd.DataFrame:
         """
         Export graph to relational tables for statistical analysis
@@ -48,6 +65,15 @@ class CrossModalService:
                    properties(r) as properties
             """
             relationships = session.run(relationship_query, entity_ids=entity_ids).data()
+        
+        # Process properties to handle DateTime before creating DataFrame
+        for entity in entities:
+            if 'properties' in entity:
+                entity['properties'] = self._serialize_neo4j_value(entity['properties'])
+        
+        for rel in relationships:
+            if 'properties' in rel:
+                rel['properties'] = self._serialize_neo4j_value(rel['properties'])
         
         # Write to SQLite
         conn = sqlite3.connect(self.sqlite_path)

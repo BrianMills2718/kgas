@@ -73,24 +73,33 @@ class CleanToolFramework:
         print(f"✅ Registered tool: {capabilities.tool_id} ({capabilities.input_type.value} → {capabilities.output_type.value})")
     
     def find_chain(self, input_type: DataType, output_type: DataType) -> Optional[List[str]]:
-        """
-        Find a chain of tools that transforms input_type to output_type
-        Simple implementation for MVP - can be enhanced with graph search later
-        """
-        # For MVP, we'll hardcode the known chain
-        if input_type == DataType.FILE and output_type == DataType.NEO4J_GRAPH:
-            # Check if we have the required tools
-            required = ["TextLoaderV3", "KnowledgeGraphExtractor", "GraphPersister"]
-            if all(tool_id in self.tools for tool_id in required):
-                return required
+        """Use BFS to find shortest tool chain between types"""
+        from collections import deque
         
-        # Direct transformation
+        # Build adjacency list of transformations
+        graph = {}
         for tool_id, cap in self.capabilities.items():
-            if cap.input_type == input_type and cap.output_type == output_type:
-                return [tool_id]
+            if cap.input_type not in graph:
+                graph[cap.input_type] = []
+            graph[cap.input_type].append((cap.output_type, tool_id))
         
-        # TODO: Implement proper chain discovery with BFS/DFS
-        return None
+        # BFS for shortest path
+        queue = deque([(input_type, [])])
+        visited = {input_type}
+        
+        while queue:
+            current_type, path = queue.popleft()
+            
+            if current_type == output_type:
+                return path
+            
+            # Explore neighbors
+            for next_type, tool_id in graph.get(current_type, []):
+                if next_type not in visited:
+                    visited.add(next_type)
+                    queue.append((next_type, path + [tool_id]))
+        
+        return None  # No chain found
     
     def execute_chain(self, chain: List[str], input_data: Any) -> ChainResult:
         """

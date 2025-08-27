@@ -5,6 +5,10 @@ import os
 import sys
 import sqlite3
 from pathlib import Path
+from dotenv import load_dotenv
+
+# CRITICAL: Load .env FIRST
+load_dotenv('/home/brian/projects/Digimons/.env')
 
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -55,8 +59,8 @@ def verify_neo4j_entities(driver):
         result = session.run("MATCH (n:VSEntity) RETURN n.canonical_name as name ORDER BY name")
         entities = [record['name'] for record in result]
         
-        # Count relationships
-        result = session.run("MATCH ()-[r]->() RETURN count(r) as count")
+        # Count relationships between VSEntity nodes only
+        result = session.run("MATCH (s:VSEntity)-[r]->(t:VSEntity) RETURN count(r) as count")
         rel_count = result.single()['count']
         
         print(f"\n=== Neo4j Verification ===")

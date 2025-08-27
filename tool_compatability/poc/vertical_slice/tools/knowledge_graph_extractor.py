@@ -5,20 +5,27 @@ import json
 import os
 from typing import Dict, List, Any
 import litellm
+from dotenv import load_dotenv
 
 class KnowledgeGraphExtractor:
     """Extract knowledge graph from text using LLM"""
     
     def __init__(self, chunk_size=4000, overlap=200, schema_mode="open"):
+        # CRITICAL: Load .env FIRST
+        load_dotenv('/home/brian/projects/Digimons/.env')
+        
         self.tool_id = "KnowledgeGraphExtractor"
         self.chunk_size = chunk_size
         self.overlap = overlap
         self.schema_mode = schema_mode
         
-        # Set up Gemini API
+        # Now this will work - get API key after loading .env
         self.api_key = os.getenv('GEMINI_API_KEY')
         if not self.api_key:
-            raise ValueError("GEMINI_API_KEY environment variable not set")
+            raise ValueError("GEMINI_API_KEY not found in /home/brian/projects/Digimons/.env")
+        
+        # Always use gemini-1.5-flash
+        self.model = "gemini/gemini-1.5-flash"
     
     def process(self, text: str) -> Dict[str, Any]:
         """
