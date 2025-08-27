@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-08-27T14:14:09.017071",
+  "timestamp": "2025-08-27T14:19:58.634989",
   "total_documents": 10,
   "overall_metrics": {
     "mean_f1": 0.0,
     "mean_precision": 0.0,
     "mean_recall": 0.0,
-    "mean_uncertainty_error": 1.0
+    "mean_uncertainty_error": 0.5992
   },
   "by_complexity": {
     "simple": {
@@ -13,35 +13,35 @@
       "mean_f1": 0.0,
       "mean_precision": 0.0,
       "mean_recall": 0.0,
-      "mean_uncertainty_error": 1.0
+      "mean_uncertainty_error": 0.8109999999999999
     },
     "technical": {
       "count": 2,
       "mean_f1": 0.0,
       "mean_precision": 0.0,
       "mean_recall": 0.0,
-      "mean_uncertainty_error": 1.0
+      "mean_uncertainty_error": 0.6859999999999999
     },
     "ambiguous": {
       "count": 2,
       "mean_f1": 0.0,
       "mean_precision": 0.0,
       "mean_recall": 0.0,
-      "mean_uncertainty_error": 1.0
+      "mean_uncertainty_error": 0.292
     },
     "noisy": {
       "count": 2,
       "mean_f1": 0.0,
       "mean_precision": 0.0,
       "mean_recall": 0.0,
-      "mean_uncertainty_error": 1.0
+      "mean_uncertainty_error": 0.48599999999999993
     },
     "mixed": {
       "count": 1,
       "mean_f1": 0.0,
       "mean_precision": 0.0,
       "mean_recall": 0.0,
-      "mean_uncertainty_error": 1.0
+      "mean_uncertainty_error": 0.631
     }
   }
 }

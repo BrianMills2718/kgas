@@ -11,6 +11,19 @@ import matplotlib.pyplot as plt
 from typing import Dict, List, Tuple
 from datetime import datetime
 
+# Fix for NumPy bool serialization
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (np.bool_, np.bool8)):
+            return bool(obj)
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NumpyEncoder, self).default(obj)
+
 class ThesisMetricsAnalyzer:
     """Analyze metrics and generate thesis visualizations"""
     
@@ -45,6 +58,12 @@ class ThesisMetricsAnalyzer:
         conn.close()
         return metrics, results
     
+    def _safe_f1(self, precision: float, recall: float) -> float:
+        """Calculate F1 score safely, handling division by zero"""
+        if precision + recall == 0:
+            return 0.0
+        return 2 * precision * recall / (precision + recall)
+    
     def calculate_correlation(self, metrics: List[Dict]) -> float:
         """Calculate correlation between uncertainty and error rate"""
         uncertainties = []
@@ -55,7 +74,7 @@ class ThesisMetricsAnalyzer:
             # Error rate is inverse of F1 score
             error_rates.append(1 - m['f1_score'])
         
-        if len(uncertainties) > 1:
+        if len(uncertainties) > 1 and np.std(uncertainties) > 0 and np.std(error_rates) > 0:
             correlation = np.corrcoef(uncertainties, error_rates)[0, 1]
         else:
             correlation = 0.0
@@ -399,15 +418,19 @@ class ThesisMetricsAnalyzer:
                 "overall_f1": np.mean([m['f1_score'] for m in metrics]),
                 "overall_precision": np.mean([m['precision'] for m in metrics]),
                 "overall_recall": np.mean([m['recall'] for m in metrics]),
-                "entity_extraction_f1": 2 * np.mean([m['entity_precision'] for m in metrics]) * np.mean([m['entity_recall'] for m in metrics]) / 
-                                        (np.mean([m['entity_precision'] for m in metrics]) + np.mean([m['entity_recall'] for m in metrics])),
-                "relationship_extraction_f1": 2 * np.mean([m['relationship_precision'] for m in metrics]) * np.mean([m['relationship_recall'] for m in metrics]) / 
-                                              (np.mean([m['relationship_precision'] for m in metrics]) + np.mean([m['relationship_recall'] for m in metrics]))
+                "entity_extraction_f1": self._safe_f1(
+                    np.mean([m['entity_precision'] for m in metrics]),
+                    np.mean([m['entity_recall'] for m in metrics])
+                ),
+                "relationship_extraction_f1": self._safe_f1(
+                    np.mean([m['relationship_precision'] for m in metrics]),
+                    np.mean([m['relationship_recall'] for m in metrics])
+                )
             }
         }
         
         with open(f"{self.output_dir}/thesis_summary.json", 'w') as f:
-            json.dump(summary, f, indent=2)
+            json.dump(summary, f, indent=2, cls=NumpyEncoder)
         
         print("\n📊 Thesis Evidence Summary:")
         print(f"✅ Hypothesis: {summary['hypothesis_validation']['statement']}")

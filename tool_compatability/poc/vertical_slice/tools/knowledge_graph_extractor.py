@@ -3,6 +3,7 @@
 
 import json
 import os
+import time
 from typing import Dict, List, Any
 import litellm
 from dotenv import load_dotenv
@@ -148,39 +149,57 @@ Text:
 
 JSON Output:"""
         
-        try:
-            # Use Gemini for extraction
-            response = litellm.completion(
-                model="gemini/gemini-1.5-flash",
-                messages=[{"role": "user", "content": prompt}],
-                api_key=self.api_key,
-                temperature=0.1,  # Low temperature for consistency
-                max_tokens=2000
-            )
-            
-            # Parse response
-            content = response.choices[0].message.content
-            
-            # Extract JSON from response
-            if '```json' in content:
-                json_str = content.split('```json')[1].split('```')[0]
-            elif '```' in content:
-                json_str = content.split('```')[1].split('```')[0]
-            else:
-                json_str = content
-            
-            kg_data = json.loads(json_str.strip())
-            
-            # Add unique IDs if missing
-            for i, entity in enumerate(kg_data.get('entities', [])):
-                if 'id' not in entity:
-                    entity['id'] = f"entity_{i+1}"
-            
-            return kg_data
-            
-        except Exception as e:
-            print(f"LLM extraction error: {e}")
-            return {'entities': [], 'relationships': []}
+        # Retry logic for overloaded API
+        max_retries = 3
+        retry_delay = 2  # seconds
+        
+        for attempt in range(max_retries):
+            try:
+                # Use Gemini for extraction
+                response = litellm.completion(
+                    model="gemini/gemini-1.5-flash",
+                    messages=[{"role": "user", "content": prompt}],
+                    api_key=self.api_key,
+                    temperature=0.1,  # Low temperature for consistency
+                    max_tokens=2000
+                )
+                
+                # Parse response
+                content = response.choices[0].message.content
+                
+                # Extract JSON from response
+                if '```json' in content:
+                    json_str = content.split('```json')[1].split('```')[0]
+                elif '```' in content:
+                    json_str = content.split('```')[1].split('```')[0]
+                else:
+                    json_str = content
+                
+                kg_data = json.loads(json_str.strip())
+                
+                # Add unique IDs if missing
+                for i, entity in enumerate(kg_data.get('entities', [])):
+                    if 'id' not in entity:
+                        entity['id'] = f"entity_{i+1}"
+                
+                return kg_data
+                
+            except litellm.exceptions.InternalServerError as e:
+                if "503" in str(e) and "overloaded" in str(e):
+                    if attempt < max_retries - 1:
+                        print(f"API overloaded, retrying in {retry_delay} seconds... (attempt {attempt + 1}/{max_retries})")
+                        time.sleep(retry_delay)
+                        retry_delay *= 2  # Exponential backoff
+                        continue
+                    else:
+                        print(f"API overloaded after {max_retries} attempts")
+                        return {'entities': [], 'relationships': []}
+                else:
+                    print(f"LLM extraction error: {e}")
+                    return {'entities': [], 'relationships': []}
+            except Exception as e:
+                print(f"LLM extraction error: {e}")
+                return {'entities': [], 'relationships': []}
     
     def _assess_chunk_uncertainty(self, chunk_length: int, entity_count: int, relationship_count: int) -> float:
         """Assess uncertainty for a single chunk extraction"""

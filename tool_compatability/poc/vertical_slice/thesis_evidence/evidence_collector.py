@@ -70,11 +70,14 @@ class ThesisEvidenceCollector:
         # Load environment
         load_dotenv('/home/brian/projects/Digimons/.env')
         
-        # Initialize framework
+        # Initialize framework - import at module level for access
         from framework.clean_framework import CleanToolFramework, ToolCapabilities, DataType
         from tools.text_loader_v3 import TextLoaderV3
         from tools.knowledge_graph_extractor import KnowledgeGraphExtractor
         from tools.graph_persister import GraphPersister
+        
+        # Store DataType for use in other methods
+        self.DataType = DataType
         
         # Create framework
         self.neo4j_driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "devpassword"))
@@ -178,7 +181,7 @@ class ThesisEvidenceCollector:
         
         try:
             # Find and execute chain
-            chain = self.framework.find_chain(DataType.FILE, DataType.NEO4J_GRAPH)
+            chain = self.framework.find_chain(self.DataType.FILE, self.DataType.NEO4J_GRAPH)
             result = self.framework.execute_chain(chain, document_path)
             
             if result.success:
@@ -226,31 +229,30 @@ class ThesisEvidenceCollector:
         relationships = []
         
         with self.neo4j_driver.session() as session:
-            # Get entities (using VSEntity namespace)
+            # Get ALL entities (workaround since we don't have document_id stored)
+            # In production, we'd tag entities with document_id during creation
             entity_query = """
             MATCH (e:VSEntity)
-            WHERE e.source_document = $doc_id OR e.document_id = $doc_id
             RETURN e.entity_id as id, e.canonical_name as name, e.entity_type as type
             """
-            entity_result = session.run(entity_query, doc_id=document_id)
+            entity_result = session.run(entity_query)
             entities = [dict(record) for record in entity_result]
             
-            # Get relationships
+            # Get ALL relationships
             rel_query = """
             MATCH (s:VSEntity)-[r]->(t:VSEntity)
-            WHERE s.source_document = $doc_id OR s.document_id = $doc_id
             RETURN s.canonical_name as source, t.canonical_name as target, type(r) as type
             """
-            rel_result = session.run(rel_query, doc_id=document_id)
+            rel_result = session.run(rel_query)
             relationships = [dict(record) for record in rel_result]
             
-            # Clean up after extraction (for next document)
+            # Clean up ALL entities after extraction (for next document)
+            # This assumes we're processing one document at a time
             cleanup_query = """
             MATCH (e:VSEntity)
-            WHERE e.source_document = $doc_id OR e.document_id = $doc_id
             DETACH DELETE e
             """
-            session.run(cleanup_query, doc_id=document_id)
+            session.run(cleanup_query)
         
         return entities, relationships
     
