@@ -4,6 +4,7 @@
 import json
 import os
 import time
+import random
 from typing import Dict, List, Any, Tuple
 import litellm
 from dotenv import load_dotenv
@@ -164,9 +165,10 @@ Text:
 
 JSON Output:"""
         
-        # Retry logic for overloaded API
-        max_retries = 5  # Increased from 3
-        retry_delay = 3  # seconds, increased from 2
+        # Robust retry logic with exponential backoff
+        max_retries = 10  # More attempts
+        base_delay = 5  # Start with 5 seconds
+        max_delay = 60  # Cap at 60 seconds
         
         for attempt in range(max_retries):
             try:
@@ -199,18 +201,18 @@ JSON Output:"""
                 
                 return kg_data
                 
-            except litellm.exceptions.InternalServerError as e:
-                if "503" in str(e) and "overloaded" in str(e):
-                    if attempt < max_retries - 1:
-                        print(f"API overloaded, retrying in {retry_delay} seconds... (attempt {attempt + 1}/{max_retries})")
-                        time.sleep(retry_delay)
-                        retry_delay *= 2  # Exponential backoff
-                        continue
-                    else:
-                        print(f"API overloaded after {max_retries} attempts")
-                        return {'entities': [], 'relationships': []}
+            except (litellm.exceptions.InternalServerError, 
+                    litellm.exceptions.ServiceUnavailable,
+                    litellm.exceptions.RateLimitError) as e:
+                # Handle multiple error types
+                if attempt < max_retries - 1:
+                    # Calculate delay with exponential backoff and jitter
+                    delay = min(base_delay * (2 ** attempt) + random.uniform(0, 3), max_delay)
+                    print(f"API error ({type(e).__name__}), retrying in {delay:.1f}s... (attempt {attempt + 1}/{max_retries})")
+                    time.sleep(delay)
+                    continue
                 else:
-                    print(f"LLM extraction error: {e}")
+                    print(f"API failed after {max_retries} attempts - giving up")
                     return {'entities': [], 'relationships': []}
             except Exception as e:
                 print(f"LLM extraction error: {e}")
