@@ -1,4 +1,17 @@
-# Clean Vertical Slice - Issue Resolution Phase
+# Tool Integration Phase - Scale Available Tools
+
+## ⚠️ PERMANENT - DO NOT REMOVE ⚠️
+
+### IMPORTANT CLARIFICATIONS
+- **Spacy is DEPRECATED** - Do NOT use or integrate any tools requiring spacy
+- **Actual Tool Count**: 15 tools found (not 37 as initially stated)
+  - 8 T-series tools in `/archive/archived/legacy_tools_2025_07_23/`
+  - 7 tools in `/src/tools/`
+- **Deprecated Tools**: 
+  - `t23a_spacy_ner` - uses deprecated spacy
+  - `t27_relationship_extractor` - uses deprecated spacy
+- **Successfully Integrated**: 6 tools working with UniversalAdapter
+- **Pending**: `t01_pdf_loader` awaiting pypdf installation
 
 ## ⚠️ PERMANENT - DO NOT REMOVE ⚠️
 
@@ -29,296 +42,516 @@ api_key = os.getenv('GEMINI_API_KEY')
 ```
 evidence/
 ├── current/
-│   └── Evidence_VerticalSlice_[Task].md   # Current work only
+│   └── Evidence_ToolIntegration_[Task].md   # Current work only
 ├── completed/
-│   └── Evidence_*.md                      # Archived completed work
+│   └── Evidence_*.md                        # Archived completed work
 ```
 
 **CRITICAL**: 
 - Raw execution logs required (copy-paste terminal output)
 - No success claims without showing actual execution
-- Test with REAL services (Gemini API, Neo4j, SQLite)
-- Mark all untested components as "NOT TESTED"
+- Test with REAL tools and services
+- Archive completed phases to avoid chronological confusion
 
 ---
 
 ## 2. Codebase Structure
 
-### Clean Vertical Slice Location
+### Clean Vertical Slice (COMPLETE)
 ```
 tool_compatability/poc/vertical_slice/
-├── services/
-│   ├── identity_service_v3.py      # Entity deduplication (COMPLETE)
-│   ├── crossmodal_service.py       # Graph↔table converter (HAS BUG)
-│   └── provenance_enhanced.py      # Uncertainty tracking (COMPLETE)
-├── tools/
-│   ├── text_loader_v3.py           # Text extraction (COMPLETE)
-│   ├── knowledge_graph_extractor.py # LLM extraction (NEEDS FIX)
-│   └── graph_persister.py          # Neo4j writer (COMPLETE)
-├── config/
-│   └── uncertainty_constants.py     # Configurable constants (COMPLETE)
 ├── framework/
-│   └── clean_framework.py          # Tool composition (NEEDS FIX)
-└── tests/
-    └── test_vertical_slice.py      # End-to-end test (COMPLETE)
+│   └── clean_framework.py          # Extensible framework with BFS chain discovery
+├── services/                       # All working with fixes applied
+├── tools/                          # 3 tools with uncertainty
+└── tests/                          # End-to-end test passing
 ```
 
-### Key Architecture Documents
-- **`/docs/architecture/VERTICAL_SLICE_20250826.md`** - Complete design & rationale
-- **`/docs/architecture/UNCERTAINTY_20250825.md`** - Uncertainty model explanation
-- **`/CLAUDE.md`** - This file (implementation instructions)
+### Existing Tool Library (TO INTEGRATE)
+```
+src/tools/
+├── T01_PDFLoader.py through T14_*  # Document loaders
+├── T15_TextChunker.py through T30_* # Entity processing
+├── T31_EntityBuilder.py through T68_* # Graph analytics
+└── T69_* through T85_*              # Cross-modal tools
+```
 
-### Integration Points
-- **Gemini API**: via `litellm` with key from `.env`
-- **Neo4j**: Graph storage at `bolt://localhost:7687`
-- **SQLite**: Metrics storage at `vertical_slice.db`
+### Key Integration Points
+- **ServiceManager**: `/src/services/service_manager.py` - Central service orchestration
+- **UniversalAdapter**: `/src/core/adapter_factory.py` - Wraps tools with services
+- **ProvenanceService**: Track all operations with uncertainty
+- **IdentityService**: Entity resolution across tools
+
+### Important Documentation
+- **Tool Capabilities**: `/docs/architecture/VERTICAL_SLICE_20250826.md`
+- **Uncertainty Model**: `/docs/architecture/UNCERTAINTY_20250825.md`
+- **Tool Registry**: `/src/tool_management/tool_registry.py`
 
 ---
 
 ## 3. Current Status
 
-### ✅ Completed (Clean Vertical Slice Phase)
-1. **Core Services**: Identity, Provenance, CrossModal (with bug)
-2. **Tools**: TextLoader, GraphPersister working
-3. **Framework**: Basic chain execution working
-4. **Testing**: End-to-end test passing with mock KG extraction
+### ✅ Completed (Vertical Slice)
+- Clean framework with dynamic chain discovery
+- Real Gemini API integration working
+- Physics-style uncertainty propagation
+- 3 demonstration tools integrated
 
-### 🔴 Critical Issues to Fix
-1. **KnowledgeGraphExtractor not loading .env** - Using mock instead of real Gemini
-2. **DateTime serialization bug** - CrossModalService fails to export to SQLite
-3. **Chain discovery hardcoded** - Not truly extensible
+### 🎯 Current Goal: Scale to 37 Tools
+Integrate existing tool library into clean framework with uncertainty assessment for each tool.
 
 ---
 
-## 4. PRIORITY FIXES - Critical Issues
+## 4. PHASE 1: Tool Inventory & Classification
 
-### Task 1: Fix .env Loading in KnowledgeGraphExtractor
+### Task 1.1: Create Tool Catalog
 
-**File**: `/tool_compatability/poc/vertical_slice/tools/knowledge_graph_extractor.py`
+**File**: Create `/tool_compatability/poc/tool_catalog.py`
 
-**Current Problem**: 
-- Line 19-21: Checking `os.getenv()` without loading .env first
-- Causes: Always fails to find API key, falls back to mock
-
-**Fix Implementation**:
 ```python
-# At top of __init__ method (line 13), add:
-from dotenv import load_dotenv
+#!/usr/bin/env python3
+"""Catalog all existing tools and their characteristics"""
 
-def __init__(self, chunk_size=4000, overlap=200, schema_mode="open"):
-    # CRITICAL: Load .env FIRST
-    load_dotenv('/home/brian/projects/Digimons/.env')
+import os
+import importlib.util
+from typing import Dict, List, Any
+from dataclasses import dataclass
+
+@dataclass
+class ToolInfo:
+    tool_id: str
+    file_path: str
+    input_type: str
+    output_type: str
+    requires_llm: bool
+    is_deterministic: bool
+    dependencies: List[str]
+
+def scan_tools_directory() -> List[ToolInfo]:
+    """Scan src/tools/ and catalog all tools"""
+    tools = []
+    tools_dir = "/home/brian/projects/Digimons/src/tools"
     
-    self.tool_id = "KnowledgeGraphExtractor"
-    self.chunk_size = chunk_size
-    self.overlap = overlap
-    self.schema_mode = schema_mode
+    for filename in os.listdir(tools_dir):
+        if filename.startswith('T') and filename.endswith('.py'):
+            tool_path = os.path.join(tools_dir, filename)
+            tool_info = analyze_tool(tool_path)
+            tools.append(tool_info)
     
-    # Now this will work
-    self.api_key = os.getenv('GEMINI_API_KEY')
-    if not self.api_key:
-        raise ValueError("GEMINI_API_KEY not found in /home/brian/projects/Digimons/.env")
+    return tools
+
+def analyze_tool(tool_path: str) -> ToolInfo:
+    """Analyze a tool file to extract its characteristics"""
+    # Load the module
+    spec = importlib.util.spec_from_file_location("tool", tool_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
     
-    # Always use gemini-1.5-flash
-    self.model = "gemini/gemini-1.5-flash"
+    # Extract tool characteristics
+    # Look for execute(), process(), or run() methods
+    # Check for LLM imports (litellm, openai)
+    # Check for service dependencies
+    
+    return ToolInfo(...)
+
+if __name__ == "__main__":
+    tools = scan_tools_directory()
+    print(f"Found {len(tools)} tools")
+    
+    # Group by category
+    document_loaders = [t for t in tools if 'loader' in t.tool_id.lower()]
+    entity_tools = [t for t in tools if 'entity' in t.tool_id.lower()]
+    graph_tools = [t for t in tools if 'graph' in t.tool_id.lower()]
+    
+    print(f"Document loaders: {len(document_loaders)}")
+    print(f"Entity tools: {len(entity_tools)}")
+    print(f"Graph tools: {len(graph_tools)}")
 ```
 
-**Evidence Required**: `evidence/current/Evidence_VerticalSlice_EnvFix.md`
-- Show API key loading successfully
-- Run actual Gemini extraction
-- Compare extraction quality to mock
+**Evidence Required**: `evidence/current/Evidence_ToolIntegration_Catalog.md`
+- List all 37 tools found
+- Group by input/output types
+- Identify which use LLMs vs deterministic
 
-### Task 2: Fix DateTime Serialization Bug
+### Task 1.2: Define Extended DataTypes
 
-**File**: `/tool_compatability/poc/vertical_slice/services/crossmodal_service.py`
+**File**: Create `/tool_compatability/poc/vertical_slice/framework/data_types.py`
 
-**Current Problem**:
-- Lines 56-67: Neo4j returns DateTime objects, JSON can't serialize them
-- Error: "Object of type DateTime is not JSON serializable"
-
-**Fix Implementation**:
 ```python
-# Add helper method after __init__ (line 17):
-def _serialize_neo4j_value(self, value):
-    """Convert Neo4j types to JSON-serializable formats"""
-    from datetime import datetime
+from enum import Enum
+
+class DataType(Enum):
+    """Extended data types for all tools"""
+    # File types
+    FILE = "file"
+    PDF = "pdf"
+    DOCX = "docx"
+    CSV = "csv"
+    JSON = "json"
     
-    if value is None:
-        return None
-    elif hasattr(value, 'iso_format'):  # Neo4j DateTime
-        return value.iso_format()
-    elif isinstance(value, datetime):
-        return value.isoformat()
-    elif isinstance(value, dict):
-        return {k: self._serialize_neo4j_value(v) for k, v in value.items()}
-    elif isinstance(value, list):
-        return [self._serialize_neo4j_value(v) for v in value]
+    # Text types
+    TEXT = "text"
+    CHUNKS = "chunks"
+    SENTENCES = "sentences"
+    
+    # Entity types
+    ENTITIES = "entities"
+    RELATIONSHIPS = "relationships"
+    MENTIONS = "mentions"
+    
+    # Graph types
+    KNOWLEDGE_GRAPH = "knowledge_graph"
+    NEO4J_GRAPH = "neo4j_graph"
+    NETWORK = "network"
+    
+    # Table types
+    TABLE = "table"
+    DATAFRAME = "dataframe"
+    METRICS = "metrics"
+    
+    # Vector types
+    VECTOR = "vector"
+    EMBEDDINGS = "embeddings"
+    CLUSTERS = "clusters"
+    
+    # Visualization
+    VISUALIZATION = "visualization"
+    PLOT = "plot"
+```
+
+---
+
+## 5. PHASE 2: Tool Wrapper Implementation
+
+### Task 2.1: Create Universal Tool Wrapper
+
+**File**: Create `/tool_compatability/poc/vertical_slice/framework/tool_wrapper.py`
+
+```python
+#!/usr/bin/env python3
+"""Universal wrapper for integrating legacy tools with uncertainty"""
+
+from typing import Dict, Any, Optional
+from dataclasses import dataclass
+from framework.data_types import DataType
+import hashlib
+import json
+
+@dataclass
+class UncertaintyConfig:
+    """Configuration for tool uncertainty assessment"""
+    tool_id: str
+    input_type: DataType
+    output_type: DataType
+    input_construct: str
+    output_construct: str
+    base_uncertainty: float  # For deterministic tools
+    uncertainty_factors: Dict[str, float]  # Conditional adjustments
+
+class ToolWrapper:
+    """Wraps legacy tools with uncertainty assessment"""
+    
+    def __init__(self, legacy_tool: Any, config: UncertaintyConfig):
+        self.tool = legacy_tool
+        self.config = config
+        self._setup_tool()
+    
+    def _setup_tool(self):
+        """Initialize the legacy tool"""
+        # Handle different initialization patterns
+        if hasattr(self.tool, 'initialize'):
+            self.tool.initialize()
+        elif hasattr(self.tool, 'setup'):
+            self.tool.setup()
+    
+    def process(self, input_data: Any) -> Dict[str, Any]:
+        """Execute tool with uncertainty assessment"""
+        try:
+            # Execute the legacy tool
+            result = self._execute_legacy_tool(input_data)
+            
+            # Assess uncertainty
+            uncertainty = self._assess_uncertainty(input_data, result)
+            
+            # Format response
+            return {
+                'success': True,
+                'data': result,
+                'uncertainty': uncertainty['score'],
+                'reasoning': uncertainty['reasoning'],
+                'construct_mapping': f"{self.config.input_construct} → {self.config.output_construct}"
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e),
+                'uncertainty': 1.0,
+                'reasoning': f"Tool execution failed: {e}"
+            }
+    
+    def _execute_legacy_tool(self, input_data: Any) -> Any:
+        """Execute the legacy tool with proper method detection"""
+        # Try different execution methods
+        if hasattr(self.tool, 'execute'):
+            return self.tool.execute(input_data)
+        elif hasattr(self.tool, 'process'):
+            return self.tool.process(input_data)
+        elif hasattr(self.tool, 'run'):
+            return self.tool.run(input_data)
+        else:
+            raise AttributeError(f"Tool {self.config.tool_id} has no execution method")
+    
+    def _assess_uncertainty(self, input_data: Any, result: Any) -> Dict[str, Any]:
+        """Assess uncertainty based on tool type and results"""
+        
+        # For LLM tools, check if they provide confidence
+        if hasattr(result, 'confidence'):
+            return {
+                'score': 1.0 - result.confidence,
+                'reasoning': f"LLM confidence: {result.confidence}"
+            }
+        
+        # For deterministic tools, use base uncertainty
+        uncertainty = self.config.base_uncertainty
+        reasoning = f"Base uncertainty for {self.config.tool_id}"
+        
+        # Apply conditional factors
+        if self._is_sparse_data(input_data):
+            uncertainty *= 1.5
+            reasoning += " (sparse input data)"
+        
+        if self._is_large_output(result):
+            uncertainty *= 1.2
+            reasoning += " (large output, potential information overload)"
+        
+        return {
+            'score': min(uncertainty, 1.0),
+            'reasoning': reasoning
+        }
+```
+
+**Evidence Required**: `evidence/current/Evidence_ToolIntegration_Wrapper.md`
+- Test wrapper with a legacy tool
+- Show uncertainty assessment working
+- Verify construct mapping
+
+---
+
+## 6. PHASE 3: Tool Migration - Batch 1 (Document Loaders)
+
+### Task 3.1: Migrate Document Loaders
+
+**File**: Create `/tool_compatability/poc/integrated_tools/document_loaders.py`
+
+```python
+#!/usr/bin/env python3
+"""Integrate document loader tools (T01-T14)"""
+
+import sys
+sys.path.append('/home/brian/projects/Digimons')
+
+from src.tools.T01_PDFLoader import PDFLoader
+from src.tools.T02_WordDocumentLoader import WordLoader
+from src.tools.T03_CSVTableExtractor import CSVLoader
+# ... import other loaders
+
+from framework.tool_wrapper import ToolWrapper, UncertaintyConfig
+from framework.data_types import DataType
+
+def integrate_pdf_loader():
+    """Integrate T01_PDFLoader with uncertainty"""
+    config = UncertaintyConfig(
+        tool_id="T01_PDFLoader",
+        input_type=DataType.PDF,
+        output_type=DataType.TEXT,
+        input_construct="pdf_file",
+        output_construct="document_text",
+        base_uncertainty=0.15,
+        uncertainty_factors={
+            'ocr_required': 1.5,
+            'encrypted': 2.0,
+            'corrupted': 3.0
+        }
+    )
+    
+    legacy_tool = PDFLoader()
+    return ToolWrapper(legacy_tool, config)
+
+def integrate_all_document_loaders():
+    """Integrate all document loader tools"""
+    loaders = {
+        'T01_PDFLoader': (PDFLoader, 0.15),
+        'T02_WordLoader': (WordLoader, 0.08),
+        'T03_CSVLoader': (CSVLoader, 0.02),
+        'T04_JSONLoader': (JSONLoader, 0.01),
+        # Add all 14 loaders
+    }
+    
+    integrated_tools = {}
+    for tool_id, (tool_class, uncertainty) in loaders.items():
+        config = UncertaintyConfig(
+            tool_id=tool_id,
+            input_type=DataType.FILE,
+            output_type=DataType.TEXT,
+            input_construct="file_path",
+            output_construct="extracted_text",
+            base_uncertainty=uncertainty,
+            uncertainty_factors={}
+        )
+        integrated_tools[tool_id] = ToolWrapper(tool_class(), config)
+    
+    return integrated_tools
+
+if __name__ == "__main__":
+    # Test integration
+    pdf_loader = integrate_pdf_loader()
+    result = pdf_loader.process("test.pdf")
+    print(f"Success: {result['success']}")
+    print(f"Uncertainty: {result['uncertainty']}")
+```
+
+**Evidence Required**: `evidence/current/Evidence_ToolIntegration_DocumentLoaders.md`
+- Show each loader working
+- Document uncertainty values
+- Test with real files
+
+---
+
+## 7. PHASE 4: Pipeline Testing
+
+### Task 4.1: Test Integrated Pipelines
+
+**File**: Create `/tool_compatability/poc/test_integrated_pipelines.py`
+
+```python
+#!/usr/bin/env python3
+"""Test pipelines with integrated tools"""
+
+from framework.clean_framework import CleanToolFramework
+from integrated_tools.document_loaders import integrate_all_document_loaders
+
+def test_document_processing_pipeline():
+    """Test PDF → Text → Entities → Graph"""
+    framework = CleanToolFramework(
+        neo4j_uri="bolt://localhost:7687",
+        sqlite_path="integrated_test.db"
+    )
+    
+    # Register integrated tools
+    loaders = integrate_all_document_loaders()
+    for tool_id, tool in loaders.items():
+        framework.register_tool(tool, tool.config)
+    
+    # Find and execute chain
+    chain = framework.find_chain(DataType.PDF, DataType.NEO4J_GRAPH)
+    if chain:
+        print(f"Found chain: {' → '.join(chain)}")
+        result = framework.execute_chain(chain, "test.pdf")
+        print(f"Total uncertainty: {result.total_uncertainty:.3f}")
+        
+        # Verify uncertainty propagation
+        assert result.total_uncertainty > 0
+        assert result.total_uncertainty < 1.0
     else:
-        return value
+        print("No chain found")
 
-# Update graph_to_table method (lines 56-67):
-# Process properties before creating DataFrame
-for entity in entities:
-    if 'properties' in entity:
-        entity['properties'] = self._serialize_neo4j_value(entity['properties'])
+def test_cross_modal_pipeline():
+    """Test Graph → Table → Statistical Analysis"""
+    # Similar structure for cross-modal tools
+    pass
 
-for rel in relationships:
-    if 'properties' in rel:
-        rel['properties'] = self._serialize_neo4j_value(rel['properties'])
-
-# Now safe to create DataFrames and serialize
-entity_df = pd.DataFrame(entities)
-if 'properties' in entity_df.columns:
-    import json
-    entity_df['properties'] = entity_df['properties'].apply(json.dumps)
+if __name__ == "__main__":
+    test_document_processing_pipeline()
+    test_cross_modal_pipeline()
 ```
 
-**Evidence Required**: `evidence/current/Evidence_VerticalSlice_DateTimeFix.md`
-- Show successful SQLite export without warnings
-- Query SQLite to verify data stored correctly
-- Test with entities that have datetime properties
-
-### Task 3: Implement Dynamic Chain Discovery
-
-**File**: `/tool_compatability/poc/vertical_slice/framework/clean_framework.py`
-
-**Current Problem**:
-- Lines 71-81: Hardcoded chain for FILE→NEO4J_GRAPH
-- Not extensible to other transformations
-
-**Fix Implementation**:
-```python
-# Replace find_chain method (lines 71-81):
-def find_chain(self, input_type: DataType, output_type: DataType) -> Optional[List[str]]:
-    """Use BFS to find shortest tool chain between types"""
-    from collections import deque
-    
-    # Build adjacency list of transformations
-    graph = {}
-    for tool_id, cap in self.capabilities.items():
-        if cap.input_type not in graph:
-            graph[cap.input_type] = []
-        graph[cap.input_type].append((cap.output_type, tool_id))
-    
-    # BFS for shortest path
-    queue = deque([(input_type, [])])
-    visited = {input_type}
-    
-    while queue:
-        current_type, path = queue.popleft()
-        
-        if current_type == output_type:
-            return path
-        
-        # Explore neighbors
-        for next_type, tool_id in graph.get(current_type, []):
-            if next_type not in visited:
-                visited.add(next_type)
-                queue.append((next_type, path + [tool_id]))
-    
-    return None  # No chain found
-```
-
-**Evidence Required**: `evidence/current/Evidence_VerticalSlice_ChainDiscovery.md`
-- Test finding FILE→NEO4J_GRAPH chain
-- Add new tool and test discovery of new chains
-- Show that non-existent chains return None
-
----
-
-## 5. Testing After Fixes
-
-### Test Command Sequence
-```bash
-# 1. Test .env loading
-cd tool_compatability/poc/vertical_slice
-python3 -c "from tools.knowledge_graph_extractor import KnowledgeGraphExtractor; k = KnowledgeGraphExtractor(); print('✅ API key loaded')"
-
-# 2. Test DateTime fix
-python3 test_services.py
-
-# 3. Test chain discovery  
-python3 framework/clean_framework.py
-
-# 4. Run complete end-to-end test
-python3 tests/test_vertical_slice.py
-```
-
-### Expected Success Metrics
-- No mock KG extraction - real Gemini API calls
-- No DateTime serialization warnings
-- Dynamic chain discovery working
-- Total uncertainty using real values (not mock 0.25)
-
----
-
-## 6. Secondary Improvements (After Critical Fixes)
-
-### Task 4: Add PDF Support Testing
-- Install PyPDF2 or pypdf
-- Test with real PDF files
-- Document extraction quality
-
-### Task 5: Test Isolation
-- Add namespace isolation for tests
-- Prevent test data pollution
-- Clean up after each test run
-
-### Task 6: Multi-Provider LLM Support
-- Support OpenAI/Anthropic as fallbacks
-- Keep Gemini as default
-- Document which provider was used
-
----
-
-## 7. Troubleshooting
-
-### If .env not found
-```bash
-# Check it exists
-ls -la /home/brian/projects/Digimons/.env
-
-# Check it has GEMINI_API_KEY
-grep GEMINI_API_KEY /home/brian/projects/Digimons/.env
-```
-
-### If Gemini API fails
-```python
-# Enable litellm debug mode
-import litellm
-litellm.set_verbose = True
-
-# This will show the actual API request/response
-```
-
-### If Neo4j connection fails
-```bash
-# Verify Neo4j is running
-docker ps | grep neo4j
-
-# Test connection
-python3 test_connections.py
-```
+**Evidence Required**: `evidence/current/Evidence_ToolIntegration_Pipelines.md`
+- Show multiple pipelines working
+- Document uncertainty propagation
+- Compare to vertical slice baseline
 
 ---
 
 ## 8. Success Criteria
 
-### Minimum for Completion
-- [ ] Real Gemini extraction working (no mocks)
-- [ ] DateTime serialization fixed (no warnings)  
-- [ ] Dynamic chain discovery implemented
-- [ ] All tests passing with real components
+### Phase Completion Checkpoints
+
+#### Phase 1: Tool Inventory ✓
+- [ ] All 37 tools cataloged
+- [ ] DataTypes extended for all tool types
+- [ ] Dependencies documented
+
+#### Phase 2: Wrapper Implementation ✓
+- [ ] Universal wrapper created
+- [ ] Uncertainty assessment working
+- [ ] Legacy tool compatibility verified
+
+#### Phase 3: Tool Migration ✓
+- [ ] Document loaders (T01-T14) integrated
+- [ ] Entity tools (T15-T30) integrated
+- [ ] Graph tools (T31-T68) integrated
+- [ ] Cross-modal tools (T69-T85) integrated
+
+#### Phase 4: Testing ✓
+- [ ] 5+ different pipelines tested
+- [ ] Uncertainty propagation verified
+- [ ] Performance acceptable (<100ms overhead)
 
 ### Evidence Requirements
-Each fix MUST produce evidence showing:
-1. The problem before the fix (error messages)
-2. The code changes made
-3. The successful execution after fix
-4. No regressions in other components
+Each phase MUST produce evidence showing:
+1. Tools successfully wrapped
+2. Uncertainty values reasonable (0.01-0.9 range)
+3. Pipeline execution with real data
+4. No mocking - actual tool execution
+
+---
+
+## 9. Testing Commands
+
+```bash
+# Phase 1: Catalog tools
+python3 tool_compatability/poc/tool_catalog.py
+
+# Phase 2: Test wrapper
+python3 -c "from framework.tool_wrapper import ToolWrapper; print('Wrapper ready')"
+
+# Phase 3: Test integrated tools
+python3 tool_compatability/poc/integrated_tools/document_loaders.py
+
+# Phase 4: Test pipelines
+python3 tool_compatability/poc/test_integrated_pipelines.py
+```
+
+---
+
+## 10. Troubleshooting
+
+### If legacy tool import fails
+```python
+# Add to path
+import sys
+sys.path.append('/home/brian/projects/Digimons')
+```
+
+### If tool has no standard interface
+```python
+# Create adapter
+class ToolAdapter:
+    def __init__(self, legacy_tool):
+        self.tool = legacy_tool
+    
+    def execute(self, input_data):
+        # Map to tool's actual method
+        return self.tool.custom_method(input_data)
+```
+
+### If uncertainty seems wrong
+- Check if tool is deterministic vs probabilistic
+- Verify input data quality
+- Review uncertainty factors in config
 
 ---
 
 *Last Updated: 2025-08-27*
-*Phase: Clean Vertical Slice - Issue Resolution*
-*Priority: Fix critical issues preventing real LLM usage*
+*Phase: Tool Integration - Scale to 37 Tools*
+*Priority: Demonstrate framework scales to full tool suite*

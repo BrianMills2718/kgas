@@ -157,7 +157,26 @@ class CleanToolFramework:
                 )
                 
                 # Propagate data based on tool output
-                if tool_id == "TextLoaderV3":
+                # Handle UniversalAdapter wrapped tools
+                if 'data' in result:
+                    output_data = result['data']
+                    # Extract the actual content if it's wrapped
+                    if isinstance(output_data, dict):
+                        if 'content' in output_data:
+                            # SimpleTextLoader returns {'content': ...}
+                            current_data = output_data['content']
+                        elif 'text' in output_data:
+                            # Some tools return {'text': ...}
+                            current_data = output_data['text']
+                        elif 'entities' in output_data:
+                            # Entity extractors return entities
+                            current_data = output_data
+                        else:
+                            current_data = output_data
+                    else:
+                        current_data = output_data
+                # Handle native tools
+                elif tool_id == "TextLoaderV3":
                     current_data = result.get('text')
                 elif tool_id == "KnowledgeGraphExtractor":
                     current_data = {
@@ -167,7 +186,7 @@ class CleanToolFramework:
                 elif tool_id == "GraphPersister":
                     current_data = result
                 else:
-                    current_data = result.get('data', result)
+                    current_data = result
                     
             except Exception as e:
                 return ChainResult(

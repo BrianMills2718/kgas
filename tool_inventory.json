@@ -1,0 +1,200 @@
+{
+  "statistics": {
+    "total_tools": 7,
+    "ready": 3,
+    "needs_adapter": 0,
+    "complex": 4
+  },
+  "by_transformation": {
+    "processing": [
+      "base_tool",
+      "base_tool_fixed",
+      "tool_registry"
+    ],
+    "entity_extraction": [
+      "enhanced_mcp_tools",
+      "neo4j_graph_builder"
+    ],
+    "text_extraction": [
+      "gemini_entity_extractor"
+    ],
+    "data_loading": [
+      "simple_text_loader"
+    ]
+  },
+  "by_input": {
+    "unknown": [
+      "base_tool",
+      "base_tool_fixed",
+      "enhanced_mcp_tools",
+      "tool_registry"
+    ],
+    "str": [
+      "gemini_entity_extractor",
+      "simple_text_loader"
+    ],
+    "Dict[str, Any]": [
+      "neo4j_graph_builder"
+    ]
+  },
+  "tools": {
+    "base_tool": {
+      "tool_id": "base_tool",
+      "file_path": "/home/brian/projects/Digimons/src/tools/base_tool.py",
+      "class_name": "ToolStatus",
+      "methods": [],
+      "dependencies": [
+        "time",
+        "abc",
+        "dataclasses",
+        "psutil",
+        "typing",
+        "enum",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "base_tool_fixed": {
+      "tool_id": "base_tool_fixed",
+      "file_path": "/home/brian/projects/Digimons/src/tools/base_tool_fixed.py",
+      "class_name": "ToolStatus",
+      "methods": [],
+      "dependencies": [
+        "logging",
+        "time",
+        "abc",
+        "dataclasses",
+        "psutil",
+        "typing",
+        "enum",
+        "src.core.service_manager",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "enhanced_mcp_tools": {
+      "tool_id": "enhanced_mcp_tools",
+      "file_path": "/home/brian/projects/Digimons/src/tools/enhanced_mcp_tools.py",
+      "class_name": "EnhancedMCPTools",
+      "methods": [
+        "__init__",
+        "_register_communication_handlers",
+        "_extract_learned_parameters",
+        "get_performance_metrics",
+        "get_enhancement_status"
+      ],
+      "dependencies": [
+        "logging",
+        "orchestration.memory",
+        "time",
+        "phase1.t27_relationship_extractor_unified",
+        "orchestration.llm_reasoning",
+        "typing",
+        "asyncio",
+        "core.service_manager",
+        "orchestration.communication",
+        "phase1.t23a_spacy_ner_unified"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "entity_extraction",
+      "integration_status": "complex"
+    },
+    "gemini_entity_extractor": {
+      "tool_id": "gemini_entity_extractor",
+      "file_path": "/home/brian/projects/Digimons/src/tools/gemini_entity_extractor.py",
+      "class_name": "GeminiEntityExtractor",
+      "methods": [
+        "__init__",
+        "process"
+      ],
+      "dependencies": [
+        "dotenv",
+        "json",
+        "pathlib",
+        "typing",
+        "litellm",
+        "os"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "str",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "text_extraction",
+      "integration_status": "ready"
+    },
+    "neo4j_graph_builder": {
+      "tool_id": "neo4j_graph_builder",
+      "file_path": "/home/brian/projects/Digimons/src/tools/neo4j_graph_builder.py",
+      "class_name": "Neo4jGraphBuilder",
+      "methods": [
+        "__init__",
+        "process",
+        "cleanup"
+      ],
+      "dependencies": [
+        "neo4j",
+        "typing",
+        "os",
+        "datetime"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "Dict[str, Any]",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "entity_extraction",
+      "integration_status": "ready"
+    },
+    "simple_text_loader": {
+      "tool_id": "simple_text_loader",
+      "file_path": "/home/brian/projects/Digimons/src/tools/simple_text_loader.py",
+      "class_name": "SimpleTextLoader",
+      "methods": [
+        "__init__",
+        "process"
+      ],
+      "dependencies": [
+        "pathlib",
+        "typing"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "str",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "data_loading",
+      "integration_status": "ready"
+    },
+    "tool_registry": {
+      "tool_id": "tool_registry",
+      "file_path": "/home/brian/projects/Digimons/src/tools/tool_registry.py",
+      "class_name": "ToolCategory",
+      "methods": [],
+      "dependencies": [
+        "json",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "enum",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    }
+  }
+}

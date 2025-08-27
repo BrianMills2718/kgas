@@ -1,0 +1,480 @@
+{
+  "statistics": {
+    "total_tools": 15,
+    "ready": 3,
+    "needs_adapter": 0,
+    "complex": 12
+  },
+  "by_transformation": {
+    "processing": [
+      "base_tool",
+      "base_tool_fixed",
+      "tool_registry",
+      "t15a_text_chunker",
+      "t23a_spacy_ner",
+      "t31_entity_builder",
+      "t34_edge_builder",
+      "t49_multihop_query",
+      "vertical_slice_workflow"
+    ],
+    "entity_extraction": [
+      "enhanced_mcp_tools",
+      "neo4j_graph_builder"
+    ],
+    "text_extraction": [
+      "gemini_entity_extractor"
+    ],
+    "data_loading": [
+      "simple_text_loader",
+      "t01_pdf_loader"
+    ],
+    "extraction": [
+      "t27_relationship_extractor"
+    ]
+  },
+  "by_input": {
+    "unknown": [
+      "base_tool",
+      "base_tool_fixed",
+      "enhanced_mcp_tools",
+      "tool_registry",
+      "t01_pdf_loader",
+      "t15a_text_chunker",
+      "t23a_spacy_ner",
+      "t27_relationship_extractor",
+      "t31_entity_builder",
+      "t34_edge_builder",
+      "t49_multihop_query",
+      "vertical_slice_workflow"
+    ],
+    "str": [
+      "gemini_entity_extractor",
+      "simple_text_loader"
+    ],
+    "Dict[str, Any]": [
+      "neo4j_graph_builder"
+    ]
+  },
+  "tools": {
+    "base_tool": {
+      "tool_id": "base_tool",
+      "file_path": "/home/brian/projects/Digimons/src/tools/base_tool.py",
+      "class_name": "ToolStatus",
+      "methods": [],
+      "dependencies": [
+        "enum",
+        "abc",
+        "typing",
+        "psutil",
+        "dataclasses",
+        "time",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "base_tool_fixed": {
+      "tool_id": "base_tool_fixed",
+      "file_path": "/home/brian/projects/Digimons/src/tools/base_tool_fixed.py",
+      "class_name": "ToolStatus",
+      "methods": [],
+      "dependencies": [
+        "enum",
+        "abc",
+        "typing",
+        "psutil",
+        "src.core.service_manager",
+        "dataclasses",
+        "logging",
+        "time",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "enhanced_mcp_tools": {
+      "tool_id": "enhanced_mcp_tools",
+      "file_path": "/home/brian/projects/Digimons/src/tools/enhanced_mcp_tools.py",
+      "class_name": "EnhancedMCPTools",
+      "methods": [
+        "__init__",
+        "_register_communication_handlers",
+        "_extract_learned_parameters",
+        "get_performance_metrics",
+        "get_enhancement_status"
+      ],
+      "dependencies": [
+        "core.service_manager",
+        "typing",
+        "orchestration.memory",
+        "phase1.t23a_spacy_ner_unified",
+        "phase1.t31_entity_builder_unified",
+        "asyncio",
+        "logging",
+        "phase1.t27_relationship_extractor_unified",
+        "time",
+        "orchestration.communication"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "entity_extraction",
+      "integration_status": "complex"
+    },
+    "gemini_entity_extractor": {
+      "tool_id": "gemini_entity_extractor",
+      "file_path": "/home/brian/projects/Digimons/src/tools/gemini_entity_extractor.py",
+      "class_name": "GeminiEntityExtractor",
+      "methods": [
+        "__init__",
+        "process"
+      ],
+      "dependencies": [
+        "typing",
+        "dotenv",
+        "pathlib",
+        "json",
+        "os",
+        "litellm"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "str",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "text_extraction",
+      "integration_status": "ready"
+    },
+    "neo4j_graph_builder": {
+      "tool_id": "neo4j_graph_builder",
+      "file_path": "/home/brian/projects/Digimons/src/tools/neo4j_graph_builder.py",
+      "class_name": "Neo4jGraphBuilder",
+      "methods": [
+        "__init__",
+        "process",
+        "cleanup"
+      ],
+      "dependencies": [
+        "datetime",
+        "typing",
+        "neo4j",
+        "os"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "Dict[str, Any]",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "entity_extraction",
+      "integration_status": "ready"
+    },
+    "simple_text_loader": {
+      "tool_id": "simple_text_loader",
+      "file_path": "/home/brian/projects/Digimons/src/tools/simple_text_loader.py",
+      "class_name": "SimpleTextLoader",
+      "methods": [
+        "__init__",
+        "process"
+      ],
+      "dependencies": [
+        "typing",
+        "pathlib"
+      ],
+      "has_process_method": true,
+      "has_run_method": false,
+      "input_type": "str",
+      "output_type": "Dict[str, Any]",
+      "transformation_type": "data_loading",
+      "integration_status": "ready"
+    },
+    "tool_registry": {
+      "tool_id": "tool_registry",
+      "file_path": "/home/brian/projects/Digimons/src/tools/tool_registry.py",
+      "class_name": "ToolCategory",
+      "methods": [],
+      "dependencies": [
+        "enum",
+        "typing",
+        "dataclasses",
+        "pathlib",
+        "json",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "t01_pdf_loader": {
+      "tool_id": "t01_pdf_loader",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t01_pdf_loader.py",
+      "class_name": "PDFLoader",
+      "methods": [
+        "__init__",
+        "load_pdf",
+        "_extract_text_from_pdf",
+        "_extract_text_from_txt",
+        "_clean_extracted_text",
+        "_calculate_confidence",
+        "_complete_with_error",
+        "get_supported_formats",
+        "execute",
+        "_execute_validation_test"
+      ],
+      "dependencies": [
+        "typing",
+        "src.core.advanced_data_models",
+        "src.core.quality_service",
+        "src.core.input_validator",
+        "src.core.service_manager",
+        "sys",
+        "uuid",
+        "pypdf",
+        "src.core.memory_manager",
+        "pathlib"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "data_loading",
+      "integration_status": "complex"
+    },
+    "t15a_text_chunker": {
+      "tool_id": "t15a_text_chunker",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t15a_text_chunker.py",
+      "class_name": "TextChunker",
+      "methods": [
+        "__init__",
+        "chunk_text",
+        "_tokenize_text",
+        "_create_single_chunk",
+        "_create_overlapping_chunks",
+        "_calculate_token_positions",
+        "_complete_with_error",
+        "get_chunking_stats",
+        "execute",
+        "_execute_validation_test"
+      ],
+      "dependencies": [
+        "typing",
+        "src.core.quality_service",
+        "src.core.service_manager",
+        "uuid",
+        "src.core.provenance_service",
+        "re",
+        "src.core.identity_service",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "t23a_spacy_ner": {
+      "tool_id": "t23a_spacy_ner",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t23a_spacy_ner.py",
+      "class_name": "SpacyNER",
+      "methods": [
+        "__init__",
+        "_initialize_spacy_model",
+        "extract_entities",
+        "_calculate_entity_confidence",
+        "_get_type_confidence_score",
+        "_get_type_confidence",
+        "_calculate_entity_confidence_score",
+        "_count_entity_types",
+        "_complete_with_error",
+        "get_supported_entity_types"
+      ],
+      "dependencies": [
+        "spacy.lang.en",
+        "src.core.confidence_score",
+        "typing",
+        "src.core.quality_service",
+        "src.core.service_manager",
+        "src.core.type_mapping_service",
+        "spacy",
+        "uuid",
+        "src.core.provenance_service",
+        "src.core.identity_service"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "t27_relationship_extractor": {
+      "tool_id": "t27_relationship_extractor",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t27_relationship_extractor.py",
+      "class_name": "RelationshipExtractor",
+      "methods": [
+        "__init__",
+        "_initialize_spacy",
+        "_initialize_patterns",
+        "extract_relationships",
+        "_extract_pattern_relationships",
+        "_extract_dependency_relationships",
+        "_extract_proximity_relationships",
+        "_find_matching_entity",
+        "_find_entity_by_position",
+        "_classify_verb_relationship"
+      ],
+      "dependencies": [
+        "src.core.confidence_score",
+        "typing",
+        "src.core.quality_service",
+        "src.core.service_manager",
+        "spacy",
+        "uuid",
+        "src.core.provenance_service",
+        "re",
+        "src.core.identity_service",
+        "datetime"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "extraction",
+      "integration_status": "complex"
+    },
+    "t31_entity_builder": {
+      "tool_id": "t31_entity_builder",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t31_entity_builder.py",
+      "class_name": "EntityBuilder",
+      "methods": [
+        "__init__",
+        "build_entities",
+        "_group_mentions_by_entity",
+        "_get_entity_info",
+        "_create_neo4j_entity_node",
+        "_get_type_confidence",
+        "_calculate_entity_confidence_score",
+        "_count_entity_types",
+        "get_entity_by_neo4j_id",
+        "search_entities"
+      ],
+      "dependencies": [
+        "src.core.confidence_score",
+        "core.provenance_service",
+        "src.tools.phase1.neo4j_error_handler",
+        "typing",
+        "neo4j",
+        "src.core.quality_service",
+        "core.identity_service",
+        "src.core.service_manager",
+        "uuid",
+        "src.tools.phase1.base_neo4j_tool"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "t34_edge_builder": {
+      "tool_id": "t34_edge_builder",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t34_edge_builder.py",
+      "class_name": "EdgeBuilder",
+      "methods": [
+        "__init__",
+        "build_edges",
+        "_create_neo4j_relationship_edge",
+        "_verify_entities_exist",
+        "_calculate_edge_weight",
+        "_sanitize_relationship_type",
+        "_assess_evidence_quality",
+        "_count_relationship_types",
+        "_analyze_weight_distribution",
+        "get_relationship_by_neo4j_id"
+      ],
+      "dependencies": [
+        "core.provenance_service",
+        "src.tools.phase1.neo4j_error_handler",
+        "typing",
+        "neo4j",
+        "src.core.quality_service",
+        "core.identity_service",
+        "src.core.service_manager",
+        "uuid",
+        "src.tools.phase1.base_neo4j_tool",
+        "tools.phase1.neo4j_error_handler"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "t49_multihop_query": {
+      "tool_id": "t49_multihop_query",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/t49_multihop_query.py",
+      "class_name": "MultiHopQueryEngine",
+      "methods": [
+        "__init__",
+        "query_graph",
+        "execute",
+        "get_tool_info"
+      ],
+      "dependencies": [
+        "core.provenance_service",
+        "src.tools.phase1.neo4j_error_handler",
+        "typing",
+        "neo4j",
+        "src.core.quality_service",
+        "core.identity_service",
+        "src.core.service_manager",
+        "traceback",
+        "uuid",
+        "src.tools.phase1.base_neo4j_tool"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    },
+    "vertical_slice_workflow": {
+      "tool_id": "vertical_slice_workflow",
+      "file_path": "/home/brian/projects/Digimons/archive/archived/legacy_tools_2025_07_23/vertical_slice_workflow.py",
+      "class_name": "VerticalSliceWorkflow",
+      "methods": [
+        "__init__",
+        "execute_pdf_workflow",
+        "execute_workflow",
+        "execute"
+      ],
+      "dependencies": [
+        "typing",
+        "src.core.pipeline_orchestrator",
+        "src.core.config_manager",
+        "src.core.tool_factory",
+        "warnings",
+        "pathlib"
+      ],
+      "has_process_method": false,
+      "has_run_method": false,
+      "input_type": "unknown",
+      "output_type": "unknown",
+      "transformation_type": "processing",
+      "integration_status": "complex"
+    }
+  }
+}
