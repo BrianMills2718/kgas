@@ -1,6 +1,7 @@
 """Simple vector embedding service"""
 import os
-from openai import OpenAI
+import time
+from openai import OpenAI, AuthenticationError, RateLimitError
 from dotenv import load_dotenv
 
 load_dotenv('/home/brian/projects/Digimons/.env')
@@ -13,12 +14,23 @@ class VectorService:
         self.model = "text-embedding-3-small"
     
     def embed_text(self, text: str) -> list:
-        """Get embedding for text"""
+        """Get embedding with error handling"""
         if not text:
-            return [0.0] * 1536  # Return zero vector for empty text
+            return [0.0] * 1536
         
-        response = self.client.embeddings.create(
-            input=text,
-            model=self.model
-        )
-        return response.data[0].embedding
+        try:
+            response = self.client.embeddings.create(
+                input=text,
+                model=self.model
+            )
+            return response.data[0].embedding
+        except AuthenticationError:
+            print("❌ Invalid API key")
+            raise
+        except RateLimitError:
+            print("⚠️ Rate limited, waiting 1s...")
+            time.sleep(1)
+            return self.embed_text(text)  # Retry once
+        except Exception as e:
+            print(f"❌ Embedding failed: {e}")
+            return [0.0] * 1536  # Fallback to zero vector

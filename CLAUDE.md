@@ -1,156 +1,133 @@
 # KGAS Implementation Guide
 
 ## 1. Coding Philosophy (MANDATORY)
-- **NO LAZY IMPLEMENTATIONS**: Full implementations only
-- **FAIL-FAST**: Surface errors immediately, no error suppression
-- **KISS**: Keep It Simple - avoid over-engineering
-- **TEST PROPERLY**: Unit tests, integration tests, error cases
+- **NO LAZY IMPLEMENTATIONS**: Full implementations only, no mocking/stubs/fallbacks
+- **FAIL-FAST**: Surface errors immediately, don't hide them
+- **KISS**: Keep It Simple - but include necessary architectural patterns
+- **TEST DRIVEN**: Write tests first where possible
+- **EVIDENCE-BASED**: All claims require raw evidence in structured evidence files
 
 ---
 
-## 2. CURRENT SPRINT (2025-08-29)
+## 2. CODEBASE OVERVIEW (Post-Cleanup 2025-08-29)
 
-### 🎯 Sprint Focus: Add Vector & Table Services
-**Objective**: Add vector embeddings and table storage capabilities
-**Time**: 1 hour  
-**Guide**: `/home/brian/projects/Digimons/docs/architecture/SERVICE_IMPLEMENTATION_SIMPLE.md`
+### 🎯 **Current System Architecture**
+**Primary Development**: `/tool_compatability/poc/vertical_slice/` - Clean tool framework with working adapters
+**Main Codebase**: `/src/` - Full system with 37+ tools, analytics, UI components
+**Thesis Goal**: Extensible modular tool suite for dynamic analysis chain creation
 
-### Implementation Checklist
-- [ ] Run verify_setup.py - single check for everything
-- [ ] Create VectorService (20 lines, just calls OpenAI)
-- [ ] Create TableService (40 lines, just SQLite operations)
-- [ ] Run test_services.py - proper unit & integration tests
-- [ ] Test simple_pipeline.py - direct service usage
+### **Key Directories**
+```
+/tool_compatability/poc/vertical_slice/  # Active development (FOCUS HERE)
+├── framework/          # Tool orchestration engine  
+├── services/          # VectorService, TableService (working)
+├── tools/             # VectorTool, TableTool adapters (working)
+└── thesis_evidence/   # Ground truth data collection
 
-### Why Simple Plan?
-- **No unnecessary wrappers** - Services used directly
-- **No BFS chain discovery** - We know what to call
-- **Proper testing** - Unit, integration, and error tests
-- **Clear success criteria** - Tests pass or fail
+/src/                  # Main system implementation
+├── tools/            # 37+ production tools  
+├── analytics/        # Cross-modal analysis
+├── mcp/             # MCP protocol layer
+└── ui/              # Current UI system
+
+/docs/               # Documentation & schemas
+/tests/integration/  # 60+ integration tests (needs audit)
+/experiments/        # Research experiments (keep)
+```
+
+### **Entry Points** 
+- `main.py` - Production FastAPI server
+- `streamlit_app.py` - Academic UI for ontology generation  
+- `kgas_mcp_server.py` - Full MCP server (37+ tools)
+- `kgas_simple_mcp_server.py` - Simple MCP server (testing)
+
+### **What Actually Works**
+✅ Basic tool chaining (text → embedding → database)
+✅ Tool registration with capabilities  
+✅ Chain discovery (TEXT→VECTOR→TABLE)
+✅ Adapter pattern integration
+✅ Neo4j + SQLite storage
+
+### **What Needs Implementation**
+❌ Real uncertainty propagation (currently hardcoded 0.0)
+❌ Meaningful reasoning traces (currently templates)  
+❌ Verified provenance tracking
+❌ Multi-modal pipelines (text+table+graph)
+❌ Dynamic goal evaluation
+❌ Graph operations integration
 
 ---
 
-## 3. CODEBASE STRUCTURE
+## 3. CURRENT SPRINT (2025-08-29 - Documentation Audit COMPLETE)
 
-### Active Implementation
-**Location**: `/home/brian/projects/Digimons/tool_compatability/poc/vertical_slice/`
-- **PURPOSE**: POC for testing service integration patterns
-- **NOT A REPLACEMENT**: Testing patterns to apply back to main `/src` codebase
-- **FOCUS**: Proving simple, working patterns
+### ✅ **Major Accomplishments**
+1. **Root Directory Organized** - Eliminated file chaos, archived duplicates
+2. **"4 Entry Points" Problem SOLVED** - `apps/` directory duplication was the source
+3. **Enterprise Cruft Removed** - Archived k8s/, SLA configs (not thesis-relevant)
+4. **Clear System Architecture** - Identified vertical_slice as primary development
+5. **Thesis Requirements Documented** - Clear goals in THESIS_REQUIREMENTS.md
 
-### What We're Building
-```
-services/
-├── vector_service.py    # NEW: OpenAI embeddings (20 lines)
-└── table_service.py     # NEW: SQLite storage (40 lines)
+### **Files Organized/Archived**
+- ✅ 6 CLAUDE*.md variants → archived (kept only current)
+- ✅ Test files → moved to `/tests/integration/`
+- ✅ Config files → moved to `/config/build/`
+- ✅ Schema files → moved to `/docs/schemas/`
+- ✅ Enterprise files → archived (SLA, k8s, performance monitoring)
 
-tests/
-├── test_services.py     # Unit & integration tests
-└── simple_pipeline.py   # Direct service usage example
-```
-
-### What Already Exists
-```
-tools/
-├── text_loader_v3.py    # File loading with OCR detection
-├── knowledge_graph_extractor.py  # Gemini extraction
-└── graph_persister_v2.py # Neo4j with document isolation
-
-services/
-├── crossmodal_service.py  # Graph↔Table (partial)
-├── identity_service_v3.py # Entity deduplication (partial)
-└── provenance_enhanced.py # Operation tracking (partial)
-```
+### **Next Priority Tasks**
+1. **Test Suite Audit** - 60+ integration tests need consolidation  
+2. **UI Strategy Decision** - Current `/src/ui/` vs recovered React components
+3. **Real Uncertainty Implementation** - Replace hardcoded 0.0 values
+4. **Graph Tools Integration** - Add text→graph, graph analysis capabilities
 
 ---
 
 ## 4. INFRASTRUCTURE
 
+### **Working Directory**
+`/home/brian/projects/Digimons/tool_compatability/poc/vertical_slice/`
+
+### **Database Configuration**
 - **Neo4j**: `bolt://localhost:7687` (neo4j/devpassword)
-- **SQLite**: `vertical_slice.db` (use vs2_ prefix for new tables)
-- **OpenAI**: text-embedding-3-small model
-- **Gemini**: gemini-1.5-flash via litellm
-- **Config**: API keys in `/home/brian/projects/Digimons/.env`
+- **SQLite**: `vertical_slice.db` (vs2_ prefix for tables)
+- **OpenAI**: text-embedding-3-small via OPENAI_API_KEY in .env
+- **Gemini**: gemini/gemini-1.5-flash via GEMINI_API_KEY in .env
 
----
-
-## 5. TESTING APPROACH
-
-### Systematic Testing Plan
-```python
-# 1. Unit Tests (test each service)
-test_vector_service()  # Test embedding generation
-test_table_service()   # Test data storage
-
-# 2. Integration Tests (services together)
-test_integration()     # Vector + Table working together
-
-# 3. Error Cases
-test_empty_inputs()    # Handle edge cases
-test_api_failures()    # Handle external failures
-```
-
-### Success Criteria
-- All unit tests pass
-- Integration tests pass
-- Error cases handled gracefully
-- No "count ✅ symbols" nonsense
-
----
-
-## 6. PERMANENT REFERENCES
-
-### Implementation Guides
-| Guide | Purpose | Complexity |
-|-------|---------|------------|
-| `SERVICE_IMPLEMENTATION_SIMPLE.md` | Current sprint - KISS approach | Simple |
-| `SERVICE_TOOL_IMPLEMENTATION_BULLETPROOF_V2.md` | Over-engineered version | Complex |
-| `VERTICAL_SLICE_INTEGRATION_PLAN_REVISED.md` | Future phases | Medium |
-
-### Architecture Docs
-- `VERTICAL_SLICE_20250826.md` - System design
-- `UNCERTAINTY_20250825.md` - Propagation model
-- `/architecture_review_20250808/` - Why we're in vertical_slice not /src
-
----
-
-## 7. RECENT WORK & STATUS
-
-### Completed ✅
-- Document isolation in Neo4j
-- Gemini retry mechanism (10 attempts, exponential backoff)
-- Entity extraction evaluation (F1: 0.413, separate concern)
-
-### Current Sprint
-- Adding VectorService (NEW capability)
-- Adding TableService (NEW capability)
-- No complex wrappers, just simple services
-
-### Known Issues
-- Only 3/6 services integrated
-- CrossModalService only works graph→table
-- Main `/src` has architectural debt (see Aug 8 review)
-
----
-
-## 8. QUICK COMMANDS
-
+### **Quick Verification Commands**
 ```bash
-# Verify setup (one command)
+# Test working adapters
 cd /home/brian/projects/Digimons/tool_compatability/poc/vertical_slice
-python3 verify_setup.py
+python3 register_with_framework.py  # Should show "Chain found: ['VectorTool', 'TableTool']"
+python3 test_integration.py         # Should show "✅ Integration successful"
 
-# Run all tests
-python3 test_services.py
-
-# Test pipeline
-python3 simple_pipeline.py
-
-# Check what's in database
-sqlite3 vertical_slice.db "SELECT COUNT(*) FROM vs2_embeddings;"
+# Check database
+python3 -c "
+import sqlite3
+conn = sqlite3.connect('vertical_slice.db')
+count = conn.execute('SELECT COUNT(*) FROM vs2_embeddings').fetchone()[0]
+print(f'Embeddings in database: {count}')
+"
 ```
 
 ---
 
-*Last Updated: 2025-08-29*
-*Philosophy: Keep It Simple, Test It Properly*
+## 5. DOCUMENTATION REFERENCES
+
+### **Key Documents**
+- `/tool_compatability/poc/vertical_slice/THESIS_REQUIREMENTS.md` - Clear system goals
+- `/tool_compatability/poc/vertical_slice/DOCUMENTATION_AUDIT.md` - Complete cleanup record
+- `/tool_compatability/poc/vertical_slice/RECONCILIATION_PLAN.md` - Architecture decisions
+
+### **Evidence Files**
+- `/tool_compatability/poc/vertical_slice/evidence/current/Evidence_ServiceIntegration.md` - Working adapter proof
+
+### **Working Implementation** (Completed Previous Sprint)
+- VectorTool & TableTool adapters (text → embedding → database)
+- Framework registration with capabilities
+- Chain discovery and execution  
+- Error handling for API failures
+
+---
+
+*Last Updated: 2025-08-29 (Documentation Audit Complete)*
+*Next Phase: Feature Development (uncertainty, graph tools, dynamic chains)*
