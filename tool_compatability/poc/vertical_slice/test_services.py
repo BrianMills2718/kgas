@@ -1,104 +1,139 @@
 #!/usr/bin/env python3
-"""Test all services are working correctly"""
+"""Simple, systematic tests for services"""
 
-from neo4j import GraphDatabase
-import pandas as pd
-from services.crossmodal_service import CrossModalService
-from services.identity_service_v3 import IdentityServiceV3
-from services.provenance_enhanced import ProvenanceEnhanced
+import sys
+import json
+sys.path.append('/home/brian/projects/Digimons')
 
-def test_crossmodal_service():
-    """Test CrossModalService graph↔table conversions"""
-    print("\n=== Testing CrossModalService ===")
+def test_vector_service():
+    """Test VectorService"""
+    print("\nTesting VectorService...")
+    errors = []
     
-    # Setup
-    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "devpassword"))
-    service = CrossModalService(driver, "vertical_slice.db")
-    
-    # Create test data in Neo4j
-    with driver.session() as session:
-        # Clean up first - detach delete to handle relationships
-        session.run("MATCH (n:VSEntity) DETACH DELETE n")
+    try:
+        from services.vector_service import VectorService
+        service = VectorService()
         
-        # Create test entities
-        session.run("""
-            CREATE (e1:VSEntity {entity_id: 'test_1', canonical_name: 'Test Entity 1', entity_type: 'person'})
-            CREATE (e2:VSEntity {entity_id: 'test_2', canonical_name: 'Test Entity 2', entity_type: 'organization'})
-            CREATE (e1)-[:WORKS_FOR]->(e2)
-        """)
+        # Test 1: Basic embedding
+        embedding = service.embed_text("test")
+        if len(embedding) != 1536:
+            errors.append(f"Wrong embedding size: {len(embedding)}")
+        
+        # Test 2: Empty text
+        empty_embedding = service.embed_text("")
+        if len(empty_embedding) != 1536:
+            errors.append("Empty text should return zero vector")
+        
+        # Test 3: Different texts give different embeddings
+        emb1 = service.embed_text("hello")
+        emb2 = service.embed_text("goodbye")
+        if emb1 == emb2:
+            errors.append("Different texts gave same embedding")
+            
+    except Exception as e:
+        errors.append(f"VectorService failed: {e}")
     
-    # Test graph_to_table
-    entity_df = service.graph_to_table(['test_1', 'test_2'])
-    print(f"✅ graph_to_table: Exported {len(entity_df)} entities")
-    
-    # Test table_to_graph
-    test_relationships = pd.DataFrame([
-        {'source': 'test_1', 'target': 'test_2', 'relationship_type': 'COLLABORATES', 'properties': {}}
-    ])
-    result = service.table_to_graph(test_relationships)
-    print(f"✅ table_to_graph: Created {result['edges_created']} edges")
-    
-    # Cleanup
-    with driver.session() as session:
-        session.run("MATCH (n:VSEntity) DETACH DELETE n")
-    
-    driver.close()
-    
-def test_identity_service():
-    """Test IdentityServiceV3 entity deduplication"""
-    print("\n=== Testing IdentityServiceV3 ===")
-    
-    # Setup
-    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "devpassword"))
-    service = IdentityServiceV3(driver)
-    
-    # Create test entities
-    with driver.session() as session:
-        session.run("MATCH (n:VSEntity) DETACH DELETE n")
-        session.run("""
-            CREATE (e1:VSEntity {entity_id: 'id_1', canonical_name: 'John Smith'})
-            CREATE (e2:VSEntity {entity_id: 'id_2', canonical_name: 'John Smith Jr.'})
-            CREATE (e3:VSEntity {entity_id: 'id_3', canonical_name: 'Jane Doe'})
-        """)
-    
-    # Test find_similar_entities
-    similar = service.find_similar_entities("john")
-    print(f"✅ find_similar_entities: Found {len(similar)} entities matching 'john'")
-    for entity in similar:
-        print(f"   - {entity['name']} (id: {entity['id']})")
-    
-    # Cleanup
-    with driver.session() as session:
-        session.run("MATCH (n:VSEntity) DETACH DELETE n")
-    
-    driver.close()
+    if errors:
+        print("❌ VectorService tests failed:")
+        for error in errors:
+            print(f"  - {error}")
+        return False
+    else:
+        print("✅ VectorService: All tests passed")
+        return True
 
-def test_provenance_service():
-    """Test ProvenanceEnhanced tracking"""
-    print("\n=== Testing ProvenanceEnhanced ===")
+def test_table_service():
+    """Test TableService"""
+    print("\nTesting TableService...")
+    errors = []
     
-    service = ProvenanceEnhanced("vertical_slice.db")
+    try:
+        from services.table_service import TableService
+        service = TableService('test.db')  # Use test database
+        
+        # Test 1: Save embedding
+        emb_id = service.save_embedding("test", [1.0, 2.0, 3.0])
+        if not emb_id:
+            errors.append("Failed to save embedding")
+        
+        # Test 2: Save data
+        data_id = service.save_data("test_key", {"value": 123})
+        if not data_id:
+            errors.append("Failed to save data")
+        
+        # Test 3: Retrieve embeddings
+        embeddings = service.get_embeddings(1)
+        if not embeddings or embeddings[0]['text'] != 'test':
+            errors.append("Failed to retrieve embedding")
+            
+    except Exception as e:
+        errors.append(f"TableService failed: {e}")
+    finally:
+        # Cleanup test database
+        import os
+        if os.path.exists('test.db'):
+            os.remove('test.db')
     
-    # Test track_operation
-    op_id = service.track_operation(
-        tool_id="TextLoader",
-        operation="text_extraction",
-        inputs={"file": "test.pdf"},
-        outputs={"text": "Sample text", "length": 100},
-        uncertainty=0.15,
-        reasoning="PDF extraction may have OCR errors",
-        construct_mapping="file_path → character_sequence"
-    )
-    print(f"✅ track_operation: Created operation {op_id}")
+    if errors:
+        print("❌ TableService tests failed:")
+        for error in errors:
+            print(f"  - {error}")
+        return False
+    else:
+        print("✅ TableService: All tests passed")
+        return True
+
+def test_integration():
+    """Test services working together"""
+    print("\nTesting Integration...")
+    errors = []
     
-    # Test get_operation_chain
-    chain = service.get_operation_chain(op_id)
-    print(f"✅ get_operation_chain: Retrieved {len(chain)} operations")
-    for op in chain:
-        print(f"   - {op['tool_id']}: {op['construct_mapping']} (uncertainty: {op['uncertainty']})")
+    try:
+        from services.vector_service import VectorService
+        from services.table_service import TableService
+        
+        vector_svc = VectorService()
+        table_svc = TableService('test_integration.db')
+        
+        # Generate embedding and store it
+        text = "Integration test"
+        embedding = vector_svc.embed_text(text)
+        row_id = table_svc.save_embedding(text, embedding)
+        
+        # Verify storage
+        stored = table_svc.get_embeddings(1)
+        if not stored:
+            errors.append("Failed to store/retrieve embedding")
+        else:
+            stored_emb = json.loads(stored[0]['embedding'])
+            if len(stored_emb) != 1536:
+                errors.append("Stored embedding has wrong size")
+                
+    except Exception as e:
+        errors.append(f"Integration failed: {e}")
+    finally:
+        import os
+        if os.path.exists('test_integration.db'):
+            os.remove('test_integration.db')
+    
+    if errors:
+        print("❌ Integration tests failed:")
+        for error in errors:
+            print(f"  - {error}")
+        return False
+    else:
+        print("✅ Integration: All tests passed")
+        return True
 
 if __name__ == "__main__":
-    test_crossmodal_service()
-    test_identity_service()
-    test_provenance_service()
-    print("\n✅ All services tested successfully!")
+    all_pass = True
+    all_pass &= test_vector_service()
+    all_pass &= test_table_service()
+    all_pass &= test_integration()
+    
+    print("\n" + "="*50)
+    if all_pass:
+        print("✅ ALL TESTS PASSED")
+    else:
+        print("❌ SOME TESTS FAILED")
+        sys.exit(1)
