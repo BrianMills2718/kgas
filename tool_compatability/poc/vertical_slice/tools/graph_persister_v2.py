@@ -28,7 +28,7 @@ class GraphPersisterV2:
         # Generate unique extraction run ID for this session
         self.extraction_run_id = f"run_{uuid.uuid4().hex[:12]}"
     
-    def process(self, kg_data: Dict, metadata: Optional[Dict] = None) -> Dict[str, Any]:
+    def process(self, kg_data: Dict, metadata: Optional[Dict] = None, **kwargs) -> Dict[str, Any]:
         """
         Persist knowledge graph with document tracking
         

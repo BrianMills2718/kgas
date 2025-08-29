@@ -1,19 +1,19 @@
 {
-  "timestamp": "2025-08-27T15:29:37.794067",
+  "timestamp": "2025-08-28T11:10:48.930216",
   "total_documents": 10,
   "overall_metrics": {
-    "mean_f1": 0.2938380089021634,
-    "mean_precision": 0.2586524586524586,
-    "mean_recall": 0.35041666666666665,
-    "mean_uncertainty_error": 0.2637198151629072
+    "mean_f1": 0.4127140002866616,
+    "mean_precision": 0.36285880785880786,
+    "mean_recall": 0.48875,
+    "mean_uncertainty_error": 0.1436
   },
   "by_complexity": {
     "simple": {
       "count": 3,
-      "mean_f1": 0.2349206349206349,
-      "mean_precision": 0.21011904761904762,
-      "mean_recall": 0.27499999999999997,
-      "mean_uncertainty_error": 0.414578947368421
+      "mean_f1": 0.419515618108184,
+      "mean_precision": 0.3860449735449736,
+      "mean_recall": 0.4694444444444444,
+      "mean_uncertainty_error": 0.223
     },
     "technical": {
       "count": 2,
@@ -24,24 +24,24 @@
     },
     "ambiguous": {
       "count": 2,
-      "mean_f1": 0.33670226290363586,
-      "mean_precision": 0.30833333333333335,
-      "mean_recall": 0.375,
-      "mean_uncertainty_error": 0.05099999999999999
+      "mean_f1": 0.37816764132553604,
+      "mean_precision": 0.3333333333333333,
+      "mean_recall": 0.4375,
+      "mean_uncertainty_error": 0.015000000000000013
     },
     "noisy": {
       "count": 2,
-      "mean_f1": 0.4142156862745098,
-      "mean_precision": 0.373015873015873,
-      "mean_recall": 0.46875,
-      "mean_uncertainty_error": 0.30646874999999996
+      "mean_f1": 0.690237789993777,
+      "mean_precision": 0.6051587301587302,
+      "mean_recall": 0.80625,
+      "mean_uncertainty_error": 0.11900000000000002
     },
     "mixed": {
       "count": 1,
       "mean_f1": 0.3157894736842105,
       "mean_precision": 0.2727272727272727,
       "mean_recall": 0.375,
-      "mean_uncertainty_error": 0.4825238095238095
+      "mean_uncertainty_error": 0.303
     }
   }
 }

@@ -109,6 +109,7 @@ class CleanToolFramework:
         reasonings = []
         construct_mappings = []
         current_data = input_data
+        original_input = input_data  # Save for metadata generation
         
         for tool_id in chain:
             if tool_id not in self.tools:
@@ -128,7 +129,16 @@ class CleanToolFramework:
             
             # Execute tool
             try:
-                result = tool.process(current_data)
+                # Pass metadata to GraphPersisterV2 for document isolation
+                if tool_id == "GraphPersisterV2" or tool_id == "GraphPersister":
+                    # Generate document_id from initial input if it was a file
+                    metadata = {}
+                    if isinstance(original_input, str) and Path(original_input).exists():
+                        metadata['document_id'] = Path(original_input).stem
+                        metadata['source_file'] = original_input
+                    result = tool.process(current_data, metadata)
+                else:
+                    result = tool.process(current_data)
                 
                 if not result.get('success', False):
                     return ChainResult(
@@ -183,7 +193,7 @@ class CleanToolFramework:
                         'entities': result.get('entities', []),
                         'relationships': result.get('relationships', [])
                     }
-                elif tool_id == "GraphPersister":
+                elif tool_id == "GraphPersister" or tool_id == "GraphPersisterV2":
                     current_data = result
                 else:
                     current_data = result
@@ -243,7 +253,7 @@ if __name__ == "__main__":
     
     # Import tools
     from tools.text_loader_v3 import TextLoaderV3
-    from tools.graph_persister import GraphPersister
+    from tools.graph_persister_v2 import GraphPersisterV2
     
     # Create tool instances
     text_loader = TextLoaderV3()
@@ -269,7 +279,7 @@ if __name__ == "__main__":
             }
     
     kg_extractor = MockKGExtractor()
-    graph_persister = GraphPersister(framework.neo4j, framework.identity, framework.crossmodal)
+    graph_persister = GraphPersisterV2(framework.neo4j, framework.identity, framework.crossmodal)
     
     # Register tools
     framework.register_tool(text_loader, ToolCapabilities(

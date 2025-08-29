@@ -74,7 +74,7 @@ class ThesisEvidenceCollector:
         from framework.clean_framework import CleanToolFramework, ToolCapabilities, DataType
         from tools.text_loader_v3 import TextLoaderV3
         from tools.knowledge_graph_extractor import KnowledgeGraphExtractor
-        from tools.graph_persister import GraphPersister
+        from tools.graph_persister_v2 import GraphPersisterV2
         
         # Store DataType for use in other methods
         self.DataType = DataType
@@ -103,9 +103,9 @@ class ThesisEvidenceCollector:
         ))
         
         self.framework.register_tool(
-            GraphPersister(self.framework.neo4j, self.framework.identity, self.framework.crossmodal),
+            GraphPersisterV2(self.framework.neo4j, self.framework.identity, self.framework.crossmodal),
             ToolCapabilities(
-                tool_id="GraphPersister",
+                tool_id="GraphPersisterV2",
                 input_type=DataType.KNOWLEDGE_GRAPH,
                 output_type=DataType.NEO4J_GRAPH,
                 input_construct="knowledge_graph",

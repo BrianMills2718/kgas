@@ -3,7 +3,7 @@ commit and then update CLAUDE.md to clear out resolved tasks and populate it wit
 ## Core CLAUDE.md Requirements
 ### 1. Coding Philosophy Section (Mandatory)
 Every CLAUDE.md must include:
-- **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
+- **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks /pseudo-code/simplified implementations
 - **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
 - **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files
 - **Use Test Driven Design where possible.

@@ -1,139 +1,156 @@
-# KGAS Uncertainty System - Implementation Guide
+# KGAS Implementation Guide
 
 ## 1. Coding Philosophy (MANDATORY)
+- **NO LAZY IMPLEMENTATIONS**: Full implementations only
+- **FAIL-FAST**: Surface errors immediately, no error suppression
+- **KISS**: Keep It Simple - avoid over-engineering
+- **TEST PROPERLY**: Unit tests, integration tests, error cases
 
-### Core Principles
-- **NO LAZY IMPLEMENTATIONS**: No mocking/stubs/fallbacks/pseudo-code/simplified implementations
-- **FAIL-FAST PRINCIPLES**: Surface errors immediately, don't hide them
-- **EVIDENCE-BASED DEVELOPMENT**: All claims require raw evidence in structured evidence files  
-- **TEST DRIVEN DESIGN**: Write tests first where possible
+---
 
-### Evidence Requirements
+## 2. CURRENT SPRINT (2025-08-29)
+
+### 🎯 Sprint Focus: Add Vector & Table Services
+**Objective**: Add vector embeddings and table storage capabilities
+**Time**: 1 hour  
+**Guide**: `/home/brian/projects/Digimons/docs/architecture/SERVICE_IMPLEMENTATION_SIMPLE.md`
+
+### Implementation Checklist
+- [ ] Run verify_setup.py - single check for everything
+- [ ] Create VectorService (20 lines, just calls OpenAI)
+- [ ] Create TableService (40 lines, just SQLite operations)
+- [ ] Run test_services.py - proper unit & integration tests
+- [ ] Test simple_pipeline.py - direct service usage
+
+### Why Simple Plan?
+- **No unnecessary wrappers** - Services used directly
+- **No BFS chain discovery** - We know what to call
+- **Proper testing** - Unit, integration, and error tests
+- **Clear success criteria** - Tests pass or fail
+
+---
+
+## 3. CODEBASE STRUCTURE
+
+### Active Implementation
+**Location**: `/home/brian/projects/Digimons/tool_compatability/poc/vertical_slice/`
+- **PURPOSE**: POC for testing service integration patterns
+- **NOT A REPLACEMENT**: Testing patterns to apply back to main `/src` codebase
+- **FOCUS**: Proving simple, working patterns
+
+### What We're Building
 ```
-evidence/
-├── current/
-│   └── Evidence_[Task].md   # Current work only
-├── completed/
-│   └── Evidence_*.md         # Archived completed work
+services/
+├── vector_service.py    # NEW: OpenAI embeddings (20 lines)
+└── table_service.py     # NEW: SQLite storage (40 lines)
+
+tests/
+├── test_services.py     # Unit & integration tests
+└── simple_pipeline.py   # Direct service usage example
+```
+
+### What Already Exists
+```
+tools/
+├── text_loader_v3.py    # File loading with OCR detection
+├── knowledge_graph_extractor.py  # Gemini extraction
+└── graph_persister_v2.py # Neo4j with document isolation
+
+services/
+├── crossmodal_service.py  # Graph↔Table (partial)
+├── identity_service_v3.py # Entity deduplication (partial)
+└── provenance_enhanced.py # Operation tracking (partial)
 ```
 
 ---
 
-## 2. PERMANENT INFORMATION -- DO NOT REMOVE
+## 4. INFRASTRUCTURE
 
-### Planning Documents
-- **`/docs/architecture/VERTICAL_SLICE_20250826.md`** - Complete vertical slice design & implementation plan
-- **`/docs/architecture/UNCERTAINTY_20250825.md`** - Uncertainty propagation model specification
-- **`/docs/PHASE_C_FUTURE_WORK.md`** - Long-term roadmap beyond MVP
-
-### Codebase Structure
-```
-tool_compatability/poc/vertical_slice/
-├── tools/                          # Core pipeline tools
-│   ├── text_loader_v3.py          # OCR detection, file loading
-│   ├── knowledge_graph_extractor.py # Gemini LLM extraction
-│   ├── graph_persister_v2.py      # Neo4j with document isolation
-├── framework/
-│   ├── clean_framework_v2.py      # Pipeline orchestration with metadata
-├── services/
-│   ├── identity_service_v3.py     # Entity deduplication (partial)
-│   ├── crossmodal_service.py      # Graph↔Table conversion (partial)
-│   ├── provenance_enhanced.py     # Operation tracking (partial)
-├── thesis_evidence/
-│   └── evidence_collector.py      # Evaluation framework
-```
-
-### Infrastructure
 - **Neo4j**: `bolt://localhost:7687` (neo4j/devpassword)
-- **SQLite**: `vertical_slice.db`
-- **Gemini API**: Via `.env` file at `/home/brian/projects/Digimons/.env`
-- **Model**: `gemini/gemini-1.5-flash` via litellm
+- **SQLite**: `vertical_slice.db` (use vs2_ prefix for new tables)
+- **OpenAI**: text-embedding-3-small model
+- **Gemini**: gemini-1.5-flash via litellm
+- **Config**: API keys in `/home/brian/projects/Digimons/.env`
 
 ---
 
-## 3. Current Sprint (Week of 2025-08-26)
+## 5. TESTING APPROACH
 
-### Objective
-Fix document isolation and achieve accurate F1 scores for thesis evidence.
+### Systematic Testing Plan
+```python
+# 1. Unit Tests (test each service)
+test_vector_service()  # Test embedding generation
+test_table_service()   # Test data storage
 
-### Recently Completed ✅
-- Document isolation in Neo4j (GraphPersisterV2 with document_id tagging)
-- Improved Gemini retry mechanism (10 attempts, exponential backoff)
-- Fixed entity/relationship matching (case-insensitive)
-- OCR error detection in TextLoaderV3
+# 2. Integration Tests (services together)
+test_integration()     # Vector + Table working together
 
-### Active Issues
-1. **F1 Score Accuracy**: Was 0.033 due to Neo4j accumulation, should be ~0.9 with isolation
-2. **Service Integration**: Only 3/6 services connected to pipeline
-3. **Uncertainty Correlation**: Negative correlation needs investigation with clean data
+# 3. Error Cases
+test_empty_inputs()    # Handle edge cases
+test_api_failures()    # Handle external failures
+```
 
-### Next Steps
-1. Re-run thesis collection with GraphPersisterV2 document isolation
-2. Verify F1 scores improve to expected ~0.9
-3. Integrate ProvenanceEnhanced for operation tracking
-4. Connect IdentityService for cross-document entity resolution
+### Success Criteria
+- All unit tests pass
+- Integration tests pass
+- Error cases handled gracefully
+- No "count ✅ symbols" nonsense
 
 ---
 
-## 4. Quick Commands
+## 6. PERMANENT REFERENCES
+
+### Implementation Guides
+| Guide | Purpose | Complexity |
+|-------|---------|------------|
+| `SERVICE_IMPLEMENTATION_SIMPLE.md` | Current sprint - KISS approach | Simple |
+| `SERVICE_TOOL_IMPLEMENTATION_BULLETPROOF_V2.md` | Over-engineered version | Complex |
+| `VERTICAL_SLICE_INTEGRATION_PLAN_REVISED.md` | Future phases | Medium |
+
+### Architecture Docs
+- `VERTICAL_SLICE_20250826.md` - System design
+- `UNCERTAINTY_20250825.md` - Propagation model
+- `/architecture_review_20250808/` - Why we're in vertical_slice not /src
+
+---
+
+## 7. RECENT WORK & STATUS
+
+### Completed ✅
+- Document isolation in Neo4j
+- Gemini retry mechanism (10 attempts, exponential backoff)
+- Entity extraction evaluation (F1: 0.413, separate concern)
+
+### Current Sprint
+- Adding VectorService (NEW capability)
+- Adding TableService (NEW capability)
+- No complex wrappers, just simple services
+
+### Known Issues
+- Only 3/6 services integrated
+- CrossModalService only works graph→table
+- Main `/src` has architectural debt (see Aug 8 review)
+
+---
+
+## 8. QUICK COMMANDS
 
 ```bash
-# Test document isolation
+# Verify setup (one command)
 cd /home/brian/projects/Digimons/tool_compatability/poc/vertical_slice
-python3 test_document_isolation.py
+python3 verify_setup.py
 
-# Run thesis evidence collection
-cd thesis_evidence
-python3 run_thesis_collection.py
+# Run all tests
+python3 test_services.py
 
-# Test specific tool
-python3 -c "from tools.text_loader_v3 import TextLoaderV3; t = TextLoaderV3(); print(t.process('test.txt'))"
+# Test pipeline
+python3 simple_pipeline.py
 
-# Check Neo4j for document entities
-python3 -c "
-from neo4j import GraphDatabase
-driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'devpassword'))
-with driver.session() as s:
-    result = s.run('MATCH (e:VSEntity) RETURN e.document_id, count(e)')
-    for r in result: print(r)
-"
+# Check what's in database
+sqlite3 vertical_slice.db "SELECT COUNT(*) FROM vs2_embeddings;"
 ```
 
 ---
 
-## 5. Integration Status
-
-### Working ✅
-- TextLoaderV3 → KnowledgeGraphExtractor → GraphPersisterV2 pipeline
-- Document isolation in Neo4j
-- Basic uncertainty propagation (physics-style)
-- Thesis evidence collection framework
-
-### Partially Integrated ⚠️
-- CrossModalService (graph→table export works, reverse not tested)
-- IdentityService (finds similar entities, merge not integrated)
-- ProvenanceEnhanced (tracks operations, not connected to pipeline)
-
-### Not Integrated ❌
-- ServiceBridge, CompositionService, PiiService from src/core/
-- YAML configuration loading
-- Full KGAS architecture vision
-
----
-
-## 6. Known Issues & Workarounds
-
-### Issue: Gemini API Overload
-**Workaround**: Implemented 10-retry exponential backoff in knowledge_graph_extractor.py
-
-### Issue: Low F1 Scores
-**Root Cause**: Neo4j accumulated entities across documents
-**Fix**: GraphPersisterV2 implements document_id isolation
-
-### Issue: Entity Type Mismatches
-**Fix**: Prompt updated to use specific types (PERSON, ORGANIZATION, SYSTEM, etc.)
-
----
-
-*Last Updated: 2025-08-27*
-*For implementation details, see referenced planning documents*
+*Last Updated: 2025-08-29*
+*Philosophy: Keep It Simple, Test It Properly*
