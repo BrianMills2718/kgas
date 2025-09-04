@@ -1,0 +1,107 @@
+# Annex F: Glossary of Terms
+
+## Technical Terms
+
+**ABM (Agent-Based Modeling)**: Computational simulation method where autonomous agents with defined behavioral rules interact to produce emergent system-level patterns. Used to test theoretical predictions through simulation.
+
+**Bi-store Architecture**: Data architecture using two complementary storage systems - Neo4j graph database for relational structures and SQLite for metadata and provenance.
+
+**Construct Estimate**: Computational approximation of latent theoretical constructs derived from discourse analysis across multiple domains - communication patterns, discourse structures, social dynamics, behavioral indicators, and psychological traits. Not claiming perfect measurement but meaningful correlation with theoretical constructs from communication, discourse, social, behavioral, and psychological theories.
+
+**Cross-Modal Analysis**: Analytical approach examining the same data through three complementary representations - graph (relational), table (statistical), and vector (semantic) - to provide multi-faceted understanding.
+
+**DAG (Directed Acyclic Graph)**: Workflow specification that defines sequences of analytical operations without circular dependencies, ensuring reproducible analysis pipelines.
+
+**DEPI Taxonomy**: Four-category classification of analytical goals - Describe (identify patterns), Explain (reveal mechanisms), Predict (forecast outcomes), Intervene (design strategies).
+
+**Fringe Discourse**: Online communication within communities that hold beliefs or promote narratives outside mainstream consensus, including conspiracy theories, extremist ideologies, and misinformation.
+
+**ICD-203/206**: Intelligence Community Directives establishing standards for analytic rigor and sourcing requirements, adapted here for academic uncertainty quantification.
+
+**KGAS (Knowledge Graph Analysis System)**: The computational system developed in this dissertation for theory-aware discourse analysis at scale, featuring 122+ modular tools that can be flexibly composed into analytical workflows guided by theoretical requirements.
+
+**Low-Code Interface**: User interaction design enabling complex computational analysis through natural language queries and visual configuration rather than programming.
+
+**MCP (Model Context Protocol)**: Standardized protocol for tool integration enabling interoperability between KGAS and external analytical systems.
+
+**Theory Meta-Schema**: Standardized, machine-readable format for representing social science theories including their entities, relationships, and computational specifications.
+
+## Theoretical Terms
+
+**Diffusion of Innovations**: Theory explaining how new ideas and practices spread through populations over time, following predictable adoption patterns.
+
+**Elaboration Likelihood Model (ELM)**: Dual-process theory of persuasion distinguishing between central (systematic) and peripheral (heuristic) routes to attitude change.
+
+**In-group/Out-group**: Social categorization where individuals identify with certain groups (in-groups) and distinguish themselves from others (out-groups), affecting perception and behavior.
+
+**Lasswell's Model**: Classic communication framework asking "Who says what to whom in what channel with what effect," extended here with "in what settings."
+
+**Levels of Analysis**: Three scales of social phenomena - individual (psychological processes), group (collective dynamics), and mass public/society (population patterns).
+
+**Motivated Reasoning**: Cognitive process where individuals selectively process information to confirm existing beliefs while rejecting contradictory evidence.
+
+**Network Contagion Theory**: Framework explaining how beliefs and behaviors spread through social networks via influence pathways.
+
+**Reasoned Action Model**: Theory linking attitudes, subjective norms, and perceived control to behavioral intentions and actual behaviors.
+
+**Social Identity Theory**: Framework explaining how group membership shapes self-concept and drives in-group favoritism and out-group discrimination.
+
+**Terror Management Theory**: Psychological theory explaining how awareness of mortality drives worldview defense and group identification behaviors.
+
+## Methodological Terms
+
+**Baseline Establishment**: Documentation of current performance metrics without optimization, providing reference points for future improvements.
+
+**Construct Validity**: Degree to which computational measures correspond to the theoretical constructs they claim to represent.
+
+**Crowd-Sourced Coding**: Validation method using multiple human annotators to establish ground truth for extraction accuracy assessment.
+
+**Information-Preserving**: Transformation between data formats that maintains theoretical constructs of interest, though not claiming complete losslessness.
+
+**Inter-Rater Reliability**: Statistical measure of agreement between multiple coders, establishing consistency of human judgment for validation.
+
+**Provenance Tracking**: Complete audit trail recording data sources, transformations, and analytical decisions throughout the processing pipeline.
+
+**Root-Sum-Squares**: Mathematical method for propagating independent uncertainties through analytical pipelines, adapted from engineering practice.
+
+**Theory-Aware Processing**: Computational analysis guided by theoretical frameworks rather than purely data-driven pattern recognition.
+
+**Uncertainty Quantification**: Systematic assessment and propagation of confidence levels throughout the analytical pipeline using standardized probability bands.
+
+**Validation Without Optimization**: Approach documenting actual performance without tuning for benchmarks, establishing honest baselines for the research community.
+
+## Policy Analysis Terms
+
+**Counter-Narrative**: Strategic communication designed to challenge and replace extremist or conspiracy narratives with alternative framings.
+
+**Influence Operations**: Coordinated activities designed to affect attitudes and behaviors of target populations, studied here for defensive understanding.
+
+**Intervention Modeling**: Simulation of potential policy actions (e.g., content moderation, counter-messaging) to predict effects before implementation.
+
+**Narrative Evolution**: Process by which discourse themes and framings change over time through social transmission and adaptation.
+
+**Network Disruption**: Strategic intervention targeting key nodes or connections to reduce harmful information spread.
+
+**Policy-Relevant Patterns**: Analytical findings with direct implications for policy decisions, such as influence networks or vulnerability indicators.
+
+**Psychological Vulnerability**: Individual-level factors (e.g., uncertainty, need for chaos) that increase susceptibility to extremist recruitment or conspiracy beliefs.
+
+**Scale Challenge**: The policy analysis problem of understanding discourse involving millions of posts and thousands of actors, requiring computational methods.
+
+**Threat Assessment**: Systematic evaluation of fringe discourse to identify potential risks to social cohesion, public health, or democratic institutions.
+
+## Acronyms
+
+**API**: Application Programming Interface
+**CFA**: Confirmatory Factor Analysis
+**CSV**: Comma-Separated Values
+**JSON**: JavaScript Object Notation
+**LLM**: Large Language Model
+**NLP**: Natural Language Processing
+**PDF**: Portable Document Format
+**QCA**: Qualitative Comparative Analysis
+**RAG**: Retrieval-Augmented Generation
+**SEM**: Structural Equation Modeling
+**SNA**: Social Network Analysis
+**W3C PROV**: World Wide Web Consortium Provenance Standard
+**XAI**: Explainable Artificial Intelligence
