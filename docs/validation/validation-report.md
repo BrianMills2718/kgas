@@ -1,16 +1,266 @@
 # Documentation Separation Validation Report
 
-⚠️ **Found 414 violations**
+⚠️ **Found 1161 violations**
 
 ## Architecture Violations
+- Contains implementation status: Implementation status
+- Contains implementation status: Implementation status
+- Contains implementation status: Implementation status
+- Contains file paths (implementation detail): File:
+- Contains file paths (implementation detail): Path:
+- Contains implementation status: Implementation status
+- Contains file paths (implementation detail): File:
+- Contains file paths (implementation detail): Path:
+- Contains implementation status: Implementation status
 - Contains file paths (implementation detail): `src/
+- Contains file paths (implementation detail): File:
+- Contains file paths (implementation detail): File:
+- Contains file paths (implementation detail): `/src/
 - Contains implementation status: Implementation status
 - Contains file paths (implementation detail): Path:
 
 ## Planning Violations
 - Planning document should contain status information
+- Planning document should contain status information
 
 ## Reference Violations
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
+- Document should reference roadmap for current status
 - Document should reference roadmap for current status
 - Document should reference roadmap for current status
 - Document should reference roadmap for current status
@@ -103,6 +353,503 @@
 - Missing purpose statement
 - Missing document type header
 - Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
+- Missing purpose statement
+- Missing document type header
 - Missing document type header
 - Missing purpose statement
 - Missing document type header

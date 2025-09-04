@@ -26,6 +26,14 @@ Build a clean vertical slice using **standard knowledge graph extraction** that 
 
 ## Architecture Overview
 
+### **Core Integration Pattern: Tools Wrap Services**
+```
+Framework → Tools → Services → Databases
+         registers  use       access
+```
+
+**Critical Principle**: Framework registers tools (not services directly). Tools wrap services to provide framework-compatible interface.
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    3 Clean Tools                             │
@@ -47,6 +55,7 @@ Build a clean vertical slice using **standard knowledge graph extraction** that 
 │  │ • Semantic type compatibility checking                  │ │
 │  │ • Uncertainty propagation (physics model)               │ │
 │  │ • Automatic tool registration                           │ │
+│  │ • Service dependency injection into tools               │ │
 │  └─────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
                               │
@@ -70,6 +79,32 @@ Build a clean vertical slice using **standard knowledge graph extraction** that 
 │  │ • Vector Embeddings    │    │ • Correlation Matrices │  │
 │  └────────────────────────┘    └────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
+```
+
+### **Service-Tool Integration Pattern**
+```python
+# 1. Service provides functionality
+class VectorService:
+    def embed_text(self, text: str) -> np.ndarray:
+        # actual embedding logic
+
+# 2. Tool wraps service for framework
+class VectorEmbedder:
+    def __init__(self, vector_service):
+        self.service = vector_service
+    
+    def process(self, data: str) -> Dict:
+        embedding = self.service.embed_text(data)
+        return {
+            'success': True, 
+            'embedding': embedding, 
+            'uncertainty': 0.05
+        }
+
+# 3. Framework registers tool with dependency injection
+vector_service = VectorService()
+tool = VectorEmbedder(vector_service)
+framework.register_tool(tool, ToolCapabilities(...))
 ```
 
 ## Implementation Plan
@@ -708,17 +743,67 @@ def test_complete_pipeline():
 - [ ] Aggregation tool with uncertainty reduction
 - [ ] Performance metrics tracking
 
-## Risk Assessment
+## Infrastructure Requirements
 
-### High Risk Items
-1. **LLM Cost**: Uncertainty assessment for every operation could be expensive
-2. **Database Setup**: Requiring both Neo4j and SQLite increases complexity
-3. **Service Fragmentation**: Current codebase has conflicting implementations
+### Required Dependencies
+```bash
+# Core dependencies for vertical slice
+pip install sentence-transformers  # For vector embeddings
+pip install faiss-cpu             # Backup vector search  
+pip install networkx              # Graph algorithms
+pip install scikit-learn          # Statistical analysis
+pip install openai pandas numpy litellm python-dotenv
+```
 
-### Mitigation Strategies
-1. **Cache assessments** for identical inputs
-2. **Docker compose** for database setup
-3. **Ignore existing code** - build clean from scratch
+### Infrastructure Specifications
+- **Neo4j 5.13+** - Required for native vector support
+- **SQLite** - For tabular analysis and metadata
+- **Memory**: 8GB RAM minimum for embedding operations
+- **Storage**: Local file system for document processing
+
+### Database Configuration
+- **Neo4j**: `bolt://localhost:7687` with auth (`neo4j`/`devpassword`)
+- **SQLite**: Local file `vertical_slice.db` with `vs2_` table prefix
+
+## Risk Assessment & Mitigation
+
+### Technical Risks & Mitigations
+1. **Neo4j Vector Performance** 
+   - Risk: Native vector operations may be slow
+   - Mitigation: Have FAISS fallback implementation ready
+
+2. **Service Coupling**
+   - Risk: Tight coupling between services reduces modularity  
+   - Mitigation: Keep services loosely coupled with clear interfaces
+
+3. **Tool Chain Complexity**
+   - Risk: Complex chains may be unreliable or slow
+   - Mitigation: Start with simple chains, add complexity incrementally
+
+4. **LLM Cost**
+   - Risk: Uncertainty assessment for every operation expensive
+   - Mitigation: Cache assessments for identical inputs
+
+5. **Database Setup Complexity**
+   - Risk: Requiring both Neo4j and SQLite increases setup burden
+   - Mitigation: Docker compose for consistent database setup
+
+### Implementation Risks & Mitigations
+1. **Scope Creep**
+   - Risk: Feature expansion beyond MVP requirements
+   - Mitigation: Stick to MVP features, document extensions separately
+
+2. **Integration Issues** 
+   - Risk: Service integration failures delay progress
+   - Mitigation: Test incrementally with working checkpoints
+
+3. **Performance Problems**
+   - Risk: System too slow for practical use
+   - Mitigation: Profile early and often, optimize critical paths
+
+4. **Service Fragmentation**
+   - Risk: Current codebase has conflicting implementations
+   - Mitigation: Build clean implementation, ignore legacy code
 
 ## Next Steps
 

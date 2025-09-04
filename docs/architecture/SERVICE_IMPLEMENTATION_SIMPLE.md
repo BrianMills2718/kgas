@@ -168,7 +168,101 @@ class TableService:
             return [dict(row) for row in rows]
 ```
 
-## Part 3: Testing (20 minutes)
+## Part 3: Service Dependency Injection Pattern (15 minutes)
+
+### 3.1 Tools Wrap Services Architecture
+Following the **Tools → Services → Databases** pattern, tools wrap services for framework compatibility:
+
+```python
+# services/integrated_services.py
+"""Service initialization and dependency injection"""
+from neo4j import GraphDatabase
+from services.vector_service import VectorService
+from services.table_service import TableService
+from services.identity_service_v3 import IdentityServiceV3
+from services.provenance_enhanced import ProvenanceEnhanced
+from services.crossmodal_service import CrossModalService
+
+def initialize_all_services():
+    """Initialize all services with proper dependencies"""
+    # Database connections
+    neo4j_driver = GraphDatabase.driver(
+        'bolt://localhost:7687', 
+        auth=('neo4j', 'devpassword')
+    )
+    sqlite_path = 'vertical_slice.db'
+    
+    # Initialize services
+    vector_service = VectorService()
+    table_service = TableService(sqlite_path)
+    identity_service = IdentityServiceV3(neo4j_driver)
+    provenance_service = ProvenanceEnhanced(sqlite_path)
+    crossmodal_service = CrossModalService(neo4j_driver, sqlite_path)
+    
+    return {
+        'vector': vector_service,
+        'table': table_service,
+        'identity': identity_service,
+        'provenance': provenance_service,
+        'crossmodal': crossmodal_service,
+        'neo4j_driver': neo4j_driver
+    }
+```
+
+### 3.2 Tool Registration with Service Injection
+```python
+# register_tools_with_services.py
+"""Register tools with proper service dependencies"""
+from framework.clean_framework import CleanToolFramework, ToolCapabilities, DataType
+from tools.vector_embedder import VectorEmbedder
+from tools.table_persister import TablePersister
+from tools.graph_persister_v2 import GraphPersisterV2
+
+def register_all_tools():
+    """Register tools with injected services"""
+    # Initialize services
+    services = initialize_all_services()
+    
+    # Create framework
+    framework = CleanToolFramework(services['neo4j_driver'])
+    
+    # Register tools with service dependencies
+    framework.register_tool(
+        VectorEmbedder(services['vector']),
+        ToolCapabilities(
+            tool_id="VectorEmbedder",
+            input_type=DataType.TEXT,
+            output_type=DataType.VECTOR
+        )
+    )
+    
+    framework.register_tool(
+        TablePersister(services['table']),
+        ToolCapabilities(
+            tool_id="TablePersister",
+            input_type=DataType.TABLE,
+            output_type=DataType.TABLE
+        )
+    )
+    
+    # GraphPersisterV2 with multiple service dependencies
+    framework.register_tool(
+        GraphPersisterV2(
+            services['neo4j_driver'],
+            services['identity'],
+            services['crossmodal']
+        ),
+        ToolCapabilities(
+            tool_id="GraphPersisterV2",
+            input_type=DataType.KNOWLEDGE_GRAPH,
+            output_type=DataType.NEO4J_GRAPH
+        )
+    )
+    
+    return framework, services
+```
+
+## Part 4: Testing (15 minutes)
 
 ### 3.1 Unit Tests
 ```python

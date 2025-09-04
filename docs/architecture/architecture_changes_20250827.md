@@ -51,9 +51,9 @@ Adding "quality" on top is double-counting the same concerns.
 
 ### Uncertainty IS Quality
 In our model, **uncertainty measures the quality of the semantic construct transformation**:
-- `file_path ’ character_sequence`: How well did we extract text?
-- `character_sequence ’ knowledge_graph`: How well did we identify entities?
-- `knowledge_graph ’ persisted_graph`: How well did we store it?
+- `file_path â†’ character_sequence`: How well did we extract text?
+- `character_sequence â†’ knowledge_graph`: How well did we identify entities?
+- `knowledge_graph â†’ persisted_graph`: How well did we store it?
 
 This IS a quality measure - the quality of the transformation.
 

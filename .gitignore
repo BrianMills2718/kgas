@@ -37,6 +37,12 @@ logs/
 *.sqlite
 *.sqlite3
 
+# Generated comparison and analysis files
+*_comparison_*.json
+gemini_comparison_*.json
+model_comparison_*.json
+combined_tool_inventory.json
+
 # ML/AI
 *.pkl
 *.h5
@@ -88,6 +94,12 @@ Thumbs.db
 docs/archive/
 archive/
 
+# Investigation files (temporary analysis and documentation)
+investigation/
+
+# Experiments directory (contains API keys and experimental code)
+experiments/
+
 # Exclude historical planning documents that contain conflicting visions
 docs/archive/root_cleanup/
 
@@ -131,30 +143,6 @@ __pycache__/
 
 # Log files
 *.log
-
-# Temporary test outputs
-test_output/
-temp/
-tmp/
-EOF < /dev/null
-# Temporary database files
-*.db-shm
-*.db-wal
-
-# Analysis files from today
-all_files_list.txt
-last_*_files.txt
-august_*_files.txt
-file_history_analysis.txt
-file_summary.txt
-files_by_creation_date.txt
-uncommitted_files.txt
-check_file_history.sh
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
 
 # Temporary test outputs
 test_output/
