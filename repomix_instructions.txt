@@ -1,0 +1,241 @@
+
+Skip to content
+Repomix
+Main Navigation
+Guide
+Chrome Extension
+Join Discord
+
+Repomix
+
+Pack your codebase into AI-friendly formats
+
+Output Format
+
+Include Patterns (using glob patterns)
+
+Ignore Patterns
+
+Output Format Options
+Include File Summary
+Include Directory Structure
+Show Line Numbers
+Output Parsable Format
+
+File Processing Options
+Compress Code
+Remove Comments
+Remove Empty Lines
+
+Processing repository...
+
+Special thanks to:
+Warp sponsorship
+
+Warp, built for coding with multiple AI agents
+
+Available for MacOS, Linux, & Windows
+🤖
+AI-Optimized
+
+Formats your codebase in a way that's easy for AI to understand and process.
+⚙️
+Git-Aware
+
+Automatically respects your .gitignore files.
+🛡️
+Security-Focused
+
+Incorporates Secretlint for robust security checks to detect and prevent inclusion of sensitive information.
+📊
+Token Counting
+
+Provides token counts for each file and the entire repository, useful for LLM context limits.
+npm version
+npm downloads
+Discord
+Sponsors
+GitHub stars
+
+Special thanks to:
+
+Warp sponsorship
+
+Warp, built for coding with multiple AI agents
+Available for MacOS, Linux, & Windows
+
+Tuple sponsorship
+
+Tuple, the premier screen sharing app for developers on macOS and Windows.
+
+Sponsors
+🏆 Open Source Awards Nomination
+
+We're honored! Repomix has been nominated for the Powered by AI category at the JSNation Open Source Awards 2025.
+
+This wouldn't have been possible without all of you using and supporting Repomix. Thank you!
+What is Repomix?
+
+Repomix is a powerful tool that packages your entire codebase into a single AI-friendly file. Whether you're working on code reviews, refactoring, or getting AI assistance with your project, Repomix makes it easy to share your entire repository context with AI tools.
+Quick Start
+
+Once you've generated a packed file (repomix-output.xml) using Repomix, you can send it to an AI assistant (like ChatGPT, Claude) with a prompt like:
+
+This file contains all the files in the repository combined into one.
+I want to refactor the code, so please review it first.
+
+The AI will analyze your entire codebase and provide comprehensive insights:
+
+Repomix File Usage 1
+
+When discussing specific changes, the AI can help generate code. With features like Claude's Artifacts, you can even receive multiple interdependent files:
+
+Repomix File Usage 2
+
+Happy coding! 🚀
+Why Repomix?
+
+Repomix's strength lies in its ability to work with any subscription service like ChatGPT, Claude, Gemini, Grok without worrying about costs, while providing complete codebase context that eliminates the need for file exploration—making analysis faster and often more accurate.
+
+With the entire codebase available as context, Repomix enables a wide range of applications including implementation planning, bug investigation, third-party library security checks, documentation generation, and much more.
+Using the CLI Tool
+
+Repomix can be used as a command-line tool, offering powerful features and customization options.
+
+The CLI tool can access private repositories as it uses your locally installed git.
+Quick Start
+
+You can try Repomix instantly in your project directory without installation:
+
+npx repomix@latest
+
+Or install globally for repeated use:
+
+# Install using npm
+npm install -g repomix
+
+# Alternatively using yarn
+yarn global add repomix
+
+# Alternatively using bun
+bun add -g repomix
+
+# Alternatively using Homebrew (macOS/Linux)
+brew install repomix
+
+# Then run in any project directory
+repomix
+
+That's it! Repomix will generate a repomix-output.xml file in your current directory, containing your entire repository in an AI-friendly format.
+Usage
+
+To pack your entire repository:
+
+repomix
+
+To pack a specific directory:
+
+repomix path/to/directory
+
+To pack specific files or directories using glob patterns:
+
+repomix --include "src/**/*.ts,**/*.md"
+
+To exclude specific files or directories:
+
+repomix --ignore "**/*.log,tmp/"
+
+To pack a remote repository:
+
+# Using shorthand format
+npx repomix --remote yamadashy/repomix
+
+# Using full URL (supports branches and specific paths)
+npx repomix --remote https://github.com/yamadashy/repomix
+npx repomix --remote https://github.com/yamadashy/repomix/tree/main
+
+# Using commit's URL
+npx repomix --remote https://github.com/yamadashy/repomix/commit/836abcd7335137228ad77feb28655d85712680f1
+
+To initialize a new configuration file (repomix.config.json):
+
+repomix --init
+
+Once you have generated the packed file, you can use it with Generative AI tools like Claude, ChatGPT, and Gemini.
+Docker Usage
+
+You can also run Repomix using Docker 🐳
+This is useful if you want to run Repomix in an isolated environment or prefer using containers.
+
+Basic usage (current directory):
+
+docker run -v .:/app -it --rm ghcr.io/yamadashy/repomix
+
+To pack a specific directory:
+
+docker run -v .:/app -it --rm ghcr.io/yamadashy/repomix path/to/directory
+
+Process a remote repository and output to a output directory:
+
+docker run -v ./output:/app -it --rm ghcr.io/yamadashy/repomix --remote https://github.com/yamadashy/repomix
+
+Output Formats
+
+Choose your preferred output format:
+
+# XML format (default)
+repomix --style xml
+
+# Markdown format
+repomix --style markdown
+
+# Plain text format
+repomix --style plain
+
+Customization
+
+Create a repomix.config.json for persistent settings:
+
+{
+  "output": {
+    "style": "markdown",
+    "filePath": "custom-output.md",
+    "removeComments": true,
+    "showLineNumbers": true,
+    "topFilesLength": 10
+  },
+  "ignore": {
+    "customPatterns": ["*.test.ts", "docs/**"]
+  }
+}
+
+Real-World Use Cases
+LLM Code Generation Workflow
+
+A developer shares how they use Repomix to extract code context from existing codebases, then leverage that context with LLMs like Claude and Aider for incremental improvements, code reviews, and automated documentation generation.
+Creating Knowledge Datapacks for LLMs
+
+Authors are using Repomix to package their written content—blogs, documentation, and books—into LLM-compatible formats, enabling readers to interact with their expertise through AI-powered Q&A systems.
+
+Discover more use cases →
+Power Users Guide
+
+Repomix offers powerful features for advanced use cases. Here are some essential guides for power users:
+
+    MCP Server - Model Context Protocol integration for AI assistants
+    GitHub Actions - Automate codebase packing in CI/CD workflows
+    Code Compression - Tree-sitter based intelligent compression (~70% token reduction)
+    Using as Library - Integrate Repomix into your Node.js applications
+    Custom Instructions - Add custom prompts and instructions to outputs
+    Security Features - Built-in Secretlint integration and safety checks
+    Best Practices - Optimize your AI workflows with proven strategies
+
+More Examples
+
+Need more help? 💡
+
+Check out our comprehensive documentation in the Guide or explore the GitHub Repository for more examples and source code.
+
+Released under the MIT License.
+
+Copyright © 2024 Kazuki Yamada

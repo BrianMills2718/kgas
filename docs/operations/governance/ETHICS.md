@@ -158,4 +158,4 @@ This document establishes the ethical framework for the Knowledge Graph Analysis
 
 ---
 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

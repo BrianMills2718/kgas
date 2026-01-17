@@ -228,4 +228,4 @@ python scripts/generate_technical_report.py
 ---
 
 **Note**: This evaluation framework provides a comprehensive approach to evaluating the KGAS system. Regular evaluations should be conducted to ensure system quality and performance. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

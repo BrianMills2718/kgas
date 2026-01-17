@@ -257,7 +257,7 @@ import re
 
 # Check that this verification file covers all major claims
 verification_commands = open('docs/architecture/VERIFICATION.md').read()
-status_doc = open('docs/planning/roadmap.md').read()
+status_doc = open('docs/roadmap/ROADMAP_OVERVIEW.md').read()
 
 # Extract claims from STATUS.md (simplified check)
 if '484 entities' in status_doc and 'Phase 1' in verification_commands:
@@ -294,7 +294,7 @@ print('✓ Documentation verification structure in place')
 ---
 
 **Usage**: Run these commands to verify that documentation claims match actual system capabilities. Any claim without a verification command should be treated as unverified.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>
 
 ## 📋 Phase 1→2→3 Integration Verification (2025-07-16)
 

@@ -1,0 +1,12 @@
+{
+  "checkpoint_id": "checkpoint_aeca3824",
+  "workflow_id": "workflow_296fa116",
+  "step_name": "initialization",
+  "step_number": 0,
+  "total_steps": 5,
+  "state_data": {
+    "step": 0
+  },
+  "created_at": "2025-09-05T09:01:32.268790",
+  "metadata": {}
+}

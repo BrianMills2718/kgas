@@ -363,4 +363,4 @@ See the official OTel and Grafana docs for advanced configuration.
 ---
 
 **Note**: This operations guide should be updated as the system evolves and new operational procedures are developed. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

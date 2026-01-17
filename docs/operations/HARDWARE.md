@@ -149,4 +149,4 @@
 ---
 
 **Note**: These specifications are based on current system requirements and may change as the system evolves. Always test with your specific workload before production deployment. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

@@ -22,12 +22,12 @@ class KnowledgeGraphExtractor:
         self.schema_mode = schema_mode
         
         # Now this will work - get API key after loading .env
-        self.api_key = os.getenv('GEMINI_API_KEY')
+        self.api_key = os.getenv('OPENAI_API_KEY')
         if not self.api_key:
-            raise ValueError("GEMINI_API_KEY not found in /home/brian/projects/Digimons/.env")
+            raise ValueError("OPENAI_API_KEY not found in /home/brian/projects/Digimons/.env")
         
-        # Always use gemini-1.5-flash
-        self.model = "gemini/gemini-1.5-flash"
+        # Use OpenAI gpt-5-mini
+        self.model = "gpt-5-mini"
     
     def process(self, text: str) -> Dict[str, Any]:
         """
@@ -172,13 +172,12 @@ JSON Output:"""
         
         for attempt in range(max_retries):
             try:
-                # Use Gemini for extraction
+                # Use OpenAI gpt-5-mini for extraction
                 response = litellm.completion(
-                    model="gemini/gemini-1.5-flash",
+                    model="gpt-5-mini",
                     messages=[{"role": "user", "content": prompt}],
-                    api_key=self.api_key,
-                    temperature=0.1,  # Low temperature for consistency
-                    max_tokens=2000
+                    api_key=self.api_key
+                    # GPT-5-mini only supports default temperature (1.0)
                 )
                 
                 # Parse response
@@ -202,7 +201,7 @@ JSON Output:"""
                 return kg_data
                 
             except (litellm.exceptions.InternalServerError, 
-                    litellm.exceptions.ServiceUnavailable,
+                    litellm.exceptions.ServiceUnavailableError,
                     litellm.exceptions.RateLimitError) as e:
                 # Handle multiple error types
                 if attempt < max_retries - 1:

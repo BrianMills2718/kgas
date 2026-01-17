@@ -117,4 +117,4 @@ def execute(self):
 ---
 
 **Next Action**: Remove `Neo4jFallbackMixin` and implement proper error handling per ERROR_HANDLING_BEST_PRACTICES.md-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

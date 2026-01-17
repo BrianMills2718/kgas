@@ -174,4 +174,4 @@
 ---
 
 **Conclusion**: These updates significantly improve the accuracy and honesty of the documentation while maintaining the comprehensive theoretical foundation and implementation roadmap. The documentation now provides a reliable guide to both current capabilities and future development plans. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

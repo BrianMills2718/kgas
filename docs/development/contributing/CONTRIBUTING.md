@@ -312,7 +312,7 @@ Brief description of changes
 ---
 
 **Note**: These guidelines help maintain code quality and foster a positive development environment. Please follow them when contributing to KGAS. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>
 
 ## Writing a ToolPlugin
 

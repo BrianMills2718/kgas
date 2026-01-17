@@ -83,4 +83,4 @@ Tool implementation ≠ System integration. Many tools work in isolation but fai
 - Need for comprehensive end-to-end integration tests
 
 See [`ARCHITECTURE.md`](ARCHITECTURE.md) for integration issues.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

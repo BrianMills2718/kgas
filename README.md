@@ -10,8 +10,8 @@ This repository implements the Knowledge Graph Analysis System (KGAS) described 
 
 ## Navigation
 - [KGAS Evergreen Documentation](docs/architecture/concepts/kgas-evergreen-documentation.md)
-- [Roadmap](docs/planning/roadmap.md)
-- [Architecture](docs/architecture/KGAS_ARCHITECTURE_V3.md)
+- [Roadmap](docs/roadmap/ROADMAP_OVERVIEW.md)
+- [Architecture](docs/architecture/ARCHITECTURE_OVERVIEW.md)
 - [Compatibility Matrix](docs/architecture/specifications/compatibility-matrix.md)
 
 ## Overview
@@ -82,7 +82,7 @@ docker run -p 7687:7687 -p 7474:7474 --name neo4j -d -e NEO4J_AUTH=none neo4j:la
 python examples/minimal_working_example.py
 ```
 
-**Full roadmap**: docs/planning/roadmap.md
+**Full roadmap**: docs/roadmap/ROADMAP_OVERVIEW.md
 
 ## Development Status
 

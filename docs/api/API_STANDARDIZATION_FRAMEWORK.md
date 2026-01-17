@@ -390,4 +390,4 @@ class APIIntegrationTests:
 ---
 
 **Implementation**: Deploy this framework immediately to prevent future API compatibility issues across the GraphRAG system.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

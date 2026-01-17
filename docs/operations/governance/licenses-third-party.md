@@ -208,4 +208,4 @@ All third-party components require proper attribution in:
 ---
 
 **Note**: This document should be updated whenever new dependencies are added or existing ones are updated. Always verify license compatibility before adding new dependencies. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

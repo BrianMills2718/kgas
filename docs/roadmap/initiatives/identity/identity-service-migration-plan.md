@@ -164,4 +164,4 @@ identity_service = IdentityService(
 ---
 
 **Note**: This migration maintains the principle of "Truth Before Aspiration" - we're not breaking anything that works, just consolidating and improving.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

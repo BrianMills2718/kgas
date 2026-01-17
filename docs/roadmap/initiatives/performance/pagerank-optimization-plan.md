@@ -209,4 +209,4 @@ def _store_pagerank_scores_batch(self, ranked_entities: List[Dict[str, Any]]) ->
 - Team expertise
 
 The batch operations alone should reduce PageRank time from 47s to ~25s, bringing total processing time under 20s.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

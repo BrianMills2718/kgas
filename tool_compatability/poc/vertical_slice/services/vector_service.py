@@ -14,9 +14,9 @@ class VectorService:
         self.model = "text-embedding-3-small"
     
     def embed_text(self, text: str) -> list:
-        """Get embedding with error handling"""
-        if not text:
-            return [0.0] * 1536
+        """Get embedding with FAIL-FAST error handling (no fallbacks)"""
+        if not text or len(text.strip()) == 0:
+            raise ValueError("Cannot embed empty text - text is required for meaningful embedding")
         
         try:
             response = self.client.embeddings.create(
@@ -24,13 +24,12 @@ class VectorService:
                 model=self.model
             )
             return response.data[0].embedding
-        except AuthenticationError:
+        except AuthenticationError as e:
             print("❌ Invalid API key")
-            raise
-        except RateLimitError:
-            print("⚠️ Rate limited, waiting 1s...")
-            time.sleep(1)
-            return self.embed_text(text)  # Retry once
+            raise RuntimeError("OpenAI API authentication failed - check OPENAI_API_KEY") from e
+        except RateLimitError as e:
+            print("❌ Rate limited by OpenAI")
+            raise RuntimeError("OpenAI API rate limit exceeded - cannot continue") from e
         except Exception as e:
             print(f"❌ Embedding failed: {e}")
-            return [0.0] * 1536  # Fallback to zero vector
+            raise RuntimeError(f"OpenAI embedding API failed: {str(e)}") from e

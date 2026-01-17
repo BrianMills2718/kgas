@@ -337,7 +337,7 @@ python -c "from src.component import Component; print('Component: OK')"
 
 **Note**: All commands should be run from the project root directory. If any command fails, check the troubleshooting section in `docs/architecture/QUICK_START.md`.
 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>
 
 ## 🛰️ Observability
 

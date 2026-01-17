@@ -236,4 +236,4 @@ python -c "from src.core.neo4j_manager import Neo4jManager; print('Neo4j: OK')"
 ---
 
 **Remember**: The system is in active development. Phase 1 works well, but Phase 2 and 3 integration is in progress. Focus on understanding the current state and contributing to the next development phase. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

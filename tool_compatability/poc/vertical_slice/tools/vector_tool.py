@@ -10,6 +10,6 @@ class VectorTool:
             'success': True,
             'embedding': embedding,
             'text': text,  # Preserve original text for downstream tools
-            'uncertainty': 0.0,
-            'reasoning': f'Generated {len(embedding)}-dim embedding'
+            'uncertainty': 0.05,  # Text embedding has small inherent uncertainty
+            'reasoning': f'Generated {len(embedding)}-dim embedding with 5% uncertainty from model variability'
         }

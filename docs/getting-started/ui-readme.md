@@ -137,4 +137,4 @@ After creating your ontology:
 2. Test with real documents from your domain
 3. Integrate with the full KGAS pipeline
 4. Use for GraphRAG queries on your knowledge base-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

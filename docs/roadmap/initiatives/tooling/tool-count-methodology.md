@@ -118,4 +118,4 @@ find src/tools -name "*.py" -type f | grep -v __pycache__ | wc -l
 - [`TOOL_COUNT_CLARIFICATION.md`](TOOL_COUNT_CLARIFICATION.md)
 - [`TOOL_ROADMAP_RECONCILIATION.md`](TOOL_ROADMAP_RECONCILIATION.md)
 - [`CURRENT_REALITY_AUDIT.md`](CURRENT_REALITY_AUDIT.md)-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

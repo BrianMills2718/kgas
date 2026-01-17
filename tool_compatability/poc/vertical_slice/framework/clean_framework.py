@@ -27,6 +27,7 @@ class DataType(Enum):
     NEO4J_GRAPH = "neo4j_graph"
     TABLE = "table"
     VECTOR = "vector"
+    GRAPH = "graph"
 
 @dataclass
 class ToolCapabilities:
@@ -150,9 +151,14 @@ class CleanToolFramework:
                         error=f"{tool_id} failed: {result.get('error', 'Unknown error')}"
                     )
                 
-                # Track uncertainty and reasoning
-                uncertainties.append(result.get('uncertainty', 0.5))
-                reasonings.append(result.get('reasoning', 'No reasoning provided'))
+                # Track uncertainty and reasoning - FAIL-FAST if missing
+                if 'uncertainty' not in result:
+                    raise RuntimeError(f"Tool {tool_id} failed to provide uncertainty value")
+                if 'reasoning' not in result:
+                    raise RuntimeError(f"Tool {tool_id} failed to provide reasoning")
+                
+                uncertainties.append(result['uncertainty'])
+                reasonings.append(result['reasoning'])
                 construct_mappings.append(result.get('construct_mapping', f"{cap.input_construct} → {cap.output_construct}"))
                 
                 # Track in provenance
@@ -161,9 +167,9 @@ class CleanToolFramework:
                     operation=cap.transformation_type,
                     inputs={'data_type': cap.input_type.value},
                     outputs={'data_type': cap.output_type.value},
-                    uncertainty=result.get('uncertainty', 0.5),
-                    reasoning=result.get('reasoning', ''),
-                    construct_mapping=result.get('construct_mapping', '')
+                    uncertainty=result['uncertainty'],  # Already validated above
+                    reasoning=result['reasoning'],      # Already validated above
+                    construct_mapping=result.get('construct_mapping', f"{cap.input_construct} → {cap.output_construct}")
                 )
                 
                 # Propagate data based on tool output
@@ -228,14 +234,24 @@ class CleanToolFramework:
     
     def _combine_sequential_uncertainties(self, uncertainties: List[float]) -> float:
         """
-        Physics-style error propagation for sequential tools
-        confidence = ∏(1 - uᵢ)
-        total_uncertainty = 1 - confidence
+        Physics-style uncertainty propagation for sequential operations
+        σ_total = √(σ₁² + σ₂² + ... + σₙ²)
+        
+        Assumes uncertainties are uncorrelated and add in quadrature
         """
-        confidence = 1.0
-        for u in uncertainties:
-            confidence *= (1 - u)
-        return 1 - confidence
+        import math
+        
+        if not uncertainties:
+            return 0.0
+        
+        # Sum of squares
+        sum_of_squares = sum(u * u for u in uncertainties)
+        
+        # Square root for total uncertainty
+        total_uncertainty = math.sqrt(sum_of_squares)
+        
+        # Cap at 1.0 (100% uncertainty)
+        return min(total_uncertainty, 1.0)
     
     def cleanup(self):
         """Clean up database connections"""
@@ -258,27 +274,15 @@ if __name__ == "__main__":
     # Create tool instances
     text_loader = TextLoaderV3()
     
-    # Create a mock KG extractor for testing without API key
-    class MockKGExtractor:
-        def __init__(self):
-            self.tool_id = "KnowledgeGraphExtractor"
-        
-        def process(self, text):
-            return {
-                'success': True,
-                'entities': [
-                    {'id': '1', 'name': 'Test Entity', 'type': 'person'},
-                    {'id': '2', 'name': 'Test Org', 'type': 'organization'}
-                ],
-                'relationships': [
-                    {'source': '1', 'target': '2', 'type': 'WORKS_AT'}
-                ],
-                'uncertainty': 0.25,
-                'reasoning': 'Mock extraction for framework testing',
-                'construct_mapping': 'character_sequence → knowledge_graph'
-            }
+    # Use real KG extractor - no mocks/fallbacks allowed
+    from tools.knowledge_graph_extractor import KnowledgeGraphExtractor
     
-    kg_extractor = MockKGExtractor()
+    try:
+        kg_extractor = KnowledgeGraphExtractor()
+        print("✅ Real KnowledgeGraphExtractor initialized")
+    except Exception as e:
+        print(f"❌ Failed to initialize KnowledgeGraphExtractor: {e}")
+        raise RuntimeError("Cannot initialize KnowledgeGraphExtractor - check API configuration") from e
     graph_persister = GraphPersisterV2(framework.neo4j, framework.identity, framework.crossmodal)
     
     # Register tools

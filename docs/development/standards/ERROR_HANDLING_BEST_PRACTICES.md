@@ -283,4 +283,4 @@ Following these patterns ensures:
 - **Reliability targets** (100% success-or-clear-failure) are met
 
 The GraphRAG system prioritizes **explicit failures with clear feedback** over silent degradation or mock responses, maintaining user trust and system integrity.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

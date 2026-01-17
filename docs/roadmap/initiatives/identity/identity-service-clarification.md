@@ -130,4 +130,4 @@ Each implementation should have clear documentation:
 - Service evolution without versioning strategy
 - Missing integration tests for service variants
 - Documentation lag for architectural decisions-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

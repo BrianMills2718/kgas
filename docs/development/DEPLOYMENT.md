@@ -246,5 +246,5 @@ docker compose logs > kgas_logs_$(date +%Y%m%d).log
 
 ---
 
-**Note**: This deployment guide provides the essential information for deploying KGAS in various environments. Always test deployment procedures in a staging environment before production deployment. -e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+**Note**: This deployment guide provides the essential information for deploying KGAS in various environments. Always test deployment procedures in a staging environment before production deployment. 
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

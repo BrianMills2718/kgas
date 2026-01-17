@@ -66,4 +66,4 @@ python tests/functional/test_tool_verification.py
 
 **Last Updated**: 2025-06-19  
 **Purpose**: Eliminate tool count confusion across documentation-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

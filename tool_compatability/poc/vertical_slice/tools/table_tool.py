@@ -14,8 +14,8 @@ class TableTool:
             return {
                 'success': True,
                 'row_id': row_id, 
-                'uncertainty': 0.0,
-                'reasoning': f'Stored embedding with ID {row_id}'
+                'uncertainty': 0.01,  # Database storage has minimal uncertainty
+                'reasoning': f'Stored embedding with ID {row_id} - minimal database uncertainty'
             }
         return {
             'success': False,

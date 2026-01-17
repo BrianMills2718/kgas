@@ -23,7 +23,7 @@
 
 **✅ Added Clear Headers to Key Documents**
 - Updated `docs/architecture/ARCHITECTURE.md` with clear architecture purpose header
-- Updated `docs/planning/roadmap.md` with master status source header
+- Updated `docs/roadmap/ROADMAP_OVERVIEW.md` with master status source header
 - Added warning messages about document purpose and content
 
 **✅ Created Documentation Templates**
@@ -113,5 +113,5 @@
 - **Architecture Template**: `docs/templates/architecture-template.md`
 - **Planning Template**: `docs/templates/planning-template.md`
 - **Validation Script**: `docs/validation/doc-separation-validator.py`
-- **Master Roadmap**: `docs/planning/roadmap.md`
+- **Master Roadmap**: `docs/roadmap/ROADMAP_OVERVIEW.md`
 - **Documentation Guidelines**: `docs/CLAUDE.md` 

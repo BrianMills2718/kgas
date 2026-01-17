@@ -156,4 +156,4 @@ Already implemented (from F1-F3):
 - ✅ Optimized PageRank algorithm
 
 These provide a solid foundation but further optimizations should wait until reliability is 100%.-e 
-<br><sup>See `docs/planning/roadmap.md` for master plan.</sup>
+<br><sup>See `docs/roadmap/ROADMAP_OVERVIEW.md` for master plan.</sup>

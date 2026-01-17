@@ -1,6 +1,6 @@
 # Documentation Separation Validation Report
 
-⚠️ **Found 1161 violations**
+⚠️ **Found 1141 violations**
 
 ## Architecture Violations
 - Contains implementation status: Implementation status
@@ -24,8 +24,6 @@
 - Planning document should contain status information
 
 ## Reference Violations
-- Document should reference roadmap for current status
-- Document should reference roadmap for current status
 - Document should reference roadmap for current status
 - Document should reference roadmap for current status
 - Document should reference roadmap for current status
@@ -552,20 +550,6 @@
 - Missing document type header
 - Missing purpose statement
 - Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
 - Missing document type header
 - Missing purpose statement
 - Missing document type header
@@ -836,7 +820,6 @@
 - Missing purpose statement
 - Missing document type header
 - Missing purpose statement
-- Missing document type header
 - Missing document type header
 - Missing purpose statement
 - Missing document type header
@@ -863,9 +846,6 @@
 - Missing document type header
 - Missing purpose statement
 - Missing document type header
-- Missing purpose statement
-- Missing document type header
-- Missing purpose statement
 - Missing document type header
 - Missing purpose statement
 - Missing document type header

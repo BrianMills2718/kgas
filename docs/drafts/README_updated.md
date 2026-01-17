@@ -86,7 +86,7 @@ See [Architecture Documentation](docs/architecture/ARCHITECTURE.md) for detailed
 
 ## Development Roadmap
 
-See [Roadmap](docs/planning/roadmap.md) for current development status and plans.
+See [Roadmap](docs/roadmap/ROADMAP_OVERVIEW.md) for current development status and plans.
 
 ## Contributing
 
