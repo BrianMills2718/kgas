@@ -150,3 +150,5 @@ temp/
 tmp/
 # never track datasets again
 data/datasets/
+experiments/ontology_engineering_system/ontology_engineering/ontology-chat-builder/
+experiments/process_tracing_system/
