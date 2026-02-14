@@ -6,7 +6,7 @@ from google.genai import types
 import time
 
 # Set your API key
-os.environ["GEMINI_API_KEY"] = "AIzaSyDXaLhSWAQhGNHZqdbvY-qFB0jxyPbiiow"  # Replace with your actual API key
+os.environ["GEMINI_API_KEY"] = "AIzaSyDBJVc4NDxVmoi2ep8EtISOTIyw6z0jpAc"  # Replace with your actual API key
 
 # Function to read and load CIA documents
 def load_documents(limit=5):

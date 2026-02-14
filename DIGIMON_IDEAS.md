@@ -242,13 +242,32 @@ See also: `~/projects/ARCHIVE_INDEX.md` (detailed per-variant inventories)
 **Path**: `archive/digimons_old/StructGPT/KG_sparse_api.py`
 **Status**: POINTER
 
-### E2. Graph Counselor Multi-Agent Reflection
+### E2. Graph Counselor — Reflexion Pattern (ACL 2025 paper, not our code)
 **Path**: `archive/digimons_old/Graph-Counselor/`
-**Status**: POINTER
+**Paper**: Gao et al., arXiv:2506.03939 — "Adaptive Graph Exploration via Multi-Agent Synergy"
+**Status**: REFERENCE — not our implementation, cloned research code
 
-### E3. RetrieverFactory Pattern (GraphRAG_fresh)
-**Path**: `archive/digimons_old/GraphRAG_fresh/`
-**Status**: POINTER
+**What it does**: Three-agent system (Planning, Thought, Execution) with self-reflection on failure. Uses Reflexion strategy: if the answer is wrong, the agent generates a reflection ("what went wrong?") and retries with that reflection as added context. Actions: Retrieve, Neighbor, Feature, Degree, Finish.
+
+**What's useful for us**: The reflexion-on-failure pattern is generic and could be bolted onto any retrieval method. It's ~20 lines on top of PlanningAgent: after `meta.generate_answer`, add a verification step ("does this answer the question?"), and if not, generate a reflection and re-run the pipeline with the reflection prepended to the query. This is independent of which method (basic_local, tog, etc.) is used.
+
+**Not worth porting**: The implementation is messy research code hardcoded to specific model paths (Llama, Qwen, Gemma, etc.). The pattern itself is trivial to reimplement.
+
+**Implementation sketch** (for future reference):
+```
+1. Run any method pipeline → get answer
+2. LLM judge: "Given question Q and answer A, is this a complete answer?" → yes/no
+3. If no: LLM reflect: "What went wrong? What information is missing?"
+4. Prepend reflection to query, re-run pipeline (max N retries)
+```
+
+### E3. RetrieverFactory Pattern (GraphRAG_fresh) — SUPERSEDED
+**Path**: `archive/digimons_old/GraphRAG_fresh/Core/Retriever/RetrieverFactory.py`
+**Status**: DEAD — strictly less capable than OperatorRegistry
+
+**What it was**: 52-line string-keyed dictionary (`{type: {method_name: func}}`) with decorator registration. No type safety, no I/O compatibility checking, no chain discovery.
+
+**Why it's dead**: `Digimon_for_KG_application/Core/Operators/registry.py` (OperatorRegistry) is a strict superset — typed SlotKind I/O, `get_compatible_successors/predecessors`, `find_chains_to_goal` (BFS), `validate_connection`, CostTier metadata. Nothing to salvage.
 
 ### E4. N-ary Reification
 **Path**: `archive/digimons_old/future_work_not_for_v1/n_ary_reification.py`

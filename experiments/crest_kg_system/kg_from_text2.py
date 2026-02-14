@@ -10,7 +10,7 @@ from google.genai import types
 from typing import Dict, List, Any, Optional
 
 # Set your API key here
-os.environ["GEMINI_API_KEY"] = "AIzaSyDXaLhSWAQhGNHZqdbvY-qFB0jxyPbiiow"   # Replace with your actual API key
+os.environ["GEMINI_API_KEY"] = "AIzaSyDBJVc4NDxVmoi2ep8EtISOTIyw6z0jpAc"   # Replace with your actual API key
 
 class KnowledgeGraphCreator:
     def __init__(self, model_name="gemini-2.5-flash-preview-04-17"):
